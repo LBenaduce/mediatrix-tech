@@ -577,7 +577,7 @@ const getContactLinks = (quoteMessage) => ({
   whatsappUs: whatsappUrl("10000000000", quoteMessage),
   // Replace this placeholder with your real Brazil WhatsApp number, for example: 5555999357388.
   whatsappBrazil: whatsappUrl("5500000000000", quoteMessage),
-  email: "mailto:hello@mediatrixtech.com",
+  email: "mailto:mediatrixtech@proton.me",
   instagram: "https://instagram.com/mediatrixtech",
   upwork: "https://www.upwork.com/freelancers/~your-profile",
 });
