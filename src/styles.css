@@ -581,6 +581,20 @@ li::before {
   text-transform: uppercase;
 }
 
+.portfolio-demo {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  margin: 0.25rem 0 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.28);
+  object-fit: cover;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
 .portfolio-card svg {
   position: absolute;
   right: 1.2rem;

@@ -8,7 +8,7 @@ import {
   Code2,
   Cpu,
   ExternalLink,
-  Globe2,
+  Globe,
   Leaf,
   Mail,
   Music2,
@@ -593,10 +593,11 @@ function App() {
       features,
       featured: index === 3,
     }));
-    const portfolio = copy.portfolio.map(([title, category, description]) => ({
+    const portfolio = copy.portfolio.map(([title, category, description], index) => ({
       title,
       category,
       description,
+      demoVideo: index === 0 ? "/agriclimate-pro-demo.mp4" : null,
     }));
 
     return {
@@ -656,7 +657,7 @@ function Header() {
           onClick={changeLanguage}
           aria-label={`Change language. Current language: ${localeLabels[currentLocale]}. Next language: ${localeLabels[nextLocale]}.`}
         >
-          <Globe2 size={17} aria-hidden="true" />
+          <Globe size={17} aria-hidden="true" />
           <span>{localeLabels[currentLocale]}</span>
         </button>
       </div>
@@ -799,6 +800,19 @@ function Portfolio() {
             <span className="portfolio-number">{String(index + 1).padStart(2, "0")}</span>
             <p>{project.category}</p>
             <h3>{project.title}</h3>
+            {project.demoVideo && (
+              <video
+                className="portfolio-demo"
+                aria-label={`${project.title} demo video`}
+                autoPlay
+                loop
+                muted
+                playsInline
+                preload="metadata"
+              >
+                <source src={project.demoVideo} type="video/mp4" />
+              </video>
+            )}
             <span>{project.description}</span>
             <ExternalLink size={18} aria-hidden="true" />
           </a>
