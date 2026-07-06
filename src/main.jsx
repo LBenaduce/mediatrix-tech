@@ -811,7 +811,7 @@ function Contact() {
         </div>
       </div>
      <footer>
-  <span>L Benaduce™ © {new Date().getFullYear()}</span>
+  <span>L Benaduce © {new Date().getFullYear()}</span>
   <span>{copy.hero.tagline}</span>
 </footer> 
     </section>
