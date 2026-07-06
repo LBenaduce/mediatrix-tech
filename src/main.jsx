@@ -8,6 +8,7 @@ import {
   Code2,
   Cpu,
   ExternalLink,
+  Globe2,
   Leaf,
   Mail,
   Music2,
@@ -512,6 +513,18 @@ const mergeLocale = (locale) => ({
 });
 
 const supportedLocales = Object.keys(translations);
+const localeLabels = {
+  en: "EN",
+  "pt-BR": "PT",
+  es: "ES",
+  fr: "FR",
+  de: "DE",
+  it: "IT",
+};
+
+const LocaleContentContext = React.createContext(null);
+
+const useLocaleContent = () => React.useContext(LocaleContentContext);
 
 const normalizeLocale = (locale) => locale?.toLowerCase().replace("_", "-");
 
@@ -548,49 +561,61 @@ const getDeviceLocale = () => {
   );
 };
 
-const currentLocale = getDeviceLocale();
-const copy = mergeLocale(translations[currentLocale]);
-
-const whatsappUrl = (phoneNumber) =>
-  `https://wa.me/${phoneNumber}?text=${encodeURIComponent(copy.quoteMessage)}`;
+const whatsappUrl = (phoneNumber, quoteMessage) =>
+  `https://wa.me/${phoneNumber}?text=${encodeURIComponent(quoteMessage)}`;
 
 // Change these links to your real phone, email, Instagram, and Upwork profile.
-const contactLinks = {
+const getContactLinks = (quoteMessage) => ({
   // Replace this placeholder with your real US WhatsApp number, for example: 13059920833.
-  whatsappUs: whatsappUrl("10000000000"),
+  whatsappUs: whatsappUrl("10000000000", quoteMessage),
   // Replace this placeholder with your real Brazil WhatsApp number, for example: 5555999357388.
-  whatsappBrazil: whatsappUrl("5500000000000"),
+  whatsappBrazil: whatsappUrl("5500000000000", quoteMessage),
   email: "mailto:hello@mediatrixtech.com",
   instagram: "https://instagram.com/mediatrixtech",
   upwork: "https://www.upwork.com/freelancers/~your-profile",
-};
-
-const services = copy.services.map(([title, description], index) => ({
-  title,
-  description,
-  icon: serviceIcons[index],
-}));
-
-const packages = copy.packages.map(([name, audience, features], index) => ({
-  name,
-  audience,
-  features,
-  featured: index === 3,
-}));
-
-const portfolio = copy.portfolio.map(([title, category, description]) => ({
-  title,
-  category,
-  description,
-}));
+});
 
 function App() {
+  const [currentLocale, setCurrentLocale] = React.useState(getDeviceLocale);
+  const copy = React.useMemo(
+    () => mergeLocale(translations[currentLocale]),
+    [currentLocale],
+  );
+  const content = React.useMemo(() => {
+    const services = copy.services.map(([title, description], index) => ({
+      title,
+      description,
+      icon: serviceIcons[index],
+    }));
+    const packages = copy.packages.map(([name, audience, features], index) => ({
+      name,
+      audience,
+      features,
+      featured: index === 3,
+    }));
+    const portfolio = copy.portfolio.map(([title, category, description]) => ({
+      title,
+      category,
+      description,
+    }));
+
+    return {
+      contactLinks: getContactLinks(copy.quoteMessage),
+      copy,
+      currentLocale,
+      packages,
+      portfolio,
+      services,
+      setCurrentLocale,
+    };
+  }, [copy, currentLocale]);
+
   React.useEffect(() => {
     document.documentElement.lang = currentLocale;
-  }, []);
+  }, [currentLocale]);
 
   return (
-    <>
+    <LocaleContentContext.Provider value={content}>
       <Header />
       <main>
         <Hero />
@@ -600,28 +625,48 @@ function App() {
         <WhyChooseUs />
         <Contact />
       </main>
-    </>
+    </LocaleContentContext.Provider>
   );
 }
 
 function Header() {
+  const { copy, currentLocale, setCurrentLocale } = useLocaleContent();
+  const currentLocaleIndex = supportedLocales.indexOf(currentLocale);
+  const nextLocale = supportedLocales[(currentLocaleIndex + 1) % supportedLocales.length];
+  const changeLanguage = () => {
+    setCurrentLocale(nextLocale);
+  };
+
   return (
     <header className="site-header">
       <a className="brand-mark" href="#top" aria-label="Mediatrix Tech home">
         <span>M</span>
         Mediatrix Tech
       </a>
-      <nav aria-label="Primary navigation">
-        <a href="#services">{copy.nav[0]}</a>
-        <a href="#packages">{copy.nav[1]}</a>
-        <a href="#portfolio">{copy.nav[2]}</a>
-        <a href="#contact">{copy.nav[3]}</a>
-      </nav>
+      <div className="header-actions">
+        <nav aria-label="Primary navigation">
+          <a href="#services">{copy.nav[0]}</a>
+          <a href="#packages">{copy.nav[1]}</a>
+          <a href="#portfolio">{copy.nav[2]}</a>
+          <a href="#contact">{copy.nav[3]}</a>
+        </nav>
+        <button
+          className="language-button"
+          type="button"
+          onClick={changeLanguage}
+          aria-label={`Change language. Current language: ${localeLabels[currentLocale]}. Next language: ${localeLabels[nextLocale]}.`}
+        >
+          <Globe2 size={17} aria-hidden="true" />
+          <span>{localeLabels[currentLocale]}</span>
+        </button>
+      </div>
     </header>
   );
 }
 
 function Hero() {
+  const { copy } = useLocaleContent();
+
   return (
     <section className="hero" id="top">
       <video
@@ -671,6 +716,8 @@ function Hero() {
 }
 
 function Services() {
+  const { copy, services } = useLocaleContent();
+
   return (
     <Section
       id="services"
@@ -705,6 +752,8 @@ function ServiceCard({ title, description, icon: Icon }) {
 }
 
 function Packages() {
+  const { copy, packages } = useLocaleContent();
+
   return (
     <Section
       id="packages"
@@ -734,6 +783,8 @@ function Packages() {
 }
 
 function Portfolio() {
+  const { copy, portfolio } = useLocaleContent();
+
   return (
     <Section
       id="portfolio"
@@ -758,6 +809,8 @@ function Portfolio() {
 }
 
 function WhyChooseUs() {
+  const { copy } = useLocaleContent();
+
   return (
     <section className="why-section">
       <div className="section-shell why-layout">
@@ -779,6 +832,8 @@ function WhyChooseUs() {
 }
 
 function Contact() {
+  const { contactLinks, copy } = useLocaleContent();
+
   return (
     <section className="contact-section" id="contact">
       <div className="section-shell contact-layout">

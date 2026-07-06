@@ -98,6 +98,46 @@ nav a:hover {
   color: var(--text);
 }
 
+.header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.75rem, 2vw, 1.4rem);
+}
+
+.language-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.25rem;
+  min-height: 2.4rem;
+  gap: 0.45rem;
+  padding: 0.55rem 0.72rem;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.065);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 750;
+  letter-spacing: 0;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.language-button:hover {
+  border-color: rgba(85, 184, 255, 0.48);
+  background: rgba(85, 184, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.language-button svg {
+  color: var(--gold-bright);
+}
+
 .hero {
   position: relative;
   display: grid;
@@ -703,7 +743,7 @@ footer span:first-child {
 
 @media (max-width: 520px) {
   .site-header {
-    align-items: flex-start;
+    align-items: center;
   }
 
   .hero-overlay {
