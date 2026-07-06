@@ -810,10 +810,10 @@ function Contact() {
           </a>
         </div>
       </div>
-      <footer>
-        <span>Mediatrix Tech</span>
-        <span>{copy.hero.tagline}</span>
-      </footer>
+     <footer>
+  <span>L Benaduce™ © {new Date().getFullYear()}</span>
+  <span>{copy.hero.tagline}</span>
+</footer> 
     </section>
   );
 }
