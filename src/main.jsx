@@ -17,9 +17,18 @@ import {
 } from "lucide-react";
 import "./styles.css";
 
+const quoteMessage =
+  "Hello Mediatrix Tech, I would like to request a quote for a digital project.";
+
+const whatsappUrl = (phoneNumber) =>
+  `https://wa.me/${phoneNumber}?text=${encodeURIComponent(quoteMessage)}`;
+
 // Change these links to your real phone, email, Instagram, and Upwork profile.
 const contactLinks = {
-  whatsapp: "https://wa.me/5500000000000",
+  // Replace this placeholder with your real US WhatsApp number, for example: 13059920833.
+  whatsappUs: whatsappUrl("10000000000"),
+  // Replace this placeholder with your real Brazil WhatsApp number, for example: 5555999357388.
+  whatsappBrazil: whatsappUrl("5500000000000"),
   email: "mailto:hello@mediatrixtech.com",
   instagram: "https://instagram.com/mediatrixtech",
   upwork: "https://www.upwork.com/freelancers/~your-profile",
@@ -348,8 +357,12 @@ function Contact() {
           </p>
         </div>
         <div className="contact-actions" aria-label="Contact options">
-          <a className="button primary" href={contactLinks.whatsapp}>
-            WhatsApp
+          <a className="button primary" href={contactLinks.whatsappUs}>
+            WhatsApp US
+            <Send size={18} />
+          </a>
+          <a className="button primary" href={contactLinks.whatsappBrazil}>
+            WhatsApp Brazil
             <Send size={18} />
           </a>
           <a className="button secondary" href={contactLinks.email}>
