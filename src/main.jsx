@@ -171,28 +171,55 @@ function Header() {
 function Hero() {
   return (
     <section className="hero" id="top">
-      <div className="hero-bg" aria-hidden="true" />
+      <video
+        className="hero-video"
+        aria-hidden="true"
+        autoPlay
+        loop
+        muted
+        playsInline
+        poster="/mediatrix-hero.png"
+      >
+        <source src="/mediatrix-hero-video.mp4" type="video/mp4" />
+      </video>
       <div className="hero-overlay" aria-hidden="true" />
+      <div className="hero-grid" aria-hidden="true" />
       <div className="hero-content section-shell">
-        <p className="eyebrow">
-          <Sparkles size={16} />
-          Digital services for modern local businesses
-        </p>
-        <h1>Mediatrix Tech</h1>
-        <p className="tagline">Connecting ideas, media, and technology.</p>
-        <p className="subtitle">
-          Websites, media, and digital solutions for businesses, events,
-          creators, and agribusiness.
-        </p>
-        <div className="hero-actions">
-          <a className="button primary" href="#contact">
-            Request a quote
-            <Send size={18} />
-          </a>
-          <a className="button secondary" href="#services">
-            View services
-            <ChevronRight size={18} />
-          </a>
+        <div className="hero-copy">
+          <p className="eyebrow">
+            <Sparkles size={16} />
+            Digital services for modern local businesses
+          </p>
+          <h1>Mediatrix Tech</h1>
+          <p className="tagline">Connecting ideas, media, and technology.</p>
+          <p className="subtitle">
+            Websites, media, and digital solutions for businesses, events,
+            creators, and agribusiness.
+          </p>
+          <div className="hero-actions">
+            <a className="button primary" href="#contact">
+              Request a quote
+              <Send size={18} />
+            </a>
+            <a className="button secondary" href="#services">
+              View services
+              <ChevronRight size={18} />
+            </a>
+          </div>
+        </div>
+        <div className="hero-proof" aria-label="Mediatrix Tech service highlights">
+          <div>
+            <strong>Web</strong>
+            <span>Sites that convert</span>
+          </div>
+          <div>
+            <strong>Media</strong>
+            <span>Video, audio, music</span>
+          </div>
+          <div>
+            <strong>AI</strong>
+            <span>Useful automation</span>
+          </div>
         </div>
       </div>
     </section>
@@ -219,8 +246,13 @@ function Services() {
 function ServiceCard({ title, description, icon: Icon }) {
   return (
     <article className="glass-card service-card">
-      <div className="icon-tile" aria-hidden="true">
-        <Icon size={24} />
+      <div className="service-card-top">
+        <div className="icon-tile" aria-hidden="true">
+          <Icon size={24} />
+        </div>
+        <span className="service-arrow" aria-hidden="true">
+          <ChevronRight size={18} />
+        </span>
       </div>
       <h3>{title}</h3>
       <p>{description}</p>
