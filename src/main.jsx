@@ -521,6 +521,13 @@ const localeLabels = {
   de: "DE",
   it: "IT",
 };
+const portfolioDemoVideos = {
+  0: "/agriclimate-pro-demo.mp4",
+  2: "/event-qr-code-demo.mp4",
+};
+const portfolioDemoImages = {
+  1: "/frasson-farois-demo.jpg",
+};
 
 const LocaleContentContext = React.createContext(null);
 
@@ -597,7 +604,8 @@ function App() {
       title,
       category,
       description,
-      demoVideo: index === 0 ? "/agriclimate-pro-demo.mp4" : null,
+      demoImage: portfolioDemoImages[index] || null,
+      demoVideo: portfolioDemoVideos[index] || null,
     }));
 
     return {
@@ -812,6 +820,14 @@ function Portfolio() {
               >
                 <source src={project.demoVideo} type="video/mp4" />
               </video>
+            )}
+            {project.demoImage && (
+              <img
+                className="portfolio-demo"
+                src={project.demoImage}
+                alt={`${project.title} demo preview`}
+                loading="lazy"
+              />
             )}
             <span>{project.description}</span>
             <ExternalLink size={18} aria-hidden="true" />
