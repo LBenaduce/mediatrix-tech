@@ -1134,7 +1134,9 @@ const portfolioDemoVideos = {
 const portfolioDemoImages = {
   1: "/frasson-farois-demo.jpg",
   3: "/video-editing-demo.png",
-  4: "/audio-editing-demo.png",
+};
+const portfolioDemoAudio = {
+  4: "/all-alone-edit.mp3",
 };
 
 const LocaleContentContext = React.createContext(null);
@@ -1212,6 +1214,7 @@ function App() {
       title,
       category,
       description,
+      demoAudio: portfolioDemoAudio[index] || null,
       demoImage: portfolioDemoImages[index] || null,
       demoVideo: portfolioDemoVideos[index] || null,
     }));
@@ -1448,6 +1451,16 @@ function Portfolio() {
                 alt={`${project.title} demo preview`}
                 loading="lazy"
               />
+            )}
+            {project.demoAudio && (
+              <audio
+                className="portfolio-audio"
+                controls
+                preload="metadata"
+                aria-label={`${project.title} audio sample`}
+              >
+                <source src={project.demoAudio} type="audio/mpeg" />
+              </audio>
             )}
             <span>{project.description}</span>
             <ExternalLink size={18} aria-hidden="true" />
