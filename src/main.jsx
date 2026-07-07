@@ -501,6 +501,585 @@ const translations = {
   },
 };
 
+Object.assign(translations, {
+  "zh-CN": {
+    quoteMessage: "你好 Mediatrix Tech，我想为一个数字项目申请报价。",
+    nav: ["服务", "套餐", "作品集", "联系"],
+    hero: {
+      eyebrow: "面向现代本地企业的数字服务",
+      tagline: "连接创意、媒体与技术。",
+      subtitle: "为企业、活动、创作者和农业商务打造网站、媒体和数字解决方案。",
+      quote: "申请报价",
+      services: "查看服务",
+      proof: [["网站", "提升转化的网站"], ["媒体", "视频、音频、音乐"], ["AI", "实用自动化"]],
+    },
+    servicesSection: {
+      eyebrow: "我们打造什么",
+      title: "连接实用性与创造力的数字服务。",
+      intro: "灵活结合网站、媒体、自动化和 AgTech 支持，为团队提供有用且不过度复杂的数字工作。",
+    },
+    services: [
+      ["网站开发", "快速、响应式的网站和落地页，用于说明、销售和转化。"],
+      ["活动数字解决方案", "用于宾客照片、视频、活动图库和品牌分享的二维码上传页面。"],
+      ["视频剪辑", "使用 Final Cut Pro 为品牌、创作者、活动、Reels 和演示制作干净剪辑。"],
+      ["音频编辑", "播客清理、人声处理、声音修复、混音和精修交付。"],
+      ["音乐制作", "原创曲目、编曲、声音识别和数字媒体制作支持。"],
+      ["AI 与自动化", "为小企业和个人团队减少重复工作的实用自动化。"],
+      ["AgTech 解决方案", "面向农业商务流程、田间数据、气候洞察和本地运营的数字工具。"],
+    ],
+    packagesSection: {
+      eyebrow: "起点",
+      title: "围绕真实业务需求设计的套餐。",
+      intro: "选择一个聚焦的套件，再根据目标、预算和时间线调整范围。",
+      badge: "最完整",
+    },
+    packages: [
+      ["基础网站", "适合小企业", ["单页网站", "移动优先布局", "联系按钮"]],
+      ["活动数字套件", "适合活动和场地", ["二维码上传页", "照片/视频流程", "可分享图库"]],
+      ["社交媒体套件", "适合创作者和品牌", ["视频剪辑", "音频精修", "内容就绪素材"]],
+      ["完整数字形象", "适合成长型团队", ["网站", "媒体套餐", "自动化指导"]],
+      ["农业数字套件", "适合农业商务", ["AgTech 网站", "田间工具", "数据友好结构"]],
+    ],
+    portfolioSection: {
+      eyebrow: "精选作品",
+      title: "作品集占位已准备好连接真实项目链接。",
+      intro: "可将每张卡片连接到网站、视频、音频演示或案例研究。",
+    },
+    portfolio: [
+      ["AgriClimate Pro", "AgTech 平台概念", "面向农业决策的气候感知数字体验。"],
+      ["Frasson Faróis", "企业网站", "以服务为核心结构的实用本地业务展示。"],
+      ["活动二维码照片网站", "活动上传流程", "方便宾客上传活动媒体的二维码入口。"],
+      ["视频剪辑样例", "Final Cut Pro", "适合推广、活动和创作者内容的节奏化剪辑。"],
+      ["音频/音乐样例", "音频制作", "适用于人声、音乐和多媒体项目的精修声音。"],
+    ],
+    why: {
+      eyebrow: "为什么选择我们",
+      title: "兼具创意听觉与实用执行力的技术。",
+      advantages: ["网站开发与创意媒体一站式服务", "真实项目经验", "移动优先设计", "面向本地企业的实用方案", "技术与创意背景"],
+    },
+    contact: {
+      eyebrow: "开始项目",
+      title: "告诉我你想构建、改进、剪辑或自动化什么。",
+      intro: "从简单落地页到活动媒体流程或农业数字工具，Mediatrix Tech 将想法转化为有用的在线体验。",
+      optionsLabel: "联系方式",
+      whatsappUs: "美国 WhatsApp",
+      whatsappBrazil: "巴西 WhatsApp",
+    },
+  },
+  hi: {
+    quoteMessage: "नमस्ते Mediatrix Tech, मैं एक डिजिटल प्रोजेक्ट के लिए कोटेशन लेना चाहता/चाहती हूं।",
+    nav: ["सेवाएं", "पैकेज", "पोर्टफोलियो", "संपर्क"],
+    hero: {
+      eyebrow: "आधुनिक स्थानीय व्यवसायों के लिए डिजिटल सेवाएं",
+      tagline: "विचारों, मीडिया और तकनीक को जोड़ना।",
+      subtitle: "व्यवसायों, इवेंट्स, क्रिएटर्स और एग्रीबिजनेस के लिए वेबसाइट, मीडिया और डिजिटल समाधान।",
+      quote: "कोटेशन मांगें",
+      services: "सेवाएं देखें",
+      proof: [["वेब", "कन्वर्ट करने वाली साइटें"], ["मीडिया", "वीडियो, ऑडियो, संगीत"], ["AI", "उपयोगी ऑटोमेशन"]],
+    },
+    servicesSection: {
+      eyebrow: "हम क्या बनाते हैं",
+      title: "डिजिटल सेवाएं जो व्यावहारिकता और रचनात्मकता को जोड़ती हैं।",
+      intro: "वेब, मीडिया, ऑटोमेशन और AgTech सपोर्ट का लचीला मिश्रण, उन टीमों के लिए जिन्हें बिना अनावश्यक जटिलता के उपयोगी डिजिटल काम चाहिए।",
+    },
+    services: [
+      ["वेब डेवलपमेंट", "तेज, रिस्पॉन्सिव वेबसाइट और लैंडिंग पेज जो समझाने, बेचने और कन्वर्ट करने के लिए बनाए जाते हैं।"],
+      ["इवेंट डिजिटल समाधान", "मेहमानों की फोटो, वीडियो, इवेंट गैलरी और ब्रांडेड शेयरिंग के लिए QR Code अपलोड पेज।"],
+      ["वीडियो एडिटिंग", "ब्रांड, क्रिएटर्स, इवेंट्स, reels और प्रस्तुतियों के लिए साफ Final Cut Pro एडिट्स।"],
+      ["ऑडियो एडिटिंग", "पॉडकास्ट क्लीनअप, वॉइस प्रोसेसिंग, साउंड रिपेयर, मिक्सिंग और पॉलिश्ड डिलीवरी।"],
+      ["म्यूजिक प्रोडक्शन", "डिजिटल मीडिया के लिए ओरिजिनल ट्रैक्स, अरेंजमेंट, साउंड आइडेंटिटी और प्रोडक्शन सपोर्ट।"],
+      ["AI और ऑटोमेशन", "छोटे व्यवसायों और solo teams के repetitive काम को कम करने वाले व्यावहारिक ऑटोमेशन।"],
+      ["AgTech समाधान", "एग्रीबिजनेस workflows, field data, climate insights और local operations के लिए डिजिटल टूल्स।"],
+    ],
+    packagesSection: {
+      eyebrow: "शुरुआती विकल्प",
+      title: "वास्तविक व्यवसायिक जरूरतों के अनुसार बनाए गए पैकेज।",
+      intro: "एक focused kit चुनें, फिर अपने goals, budget और timeline के अनुसार scope बदलें।",
+      badge: "सबसे पूरा",
+    },
+    packages: [
+      ["बेसिक वेबसाइट", "छोटे व्यवसायों के लिए", ["One-page website", "Mobile-first layout", "Contact buttons"]],
+      ["इवेंट डिजिटल किट", "इवेंट्स और venues के लिए", ["QR upload page", "Photo/video flow", "Share-ready gallery"]],
+      ["सोशल मीडिया किट", "क्रिएटर्स और brands के लिए", ["Video edits", "Audio polish", "Content-ready assets"]],
+      ["Complete Digital Presence", "बढ़ती teams के लिए", ["Website", "Media package", "Automation guidance"]],
+      ["Agro Digital Kit", "एग्रीबिजनेस के लिए", ["AgTech website", "Field-focused tools", "Data-friendly structure"]],
+    ],
+    portfolioSection: {
+      eyebrow: "चुना हुआ काम",
+      title: "आपके real project links के लिए तैयार portfolio placeholders.",
+      intro: "हर card को live website, video, audio demo या case study से जोड़ें।",
+    },
+    portfolio: [
+      ["AgriClimate Pro", "AgTech platform concept", "कृषि निर्णयों के लिए climate-aware digital experience."],
+      ["Frasson Faróis", "Business website", "Service-first structure के साथ practical local business presence."],
+      ["Event QR Code Photo Website", "Event upload flow", "Event media इकट्ठा करने के लिए guest-friendly QR destination."],
+      ["Video Editing Sample", "Final Cut Pro", "Promotional, event और creator content के लिए rhythmic edits."],
+      ["Audio/Music Sample", "Audio production", "Voice, music और multimedia projects के लिए polished sound."],
+    ],
+    why: {
+      eyebrow: "हमें क्यों चुनें",
+      title: "रचनात्मक कान और व्यावहारिक हाथ वाली तकनीक।",
+      advantages: ["Web development + creative media एक जगह", "Real projects का अनुभव", "Mobile-first design", "Local businesses के लिए practical solutions", "Technical और creative background"],
+    },
+    contact: {
+      eyebrow: "प्रोजेक्ट शुरू करें",
+      title: "बताएं कि आप क्या बनाना, सुधारना, edit करना या automate करना चाहते हैं।",
+      intro: "Simple landing page से लेकर event media flows या agribusiness digital tools तक, Mediatrix Tech विचार को उपयोगी online experience में बदलता है।",
+      optionsLabel: "Contact options",
+      whatsappUs: "WhatsApp US",
+      whatsappBrazil: "WhatsApp Brazil",
+    },
+  },
+  ar: {
+    quoteMessage: "مرحباً Mediatrix Tech، أود طلب عرض سعر لمشروع رقمي.",
+    nav: ["الخدمات", "الباقات", "الأعمال", "تواصل"],
+    hero: {
+      eyebrow: "خدمات رقمية للأعمال المحلية الحديثة",
+      tagline: "نصل الأفكار والإعلام والتقنية.",
+      subtitle: "مواقع ويب، وميديا، وحلول رقمية للشركات والفعاليات وصناع المحتوى والأعمال الزراعية.",
+      quote: "اطلب عرض سعر",
+      services: "عرض الخدمات",
+      proof: [["ويب", "مواقع تحقق التحويل"], ["ميديا", "فيديو، صوت، موسيقى"], ["ذكاء اصطناعي", "أتمتة مفيدة"]],
+    },
+    servicesSection: {
+      eyebrow: "ما نبنيه",
+      title: "خدمات رقمية تجمع بين العملي والإبداعي.",
+      intro: "مزيج مرن من الويب والميديا والأتمتة و AgTech للفرق التي تحتاج عملاً رقمياً مفيداً دون تعقيد غير ضروري.",
+    },
+    services: [
+      ["تطوير الويب", "مواقع وصفحات هبوط سريعة ومتجاوبة لشرح الخدمات والبيع وزيادة التحويل."],
+      ["حلول رقمية للفعاليات", "صفحات رفع عبر QR Code لصور وفيديوهات الضيوف ومعارض الفعاليات والمشاركة بعلامتك."],
+      ["مونتاج الفيديو", "تعديلات نظيفة على Final Cut Pro للعلامات وصناع المحتوى والفعاليات و reels والعروض."],
+      ["تحرير الصوت", "تنظيف البودكاست، معالجة الصوت، إصلاح المشاكل الصوتية، المزج، وتسليم مصقول."],
+      ["إنتاج موسيقي", "مقاطع أصلية، توزيعات، هوية صوتية، ودعم إنتاج للميديا الرقمية."],
+      ["الذكاء الاصطناعي والأتمتة", "أتمتة عملية تقلل العمل المتكرر للشركات الصغيرة والفرق الفردية."],
+      ["حلول AgTech", "أدوات رقمية لسير عمل الأعمال الزراعية وبيانات الحقول والرؤى المناخية والعمليات المحلية."],
+    ],
+    packagesSection: {
+      eyebrow: "نقاط بداية",
+      title: "باقات مصممة حول احتياجات أعمال حقيقية.",
+      intro: "اختر حزمة مركزة ثم عدل النطاق حسب أهدافك وميزانيتك وجدولك.",
+      badge: "الأكثر اكتمالاً",
+    },
+    packages: [
+      ["موقع أساسي", "للشركات الصغيرة", ["موقع من صفحة واحدة", "تصميم للجوال أولاً", "أزرار تواصل"]],
+      ["حزمة فعاليات رقمية", "للفعاليات والأماكن", ["صفحة رفع QR", "تدفق صور/فيديو", "معرض جاهز للمشاركة"]],
+      ["حزمة سوشيال ميديا", "لصناع المحتوى والعلامات", ["تعديلات فيديو", "تحسين صوت", "مواد جاهزة للنشر"]],
+      ["حضور رقمي كامل", "للفرق النامية", ["موقع ويب", "حزمة ميديا", "إرشاد للأتمتة"]],
+      ["حزمة Agro رقمية", "للأعمال الزراعية", ["موقع AgTech", "أدوات ميدانية", "هيكل مناسب للبيانات"]],
+    ],
+    portfolioSection: {
+      eyebrow: "أعمال مختارة",
+      title: "مساحات أعمال جاهزة لروابط مشاريعك الحقيقية.",
+      intro: "اربط كل بطاقة بموقع مباشر أو فيديو أو عرض صوتي أو دراسة حالة.",
+    },
+    portfolio: [
+      ["AgriClimate Pro", "تصور لمنصة AgTech", "تجربة رقمية واعية بالمناخ لقرارات زراعية."],
+      ["Frasson Faróis", "موقع أعمال", "حضور محلي عملي بهيكل يركز على الخدمات."],
+      ["موقع صور فعاليات عبر QR", "تدفق رفع للفعاليات", "وجهة QR سهلة للضيوف لجمع ميديا الفعالية."],
+      ["عينة مونتاج فيديو", "Final Cut Pro", "تعديلات إيقاعية للمحتوى الترويجي والفعاليات وصناع المحتوى."],
+      ["عينة صوت/موسيقى", "إنتاج صوتي", "صوت مصقول للصوت البشري والموسيقى والمشاريع متعددة الوسائط."],
+    ],
+    why: {
+      eyebrow: "لماذا تختارنا",
+      title: "تقنية بأذن إبداعية ويد عملية.",
+      advantages: ["تطوير ويب وميديا إبداعية في مكان واحد", "خبرة بمشاريع حقيقية", "تصميم للجوال أولاً", "حلول عملية للشركات المحلية", "خلفية تقنية وإبداعية"],
+    },
+    contact: {
+      eyebrow: "ابدأ مشروعاً",
+      title: "أخبرني بما تريد بناءه أو تحسينه أو تحريره أو أتمتته.",
+      intro: "من صفحة هبوط بسيطة إلى تدفقات ميديا للفعاليات أو أدوات رقمية زراعية، تساعد Mediatrix Tech على تحويل الفكرة إلى تجربة مفيدة على الإنترنت.",
+      optionsLabel: "خيارات التواصل",
+      whatsappUs: "واتساب الولايات المتحدة",
+      whatsappBrazil: "واتساب البرازيل",
+    },
+  },
+  bn: {
+    quoteMessage: "হ্যালো Mediatrix Tech, আমি একটি ডিজিটাল প্রকল্পের জন্য কোটেশন চাই।",
+    nav: ["সেবা", "প্যাকেজ", "পোর্টফোলিও", "যোগাযোগ"],
+    hero: {
+      eyebrow: "আধুনিক স্থানীয় ব্যবসার জন্য ডিজিটাল সেবা",
+      tagline: "আইডিয়া, মিডিয়া ও প্রযুক্তিকে সংযুক্ত করা।",
+      subtitle: "ব্যবসা, ইভেন্ট, ক্রিয়েটর এবং কৃষি ব্যবসার জন্য ওয়েবসাইট, মিডিয়া ও ডিজিটাল সমাধান।",
+      quote: "কোটেশন চান",
+      services: "সেবা দেখুন",
+      proof: [["ওয়েব", "কনভার্ট করে এমন সাইট"], ["মিডিয়া", "ভিডিও, অডিও, মিউজিক"], ["AI", "উপযোগী অটোমেশন"]],
+    },
+    servicesSection: {
+      eyebrow: "আমরা যা তৈরি করি",
+      title: "ডিজিটাল সেবা যা ব্যবহারিকতা ও সৃজনশীলতাকে যুক্ত করে।",
+      intro: "ওয়েব, মিডিয়া, অটোমেশন এবং AgTech সহায়তার নমনীয় মিশ্রণ, যেসব টিম অপ্রয়োজনীয় জটিলতা ছাড়া কার্যকর ডিজিটাল কাজ চায় তাদের জন্য।",
+    },
+    services: [
+      ["ওয়েব ডেভেলপমেন্ট", "দ্রুত, রেসপনসিভ ওয়েবসাইট ও ল্যান্ডিং পেজ যা ব্যাখ্যা, বিক্রি এবং কনভার্ট করার জন্য তৈরি।"],
+      ["ইভেন্ট ডিজিটাল সমাধান", "অতিথির ছবি, ভিডিও, ইভেন্ট গ্যালারি এবং ব্র্যান্ডেড শেয়ারিংয়ের জন্য QR Code আপলোড পেজ।"],
+      ["ভিডিও এডিটিং", "ব্র্যান্ড, ক্রিয়েটর, ইভেন্ট, reels এবং প্রেজেন্টেশনের জন্য পরিষ্কার Final Cut Pro এডিট।"],
+      ["অডিও এডিটিং", "পডকাস্ট ক্লিনআপ, ভয়েস প্রসেসিং, সাউন্ড রিপেয়ার, মিক্সিং এবং polished delivery।"],
+      ["মিউজিক প্রোডাকশন", "ডিজিটাল মিডিয়ার জন্য original tracks, arrangements, sound identity এবং production support।"],
+      ["AI ও অটোমেশন", "ছোট ব্যবসা এবং solo teams-এর repetitive কাজ কমানোর practical automation।"],
+      ["AgTech সমাধান", "কৃষি ব্যবসার workflow, field data, climate insights এবং local operations-এর জন্য digital tools।"],
+    ],
+    packagesSection: {
+      eyebrow: "শুরুর জায়গা",
+      title: "বাস্তব ব্যবসায়িক চাহিদা ঘিরে তৈরি প্যাকেজ।",
+      intro: "একটি focused kit বেছে নিন, তারপর goal, budget এবং timeline অনুযায়ী scope বদলান।",
+      badge: "সবচেয়ে সম্পূর্ণ",
+    },
+    packages: [
+      ["বেসিক ওয়েবসাইট", "ছোট ব্যবসার জন্য", ["One-page website", "Mobile-first layout", "Contact buttons"]],
+      ["ইভেন্ট ডিজিটাল কিট", "ইভেন্ট ও venue-এর জন্য", ["QR upload page", "Photo/video flow", "Share-ready gallery"]],
+      ["সোশ্যাল মিডিয়া কিট", "ক্রিয়েটর ও ব্র্যান্ডের জন্য", ["Video edits", "Audio polish", "Content-ready assets"]],
+      ["Complete Digital Presence", "বর্ধনশীল টিমের জন্য", ["Website", "Media package", "Automation guidance"]],
+      ["Agro Digital Kit", "কৃষি ব্যবসার জন্য", ["AgTech website", "Field-focused tools", "Data-friendly structure"]],
+    ],
+    portfolioSection: {
+      eyebrow: "নির্বাচিত কাজ",
+      title: "আপনার real project links-এর জন্য প্রস্তুত portfolio placeholders.",
+      intro: "প্রতিটি card-কে live website, video, audio demo বা case study-এর সাথে যুক্ত করুন।",
+    },
+    portfolio: [
+      ["AgriClimate Pro", "AgTech platform concept", "কৃষি সিদ্ধান্তের জন্য climate-aware digital experience."],
+      ["Frasson Faróis", "Business website", "Service-first structure সহ practical local business presence."],
+      ["Event QR Code Photo Website", "Event upload flow", "অতিথিদের event media সংগ্রহের জন্য সহজ QR destination."],
+      ["Video Editing Sample", "Final Cut Pro", "Promotional, event ও creator content-এর জন্য rhythmic edits."],
+      ["Audio/Music Sample", "Audio production", "Voice, music ও multimedia projects-এর জন্য polished sound."],
+    ],
+    why: {
+      eyebrow: "কেন আমাদের বেছে নেবেন",
+      title: "সৃজনশীল কান ও ব্যবহারিক হাতে প্রযুক্তি।",
+      advantages: ["Web development + creative media এক জায়গায়", "Real projects-এর অভিজ্ঞতা", "Mobile-first design", "Local businesses-এর জন্য practical solutions", "Technical ও creative background"],
+    },
+    contact: {
+      eyebrow: "প্রকল্প শুরু করুন",
+      title: "আপনি কী build, improve, edit বা automate করতে চান বলুন।",
+      intro: "Simple landing page থেকে event media flows বা agribusiness digital tools পর্যন্ত, Mediatrix Tech আইডিয়াকে useful online experience-এ রূপ দেয়।",
+      optionsLabel: "Contact options",
+      whatsappUs: "WhatsApp US",
+      whatsappBrazil: "WhatsApp Brazil",
+    },
+  },
+  ru: {
+    quoteMessage: "Здравствуйте, Mediatrix Tech. Я хотел(а) бы запросить смету для цифрового проекта.",
+    nav: ["Услуги", "Пакеты", "Портфолио", "Контакты"],
+    hero: {
+      eyebrow: "Цифровые услуги для современных локальных бизнесов",
+      tagline: "Соединяем идеи, медиа и технологии.",
+      subtitle: "Сайты, медиа и цифровые решения для бизнеса, мероприятий, авторов и агробизнеса.",
+      quote: "Запросить смету",
+      services: "Посмотреть услуги",
+      proof: [["Веб", "Сайты, которые конвертируют"], ["Медиа", "Видео, аудио, музыка"], ["AI", "Полезная автоматизация"]],
+    },
+    servicesSection: {
+      eyebrow: "Что мы создаем",
+      title: "Цифровые услуги на стыке практичности и креатива.",
+      intro: "Гибкое сочетание веба, медиа, автоматизации и AgTech для команд, которым нужна полезная цифровая работа без лишней сложности.",
+    },
+    services: [
+      ["Веб-разработка", "Быстрые адаптивные сайты и лендинги, созданные объяснять, продавать и конвертировать."],
+      ["Цифровые решения для мероприятий", "Страницы загрузки по QR Code для фото, видео, галерей мероприятий и брендированного обмена."],
+      ["Видеомонтаж", "Чистый монтаж в Final Cut Pro для брендов, авторов, мероприятий, reels и презентаций."],
+      ["Аудиомонтаж", "Очистка подкастов, обработка голоса, восстановление звука, миксинг и polished delivery."],
+      ["Музыкальное производство", "Оригинальные треки, аранжировки, звуковая идентичность и продакшн-поддержка для цифровых медиа."],
+      ["AI и автоматизация", "Практичная автоматизация, которая сокращает повторяющуюся работу для малого бизнеса и solo teams."],
+      ["AgTech-решения", "Цифровые инструменты для агробизнес-процессов, полевых данных, климатических инсайтов и локальных операций."],
+    ],
+    packagesSection: {
+      eyebrow: "Точки старта",
+      title: "Пакеты под реальные бизнес-потребности.",
+      intro: "Выберите сфокусированный набор, а затем адаптируйте объем под цели, бюджет и сроки.",
+      badge: "Самый полный",
+    },
+    packages: [
+      ["Базовый сайт", "Для малого бизнеса", ["Одностраничный сайт", "Mobile-first layout", "Кнопки контакта"]],
+      ["Цифровой набор для мероприятий", "Для мероприятий и площадок", ["QR upload page", "Фото/видео поток", "Галерея для публикации"]],
+      ["Набор для соцсетей", "Для авторов и брендов", ["Видео edits", "Аудио polish", "Готовые content assets"]],
+      ["Полное цифровое присутствие", "Для растущих команд", ["Сайт", "Медиа-пакет", "Советы по автоматизации"]],
+      ["Agro Digital Kit", "Для агробизнеса", ["AgTech сайт", "Полевые инструменты", "Структура для данных"]],
+    ],
+    portfolioSection: {
+      eyebrow: "Избранные работы",
+      title: "Плейсхолдеры портфолио готовы для реальных ссылок.",
+      intro: "Свяжите каждую карточку с сайтом, видео, аудио-демо или кейсом.",
+    },
+    portfolio: [
+      ["AgriClimate Pro", "Концепт AgTech платформы", "Климатически осознанный цифровой опыт для аграрных решений."],
+      ["Frasson Faróis", "Бизнес-сайт", "Практичное локальное присутствие со структурой вокруг услуг."],
+      ["Сайт фото по QR для мероприятий", "Поток загрузки для мероприятий", "Простая QR-точка для сбора медиа от гостей."],
+      ["Пример видеомонтажа", "Final Cut Pro", "Ритмичный монтаж для промо, мероприятий и авторского контента."],
+      ["Пример аудио/музыки", "Аудиопродакшн", "Полированный звук для голоса, музыки и мультимедийных проектов."],
+    ],
+    why: {
+      eyebrow: "Почему мы",
+      title: "Технологии с творческим слухом и практической рукой.",
+      advantages: ["Веб-разработка + креативные медиа в одном месте", "Опыт реальных проектов", "Mobile-first дизайн", "Практичные решения для локального бизнеса", "Техническая и творческая база"],
+    },
+    contact: {
+      eyebrow: "Начать проект",
+      title: "Расскажите, что вы хотите создать, улучшить, смонтировать или автоматизировать.",
+      intro: "От простого лендинга до event media flows или цифровых агроинструментов, Mediatrix Tech превращает идею в полезный онлайн-опыт.",
+      optionsLabel: "Варианты связи",
+      whatsappUs: "WhatsApp США",
+      whatsappBrazil: "WhatsApp Бразилия",
+    },
+  },
+  ur: {
+    quoteMessage: "السلام علیکم Mediatrix Tech، میں ایک ڈیجیٹل پروجیکٹ کے لیے کوٹیشن لینا چاہتا/چاہتی ہوں۔",
+    nav: ["سروسز", "پیکجز", "پورٹ فولیو", "رابطہ"],
+    hero: {
+      eyebrow: "جدید مقامی کاروباروں کے لیے ڈیجیٹل سروسز",
+      tagline: "خیالات، میڈیا اور ٹیکنالوجی کو جوڑنا۔",
+      subtitle: "کاروبار، ایونٹس، creators اور agribusiness کے لیے ویب سائٹس، میڈیا اور ڈیجیٹل حل۔",
+      quote: "کوٹیشن طلب کریں",
+      services: "سروسز دیکھیں",
+      proof: [["ویب", "کنورٹ کرنے والی سائٹس"], ["میڈیا", "ویڈیو، آڈیو، موسیقی"], ["AI", "مفید آٹومیشن"]],
+    },
+    servicesSection: {
+      eyebrow: "ہم کیا بناتے ہیں",
+      title: "ڈیجیٹل سروسز جو عملی کام اور تخلیقی سوچ کو جوڑتی ہیں۔",
+      intro: "ویب، میڈیا، آٹومیشن اور AgTech support کا لچکدار امتزاج، ان teams کے لیے جنہیں غیر ضروری complexity کے بغیر useful digital work چاہیے۔",
+    },
+    services: [
+      ["ویب ڈویلپمنٹ", "تیز، responsive websites اور landing pages جو explain، sell اور convert کرنے کے لیے بنائے جاتے ہیں۔"],
+      ["ایونٹ ڈیجیٹل حل", "مہمانوں کی photos، videos، event galleries اور branded sharing کے لیے QR Code upload pages۔"],
+      ["ویڈیو ایڈیٹنگ", "Brands، creators، events، reels اور presentations کے لیے clean Final Cut Pro edits۔"],
+      ["آڈیو ایڈیٹنگ", "Podcast cleanup، voice processing، sound repair، mixing اور polished delivery۔"],
+      ["میوزک پروڈکشن", "Digital media کے لیے original tracks، arrangements، sound identity اور production support۔"],
+      ["AI اور آٹومیشن", "Small businesses اور solo teams کے repetitive work کو کم کرنے والی practical automations۔"],
+      ["AgTech حل", "Agribusiness workflows، field data، climate insights اور local operations کے لیے digital tools۔"],
+    ],
+    packagesSection: {
+      eyebrow: "شروع کرنے کے پوائنٹس",
+      title: "حقیقی business needs کے مطابق بنے پیکجز۔",
+      intro: "Focused kit منتخب کریں، پھر goals، budget اور timeline کے مطابق scope adjust کریں۔",
+      badge: "سب سے مکمل",
+    },
+    packages: [
+      ["Basic Website", "Small businesses کے لیے", ["One-page website", "Mobile-first layout", "Contact buttons"]],
+      ["Event Digital Kit", "Events اور venues کے لیے", ["QR upload page", "Photo/video flow", "Share-ready gallery"]],
+      ["Social Media Kit", "Creators اور brands کے لیے", ["Video edits", "Audio polish", "Content-ready assets"]],
+      ["Complete Digital Presence", "Growing teams کے لیے", ["Website", "Media package", "Automation guidance"]],
+      ["Agro Digital Kit", "Agribusiness کے لیے", ["AgTech website", "Field-focused tools", "Data-friendly structure"]],
+    ],
+    portfolioSection: {
+      eyebrow: "منتخب کام",
+      title: "آپ کے real project links کے لیے portfolio placeholders تیار ہیں۔",
+      intro: "ہر card کو live website، video، audio demo یا case study سے connect کریں۔",
+    },
+    portfolio: [
+      ["AgriClimate Pro", "AgTech platform concept", "Agricultural decisions کے لیے climate-aware digital experience۔"],
+      ["Frasson Faróis", "Business website", "Service-first structure کے ساتھ practical local business presence۔"],
+      ["Event QR Code Photo Website", "Event upload flow", "Guests سے event media collect کرنے کے لیے آسان QR destination۔"],
+      ["Video Editing Sample", "Final Cut Pro", "Promotional، event اور creator content کے لیے rhythmic edits۔"],
+      ["Audio/Music Sample", "Audio production", "Voice، music اور multimedia projects کے لیے polished sound۔"],
+    ],
+    why: {
+      eyebrow: "ہمیں کیوں منتخب کریں",
+      title: "تخلیقی سماعت اور عملی ہاتھ والی ٹیکنالوجی۔",
+      advantages: ["Web development + creative media ایک جگہ", "Real projects کا تجربہ", "Mobile-first design", "Local businesses کے لیے practical solutions", "Technical اور creative background"],
+    },
+    contact: {
+      eyebrow: "پروجیکٹ شروع کریں",
+      title: "بتائیں آپ کیا build، improve، edit یا automate کرنا چاہتے ہیں۔",
+      intro: "Simple landing page سے event media flows یا agribusiness digital tools تک، Mediatrix Tech idea کو useful online experience میں بدلتا ہے۔",
+      optionsLabel: "Contact options",
+      whatsappUs: "WhatsApp US",
+      whatsappBrazil: "WhatsApp Brazil",
+    },
+  },
+  id: {
+    quoteMessage: "Halo Mediatrix Tech, saya ingin meminta penawaran untuk proyek digital.",
+    nav: ["Layanan", "Paket", "Portofolio", "Kontak"],
+    hero: {
+      eyebrow: "Layanan digital untuk bisnis lokal modern",
+      tagline: "Menghubungkan ide, media, dan teknologi.",
+      subtitle: "Website, media, dan solusi digital untuk bisnis, acara, kreator, dan agribisnis.",
+      quote: "Minta penawaran",
+      services: "Lihat layanan",
+      proof: [["Web", "Situs yang mengonversi"], ["Media", "Video, audio, musik"], ["AI", "Automasi yang berguna"]],
+    },
+    servicesSection: {
+      eyebrow: "Yang kami bangun",
+      title: "Layanan digital yang menghubungkan sisi praktis dan kreatif.",
+      intro: "Kombinasi fleksibel antara web, media, automasi, dan dukungan AgTech untuk tim yang membutuhkan kerja digital berguna tanpa kerumitan berlebihan.",
+    },
+    services: [
+      ["Pengembangan Web", "Website dan landing page cepat serta responsif untuk menjelaskan, menjual, dan mengonversi."],
+      ["Solusi Digital Acara", "Halaman unggah QR Code untuk foto, video, galeri acara, dan berbagi dengan branding."],
+      ["Editing Video", "Edit Final Cut Pro yang bersih untuk brand, kreator, acara, reels, dan presentasi."],
+      ["Editing Audio", "Pembersihan podcast, pemrosesan suara, perbaikan audio, mixing, dan hasil akhir yang rapi."],
+      ["Produksi Musik", "Track orisinal, aransemen, identitas suara, dan dukungan produksi untuk media digital."],
+      ["AI & Automasi", "Automasi praktis yang mengurangi pekerjaan berulang untuk bisnis kecil dan tim mandiri."],
+      ["Solusi AgTech", "Alat digital untuk workflow agribisnis, data lapangan, insight iklim, dan operasi lokal."],
+    ],
+    packagesSection: {
+      eyebrow: "Titik awal",
+      title: "Paket yang dibentuk untuk kebutuhan bisnis nyata.",
+      intro: "Pilih kit yang fokus, lalu sesuaikan scope dengan tujuan, anggaran, dan timeline Anda.",
+      badge: "Paling lengkap",
+    },
+    packages: [
+      ["Website Dasar", "Untuk bisnis kecil", ["Website satu halaman", "Layout mobile-first", "Tombol kontak"]],
+      ["Kit Digital Acara", "Untuk acara dan venue", ["Halaman unggah QR", "Alur foto/video", "Galeri siap dibagikan"]],
+      ["Kit Media Sosial", "Untuk kreator dan brand", ["Edit video", "Audio rapi", "Aset siap konten"]],
+      ["Kehadiran Digital Lengkap", "Untuk tim yang berkembang", ["Website", "Paket media", "Panduan automasi"]],
+      ["Kit Agro Digital", "Untuk agribisnis", ["Website AgTech", "Alat fokus lapangan", "Struktur ramah data"]],
+    ],
+    portfolioSection: {
+      eyebrow: "Karya pilihan",
+      title: "Placeholder portofolio siap untuk link proyek asli Anda.",
+      intro: "Hubungkan setiap kartu ke website live, video, demo audio, atau studi kasus.",
+    },
+    portfolio: [
+      ["AgriClimate Pro", "Konsep platform AgTech", "Pengalaman digital berbasis iklim untuk keputusan pertanian."],
+      ["Frasson Faróis", "Website bisnis", "Kehadiran lokal praktis dengan struktur yang mengutamakan layanan."],
+      ["Website Foto QR Code Acara", "Alur unggah acara", "Tujuan QR yang ramah tamu untuk mengumpulkan media acara."],
+      ["Contoh Editing Video", "Final Cut Pro", "Edit ritmis untuk promosi, acara, dan konten kreator."],
+      ["Contoh Audio/Musik", "Produksi audio", "Suara rapi untuk voice, musik, dan proyek multimedia."],
+    ],
+    why: {
+      eyebrow: "Mengapa memilih kami",
+      title: "Teknologi dengan telinga kreatif dan tangan praktis.",
+      advantages: ["Pengembangan web + media kreatif di satu tempat", "Pengalaman dengan proyek nyata", "Desain mobile-first", "Solusi praktis untuk bisnis lokal", "Latar teknis dan kreatif"],
+    },
+    contact: {
+      eyebrow: "Mulai proyek",
+      title: "Ceritakan apa yang ingin Anda bangun, tingkatkan, edit, atau otomatisasi.",
+      intro: "Dari landing page sederhana hingga alur media acara atau alat digital agribisnis, Mediatrix Tech membantu mengubah ide menjadi pengalaman online yang berguna.",
+      optionsLabel: "Pilihan kontak",
+      whatsappUs: "WhatsApp AS",
+      whatsappBrazil: "WhatsApp Brasil",
+    },
+  },
+  ja: {
+    quoteMessage: "こんにちは Mediatrix Tech。デジタルプロジェクトの見積もりを依頼したいです。",
+    nav: ["サービス", "パッケージ", "ポートフォリオ", "お問い合わせ"],
+    hero: {
+      eyebrow: "現代のローカルビジネス向けデジタルサービス",
+      tagline: "アイデア、メディア、テクノロジーをつなぐ。",
+      subtitle: "ビジネス、イベント、クリエイター、アグリビジネス向けのWebサイト、メディア、デジタルソリューション。",
+      quote: "見積もりを依頼",
+      services: "サービスを見る",
+      proof: [["Web", "成果につながるサイト"], ["Media", "動画、音声、音楽"], ["AI", "役立つ自動化"]],
+    },
+    servicesSection: {
+      eyebrow: "制作内容",
+      title: "実用性と創造性をつなぐデジタルサービス。",
+      intro: "Web、メディア、自動化、AgTechサポートを柔軟に組み合わせ、不要な複雑さなしで実用的なデジタル制作を提供します。",
+    },
+    services: [
+      ["Web開発", "説明、販売、コンバージョンのための高速でレスポンシブなWebサイトとランディングページ。"],
+      ["イベント向けデジタルソリューション", "ゲストの写真・動画、イベントギャラリー、ブランド共有のためのQR Codeアップロードページ。"],
+      ["動画編集", "ブランド、クリエイター、イベント、reels、プレゼン向けのクリーンなFinal Cut Pro編集。"],
+      ["音声編集", "ポッドキャストのクリーンアップ、ボイス処理、音声修復、ミキシング、磨き上げた納品。"],
+      ["音楽制作", "デジタルメディア向けのオリジナルトラック、アレンジ、サウンドアイデンティティ、制作サポート。"],
+      ["AI & 自動化", "小規模ビジネスやsolo teamsの反復作業を減らす実用的な自動化。"],
+      ["AgTechソリューション", "アグリビジネスのワークフロー、フィールドデータ、気候インサイト、ローカル運用のためのデジタルツール。"],
+    ],
+    packagesSection: {
+      eyebrow: "開始ポイント",
+      title: "実際のビジネスニーズに合わせたパッケージ。",
+      intro: "目的、予算、スケジュールに合わせて、集中したキットからスコープを調整できます。",
+      badge: "最も充実",
+    },
+    packages: [
+      ["基本Webサイト", "小規模ビジネス向け", ["1ページWebサイト", "モバイル優先レイアウト", "問い合わせボタン"]],
+      ["イベントデジタルキット", "イベント・会場向け", ["QRアップロードページ", "写真/動画フロー", "共有用ギャラリー"]],
+      ["ソーシャルメディアキット", "クリエイター・ブランド向け", ["動画編集", "音声仕上げ", "投稿用素材"]],
+      ["完全なデジタルプレゼンス", "成長中のチーム向け", ["Webサイト", "メディアパッケージ", "自動化ガイド"]],
+      ["Agro Digital Kit", "アグリビジネス向け", ["AgTechサイト", "現場向けツール", "データに強い構造"]],
+    ],
+    portfolioSection: {
+      eyebrow: "選定作品",
+      title: "実際のプロジェクトリンクに接続できるポートフォリオ枠。",
+      intro: "各カードをWebサイト、動画、音声デモ、ケーススタディに接続できます。",
+    },
+    portfolio: [
+      ["AgriClimate Pro", "AgTechプラットフォームコンセプト", "農業判断のための気候対応デジタル体験。"],
+      ["Frasson Faróis", "ビジネスWebサイト", "サービス中心の構成による実用的なローカルビジネスプレゼンス。"],
+      ["イベントQRコード写真サイト", "イベントアップロードフロー", "ゲストがイベントメディアを集めやすいQR導線。"],
+      ["動画編集サンプル", "Final Cut Pro", "プロモーション、イベント、クリエイターコンテンツ向けのリズミカルな編集。"],
+      ["音声/音楽サンプル", "音声制作", "声、音楽、マルチメディアプロジェクトのための磨かれたサウンド。"],
+    ],
+    why: {
+      eyebrow: "選ばれる理由",
+      title: "創造的な耳と実用的な手を持つテクノロジー。",
+      advantages: ["Web開発とクリエイティブメディアを一箇所で", "実案件の経験", "モバイル優先デザイン", "ローカルビジネス向けの実用的な解決策", "技術と創造性の背景"],
+    },
+    contact: {
+      eyebrow: "プロジェクト開始",
+      title: "作りたいもの、改善したいもの、編集したいもの、自動化したいものを教えてください。",
+      intro: "シンプルなランディングページからイベントメディアフロー、アグリビジネス向けデジタルツールまで、Mediatrix Techがアイデアを役立つオンライン体験にします。",
+      optionsLabel: "連絡方法",
+      whatsappUs: "WhatsApp 米国",
+      whatsappBrazil: "WhatsApp ブラジル",
+    },
+  },
+  sw: {
+    quoteMessage: "Habari Mediatrix Tech, ningependa kuomba bei ya mradi wa kidijitali.",
+    nav: ["Huduma", "Vifurushi", "Portfolio", "Mawasiliano"],
+    hero: {
+      eyebrow: "Huduma za kidijitali kwa biashara za kisasa za karibu",
+      tagline: "Kuunganisha mawazo, media, na teknolojia.",
+      subtitle: "Tovuti, media, na suluhisho za kidijitali kwa biashara, matukio, creators, na agribusiness.",
+      quote: "Omba bei",
+      services: "Tazama huduma",
+      proof: [["Web", "Tovuti zinazobadilisha wateja"], ["Media", "Video, sauti, muziki"], ["AI", "Automation yenye manufaa"]],
+    },
+    servicesSection: {
+      eyebrow: "Tunachojenga",
+      title: "Huduma za kidijitali zinazounganisha vitendo na ubunifu.",
+      intro: "Mchanganyiko rahisi wa web, media, automation, na msaada wa AgTech kwa timu zinazohitaji kazi ya kidijitali yenye manufaa bila ugumu usiohitajika.",
+    },
+    services: [
+      ["Utengenezaji wa Web", "Tovuti na landing pages za haraka na responsive zilizojengwa kueleza, kuuza, na kubadilisha wateja."],
+      ["Suluhisho za Kidijitali za Matukio", "Kurasa za QR Code kwa uploads za picha, video, galleries za matukio, na sharing yenye brand."],
+      ["Uhariri wa Video", "Final Cut Pro edits safi kwa brands, creators, matukio, reels, na presentations."],
+      ["Uhariri wa Sauti", "Podcast cleanup, voice processing, sound repair, mixing, na delivery iliyosafishwa."],
+      ["Utayarishaji wa Muziki", "Original tracks, arrangements, sound identity, na production support kwa digital media."],
+      ["AI & Automation", "Automation za vitendo zinazopunguza kazi zinazorudiwa kwa biashara ndogo na solo teams."],
+      ["Suluhisho za AgTech", "Digital tools kwa agribusiness workflows, field data, climate insights, na local operations."],
+    ],
+    packagesSection: {
+      eyebrow: "Mahali pa kuanzia",
+      title: "Vifurushi vilivyoundwa kwa mahitaji halisi ya biashara.",
+      intro: "Chagua kit iliyolenga, kisha badilisha scope kulingana na goals, budget, na timeline yako.",
+      badge: "Kamili zaidi",
+    },
+    packages: [
+      ["Basic Website", "Kwa biashara ndogo", ["One-page website", "Mobile-first layout", "Contact buttons"]],
+      ["Event Digital Kit", "Kwa matukio na venues", ["QR upload page", "Photo/video flow", "Share-ready gallery"]],
+      ["Social Media Kit", "Kwa creators na brands", ["Video edits", "Audio polish", "Content-ready assets"]],
+      ["Complete Digital Presence", "Kwa teams zinazokua", ["Website", "Media package", "Automation guidance"]],
+      ["Agro Digital Kit", "Kwa agribusiness", ["AgTech website", "Field-focused tools", "Data-friendly structure"]],
+    ],
+    portfolioSection: {
+      eyebrow: "Kazi zilizochaguliwa",
+      title: "Portfolio placeholders tayari kwa links halisi za miradi yako.",
+      intro: "Unganisha kila card na live website, video, audio demo, au case study.",
+    },
+    portfolio: [
+      ["AgriClimate Pro", "AgTech platform concept", "Climate-aware digital experience kwa maamuzi ya kilimo."],
+      ["Frasson Faróis", "Business website", "Practical local business presence yenye service-first structure."],
+      ["Event QR Code Photo Website", "Event upload flow", "QR destination rahisi kwa wageni kukusanya event media."],
+      ["Video Editing Sample", "Final Cut Pro", "Rhythmic edits kwa promotional, event, na creator content."],
+      ["Audio/Music Sample", "Audio production", "Polished sound kwa voice, music, na multimedia projects."],
+    ],
+    why: {
+      eyebrow: "Kwa nini utuchague",
+      title: "Teknolojia yenye sikio la ubunifu na mkono wa vitendo.",
+      advantages: ["Web development + creative media sehemu moja", "Uzoefu na real projects", "Mobile-first design", "Practical solutions kwa local businesses", "Technical na creative background"],
+    },
+    contact: {
+      eyebrow: "Anza mradi",
+      title: "Niambie unachotaka kujenga, kuboresha, kuhariri, au ku-automate.",
+      intro: "Kutoka landing page rahisi hadi event media flows au agribusiness digital tools, Mediatrix Tech hubadilisha idea kuwa useful online experience.",
+      optionsLabel: "Contact options",
+      whatsappUs: "WhatsApp US",
+      whatsappBrazil: "WhatsApp Brazil",
+    },
+  },
+});
+
 const mergeLocale = (locale) => ({
   ...translations.en,
   ...locale,
@@ -513,6 +1092,7 @@ const mergeLocale = (locale) => ({
 });
 
 const supportedLocales = Object.keys(translations);
+const rtlLocales = new Set(["ar", "ur"]);
 const localeLabels = {
   en: "EN",
   "pt-BR": "PT",
@@ -520,6 +1100,32 @@ const localeLabels = {
   fr: "FR",
   de: "DE",
   it: "IT",
+  "zh-CN": "中文",
+  hi: "HI",
+  ar: "AR",
+  bn: "BN",
+  ru: "RU",
+  ur: "UR",
+  id: "ID",
+  ja: "JA",
+  sw: "SW",
+};
+const localeNames = {
+  en: "English",
+  "pt-BR": "Português",
+  es: "Español",
+  fr: "Français",
+  de: "Deutsch",
+  it: "Italiano",
+  "zh-CN": "中文",
+  hi: "हिन्दी",
+  ar: "العربية",
+  bn: "বাংলা",
+  ru: "Русский",
+  ur: "اردو",
+  id: "Bahasa Indonesia",
+  ja: "日本語",
+  sw: "Kiswahili",
 };
 const portfolioDemoVideos = {
   0: "/agriclimate-pro-demo.mp4",
@@ -623,6 +1229,7 @@ function App() {
 
   React.useEffect(() => {
     document.documentElement.lang = currentLocale;
+    document.documentElement.dir = rtlLocales.has(currentLocale) ? "rtl" : "ltr";
   }, [currentLocale]);
 
   return (
@@ -642,10 +1249,9 @@ function App() {
 
 function Header() {
   const { copy, currentLocale, setCurrentLocale } = useLocaleContent();
-  const currentLocaleIndex = supportedLocales.indexOf(currentLocale);
-  const nextLocale = supportedLocales[(currentLocaleIndex + 1) % supportedLocales.length];
-  const changeLanguage = () => {
-    setCurrentLocale(nextLocale);
+  const changeLanguage = (locale, event) => {
+    setCurrentLocale(locale);
+    event.currentTarget.closest("details")?.removeAttribute("open");
   };
 
   return (
@@ -661,15 +1267,27 @@ function Header() {
           <a href="#portfolio">{copy.nav[2]}</a>
           <a href="#contact">{copy.nav[3]}</a>
         </nav>
-        <button
-          className="language-button"
-          type="button"
-          onClick={changeLanguage}
-          aria-label={`Change language. Current language: ${localeLabels[currentLocale]}. Next language: ${localeLabels[nextLocale]}.`}
-        >
-          <Globe size={17} aria-hidden="true" />
-          <span>{localeLabels[currentLocale]}</span>
-        </button>
+        <details className="language-menu">
+          <summary aria-label={`Change language. Current language: ${localeNames[currentLocale]}.`}>
+            <Globe size={17} aria-hidden="true" />
+            <span>{localeLabels[currentLocale]}</span>
+          </summary>
+          <div className="language-options" role="listbox" aria-label="Language options">
+            {supportedLocales.map((locale) => (
+              <button
+                className={locale === currentLocale ? "active" : ""}
+                key={locale}
+                type="button"
+                onClick={(event) => changeLanguage(locale, event)}
+                role="option"
+                aria-selected={locale === currentLocale}
+              >
+                <span>{localeLabels[locale]}</span>
+                {localeNames[locale]}
+              </button>
+            ))}
+          </div>
+        </details>
       </div>
     </header>
   );
@@ -687,7 +1305,7 @@ function Hero() {
         loop
         muted
         playsInline
-        poster="/mediatrix-hero.png"
+        poster="/hero-background.jpg"
       >
         <source src="/mediatrix-hero-video.mp4" type="video/mp4" />
       </video>
