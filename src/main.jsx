@@ -33,7 +33,7 @@ const translations = {
       quote: "Request a quote",
       services: "View services",
       proof: [
-        ["Web Development", "Sites that convert"],
+        ["Web", "Development"],
         ["Media", "Video, audio, music"],
         ["AI", "Useful automation"],
       ],
@@ -134,7 +134,7 @@ const translations = {
       quote: "Solicitar orçamento",
       services: "Ver serviços",
       proof: [
-        ["Desenvolvimento Web", "Sites que convertem"],
+        ["Web", "Desenvolvimento"],
         ["Mídia", "Vídeo, áudio, música"],
         ["IA", "Automação útil"],
       ],
@@ -213,7 +213,7 @@ const translations = {
         "Sitios web, medios y soluciones digitales para empresas, eventos, creadores y agronegocios.",
       quote: "Solicitar presupuesto",
       services: "Ver servicios",
-      proof: [["Desarrollo Web", "Sitios que convierten"], ["Medios", "Video, audio, música"], ["IA", "Automatización útil"]],
+      proof: [["Web", "Desarrollo"], ["Medios", "Video, audio, música"], ["IA", "Automatización útil"]],
     },
     servicesSection: {
       eyebrow: "Lo que creamos",
@@ -288,7 +288,7 @@ const translations = {
         "Sites web, médias et solutions digitales pour entreprises, événements, créateurs et agrobusiness.",
       quote: "Demander un devis",
       services: "Voir les services",
-      proof: [["Développement Web", "Sites qui convertissent"], ["Média", "Vidéo, audio, musique"], ["IA", "Automatisation utile"]],
+      proof: [["Web", "Développement"], ["Média", "Vidéo, audio, musique"], ["IA", "Automatisation utile"]],
     },
     servicesSection: {
       eyebrow: "Ce que nous créons",
@@ -362,7 +362,7 @@ const translations = {
         "Websites, Medien und digitale Lösungen für Unternehmen, Events, Creator und Agribusiness.",
       quote: "Angebot anfragen",
       services: "Services ansehen",
-      proof: [["Webentwicklung", "Websites, die konvertieren"], ["Medien", "Video, Audio, Musik"], ["KI", "Nützliche Automatisierung"]],
+      proof: [["Web", "Entwicklung"], ["Medien", "Video, Audio, Musik"], ["KI", "Nützliche Automatisierung"]],
     },
     servicesSection: {
       eyebrow: "Was wir bauen",
@@ -436,7 +436,7 @@ const translations = {
         "Siti web, media e soluzioni digitali per aziende, eventi, creator e agribusiness.",
       quote: "Richiedi preventivo",
       services: "Vedi servizi",
-      proof: [["Sviluppo Web", "Siti che convertono"], ["Media", "Video, audio, musica"], ["AI", "Automazione utile"]],
+      proof: [["Web", "Sviluppo"], ["Media", "Video, audio, musica"], ["AI", "Automazione utile"]],
     },
     servicesSection: {
       eyebrow: "Cosa creiamo",
@@ -511,7 +511,7 @@ Object.assign(translations, {
       subtitle: "为企业、活动、创作者和农业商务打造网站、媒体和数字解决方案。",
       quote: "申请报价",
       services: "查看服务",
-      proof: [["网站开发", "提升转化的网站"], ["媒体", "视频、音频、音乐"], ["AI", "实用自动化"]],
+      proof: [["网站", "开发"], ["媒体", "视频、音频、音乐"], ["AI", "实用自动化"]],
     },
     servicesSection: {
       eyebrow: "我们打造什么",
@@ -575,7 +575,7 @@ Object.assign(translations, {
       subtitle: "व्यवसायों, इवेंट्स, क्रिएटर्स और एग्रीबिजनेस के लिए वेबसाइट, मीडिया और डिजिटल समाधान।",
       quote: "कोटेशन मांगें",
       services: "सेवाएं देखें",
-      proof: [["वेब डेवलपमेंट", "कन्वर्ट करने वाली साइटें"], ["मीडिया", "वीडियो, ऑडियो, संगीत"], ["AI", "उपयोगी ऑटोमेशन"]],
+      proof: [["वेब", "डेवलपमेंट"], ["मीडिया", "वीडियो, ऑडियो, संगीत"], ["AI", "उपयोगी ऑटोमेशन"]],
     },
     servicesSection: {
       eyebrow: "हम क्या बनाते हैं",
@@ -639,7 +639,7 @@ Object.assign(translations, {
       subtitle: "مواقع ويب، وميديا، وحلول رقمية للشركات والفعاليات وصناع المحتوى والأعمال الزراعية.",
       quote: "اطلب عرض سعر",
       services: "عرض الخدمات",
-      proof: [["تطوير الويب", "مواقع تحقق التحويل"], ["ميديا", "فيديو، صوت، موسيقى"], ["ذكاء اصطناعي", "أتمتة مفيدة"]],
+      proof: [["ويب", "تطوير"], ["ميديا", "فيديو، صوت، موسيقى"], ["ذكاء اصطناعي", "أتمتة مفيدة"]],
     },
     servicesSection: {
       eyebrow: "ما نبنيه",
@@ -703,7 +703,7 @@ Object.assign(translations, {
       subtitle: "ব্যবসা, ইভেন্ট, ক্রিয়েটর এবং কৃষি ব্যবসার জন্য ওয়েবসাইট, মিডিয়া ও ডিজিটাল সমাধান।",
       quote: "কোটেশন চান",
       services: "সেবা দেখুন",
-      proof: [["ওয়েব ডেভেলপমেন্ট", "কনভার্ট করে এমন সাইট"], ["মিডিয়া", "ভিডিও, অডিও, মিউজিক"], ["AI", "উপযোগী অটোমেশন"]],
+      proof: [["ওয়েব", "ডেভেলপমেন্ট"], ["মিডিয়া", "ভিডিও, অডিও, মিউজিক"], ["AI", "উপযোগী অটোমেশন"]],
     },
     servicesSection: {
       eyebrow: "আমরা যা তৈরি করি",
@@ -767,7 +767,7 @@ Object.assign(translations, {
       subtitle: "Сайты, медиа и цифровые решения для бизнеса, мероприятий, авторов и агробизнеса.",
       quote: "Запросить смету",
       services: "Посмотреть услуги",
-      proof: [["Веб-разработка", "Сайты, которые конвертируют"], ["Медиа", "Видео, аудио, музыка"], ["AI", "Полезная автоматизация"]],
+      proof: [["Веб", "Разработка"], ["Медиа", "Видео, аудио, музыка"], ["AI", "Полезная автоматизация"]],
     },
     servicesSection: {
       eyebrow: "Что мы создаем",
@@ -831,7 +831,7 @@ Object.assign(translations, {
       subtitle: "کاروبار، ایونٹس، creators اور agribusiness کے لیے ویب سائٹس، میڈیا اور ڈیجیٹل حل۔",
       quote: "کوٹیشن طلب کریں",
       services: "سروسز دیکھیں",
-      proof: [["ویب ڈویلپمنٹ", "کنورٹ کرنے والی سائٹس"], ["میڈیا", "ویڈیو، آڈیو، موسیقی"], ["AI", "مفید آٹومیشن"]],
+      proof: [["ویب", "ڈویلپمنٹ"], ["میڈیا", "ویڈیو، آڈیو، موسیقی"], ["AI", "مفید آٹومیشن"]],
     },
     servicesSection: {
       eyebrow: "ہم کیا بناتے ہیں",
@@ -895,7 +895,7 @@ Object.assign(translations, {
       subtitle: "Website, media, dan solusi digital untuk bisnis, acara, kreator, dan agribisnis.",
       quote: "Minta penawaran",
       services: "Lihat layanan",
-      proof: [["Pengembangan Web", "Situs yang mengonversi"], ["Media", "Video, audio, musik"], ["AI", "Automasi yang berguna"]],
+      proof: [["Web", "Pengembangan"], ["Media", "Video, audio, musik"], ["AI", "Automasi yang berguna"]],
     },
     servicesSection: {
       eyebrow: "Yang kami bangun",
@@ -959,7 +959,7 @@ Object.assign(translations, {
       subtitle: "ビジネス、イベント、クリエイター、アグリビジネス向けのWebサイト、メディア、デジタルソリューション。",
       quote: "見積もりを依頼",
       services: "サービスを見る",
-      proof: [["Web開発", "成果につながるサイト"], ["Media", "動画、音声、音楽"], ["AI", "役立つ自動化"]],
+      proof: [["Web", "開発"], ["Media", "動画、音声、音楽"], ["AI", "役立つ自動化"]],
     },
     servicesSection: {
       eyebrow: "制作内容",
@@ -1023,7 +1023,7 @@ Object.assign(translations, {
       subtitle: "Tovuti, media, na suluhisho za kidijitali kwa biashara, matukio, creators, na agribusiness.",
       quote: "Omba bei",
       services: "Tazama huduma",
-      proof: [["Web Development", "Tovuti zinazobadilisha wateja"], ["Media", "Video, sauti, muziki"], ["AI", "Automation yenye manufaa"]],
+      proof: [["Web", "Development"], ["Media", "Video, sauti, muziki"], ["AI", "Automation yenye manufaa"]],
     },
     servicesSection: {
       eyebrow: "Tunachojenga",
