@@ -527,6 +527,8 @@ const portfolioDemoVideos = {
 };
 const portfolioDemoImages = {
   1: "/frasson-farois-demo.jpg",
+  3: "/video-editing-demo.png",
+  4: "/audio-editing-demo.png",
 };
 
 const LocaleContentContext = React.createContext(null);
