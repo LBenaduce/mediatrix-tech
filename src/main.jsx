@@ -1184,12 +1184,12 @@ const whatsappUrl = (phoneNumber, quoteMessage) =>
 // Change these links to your real phone, email, Instagram, and Upwork profile.
 const getContactLinks = (quoteMessage) => ({
   // Replace this placeholder with your real US WhatsApp number, for example: 13059920833.
-  whatsappUs: whatsappUrl("10000000000", quoteMessage),
+  whatsappUs: whatsappUrl("+13059920833", quoteMessage),
   // Replace this placeholder with your real Brazil WhatsApp number, for example: 5555999357388.
-  whatsappBrazil: whatsappUrl("5500000000000", quoteMessage),
+  whatsappBrazil: whatsappUrl("+5555999357388", quoteMessage),
   email: "mailto:mediatrixtech@proton.me",
   instagram: "https://instagram.com/mediatrixtech",
-  upwork: "https://www.upwork.com/freelancers/~your-profile",
+  upwork: "https://www.upwork.com/freelancers/~015020486545a9742b",
 });
 
 function App() {
