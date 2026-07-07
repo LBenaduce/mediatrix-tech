@@ -1432,47 +1432,56 @@ function Portfolio() {
       intro={copy.portfolioSection.intro}
     >
       <div className="portfolio-grid">
-        {portfolio.map((project, index) => (
-          <a className="portfolio-card" href="#contact" key={project.title}>
-            {/* Change this href to the real portfolio URL for this project. */}
-            <span className="portfolio-number">{String(index + 1).padStart(2, "0")}</span>
-            <p>{project.category}</p>
-            <h3>{project.title}</h3>
-            {project.demoVideo && (
-              <video
-                className="portfolio-demo"
-                aria-label={`${project.title} demo video`}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-              >
-                <source src={project.demoVideo} type="video/mp4" />
-              </video>
-            )}
-            {project.demoImage && (
-              <img
-                className="portfolio-demo"
-                src={project.demoImage}
-                alt={`${project.title} demo preview`}
-                loading="lazy"
-              />
-            )}
-            {project.demoAudio && (
-              <audio
-                className="portfolio-audio"
-                controls
-                preload="metadata"
-                aria-label={`${project.title} audio sample`}
-              >
-                <source src={project.demoAudio} type="audio/mpeg" />
-              </audio>
-            )}
-            <span>{project.description}</span>
-            <ExternalLink size={18} aria-hidden="true" />
-          </a>
-        ))}
+        {portfolio.map((project, index) => {
+          const PortfolioCard = project.demoAudio ? "article" : "a";
+          const portfolioCardProps = project.demoAudio ? {} : { href: "#contact" };
+
+          return (
+            <PortfolioCard
+              className="portfolio-card"
+              key={project.title}
+              {...portfolioCardProps}
+            >
+              {/* Change this href to the real portfolio URL for this project. */}
+              <span className="portfolio-number">{String(index + 1).padStart(2, "0")}</span>
+              <p>{project.category}</p>
+              <h3>{project.title}</h3>
+              {project.demoVideo && (
+                <video
+                  className="portfolio-demo"
+                  aria-label={`${project.title} demo video`}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                >
+                  <source src={project.demoVideo} type="video/mp4" />
+                </video>
+              )}
+              {project.demoImage && (
+                <img
+                  className="portfolio-demo"
+                  src={project.demoImage}
+                  alt={`${project.title} demo preview`}
+                  loading="lazy"
+                />
+              )}
+              {project.demoAudio && (
+                <audio
+                  className="portfolio-audio"
+                  controls
+                  preload="metadata"
+                  aria-label={`${project.title} audio sample`}
+                >
+                  <source src={project.demoAudio} type="audio/mpeg" />
+                </audio>
+              )}
+              <span>{project.description}</span>
+              {!project.demoAudio && <ExternalLink size={18} aria-hidden="true" />}
+            </PortfolioCard>
+          );
+        })}
       </div>
     </Section>
   );
