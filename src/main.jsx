@@ -1181,16 +1181,23 @@ const getDeviceLocale = () => {
 const whatsappUrl = (phoneNumber, quoteMessage) =>
   `https://wa.me/${phoneNumber}?text=${encodeURIComponent(quoteMessage)}`;
 
+const getQuoteMessageForLocale = (locale) =>
+  mergeLocale(translations[locale] || translations.en).quoteMessage;
+
 // Change these links to your real phone, email, Instagram, and Upwork profile.
-const getContactLinks = (quoteMessage) => ({
-  // Replace this placeholder with your real US WhatsApp number, for example: 13059920833.
-  whatsappUs: whatsappUrl("+13059920833", quoteMessage),
-  // Replace this placeholder with your real Brazil WhatsApp number, for example: 5555999357388.
-  whatsappBrazil: whatsappUrl("+5555999357388", quoteMessage),
-  email: "mailto:mediatrixtech@proton.me",
-  instagram: "https://instagram.com/mediatrixtech",
-  upwork: "https://www.upwork.com/freelancers/~015020486545a9742b",
-});
+const getContactLinks = (locale) => {
+  const quoteMessage = getQuoteMessageForLocale(locale);
+
+  return {
+    // Replace this placeholder with your real US WhatsApp number, for example: 13059920833.
+    whatsappUs: whatsappUrl("+13059920833", quoteMessage),
+    // Replace this placeholder with your real Brazil WhatsApp number, for example: 5555999357388.
+    whatsappBrazil: whatsappUrl("+5555999357388", quoteMessage),
+    email: "mailto:mediatrixtech@proton.me",
+    instagram: "https://instagram.com/mediatrixtech",
+    upwork: "https://www.upwork.com/freelancers/~015020486545a9742b",
+  };
+};
 
 function App() {
   const [currentLocale, setCurrentLocale] = React.useState(getDeviceLocale);
@@ -1220,7 +1227,7 @@ function App() {
     }));
 
     return {
-      contactLinks: getContactLinks(copy.quoteMessage),
+      contactLinks: getContactLinks(currentLocale),
       copy,
       currentLocale,
       packages,
