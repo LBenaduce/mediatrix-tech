@@ -1267,7 +1267,7 @@ function Header() {
   return (
     <header className="site-header">
       <a className="brand-mark" href="#top" aria-label="Mediatrix Tech home">
-        <span>M</span>
+        <img src="/mediatrix-tech-logo.png" alt="" aria-hidden="true" />
         Mediatrix Tech
       </a>
       <div className="header-actions">
@@ -1323,6 +1323,11 @@ function Hero() {
       <div className="hero-grid" aria-hidden="true" />
       <div className="hero-content section-shell">
         <div className="hero-copy">
+          <img
+            className="hero-logo"
+            src="/mediatrix-tech-logo.png"
+            alt="Mediatrix Tech logo"
+          />
           <p className="eyebrow">
             <Sparkles size={16} />
             {copy.hero.eyebrow}
