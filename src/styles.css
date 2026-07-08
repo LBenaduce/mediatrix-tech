@@ -64,7 +64,7 @@ a {
 .brand-mark {
   display: inline-flex;
   align-items: center;
-  gap: 0.7rem;
+  flex: 0 0 auto;
   font-weight: 750;
   letter-spacing: 0;
   white-space: nowrap;
@@ -262,11 +262,15 @@ nav a:hover {
   animation: contentRise 700ms ease both;
 }
 
+.hero-logo-title {
+  margin: 0;
+}
+
 .hero-logo {
   display: block;
-  width: clamp(8rem, 22vw, 15rem);
+  width: clamp(11rem, 30vw, 21rem);
   aspect-ratio: 1;
-  margin: 0 0 clamp(1rem, 2vw, 1.4rem);
+  margin: 0 0 clamp(1.2rem, 2.4vw, 1.8rem);
   border: 1px solid rgba(85, 184, 255, 0.4);
   border-radius: 8px;
   object-fit: cover;
