@@ -52,32 +52,9 @@ a {
   right: 0;
   z-index: 20;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  padding: 0.85rem clamp(1rem, 4vw, 3rem);
-  background: linear-gradient(180deg, rgba(4, 7, 12, 0.86), rgba(4, 7, 12, 0.48));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(22px);
-}
-
-.brand-mark {
-  display: inline-flex;
-  align-items: center;
-  flex: 0 0 auto;
-  font-weight: 750;
-  letter-spacing: 0;
-  white-space: nowrap;
-}
-
-.brand-mark img {
-  display: block;
-  width: 2.8rem;
-  height: 2.8rem;
-  border: 1px solid rgba(214, 173, 90, 0.52);
-  border-radius: 8px;
-  object-fit: cover;
-  box-shadow: inset 0 0 22px rgba(214, 173, 90, 0.14);
+  justify-content: flex-end;
+  padding: clamp(0.5rem, 1.4vw, 1rem) clamp(0.75rem, 3vw, 2rem);
+  pointer-events: none;
 }
 
 nav {
@@ -97,9 +74,45 @@ nav a:hover {
 }
 
 .header-actions {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: clamp(0.75rem, 2vw, 1.4rem);
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  background: rgba(3, 7, 13, 0.68);
+  box-shadow: 0 16px 46px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(16px);
+  pointer-events: auto;
+}
+
+.header-quote {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.4rem;
+  padding: 0.55rem 0.82rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #f7d98e, #c79742 58%, #8f682c);
+  color: #090b10;
+  font-size: 0.82rem;
+  font-weight: 750;
+  letter-spacing: 0;
+  white-space: nowrap;
+  box-shadow:
+    0 12px 28px rgba(214, 173, 90, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.header-quote:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 16px 34px rgba(214, 173, 90, 0.26),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .language-menu {
@@ -205,7 +218,6 @@ nav a:hover {
   display: grid;
   min-height: 100svh;
   overflow: hidden;
-  padding-top: 4.5rem;
   background:
     linear-gradient(90deg, rgba(3, 5, 9, 0.94), rgba(3, 5, 9, 0.34)),
     url("/hero-background.jpg") center / cover no-repeat;
@@ -216,26 +228,24 @@ nav a:hover {
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 58% center;
-  filter: saturate(0.95) contrast(1.08) brightness(0.72);
-  transform: scale(1.025);
-  animation: heroVideoDrift 18s ease-in-out infinite alternate;
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1);
+  transform-origin: center;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(circle at 78% 30%, rgba(85, 184, 255, 0.17), transparent 24rem),
-    linear-gradient(90deg, rgba(3, 5, 9, 0.98) 0%, rgba(3, 5, 9, 0.9) 38%, rgba(3, 5, 9, 0.42) 72%),
-    linear-gradient(180deg, rgba(3, 5, 9, 0.18) 0%, rgba(3, 5, 9, 0.54) 64%, #05070d 100%);
+    linear-gradient(90deg, rgba(3, 5, 9, 0.44) 0%, rgba(3, 5, 9, 0.18) 48%, rgba(3, 5, 9, 0.04) 100%),
+    linear-gradient(180deg, rgba(3, 5, 9, 0.04) 0%, rgba(3, 5, 9, 0.18) 72%, #05070d 100%);
 }
 
 .hero-grid {
   position: absolute;
   inset: 0;
-  opacity: 0.22;
+  opacity: 0.08;
   background-image:
     linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
@@ -260,23 +270,6 @@ nav a:hover {
 .hero-copy {
   max-width: 780px;
   animation: contentRise 700ms ease both;
-}
-
-.hero-logo-title {
-  margin: 0;
-}
-
-.hero-logo {
-  display: block;
-  width: clamp(11rem, 30vw, 21rem);
-  aspect-ratio: 1;
-  margin: 0 0 clamp(1.2rem, 2.4vw, 1.8rem);
-  border: 1px solid rgba(85, 184, 255, 0.4);
-  border-radius: 8px;
-  object-fit: cover;
-  box-shadow:
-    0 0 36px rgba(85, 184, 255, 0.22),
-    0 18px 46px rgba(0, 0, 0, 0.42);
 }
 
 .eyebrow,
@@ -382,12 +375,11 @@ h1 {
 .hero-proof div {
   display: grid;
   gap: 0.25rem;
-  padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 8px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.035));
-  backdrop-filter: blur(18px);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
 }
 
 .hero-proof strong {
@@ -410,15 +402,39 @@ h1 {
 
 .content-section {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .content-section::before {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.018), transparent 42%);
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(5, 7, 13, 0.82), rgba(5, 7, 13, 0.7)),
+    linear-gradient(135deg, rgba(85, 184, 255, 0.12), transparent 48%);
   content: "";
   pointer-events: none;
+}
+
+.section-background-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.22;
+  filter: saturate(1.12) contrast(1.08) brightness(0.72);
+  pointer-events: none;
+}
+
+.content-section > .section-shell,
+.why-section > .section-shell,
+.contact-section > .section-shell {
+  position: relative;
+  z-index: 1;
 }
 
 .section-heading {
@@ -458,6 +474,32 @@ h2 {
   backdrop-filter: blur(18px);
 }
 
+.card-background-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.36;
+  filter: saturate(1.08) contrast(1.08) brightness(0.78);
+  pointer-events: none;
+}
+
+.service-card::before,
+.package-card::before,
+.portfolio-card::before,
+.advantage-item::before {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(5, 7, 13, 0.42), rgba(5, 7, 13, 0.72)),
+    linear-gradient(135deg, rgba(85, 184, 255, 0.16), rgba(214, 173, 90, 0.08));
+  content: "";
+  pointer-events: none;
+}
+
 .service-card {
   position: relative;
   min-height: 16.5rem;
@@ -470,19 +512,9 @@ h2 {
     box-shadow 220ms ease;
 }
 
-.service-card::before {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(135deg, rgba(85, 184, 255, 0.18), transparent 35%),
-    linear-gradient(315deg, rgba(214, 173, 90, 0.12), transparent 38%);
-  content: "";
-  opacity: 0;
-  transition: opacity 220ms ease;
-}
-
 .service-card::after {
   position: absolute;
+  z-index: 1;
   left: 1.25rem;
   right: 1.25rem;
   top: 0;
@@ -501,13 +533,9 @@ h2 {
   box-shadow: 0 34px 90px rgba(0, 0, 0, 0.5);
 }
 
-.service-card:hover::before {
-  opacity: 1;
-}
-
 .service-card-top {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -552,7 +580,7 @@ h2 {
 .package-card h3,
 .portfolio-card h3 {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   margin-bottom: 0.7rem;
   font-size: 1.18rem;
 }
@@ -562,7 +590,7 @@ h2 {
 .portfolio-card span,
 .portfolio-card p {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   color: var(--muted);
   line-height: 1.65;
 }
@@ -570,6 +598,7 @@ h2 {
 .package-card {
   position: relative;
   min-height: 17rem;
+  overflow: hidden;
   padding: 1.2rem;
   transition:
     transform 180ms ease,
@@ -579,10 +608,12 @@ h2 {
 
 .package-card.featured {
   border-color: rgba(214, 173, 90, 0.52);
-  background: linear-gradient(180deg, rgba(214, 173, 90, 0.14), rgba(15, 22, 35, 0.86));
+  background: rgba(15, 22, 35, 0.86);
 }
 
 .badge {
+  position: relative;
+  z-index: 2;
   display: inline-flex;
   margin-bottom: 1rem;
   padding: 0.36rem 0.62rem;
@@ -595,6 +626,8 @@ h2 {
 }
 
 .package-audience {
+  position: relative;
+  z-index: 2;
   margin-bottom: 0.75rem;
   color: #8dd2ff;
   font-size: 0.84rem;
@@ -641,6 +674,7 @@ li::before {
 
 .portfolio-card::after {
   position: absolute;
+  z-index: 1;
   right: -3rem;
   bottom: -5rem;
   width: 10rem;
@@ -665,7 +699,7 @@ li::before {
 
 .portfolio-demo {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   aspect-ratio: 16 / 10;
   margin: 0.25rem 0 0.75rem;
@@ -679,7 +713,7 @@ li::before {
 
 .portfolio-audio {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: 100%;
   margin: 0.25rem 0 0.75rem;
   border-radius: 8px;
@@ -688,6 +722,7 @@ li::before {
 
 .portfolio-card svg {
   position: absolute;
+  z-index: 2;
   right: 1.2rem;
   top: 1.2rem;
   color: var(--gold);
@@ -733,10 +768,24 @@ li::before {
 }
 
 .why-section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   background:
     linear-gradient(135deg, rgba(85, 184, 255, 0.08), transparent 48%),
     rgba(255, 255, 255, 0.025);
   border-block: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.why-section::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(180deg, rgba(5, 7, 13, 0.76), rgba(5, 7, 13, 0.66)),
+    linear-gradient(135deg, rgba(85, 184, 255, 0.1), transparent 48%);
+  content: "";
+  pointer-events: none;
 }
 
 .why-layout,
@@ -751,9 +800,11 @@ li::before {
 }
 
 .advantage-item {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 0.85rem;
+  overflow: hidden;
   padding: 1rem;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -762,18 +813,27 @@ li::before {
 }
 
 .advantage-item svg {
+  position: relative;
+  z-index: 2;
   flex: 0 0 auto;
   color: var(--gold);
 }
 
+.advantage-item span {
+  position: relative;
+  z-index: 2;
+}
+
 .contact-section {
   position: relative;
+  isolation: isolate;
   overflow: hidden;
 }
 
 .contact-section::before {
   position: absolute;
   inset: 10% 0 auto auto;
+  z-index: 0;
   width: min(30rem, 60vw);
   height: 30rem;
   background: radial-gradient(circle, rgba(85, 184, 255, 0.14), transparent 68%);
@@ -806,8 +866,9 @@ footer {
   padding-top: 1.5rem;
   border-top: 1px solid var(--line);
   color: var(--muted);
+  font-size: 1.55rem; 
 }
-
+q
 footer span:first-child {
   color: var(--text);
   font-weight: 750;
@@ -886,14 +947,24 @@ footer span:first-child {
 }
 
 @media (max-width: 520px) {
-  .site-header {
-    align-items: center;
+  .header-actions {
+    gap: 0.55rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
   }
 
   .hero-overlay {
     background:
-      linear-gradient(90deg, rgba(3, 5, 9, 0.95) 0%, rgba(3, 5, 9, 0.82) 100%),
-      linear-gradient(180deg, rgba(3, 5, 9, 0.18) 0%, rgba(3, 5, 9, 0.76) 100%);
+      linear-gradient(90deg, rgba(3, 5, 9, 0.54) 0%, rgba(3, 5, 9, 0.3) 100%),
+      linear-gradient(180deg, rgba(3, 5, 9, 0.08) 0%, rgba(3, 5, 9, 0.38) 100%);
+  }
+
+  .hero-video {
+    object-fit: cover;
+    transform: none;
   }
 
   .hero-content {
@@ -929,15 +1000,5 @@ footer span:first-child {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes heroVideoDrift {
-  from {
-    transform: scale(1.025) translate3d(0, 0, 0);
-  }
-
-  to {
-    transform: scale(1.06) translate3d(-0.8%, -0.5%, 0);
   }
 }

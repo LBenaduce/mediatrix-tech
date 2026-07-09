@@ -14,7 +14,6 @@ import {
   Music2,
   QrCode,
   Send,
-  Sparkles,
 } from "lucide-react";
 import "./styles.css";
 
@@ -1138,6 +1137,7 @@ const portfolioDemoImages = {
 const portfolioDemoAudio = {
   4: "/all-alone-edit.mp3",
 };
+const cardBackgroundVideo = "/tech-blue-and-dark.mp4";
 
 const LocaleContentContext = React.createContext(null);
 
@@ -1266,9 +1266,6 @@ function Header() {
 
   return (
     <header className="site-header">
-      <a className="brand-mark" href="#top" aria-label="Mediatrix Tech home">
-        <img src="/mediatrix-tech-logo.png" alt="" aria-hidden="true" />
-      </a>
       <div className="header-actions">
         <nav aria-label="Primary navigation">
           <a href="#services">{copy.nav[0]}</a>
@@ -1276,6 +1273,9 @@ function Header() {
           <a href="#portfolio">{copy.nav[2]}</a>
           <a href="#contact">{copy.nav[3]}</a>
         </nav>
+        <a className="header-quote" href="#contact">
+          {copy.hero.quote}
+        </a>
         <details className="language-menu">
           <summary aria-label={`Change language. Current language: ${localeNames[currentLocale]}.`}>
             <Globe size={17} aria-hidden="true" />
@@ -1303,8 +1303,6 @@ function Header() {
 }
 
 function Hero() {
-  const { copy } = useLocaleContent();
-
   return (
     <section className="hero" id="top">
       <video
@@ -1316,45 +1314,10 @@ function Hero() {
         playsInline
         poster="/hero-background.jpg"
       >
-        <source src="/mediatrix-hero-video.mp4" type="video/mp4" />
+        <source src="/mediatrix-header-no-pika.mp4" type="video/mp4" />
       </video>
       <div className="hero-overlay" aria-hidden="true" />
       <div className="hero-grid" aria-hidden="true" />
-      <div className="hero-content section-shell">
-        <div className="hero-copy">
-          <p className="eyebrow">
-            <Sparkles size={16} />
-            {copy.hero.eyebrow}
-          </p>
-          <h1 className="hero-logo-title">
-            <img
-              className="hero-logo"
-              src="/mediatrix-tech-logo.png"
-              alt="Mediatrix Tech"
-            />
-          </h1>
-          <p className="tagline">{copy.hero.tagline}</p>
-          <p className="subtitle">{copy.hero.subtitle}</p>
-          <div className="hero-actions">
-            <a className="button primary" href="#contact">
-              {copy.hero.quote}
-              <Send size={18} />
-            </a>
-            <a className="button secondary" href="#services">
-              {copy.hero.services}
-              <ChevronRight size={18} />
-            </a>
-          </div>
-        </div>
-        <div className="hero-proof" aria-label="Mediatrix Tech service highlights">
-          {copy.hero.proof.map(([title, description]) => (
-            <div key={title}>
-              <strong>{title}</strong>
-              <span>{description}</span>
-            </div>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
@@ -1381,6 +1344,7 @@ function Services() {
 function ServiceCard({ title, description, icon: Icon }) {
   return (
     <article className="glass-card service-card">
+      <CardBackgroundVideo />
       <div className="service-card-top">
         <div className="icon-tile" aria-hidden="true">
           <Icon size={24} />
@@ -1411,6 +1375,7 @@ function Packages() {
             className={`package-card ${item.featured ? "featured" : ""}`}
             key={item.name}
           >
+            <CardBackgroundVideo />
             {item.featured && <span className="badge">{copy.packagesSection.badge}</span>}
             <p className="package-audience">{item.audience}</p>
             <h3>{item.name}</h3>
@@ -1448,6 +1413,7 @@ function Portfolio() {
               {...portfolioCardProps}
             >
               {/* Change this href to the real portfolio URL for this project. */}
+              <CardBackgroundVideo />
               <span className="portfolio-number">{String(index + 1).padStart(2, "0")}</span>
               <p>{project.category}</p>
               <h3>{project.title}</h3>
@@ -1492,11 +1458,44 @@ function Portfolio() {
   );
 }
 
+function CardBackgroundVideo() {
+  return (
+    <video
+      className="card-background-video"
+      aria-hidden="true"
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="metadata"
+    >
+      <source src={cardBackgroundVideo} type="video/mp4" />
+    </video>
+  );
+}
+
+function SectionBackgroundVideo() {
+  return (
+    <video
+      className="section-background-video"
+      aria-hidden="true"
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="metadata"
+    >
+      <source src={cardBackgroundVideo} type="video/mp4" />
+    </video>
+  );
+}
+
 function WhyChooseUs() {
   const { copy } = useLocaleContent();
 
   return (
     <section className="why-section">
+      <SectionBackgroundVideo />
       <div className="section-shell why-layout">
         <div>
           <p className="section-eyebrow">{copy.why.eyebrow}</p>
@@ -1505,6 +1504,7 @@ function WhyChooseUs() {
         <div className="advantage-list">
           {copy.why.advantages.map((item) => (
             <div className="advantage-item" key={item}>
+              <CardBackgroundVideo />
               <Cpu size={18} />
               <span>{item}</span>
             </div>
@@ -1520,6 +1520,7 @@ function Contact() {
 
   return (
     <section className="contact-section" id="contact">
+      <SectionBackgroundVideo />
       <div className="section-shell contact-layout">
         <div>
           <p className="section-eyebrow">{copy.contact.eyebrow}</p>
@@ -1550,7 +1551,7 @@ function Contact() {
         </div>
       </div>
      <footer>
-  <span>L Benaduce © {new Date().getFullYear()}</span>
+  <span>L. Benaduce © {new Date().getFullYear()}</span>
   <span>{copy.hero.tagline}</span>
 </footer> 
     </section>
@@ -1560,6 +1561,7 @@ function Contact() {
 function Section({ id, eyebrow, title, intro, children }) {
   return (
     <section className="content-section" id={id}>
+      <SectionBackgroundVideo />
       <div className="section-shell">
         <div className="section-heading">
           <p className="section-eyebrow">{eyebrow}</p>
