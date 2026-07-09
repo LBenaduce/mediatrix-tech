@@ -95,7 +95,7 @@ const translations = {
     },
     portfolio: [
       ["AgriClimate Pro", "AgTech platform concept", "Climate-aware digital experience for agricultural decisions."],
-      ["Frasson Faróis", "Business website", "Practical local business presence with service-first structure."],
+      ["Frasson LLC", "Business website", "Practical local business presence with service-first structure."],
       ["Event QR Code Photo Website", "Event upload flow", "Guest-friendly QR destination for collecting event media."],
       ["Video Editing Sample", "Final Cut Pro", "Rhythmic edits for promotional, event, and creator content."],
       ["Audio/Music Sample", "Audio production", "Polished sound for voice, music, and multimedia projects."],
@@ -175,7 +175,7 @@ const translations = {
     },
     portfolio: [
       ["AgriClimate Pro", "Conceito de plataforma AgTech", "Experiência digital com foco em clima para decisões agrícolas."],
-      ["Frasson Faróis", "Site empresarial", "Presença local prática com estrutura orientada a serviços."],
+      ["Frasson LLC", "Site empresarial", "Presença local prática com estrutura orientada a serviços."],
       ["Site de Fotos por QR Code para Eventos", "Fluxo de envio para eventos", "Destino via QR simples para convidados enviarem mídia do evento."],
       ["Amostra de Edição de Vídeo", "Final Cut Pro", "Edições com ritmo para conteúdo promocional, eventos e criadores."],
       ["Amostra de Áudio/Música", "Produção de áudio", "Som polido para voz, música e projetos multimídia."],
@@ -250,7 +250,7 @@ const translations = {
     },
     portfolio: [
       ["AgriClimate Pro", "Concepto de plataforma AgTech", "Experiencia digital climática para decisiones agrícolas."],
-      ["Frasson Faróis", "Sitio empresarial", "Presencia local práctica con estructura centrada en servicios."],
+      ["Frasson LLC", "Sitio empresarial", "Presencia local práctica con estructura centrada en servicios."],
       ["Sitio de Fotos por QR para Eventos", "Flujo de carga para eventos", "Destino QR simple para reunir medios de invitados."],
       ["Muestra de Edición de Video", "Final Cut Pro", "Ediciones rítmicas para promociones, eventos y creadores."],
       ["Muestra de Audio/Música", "Producción de audio", "Sonido pulido para voz, música y proyectos multimedia."],
@@ -324,7 +324,7 @@ const translations = {
     },
     portfolio: [
       ["AgriClimate Pro", "Concept de plateforme AgTech", "Expérience digitale liée au climat pour décisions agricoles."],
-      ["Frasson Faróis", "Site d'entreprise", "Présence locale pratique avec structure orientée services."],
+      ["Frasson LLC", "Site d'entreprise", "Présence locale pratique avec structure orientée services."],
       ["Site Photo QR Code Événement", "Flux d'envoi événementiel", "Destination QR simple pour collecter les médias des invités."],
       ["Exemple de Montage Vidéo", "Final Cut Pro", "Montages rythmés pour promotion, événements et créateurs."],
       ["Exemple Audio/Musique", "Production audio", "Son soigné pour voix, musique et projets multimédias."],
@@ -398,7 +398,7 @@ const translations = {
     },
     portfolio: [
       ["AgriClimate Pro", "AgTech-Plattformkonzept", "Klimaorientierte digitale Erfahrung für Agrarentscheidungen."],
-      ["Frasson Faróis", "Business-Website", "Praktische lokale Präsenz mit serviceorientierter Struktur."],
+      ["Frasson LLC", "Business-Website", "Praktische lokale Präsenz mit serviceorientierter Struktur."],
       ["Event QR-Code Foto-Website", "Event-Upload-Flow", "Einfaches QR-Ziel zum Sammeln von Gästemedien."],
       ["Videoschnitt-Beispiel", "Final Cut Pro", "Rhythmische Edits für Promotion, Events und Creator."],
       ["Audio/Musik-Beispiel", "Audioproduktion", "Polierter Sound für Stimme, Musik und Multimedia-Projekte."],
@@ -472,7 +472,7 @@ const translations = {
     },
     portfolio: [
       ["AgriClimate Pro", "Concept piattaforma AgTech", "Esperienza digitale climatica per decisioni agricole."],
-      ["Frasson Faróis", "Sito aziendale", "Presenza locale pratica con struttura orientata ai servizi."],
+      ["Frasson LLC", "Sito aziendale", "Presenza locale pratica con struttura orientata ai servizi."],
       ["Sito Foto QR Code Eventi", "Flusso upload eventi", "Destinazione QR semplice per raccogliere media dagli ospiti."],
       ["Esempio Editing Video", "Final Cut Pro", "Editing ritmici per promozioni, eventi e creator."],
       ["Esempio Audio/Musica", "Produzione audio", "Suono rifinito per voce, musica e progetti multimediali."],
@@ -546,7 +546,7 @@ Object.assign(translations, {
     },
     portfolio: [
       ["AgriClimate Pro", "AgTech 平台概念", "面向农业决策的气候感知数字体验。"],
-      ["Frasson Faróis", "企业网站", "以服务为核心结构的实用本地业务展示。"],
+      ["Frasson LLC", "企业网站", "以服务为核心结构的实用本地业务展示。"],
       ["活动二维码照片网站", "活动上传流程", "方便宾客上传活动媒体的二维码入口。"],
       ["视频剪辑样例", "Final Cut Pro", "适合推广、活动和创作者内容的节奏化剪辑。"],
       ["音频/音乐样例", "音频制作", "适用于人声、音乐和多媒体项目的精修声音。"],
@@ -610,7 +610,7 @@ Object.assign(translations, {
     },
     portfolio: [
       ["AgriClimate Pro", "AgTech platform concept", "कृषि निर्णयों के लिए climate-aware digital experience."],
-      ["Frasson Faróis", "Business website", "Service-first structure के साथ practical local business presence."],
+      ["Frasson LLC", "Business website", "Service-first structure के साथ practical local business presence."],
       ["Event QR Code Photo Website", "Event upload flow", "Event media इकट्ठा करने के लिए guest-friendly QR destination."],
       ["Video Editing Sample", "Final Cut Pro", "Promotional, event और creator content के लिए rhythmic edits."],
       ["Audio/Music Sample", "Audio production", "Voice, music और multimedia projects के लिए polished sound."],
@@ -674,7 +674,7 @@ Object.assign(translations, {
     },
     portfolio: [
       ["AgriClimate Pro", "تصور لمنصة AgTech", "تجربة رقمية واعية بالمناخ لقرارات زراعية."],
-      ["Frasson Faróis", "موقع أعمال", "حضور محلي عملي بهيكل يركز على الخدمات."],
+      ["Frasson LLC", "موقع أعمال", "حضور محلي عملي بهيكل يركز على الخدمات."],
       ["موقع صور فعاليات عبر QR", "تدفق رفع للفعاليات", "وجهة QR سهلة للضيوف لجمع ميديا الفعالية."],
       ["عينة مونتاج فيديو", "Final Cut Pro", "تعديلات إيقاعية للمحتوى الترويجي والفعاليات وصناع المحتوى."],
       ["عينة صوت/موسيقى", "إنتاج صوتي", "صوت مصقول للصوت البشري والموسيقى والمشاريع متعددة الوسائط."],
@@ -738,7 +738,7 @@ Object.assign(translations, {
     },
     portfolio: [
       ["AgriClimate Pro", "AgTech platform concept", "কৃষি সিদ্ধান্তের জন্য climate-aware digital experience."],
-      ["Frasson Faróis", "Business website", "Service-first structure সহ practical local business presence."],
+      ["Frasson LLC", "Business website", "Service-first structure সহ practical local business presence."],
       ["Event QR Code Photo Website", "Event upload flow", "অতিথিদের event media সংগ্রহের জন্য সহজ QR destination."],
       ["Video Editing Sample", "Final Cut Pro", "Promotional, event ও creator content-এর জন্য rhythmic edits."],
       ["Audio/Music Sample", "Audio production", "Voice, music ও multimedia projects-এর জন্য polished sound."],
@@ -802,7 +802,7 @@ Object.assign(translations, {
     },
     portfolio: [
       ["AgriClimate Pro", "Концепт AgTech платформы", "Климатически осознанный цифровой опыт для аграрных решений."],
-      ["Frasson Faróis", "Бизнес-сайт", "Практичное локальное присутствие со структурой вокруг услуг."],
+      ["Frasson LLC", "Бизнес-сайт", "Практичное локальное присутствие со структурой вокруг услуг."],
       ["Сайт фото по QR для мероприятий", "Поток загрузки для мероприятий", "Простая QR-точка для сбора медиа от гостей."],
       ["Пример видеомонтажа", "Final Cut Pro", "Ритмичный монтаж для промо, мероприятий и авторского контента."],
       ["Пример аудио/музыки", "Аудиопродакшн", "Полированный звук для голоса, музыки и мультимедийных проектов."],
@@ -866,7 +866,7 @@ Object.assign(translations, {
     },
     portfolio: [
       ["AgriClimate Pro", "AgTech platform concept", "Agricultural decisions کے لیے climate-aware digital experience۔"],
-      ["Frasson Faróis", "Business website", "Service-first structure کے ساتھ practical local business presence۔"],
+      ["Frasson LLC", "Business website", "Service-first structure کے ساتھ practical local business presence۔"],
       ["Event QR Code Photo Website", "Event upload flow", "Guests سے event media collect کرنے کے لیے آسان QR destination۔"],
       ["Video Editing Sample", "Final Cut Pro", "Promotional، event اور creator content کے لیے rhythmic edits۔"],
       ["Audio/Music Sample", "Audio production", "Voice، music اور multimedia projects کے لیے polished sound۔"],
@@ -930,7 +930,7 @@ Object.assign(translations, {
     },
     portfolio: [
       ["AgriClimate Pro", "Konsep platform AgTech", "Pengalaman digital berbasis iklim untuk keputusan pertanian."],
-      ["Frasson Faróis", "Website bisnis", "Kehadiran lokal praktis dengan struktur yang mengutamakan layanan."],
+      ["Frasson LLC", "Website bisnis", "Kehadiran lokal praktis dengan struktur yang mengutamakan layanan."],
       ["Website Foto QR Code Acara", "Alur unggah acara", "Tujuan QR yang ramah tamu untuk mengumpulkan media acara."],
       ["Contoh Editing Video", "Final Cut Pro", "Edit ritmis untuk promosi, acara, dan konten kreator."],
       ["Contoh Audio/Musik", "Produksi audio", "Suara rapi untuk voice, musik, dan proyek multimedia."],
@@ -994,7 +994,7 @@ Object.assign(translations, {
     },
     portfolio: [
       ["AgriClimate Pro", "AgTechプラットフォームコンセプト", "農業判断のための気候対応デジタル体験。"],
-      ["Frasson Faróis", "ビジネスWebサイト", "サービス中心の構成による実用的なローカルビジネスプレゼンス。"],
+      ["Frasson LLC", "ビジネスWebサイト", "サービス中心の構成による実用的なローカルビジネスプレゼンス。"],
       ["イベントQRコード写真サイト", "イベントアップロードフロー", "ゲストがイベントメディアを集めやすいQR導線。"],
       ["動画編集サンプル", "Final Cut Pro", "プロモーション、イベント、クリエイターコンテンツ向けのリズミカルな編集。"],
       ["音声/音楽サンプル", "音声制作", "声、音楽、マルチメディアプロジェクトのための磨かれたサウンド。"],
@@ -1058,7 +1058,7 @@ Object.assign(translations, {
     },
     portfolio: [
       ["AgriClimate Pro", "AgTech platform concept", "Climate-aware digital experience kwa maamuzi ya kilimo."],
-      ["Frasson Faróis", "Business website", "Practical local business presence yenye service-first structure."],
+      ["Frasson LLC", "Business website", "Practical local business presence yenye service-first structure."],
       ["Event QR Code Photo Website", "Event upload flow", "QR destination rahisi kwa wageni kukusanya event media."],
       ["Video Editing Sample", "Final Cut Pro", "Rhythmic edits kwa promotional, event, na creator content."],
       ["Audio/Music Sample", "Audio production", "Polished sound kwa voice, music, na multimedia projects."],
@@ -1131,7 +1131,7 @@ const portfolioDemoVideos = {
   2: "/event-qr-code-demo.mp4",
 };
 const portfolioDemoImages = {
-  1: "/frasson-farois-demo.jpg",
+  1: "/frasson-llc-demo.jpg",
   3: "/video-editing-demo.png",
 };
 const portfolioDemoAudio = {

@@ -938,9 +938,16 @@ footer span:first-child {
     backdrop-filter: none;
   }
 
+  .hero {
+    aspect-ratio: 940 / 392;
+    min-height: auto;
+    margin-top: clamp(3.6rem, 14vw, 4.4rem);
+    background-size: contain;
+  }
+
   .hero-fallback,
   .hero-video {
-    object-fit: cover;
+    object-fit: contain;
   }
 
   .hero-content {
