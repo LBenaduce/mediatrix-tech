@@ -1303,21 +1303,30 @@ function Header() {
 }
 
 function Hero() {
+  const [videoReady, setVideoReady] = React.useState(false);
+
   return (
     <section className="hero" id="top">
+      <img
+        className="hero-fallback"
+        src="/mediatrix-tech-header.png"
+        alt=""
+        aria-hidden="true"
+      />
       <video
-        className="hero-video"
+        className={`hero-video${videoReady ? " is-ready" : ""}`}
         aria-hidden="true"
         autoPlay
         loop
         muted
         playsInline
-        poster="/hero-background.jpg"
+        poster="/mediatrix-tech-header.png"
+        preload="auto"
+        onCanPlay={() => setVideoReady(true)}
+        onPlaying={() => setVideoReady(true)}
       >
-        <source src="/mediatrix-header-no-pika.mp4" type="video/mp4" />
+        <source src="/mediatrix-tech-enhanced.mp4" type="video/mp4" />
       </video>
-      <div className="hero-overlay" aria-hidden="true" />
-      <div className="hero-grid" aria-hidden="true" />
     </section>
   );
 }

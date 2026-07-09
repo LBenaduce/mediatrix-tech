@@ -218,11 +218,10 @@ nav a:hover {
   display: grid;
   min-height: 100svh;
   overflow: hidden;
-  background:
-    linear-gradient(90deg, rgba(3, 5, 9, 0.94), rgba(3, 5, 9, 0.34)),
-    url("/hero-background.jpg") center / cover no-repeat;
+  background: #000 url("/mediatrix-tech-header.png") center / contain no-repeat;
 }
 
+.hero-fallback,
 .hero-video {
   position: absolute;
   inset: 0;
@@ -230,27 +229,21 @@ nav a:hover {
   height: 100%;
   object-fit: contain;
   object-position: center;
-  transform: scale(1);
-  transform-origin: center;
 }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(90deg, rgba(3, 5, 9, 0.44) 0%, rgba(3, 5, 9, 0.18) 48%, rgba(3, 5, 9, 0.04) 100%),
-    linear-gradient(180deg, rgba(3, 5, 9, 0.04) 0%, rgba(3, 5, 9, 0.18) 72%, #05070d 100%);
+.hero-fallback {
+  z-index: 0;
+  background: #000;
 }
 
-.hero-grid {
-  position: absolute;
-  inset: 0;
-  opacity: 0.08;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 5.5rem 5.5rem;
-  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.75), transparent 76%);
+.hero-video {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 240ms ease;
+}
+
+.hero-video.is-ready {
+  opacity: 1;
 }
 
 .section-shell {
@@ -728,17 +721,6 @@ li::before {
   color: var(--gold);
 }
 
-[dir="rtl"] .hero-overlay {
-  background:
-    radial-gradient(circle at 22% 30%, rgba(85, 184, 255, 0.17), transparent 24rem),
-    linear-gradient(270deg, rgba(3, 5, 9, 0.98) 0%, rgba(3, 5, 9, 0.9) 38%, rgba(3, 5, 9, 0.42) 72%),
-    linear-gradient(180deg, rgba(3, 5, 9, 0.18) 0%, rgba(3, 5, 9, 0.54) 64%, #05070d 100%);
-}
-
-[dir="rtl"] .hero-grid {
-  mask-image: linear-gradient(270deg, rgba(0, 0, 0, 0.75), transparent 76%);
-}
-
 [dir="rtl"] li {
   padding-right: 1.1rem;
   padding-left: 0;
@@ -956,15 +938,9 @@ footer span:first-child {
     backdrop-filter: none;
   }
 
-  .hero-overlay {
-    background:
-      linear-gradient(90deg, rgba(3, 5, 9, 0.54) 0%, rgba(3, 5, 9, 0.3) 100%),
-      linear-gradient(180deg, rgba(3, 5, 9, 0.08) 0%, rgba(3, 5, 9, 0.38) 100%);
-  }
-
+  .hero-fallback,
   .hero-video {
     object-fit: cover;
-    transform: none;
   }
 
   .hero-content {
