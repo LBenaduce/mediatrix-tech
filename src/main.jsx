@@ -1253,6 +1253,9 @@ function App() {
         <WhyChooseUs />
         <Contact />
       </main>
+      <span className="quiet-marker" aria-hidden="true">
+        //////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+      </span>
     </LocaleContentContext.Provider>
   );
 }
