@@ -860,10 +860,10 @@ footer span:first-child {
   position: fixed;
   right: 0.45rem;
   bottom: 0.35rem;
-  z-index: 0;
+  z-index: 2;
   max-width: 9rem;
   overflow: hidden;
-  color: rgba(255, 255, 255, 0.035);
+  color: rgba(255, 255, 255, 0.16);
   font-size: 0.56rem;
   line-height: 1;
   pointer-events: none;

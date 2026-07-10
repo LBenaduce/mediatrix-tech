@@ -1254,7 +1254,7 @@ function App() {
         <Contact />
       </main>
       <span className="quiet-marker" aria-hidden="true">
-        //////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+        //////////\\\\\\\\\\\\\\\\\\\\
       </span>
     </LocaleContentContext.Provider>
   );
