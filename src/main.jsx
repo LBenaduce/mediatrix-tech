@@ -1253,9 +1253,6 @@ function App() {
         <WhyChooseUs />
         <Contact />
       </main>
-      <span className="quiet-marker" aria-hidden="true">
-        //////////\\\\\\\\\\\\\\\\\\\\
-      </span>
     </LocaleContentContext.Provider>
   );
 }
@@ -1562,10 +1559,13 @@ function Contact() {
           </a>
         </div>
       </div>
-     <footer>
-  <span>L. Benaduce © {new Date().getFullYear()}</span>
-  <span>{copy.hero.tagline}</span>
-</footer> 
+      <footer>
+        <span>L. Benaduce © {new Date().getFullYear()}</span>
+        <span>{copy.hero.tagline}</span>
+        <span className="quiet-marker" aria-hidden="true">
+          //////////\\\\\\\\\\\\\\\\\\\\
+        </span>
+      </footer>
     </section>
   );
 }

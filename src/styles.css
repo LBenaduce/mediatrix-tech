@@ -842,7 +842,7 @@ footer {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.55rem;
   width: min(1120px, calc(100% - 2rem));
   margin: 4rem auto 0;
   padding-top: 1.5rem;
@@ -850,22 +850,17 @@ footer {
   color: var(--muted);
   font-size: 1.55rem; 
 }
-q
+
 footer span:first-child {
   color: var(--text);
   font-weight: 750;
 }
 
 .quiet-marker {
-  position: fixed;
-  right: 0.7rem;
-  bottom: 0.55rem;
-  z-index: 2;
-  max-width: calc(100vw - 1.4rem);
-  overflow: visible;
-  color: rgba(255, 255, 255, 0.34);
+  align-self: flex-end;
+  color: rgba(255, 255, 255, 0.58);
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.82rem;
+  font-size: 0.98rem;
   line-height: 1;
   pointer-events: none;
   user-select: none;
