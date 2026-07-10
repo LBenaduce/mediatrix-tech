@@ -1325,7 +1325,7 @@ function Hero() {
         onCanPlay={() => setVideoReady(true)}
         onPlaying={() => setVideoReady(true)}
       >
-        <source src="/mediatrix-tech-enhanced.mp4" type="video/mp4" />
+        <source src="/header-video-mediatrix.mp4" type="video/mp4" />
       </video>
     </section>
   );
