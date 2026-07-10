@@ -858,13 +858,14 @@ footer span:first-child {
 
 .quiet-marker {
   position: fixed;
-  right: 0.45rem;
-  bottom: 0.35rem;
+  right: 0.7rem;
+  bottom: 0.55rem;
   z-index: 2;
-  max-width: 9rem;
-  overflow: hidden;
-  color: rgba(255, 255, 255, 0.16);
-  font-size: 0.56rem;
+  max-width: calc(100vw - 1.4rem);
+  overflow: visible;
+  color: rgba(255, 255, 255, 0.34);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.82rem;
   line-height: 1;
   pointer-events: none;
   user-select: none;
