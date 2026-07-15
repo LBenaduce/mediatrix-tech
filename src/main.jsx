@@ -1313,6 +1313,27 @@ function App() {
     };
   }, [copy, currentLocale]);
 
+  React.useLayoutEffect(() => {
+    const encodedTargetId = window.location.hash.slice(1);
+
+    if (!encodedTargetId) {
+      return;
+    }
+
+    let targetId;
+
+    try {
+      targetId = decodeURIComponent(encodedTargetId);
+    } catch {
+      return;
+    }
+
+    document.getElementById(targetId)?.scrollIntoView({
+      behavior: "instant",
+      block: "start",
+    });
+  }, []);
+
   React.useEffect(() => {
     document.documentElement.lang = currentLocale;
     document.documentElement.dir = rtlLocales.has(currentLocale) ? "rtl" : "ltr";
