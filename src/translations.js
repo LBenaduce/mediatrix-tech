@@ -25,7 +25,7 @@ export const translations = {
     hero: {
       logoAlt: "Logo da Mediatrix Tech",
       title: "Tecnologia e conteúdo que fazem sua marca avançar.",
-      description: "Criamos sites e conteúdos visuais profissionais para negócios no Brasil e nos Estados Unidos.",
+      description: "Criamos sites e conteúdos visuais profissionais para negócios em todo o mundo.",
       services: "Ver serviços",
     },
     servicesSection: {
@@ -72,7 +72,7 @@ export const translations = {
     openMenu: "Open menu",
     closeMenu: "Close menu",
     quote: "Request a quote",
-    hero: { logoAlt: "Mediatrix Tech logo", title: "Technology and content that move your brand forward.", description: "We create professional websites and visual content for businesses in Brazil and the United States.", services: "View services" },
+    hero: { logoAlt: "Mediatrix Tech logo", title: "Technology and content that move your brand forward.", description: "We create professional websites and visual content for businesses worldwide.", services: "View services" },
     servicesSection: { eyebrow: "Services", title: "Everything your brand needs to make a strong impression.", description: "Four clear solutions tailored to your goals and stage of business." },
     services: [
       { id: "web", title: "Web Development", description: "Fast, responsive websites that are easy to use on every screen.", benefit: "Turn visits into new opportunities." },
@@ -100,7 +100,7 @@ export const translations = {
     skip: "Saltar al contenido",
     nav: ["Inicio", "Servicios", "Portafolio", "Empresa", "Contacto"],
     primaryNavigation: "Navegación principal", mobileNavigation: "Navegación móvil", language: "Idioma", openMenu: "Abrir menú", closeMenu: "Cerrar menú", quote: "Solicitar presupuesto",
-    hero: { logoAlt: "Logotipo de Mediatrix Tech", title: "Tecnología y contenido que impulsan tu marca.", description: "Creamos sitios web y contenido visual profesional para empresas de Brasil y Estados Unidos.", services: "Ver servicios" },
+    hero: { logoAlt: "Logotipo de Mediatrix Tech", title: "Tecnología y contenido que impulsan tu marca.", description: "Creamos sitios web y contenido visual profesional para empresas de todo el mundo.", services: "Ver servicios" },
     servicesSection: { eyebrow: "Servicios", title: "Lo esencial para presentar tu marca con calidad.", description: "Cuatro soluciones claras, adaptadas a los objetivos y al momento de tu negocio." },
     services: [
       { id: "web", title: "Desarrollo Web", description: "Sitios rápidos, responsivos y fáciles de usar en cualquier pantalla.", benefit: "Convierte visitas en nuevas oportunidades." },
@@ -118,7 +118,7 @@ export const translations = {
   fr: {
     metaDescription: "Mediatrix Tech crée des sites web et des contenus visuels professionnels pour les entreprises du monde entier.",
     skip: "Aller au contenu", nav: ["Accueil", "Services", "Portfolio", "Entreprise", "Contact"], primaryNavigation: "Navigation principale", mobileNavigation: "Navigation mobile", language: "Langue", openMenu: "Ouvrir le menu", closeMenu: "Fermer le menu", quote: "Demander un devis",
-    hero: { logoAlt: "Logo de Mediatrix Tech", title: "La technologie et le contenu qui font avancer votre marque.", description: "Nous créons des sites web et des contenus visuels professionnels pour les entreprises au Brésil et aux États-Unis.", services: "Voir les services" },
+    hero: { logoAlt: "Logo de Mediatrix Tech", title: "La technologie et le contenu qui font avancer votre marque.", description: "Nous créons des sites web et des contenus visuels professionnels pour les entreprises du monde entier.", services: "Voir les services" },
     servicesSection: { eyebrow: "Services", title: "L’essentiel pour présenter votre marque avec qualité.", description: "Quatre solutions claires, adaptées à vos objectifs et au stade de votre entreprise." },
     services: [{ id: "web", title: "Développement Web", description: "Des sites rapides, responsives et faciles à utiliser sur tous les écrans.", benefit: "Transformez les visites en nouvelles opportunités." }, { id: "photo", title: "Retouche Photo", description: "Des retouches professionnelles pour produits, événements et réseaux sociaux.", benefit: "Valorisez votre marque dans chaque image." }, { id: "video", title: "Montage Vidéo", description: "Des vidéos claires et attrayantes pour marques, créateurs et événements.", benefit: "Captez l’attention et communiquez mieux." }, { id: "audio", title: "Montage Audio", description: "Nettoyage, mixage et mastering pour vidéos, podcasts et contenus numériques.", benefit: "Offrez à chaque projet un son clair et professionnel." }],
     portfolioSection: { eyebrow: "Portfolio", title: "Projets sélectionnés.", description: "Des réalisations qui allient clarté, expérience et résultats.", view: "Voir le projet", videoDemo: "Démonstration du projet", screenshot: "Capture d’écran du projet" },
@@ -131,7 +131,7 @@ export const translations = {
   de: {
     metaDescription: "Mediatrix Tech erstellt professionelle Websites und visuelle Inhalte für Unternehmen weltweit.",
     skip: "Zum Inhalt springen", nav: ["Start", "Leistungen", "Portfolio", "Unternehmen", "Kontakt"], primaryNavigation: "Hauptnavigation", mobileNavigation: "Mobile Navigation", language: "Sprache", openMenu: "Menü öffnen", closeMenu: "Menü schließen", quote: "Angebot anfordern",
-    hero: { logoAlt: "Logo von Mediatrix Tech", title: "Technologie und Inhalte, die Ihre Marke voranbringen.", description: "Wir erstellen professionelle Websites und visuelle Inhalte für Unternehmen in Brasilien und den USA.", services: "Leistungen ansehen" },
+    hero: { logoAlt: "Logo von Mediatrix Tech", title: "Technologie und Inhalte, die Ihre Marke voranbringen.", description: "Wir erstellen professionelle Websites und visuelle Inhalte für Unternehmen weltweit.", services: "Leistungen ansehen" },
     servicesSection: { eyebrow: "Leistungen", title: "Alles Wesentliche für einen professionellen Markenauftritt.", description: "Vier klare Lösungen, abgestimmt auf Ihre Ziele und Ihre aktuelle Unternehmensphase." },
     services: [{ id: "web", title: "Webentwicklung", description: "Schnelle, responsive Websites, die auf jedem Bildschirm leicht zu bedienen sind.", benefit: "Machen Sie aus Besuchen neue Chancen." }, { id: "photo", title: "Fotobearbeitung", description: "Professionelle Bearbeitung für Produkte, Veranstaltungen und soziale Medien.", benefit: "Setzen Sie Ihre Marke in jedem Bild in Szene." }, { id: "video", title: "Videobearbeitung", description: "Klare, ansprechende Videos für Marken, Kreative und Veranstaltungen.", benefit: "Gewinnen Sie Aufmerksamkeit und kommunizieren Sie besser." }, { id: "audio", title: "Audiobearbeitung", description: "Bereinigung, Mischung und Mastering für Videos, Podcasts und digitale Inhalte.", benefit: "Geben Sie jedem Projekt einen klaren, professionellen Klang." }],
     portfolioSection: { eyebrow: "Portfolio", title: "Ausgewählte Projekte.", description: "Arbeiten, die Klarheit, Erfahrung und Ergebnisse verbinden.", view: "Projekt ansehen", videoDemo: "Projektvorführung", screenshot: "Projekt-Screenshot" },
@@ -144,7 +144,7 @@ export const translations = {
   "zh-CN": {
     metaDescription: "Mediatrix Tech 为全球企业打造专业网站和视觉内容。",
     skip: "跳到主要内容", nav: ["首页", "服务", "作品集", "公司", "联系"], primaryNavigation: "主导航", mobileNavigation: "移动端导航", language: "语言", openMenu: "打开菜单", closeMenu: "关闭菜单", quote: "获取报价",
-    hero: { logoAlt: "Mediatrix Tech 标志", title: "以技术与内容，推动您的品牌向前。", description: "我们为巴西和美国的企业打造专业网站和视觉内容。", services: "查看服务" },
+    hero: { logoAlt: "Mediatrix Tech 标志", title: "以技术与内容，推动您的品牌向前。", description: "我们为全球企业打造专业网站和视觉内容。", services: "查看服务" },
     servicesSection: { eyebrow: "服务", title: "以专业品质呈现品牌所需的一切。", description: "四项清晰的解决方案，契合您的目标与业务发展阶段。" },
     services: [{ id: "web", title: "网站开发", description: "快速、响应式，并在各种屏幕上都易于使用的网站。", benefit: "将访问转化为新的商机。" }, { id: "photo", title: "图片编辑", description: "适用于产品、活动和社交媒体的专业修图。", benefit: "让品牌在每张图片中更具吸引力。" }, { id: "video", title: "视频剪辑", description: "为品牌、创作者和活动制作清晰且引人入胜的视频。", benefit: "抓住注意力，更有效地传达信息。" }, { id: "audio", title: "音频编辑", description: "为视频、播客和数字内容提供降噪、混音与母带处理。", benefit: "让每个项目拥有清晰专业的声音。" }],
     portfolioSection: { eyebrow: "作品集", title: "精选项目。", description: "兼具清晰体验、专业能力与成果的代表作品。", view: "查看项目", videoDemo: "项目演示", screenshot: "项目截图" },
@@ -157,7 +157,7 @@ export const translations = {
   hi: {
     metaDescription: "Mediatrix Tech दुनिया भर के व्यवसायों के लिए पेशेवर वेबसाइट और विज़ुअल कंटेंट बनाता है।",
     skip: "मुख्य सामग्री पर जाएँ", nav: ["होम", "सेवाएँ", "पोर्टफोलियो", "कंपनी", "संपर्क"], primaryNavigation: "मुख्य नेविगेशन", mobileNavigation: "मोबाइल नेविगेशन", language: "भाषा", openMenu: "मेन्यू खोलें", closeMenu: "मेन्यू बंद करें", quote: "कोटेशन माँगें",
-    hero: { logoAlt: "Mediatrix Tech का लोगो", title: "तकनीक और कंटेंट जो आपके ब्रांड को आगे बढ़ाएँ।", description: "हम ब्राज़ील और संयुक्त राज्य अमेरिका के व्यवसायों के लिए पेशेवर वेबसाइट और विज़ुअल कंटेंट बनाते हैं।", services: "सेवाएँ देखें" },
+    hero: { logoAlt: "Mediatrix Tech का लोगो", title: "तकनीक और कंटेंट जो आपके ब्रांड को आगे बढ़ाएँ।", description: "हम दुनिया भर के व्यवसायों के लिए पेशेवर वेबसाइट और विज़ुअल कंटेंट बनाते हैं।", services: "सेवाएँ देखें" },
     servicesSection: { eyebrow: "सेवाएँ", title: "आपके ब्रांड को बेहतरीन ढंग से प्रस्तुत करने के लिए जरूरी समाधान।", description: "आपके लक्ष्य और व्यवसाय के चरण के अनुसार चार स्पष्ट समाधान।" },
     services: [{ id: "web", title: "वेब डेवलपमेंट", description: "हर स्क्रीन पर तेज़, रेस्पॉन्सिव और इस्तेमाल में आसान वेबसाइट।", benefit: "वेबसाइट विज़िट को नए अवसरों में बदलें।" }, { id: "photo", title: "फ़ोटो एडिटिंग", description: "उत्पादों, आयोजनों और सोशल मीडिया के लिए पेशेवर एडिटिंग।", benefit: "हर तस्वीर में अपने ब्रांड को बेहतर दिखाएँ।" }, { id: "video", title: "वीडियो एडिटिंग", description: "ब्रांड, क्रिएटर और आयोजनों के लिए स्पष्ट और आकर्षक वीडियो।", benefit: "ध्यान आकर्षित करें और बेहतर संवाद करें।" }, { id: "audio", title: "ऑडियो एडिटिंग", description: "वीडियो, पॉडकास्ट और डिजिटल कंटेंट के लिए ऑडियो क्लीनअप, मिक्सिंग और मास्टरिंग।", benefit: "हर प्रोजेक्ट को साफ़ और पेशेवर ध्वनि दें।" }],
     portfolioSection: { eyebrow: "पोर्टफोलियो", title: "चुनिंदा प्रोजेक्ट।", description: "ऐसे काम जो स्पष्टता, अनुभव और परिणामों को साथ लाते हैं।", view: "प्रोजेक्ट देखें", videoDemo: "प्रोजेक्ट डेमो", screenshot: "प्रोजेक्ट का स्क्रीनशॉट" },
@@ -170,7 +170,7 @@ export const translations = {
   ar: {
     metaDescription: "تصمم Mediatrix Tech مواقع إلكترونية ومحتوى بصريًا احترافيًا للشركات حول العالم.",
     skip: "الانتقال إلى المحتوى", nav: ["الرئيسية", "الخدمات", "الأعمال", "الشركة", "التواصل"], primaryNavigation: "التنقل الرئيسي", mobileNavigation: "التنقل عبر الهاتف", language: "اللغة", openMenu: "فتح القائمة", closeMenu: "إغلاق القائمة", quote: "طلب عرض سعر",
-    hero: { logoAlt: "شعار Mediatrix Tech", title: "تقنية ومحتوى يدفعان علامتك التجارية إلى الأمام.", description: "نصمم مواقع إلكترونية ومحتوى بصريًا احترافيًا للشركات في البرازيل والولايات المتحدة.", services: "عرض الخدمات" },
+    hero: { logoAlt: "شعار Mediatrix Tech", title: "تقنية ومحتوى يدفعان علامتك التجارية إلى الأمام.", description: "نصمم مواقع إلكترونية ومحتوى بصريًا احترافيًا للشركات حول العالم.", services: "عرض الخدمات" },
     servicesSection: { eyebrow: "الخدمات", title: "كل ما تحتاجه علامتك التجارية لتظهر بجودة واحتراف.", description: "أربعة حلول واضحة تتكيف مع أهدافك ومرحلة نمو أعمالك." },
     services: [{ id: "web", title: "تطوير المواقع", description: "مواقع سريعة ومتجاوبة وسهلة الاستخدام على جميع الشاشات.", benefit: "حوّل الزيارات إلى فرص جديدة." }, { id: "photo", title: "تحرير الصور", description: "معالجة احترافية للمنتجات والفعاليات ووسائل التواصل الاجتماعي.", benefit: "أبرز علامتك التجارية في كل صورة." }, { id: "video", title: "تحرير الفيديو", description: "فيديوهات واضحة وجذابة للعلامات التجارية وصنّاع المحتوى والفعاليات.", benefit: "اجذب الانتباه وتواصل بصورة أفضل." }, { id: "audio", title: "تحرير الصوت", description: "تنقية الصوت ومزجه وإتقانه للفيديوهات والبودكاست والمحتوى الرقمي.", benefit: "امنح كل مشروع صوتًا واضحًا واحترافيًا." }],
     portfolioSection: { eyebrow: "الأعمال", title: "مشاريع مختارة.", description: "أعمال تجمع بين الوضوح والخبرة والنتائج.", view: "عرض المشروع", videoDemo: "عرض توضيحي للمشروع", screenshot: "لقطة شاشة للمشروع" },
