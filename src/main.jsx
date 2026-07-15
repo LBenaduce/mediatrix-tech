@@ -325,8 +325,8 @@ function Company({ copy }) {
 function Contact({ copy, selectedService, onSelectService }) {
   const [status, setStatus] = React.useState("idle");
   const channelData = [
-    [contactLinks.brasil, MessageCircle, "whatsapp"],
     [contactLinks.estadosUnidos, MessageCircle, "whatsapp"],
+    [contactLinks.brasil, MessageCircle, "whatsapp"],
     [contactLinks.email, Mail, "email"],
     [contactLinks.upwork, BriefcaseBusiness, "upwork"],
   ];
