@@ -24,6 +24,7 @@ const translations = {
     quoteMessage:
       "Hello Mediatrix Tech, I would like to request a quote for a digital project.",
     nav: ["Services", "Packages", "Portfolio", "Contact"],
+    teamNavLabel: "Team",
     hero: {
       eyebrow: "Digital services for modern local businesses",
       tagline: "Connecting ideas, media, and technology.",
@@ -111,6 +112,14 @@ const translations = {
         "Technical and creative background",
       ],
     },
+    teamSection: {
+      eyebrow: "Our team",
+      title: "Meet the Mediatrix Tech Team",
+      intro:
+        "A multidisciplinary team creating digital solutions that connect businesses, events, and people.",
+      imageAlt:
+        "The Mediatrix Tech multidisciplinary team together in a modern collaborative office",
+    },
     contact: {
       eyebrow: "Start a project",
       title: "Tell me what you want to build, improve, edit, or automate.",
@@ -119,6 +128,17 @@ const translations = {
       optionsLabel: "Contact options",
       whatsappUs: "WhatsApp US",
       whatsappBrazil: "WhatsApp Brazil",
+      form: {
+        title: "Send a message",
+        intro: "Share a few details and your message will be delivered directly to our inbox.",
+        name: "Name",
+        email: "E-mail",
+        message: "Message",
+        send: "Send message",
+        sending: "Sending…",
+        success: "Thank you — your message has been sent.",
+        error: "The message could not be sent. Please try again or use the e-mail button.",
+      },
     },
   },
   "pt-BR": {
@@ -199,6 +219,17 @@ const translations = {
       optionsLabel: "Opções de contato",
       whatsappUs: "WhatsApp EUA",
       whatsappBrazil: "WhatsApp Brasil",
+      form: {
+        title: "Envie uma mensagem",
+        intro: "Conte um pouco sobre o projeto e sua mensagem será enviada diretamente para nossa caixa de entrada.",
+        name: "Nome",
+        email: "E-mail",
+        message: "Mensagem",
+        send: "Enviar mensagem",
+        sending: "Enviando…",
+        success: "Obrigado — sua mensagem foi enviada.",
+        error: "Não foi possível enviar a mensagem. Tente novamente ou use o botão de e-mail.",
+      },
     },
   },
   es: {
@@ -1087,7 +1118,12 @@ const mergeLocale = (locale) => ({
   packagesSection: { ...translations.en.packagesSection, ...locale.packagesSection },
   portfolioSection: { ...translations.en.portfolioSection, ...locale.portfolioSection },
   why: { ...translations.en.why, ...locale.why },
-  contact: { ...translations.en.contact, ...locale.contact },
+  teamSection: { ...translations.en.teamSection, ...locale.teamSection },
+  contact: {
+    ...translations.en.contact,
+    ...locale.contact,
+    form: { ...translations.en.contact.form, ...locale.contact?.form },
+  },
 });
 
 const supportedLocales = Object.keys(translations);
@@ -1138,6 +1174,46 @@ const portfolioDemoAudio = {
   4: "/all-alone-edit.mp3",
 };
 const cardBackgroundVideo = "/tech-blue-and-dark.mp4";
+const teamMembers = [
+  {
+    name: "Luigi Benaduce",
+    role: "Founder & CEO",
+    specialty: "Full-Stack Developer and Agronomic Engineer",
+  },
+  {
+    name: "Cândida Mastella",
+    role: "Co-Founder & Administrative Director",
+    specialty: "Administration and Client Relations",
+  },
+  {
+    name: "Mariana Costa",
+    role: "Sales & Customer Success Manager",
+  },
+  {
+    name: "Lucas Martins",
+    role: "Front-End Developer",
+  },
+  {
+    name: "Camila Rocha",
+    role: "UI/UX Designer",
+  },
+  {
+    name: "Gabriel Almeida",
+    role: "Back-End Developer",
+  },
+  {
+    name: "Daniel Foster",
+    role: "International Business Manager",
+  },
+  {
+    name: "Beatriz Santos",
+    role: "Digital Marketing Manager",
+  },
+  {
+    name: "Kenji Nakamura",
+    role: "Mobile App Developer",
+  },
+];
 
 const LocaleContentContext = React.createContext(null);
 
@@ -1251,6 +1327,7 @@ function App() {
         <Packages />
         <Portfolio />
         <WhyChooseUs />
+        <Team />
         <Contact />
       </main>
     </LocaleContentContext.Provider>
@@ -1271,6 +1348,7 @@ function Header() {
           <a href="#services">{copy.nav[0]}</a>
           <a href="#packages">{copy.nav[1]}</a>
           <a href="#portfolio">{copy.nav[2]}</a>
+          <a href="#team">{copy.teamNavLabel}</a>
           <a href="#contact">{copy.nav[3]}</a>
         </nav>
         <a className="header-quote" href="#contact">
@@ -1524,8 +1602,67 @@ function WhyChooseUs() {
   );
 }
 
+function Team() {
+  const { copy } = useLocaleContent();
+
+  return (
+    <section className="content-section team-section" id="team" aria-labelledby="team-title">
+      <SectionBackgroundVideo />
+      <div className="section-shell">
+        <div className="section-heading team-heading">
+          <p className="section-eyebrow">{copy.teamSection.eyebrow}</p>
+          <h2 id="team-title">{copy.teamSection.title}</h2>
+          <p>{copy.teamSection.intro}</p>
+        </div>
+        <figure className="team-photo-frame">
+          <img
+            className="team-photo"
+            src="/images/mediatrix-team.png"
+            alt={copy.teamSection.imageAlt}
+            loading="lazy"
+            width="1448"
+            height="1086"
+          />
+        </figure>
+        <div className="team-grid" aria-label="Mediatrix Tech team members">
+          {teamMembers.map((member) => (
+            <article className="team-card" key={member.name}>
+              <h3>{member.name}</h3>
+              <p className="team-role">{member.role}</p>
+              {member.specialty && <p className="team-specialty">{member.specialty}</p>}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Contact() {
   const { contactLinks, copy } = useLocaleContent();
+  const [formStatus, setFormStatus] = React.useState("idle");
+
+  const submitContactForm = async (event) => {
+    event.preventDefault();
+    setFormStatus("sending");
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/mediatrixtech@proton.me", {
+        method: "POST",
+        body: new FormData(event.currentTarget),
+        headers: { Accept: "application/json" },
+      });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
+
+      event.currentTarget.reset();
+      setFormStatus("success");
+    } catch {
+      setFormStatus("error");
+    }
+  };
 
   return (
     <section className="contact-section" id="contact">
@@ -1558,6 +1695,51 @@ function Contact() {
             <ExternalLink size={18} />
           </a>
         </div>
+      </div>
+      <div className="section-shell contact-form-shell" id="contact-form">
+        <div className="contact-form-heading">
+          <p className="section-eyebrow">{copy.contact.eyebrow}</p>
+          <h3>{copy.contact.form.title}</h3>
+          <p>{copy.contact.form.intro}</p>
+        </div>
+        <form
+          className="contact-form"
+          action="https://formsubmit.co/mediatrixtech@proton.me"
+          method="POST"
+          onSubmit={submitContactForm}
+        >
+          <input type="hidden" name="_subject" value="New message from Mediatrix Tech website" />
+          <input
+            type="text"
+            name="_honey"
+            className="form-honey"
+            tabIndex="-1"
+            autoComplete="off"
+            aria-hidden="true"
+          />
+          <label>
+            <span>{copy.contact.form.name}</span>
+            <input name="name" type="text" autoComplete="name" required />
+          </label>
+          <label>
+            <span>{copy.contact.form.email}</span>
+            <input name="email" type="email" autoComplete="email" required />
+          </label>
+          <label className="message-field">
+            <span>{copy.contact.form.message}</span>
+            <textarea name="message" rows="6" required />
+          </label>
+          <div className="form-submit-row">
+            <button className="button primary" type="submit" disabled={formStatus === "sending"}>
+              {formStatus === "sending" ? copy.contact.form.sending : copy.contact.form.send}
+              <Send size={18} aria-hidden="true" />
+            </button>
+            <p className={`form-status ${formStatus}`} aria-live="polite">
+              {formStatus === "success" && copy.contact.form.success}
+              {formStatus === "error" && copy.contact.form.error}
+            </p>
+          </div>
+        </form>
       </div>
       <footer>
         <span>L. Benaduce © {new Date().getFullYear()}</span>
