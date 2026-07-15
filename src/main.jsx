@@ -2,6 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import {
   ArrowRight,
+  BriefcaseBusiness,
   Check,
   Clapperboard,
   Code2,
@@ -238,7 +239,6 @@ function Hero({ copy }) {
       <div className="hero-glow" aria-hidden="true" />
       <div className="shell hero-content">
         <div className="hero-copy">
-          <img className="hero-logo" src="/mediatrix-brand-mark.jpg" alt={copy.hero.logoAlt} width="112" height="112" />
           <p className="motto">Create. Connect. Convert.</p>
           <h1 id="hero-title">{copy.hero.title}</h1>
           <p className="hero-description">{copy.hero.description}</p>
@@ -324,10 +324,10 @@ function Company({ copy }) {
 function Contact({ copy, selectedService, onSelectService }) {
   const [status, setStatus] = React.useState("idle");
   const channelData = [
-    [contactLinks.brasil, MessageCircle],
-    [contactLinks.estadosUnidos, MessageCircle],
-    [contactLinks.email, Mail],
-    [contactLinks.upwork, ExternalLink],
+    [contactLinks.brasil, MessageCircle, "whatsapp"],
+    [contactLinks.estadosUnidos, MessageCircle, "whatsapp"],
+    [contactLinks.email, Mail, "email"],
+    [contactLinks.upwork, BriefcaseBusiness, "upwork"],
   ];
 
   const submitForm = async (event) => {
@@ -360,8 +360,8 @@ function Contact({ copy, selectedService, onSelectService }) {
         <div className="contact-layout">
           <div className="contact-channels" aria-label={copy.contact.channelsLabel}>
             {copy.contact.channels.map(([title, detail], index) => {
-              const [href, Icon] = channelData[index];
-              return <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" key={title}><span className="contact-icon"><Icon size={21} aria-hidden="true" /></span><span><strong>{title}</strong><small>{detail}</small></span><ArrowRight className="channel-arrow" size={18} aria-hidden="true" /></a>;
+              const [href, Icon, channel] = channelData[index];
+              return <a className={`contact-channel ${channel}`} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" key={title}><span className="contact-icon"><Icon size={21} aria-hidden="true" /></span><span><strong>{title}</strong><small>{detail}</small></span><span className="channel-arrow"><ArrowRight size={17} aria-hidden="true" /></span></a>;
             })}
           </div>
 
