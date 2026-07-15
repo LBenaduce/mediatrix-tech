@@ -482,7 +482,12 @@ html[dir="rtl"] .contact-channel:hover .channel-arrow { transform: rotate(180deg
 
 .contact-channel.whatsapp { --channel: #25d366; --channel-rgb: 37, 211, 102; }
 .contact-channel.email { --channel: #4aa9ff; --channel-rgb: 74, 169, 255; }
-.contact-channel.upwork { --channel: #14a800; --channel-rgb: 20, 168, 0; }
+.contact-channel.upwork {
+  --channel: #fff;
+  --channel-rgb: 255, 255, 255;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #171a17, #050605);
+}
 
 .contact-channels > a:hover {
   border-color: rgba(var(--channel-rgb), 0.58);
@@ -494,6 +499,7 @@ html[dir="rtl"] .contact-channel:hover .channel-arrow { transform: rotate(180deg
 .contact-channels > a:active { transform: scale(0.99); }
 .contact-icon { width: 2.75rem; height: 2.75rem; border-radius: 11px; }
 .contact-channel .contact-icon { background: var(--channel); color: #fff; box-shadow: 0 8px 20px rgba(var(--channel-rgb), 0.2); }
+.contact-channel.upwork .contact-icon { background: #fff; color: #050605; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28); }
 .contact-channels strong, .contact-channels small { display: block; }
 .contact-channels strong { margin-bottom: 0.18rem; font-size: 0.95rem; }
 .contact-channels small { overflow-wrap: anywhere; color: var(--muted); font-size: 0.82rem; }
@@ -510,6 +516,16 @@ html[dir="rtl"] .contact-channel:hover .channel-arrow { transform: rotate(180deg
 }
 
 .contact-channel:hover .channel-arrow { transform: translateX(3px); }
+
+.contact-channel.upwork .channel-arrow { border-color: rgba(255, 255, 255, 0.24); background: #fff; color: #050605; }
+
+.contact-channel.upwork:hover {
+  border-color: #14a800;
+  background: linear-gradient(135deg, #1b201b, #070907);
+  box-shadow: 0 12px 28px rgba(20, 168, 0, 0.14), inset 3px 0 0 #14a800;
+}
+
+html[dir="rtl"] .contact-channel.upwork:hover { box-shadow: 0 12px 28px rgba(20, 168, 0, 0.14), inset -3px 0 0 #14a800; }
 
 .form-card { padding: clamp(1.25rem, 4vw, 2rem); border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
 .form-card h3 { margin-bottom: 0.35rem; font-size: 1.45rem; }
