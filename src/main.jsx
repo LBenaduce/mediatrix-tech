@@ -1,2060 +1,278 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import {
-  AudioLines,
-  Bot,
-  BriefcaseBusiness,
-  ChevronRight,
+  ArrowRight,
+  Check,
   Clapperboard,
   Code2,
-  Cpu,
   ExternalLink,
-  Globe,
-  Leaf,
+  Globe2,
+  Image as ImageIcon,
   Mail,
   Menu,
   MessageCircle,
-  Music2,
-  QrCode,
   Send,
   X,
 } from "lucide-react";
 import "./styles.css";
 
-const serviceIcons = [Code2, QrCode, Clapperboard, AudioLines, Music2, Bot, Leaf];
-const serviceAnchorIds = [
-  "service-web",
-  "service-events",
-  "service-video",
-  "service-audio",
-  "service-music",
-  "service-automation",
-  "service-agtech",
-];
-const packageAnchorIds = [
-  "package-website",
-  "package-events",
-  "package-social",
-  "package-complete",
-  "package-agro",
-];
-const quickAccessIcons = [Code2, QrCode, Send, Leaf, Clapperboard, BriefcaseBusiness, Mail];
-const quickAccessTargets = [
-  "#service-web",
-  "#service-events",
-  "#package-social",
-  "#service-agtech",
-  "#service-video",
-  "#portfolio",
-  "#contact",
+const navigation = [
+  ["top", "Início"],
+  ["servicos", "Serviços"],
+  ["portfolio", "Portfólio"],
+  ["empresa", "Empresa"],
+  ["contato", "Contato"],
 ];
 
-const translations = {
-  en: {
-    quoteMessage:
-      "Hello Mediatrix Tech, I would like to request a quote for a digital project.",
-    nav: ["Services", "Packages", "Portfolio", "Contact"],
-    hero: {
-      eyebrow: "Digital services for modern local businesses",
-      tagline: "Connecting ideas, media, and technology.",
-      subtitle:
-        "Websites, media, and digital solutions for businesses, events, creators, and agribusiness.",
-      quote: "Request a quote",
-      services: "View services",
-      proof: [
-        ["Web", "Development"],
-        ["Media", "Video, audio, music"],
-        ["AI", "Useful automation"],
-      ],
-    },
-    servicesSection: {
-      eyebrow: "What we build",
-      title: "Digital services that connect the practical and the creative.",
-      intro:
-        "A flexible mix of web, media, automation, and AgTech support for teams that need useful digital work without unnecessary complexity.",
-    },
-    services: [
-      [
-        "Web Development",
-        "Fast, responsive websites and landing pages built to explain, sell, and convert.",
-      ],
-      [
-        "Event Digital Solutions",
-        "QR Code upload pages for guest photos, videos, event galleries, and branded sharing.",
-      ],
-      [
-        "Video Editing",
-        "Clean Final Cut Pro edits for brands, creators, events, reels, and presentations.",
-      ],
-      [
-        "Audio Editing",
-        "Podcast cleanup, voice processing, sound repair, mixing, and polished delivery.",
-      ],
-      [
-        "Music Production",
-        "Original tracks, arrangements, sound identity, and production support for digital media.",
-      ],
-      [
-        "AI & Automation",
-        "Practical automations that reduce repetitive work for small businesses and solo teams.",
-      ],
-      [
-        "AgTech Solutions",
-        "Digital tools for agribusiness workflows, field data, climate insights, and local operations.",
-      ],
-    ],
-    packagesSection: {
-      eyebrow: "Starting points",
-      title: "Packages shaped around real business needs.",
-      intro:
-        "Choose a focused kit, then adapt the scope around your goals, budget, and timeline.",
-      badge: "Most complete",
-    },
-    packages: [
-      ["Basic Website", "For small businesses", ["One-page website", "Mobile-first layout", "Contact buttons"]],
-      ["Event Digital Kit", "For events and venues", ["QR upload page", "Photo/video flow", "Share-ready gallery"]],
-      ["Social Media Kit", "For creators and brands", ["Video edits", "Audio polish", "Content-ready assets"]],
-      ["Complete Digital Presence", "For growing teams", ["Website", "Media package", "Automation guidance"]],
-      ["Agro Digital Kit", "For agribusiness", ["AgTech website", "Field-focused tools", "Data-friendly structure"]],
-    ],
-    portfolioSection: {
-      eyebrow: "Selected work",
-      title: "Portfolio placeholders ready for your real project links.",
-      intro:
-        "Use these entries as a starting structure and connect each card to a live website, video, audio demo, or case study.",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "AgTech platform concept", "Climate-aware digital experience for agricultural decisions."],
-      ["Frasson LLC", "Business website", "Practical local business presence with service-first structure."],
-      ["Event QR Code Photo Website", "Event upload flow", "Guest-friendly QR destination for collecting event media."],
-      ["Video Editing Sample", "Final Cut Pro", "Rhythmic edits for promotional, event, and creator content."],
-      ["Audio/Music Sample", "Audio production", "Polished sound for voice, music, and multimedia projects."],
-    ],
-    why: {
-      eyebrow: "Why choose us",
-      title: "Technology with a creative ear and a practical hand.",
-      advantages: [
-        "Web development + creative media in one place",
-        "Experience with real projects",
-        "Mobile-first design",
-        "Practical solutions for local businesses",
-        "Technical and creative background",
-      ],
-    },
-    contact: {
-      eyebrow: "Start a project",
-      title: "Tell me what you want to build, improve, edit, or automate.",
-      intro:
-        "From a simple landing page to event media flows or agribusiness digital tools, Mediatrix Tech helps turn the idea into a useful online experience.",
-      optionsLabel: "Contact options",
-      whatsappUs: "WhatsApp US",
-      whatsappBrazil: "WhatsApp Brazil",
-      form: {
-        title: "Send a message",
-        intro: "Share a few details and your message will be delivered directly to our inbox.",
-        name: "Name",
-        email: "E-mail",
-        message: "Message",
-        send: "Send message",
-        sending: "Sending…",
-        success: "Thank you — your message has been sent.",
-        error: "The message could not be sent. Please try again or use the e-mail button.",
-      },
-    },
+const services = [
+  {
+    icon: Code2,
+    title: "Desenvolvimento Web",
+    description: "Sites rápidos, responsivos e fáceis de usar em qualquer tela.",
+    benefit: "Transforme visitas em novas oportunidades.",
   },
-  "pt-BR": {
-    quoteMessage:
-      "Olá, Mediatrix Tech. Gostaria de solicitar um orçamento para um projeto digital.",
-    nav: ["Serviços", "Pacotes", "Portfólio", "Contato"],
-    hero: {
-      eyebrow: "Serviços digitais para negócios locais modernos",
-      tagline: "Conectando ideias, mídia e tecnologia.",
-      subtitle:
-        "Sites, mídia e soluções digitais para empresas, eventos, criadores e agronegócio.",
-      quote: "Solicitar orçamento",
-      services: "Ver serviços",
-      proof: [
-        ["Web", "Desenvolvimento"],
-        ["Mídia", "Vídeo, áudio, música"],
-        ["IA", "Automação útil"],
-      ],
-    },
-    servicesSection: {
-      eyebrow: "O que fazemos",
-      title: "Serviços digitais que conectam o prático e o criativo.",
-      intro:
-        "Uma combinação flexível de web, mídia, automação e AgTech para equipes que precisam de trabalho digital útil, sem complexidade desnecessária.",
-    },
-    services: [
-      ["Desenvolvimento Web", "Sites e landing pages rápidos, responsivos e feitos para explicar, vender e converter."],
-      ["Soluções Digitais para Eventos", "Páginas com QR Code para envio de fotos, vídeos, galerias de eventos e compartilhamento com marca."],
-      ["Edição de Vídeo", "Edições limpas no Final Cut Pro para marcas, criadores, eventos, reels e apresentações."],
-      ["Edição de Áudio", "Limpeza de podcasts, tratamento de voz, reparo de som, mixagem e entrega polida."],
-      ["Produção Musical", "Trilhas originais, arranjos, identidade sonora e apoio de produção para mídia digital."],
-      ["IA e Automação", "Automações práticas que reduzem trabalho repetitivo para pequenos negócios e equipes solo."],
-      ["Soluções AgTech", "Ferramentas digitais para fluxos do agronegócio, dados de campo, clima e operações locais."],
-    ],
-    packagesSection: {
-      eyebrow: "Pontos de partida",
-      title: "Pacotes moldados para necessidades reais de negócios.",
-      intro:
-        "Escolha um kit focado e adapte o escopo aos seus objetivos, orçamento e prazo.",
-      badge: "Mais completo",
-    },
-    packages: [
-      ["Site Básico", "Para pequenos negócios", ["Site de uma página", "Layout mobile-first", "Botões de contato"]],
-      ["Kit Digital para Eventos", "Para eventos e espaços", ["Página de envio por QR", "Fluxo de foto/vídeo", "Galeria pronta para compartilhar"]],
-      ["Kit de Mídias Sociais", "Para criadores e marcas", ["Edições de vídeo", "Polimento de áudio", "Arquivos prontos para conteúdo"]],
-      ["Presença Digital Completa", "Para equipes em crescimento", ["Site", "Pacote de mídia", "Orientação em automação"]],
-      ["Kit Agro Digital", "Para o agronegócio", ["Site AgTech", "Ferramentas para campo", "Estrutura amigável para dados"]],
-    ],
-    portfolioSection: {
-      eyebrow: "Trabalhos selecionados",
-      title: "Espaços de portfólio prontos para links de projetos reais.",
-      intro:
-        "Use estas entradas como estrutura inicial e conecte cada card a um site, vídeo, demo de áudio ou estudo de caso.",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "Conceito de plataforma AgTech", "Experiência digital com foco em clima para decisões agrícolas."],
-      ["Frasson LLC", "Site empresarial", "Presença local prática com estrutura orientada a serviços."],
-      ["Site de Fotos por QR Code para Eventos", "Fluxo de envio para eventos", "Destino via QR simples para convidados enviarem mídia do evento."],
-      ["Amostra de Edição de Vídeo", "Final Cut Pro", "Edições com ritmo para conteúdo promocional, eventos e criadores."],
-      ["Amostra de Áudio/Música", "Produção de áudio", "Som polido para voz, música e projetos multimídia."],
-    ],
-    why: {
-      eyebrow: "Por que escolher",
-      title: "Tecnologia com ouvido criativo e mão prática.",
-      advantages: [
-        "Desenvolvimento web + mídia criativa em um só lugar",
-        "Experiência com projetos reais",
-        "Design mobile-first",
-        "Soluções práticas para negócios locais",
-        "Base técnica e criativa",
-      ],
-    },
-    contact: {
-      eyebrow: "Comece um projeto",
-      title: "Conte o que você quer construir, melhorar, editar ou automatizar.",
-      intro:
-        "De uma landing page simples a fluxos de mídia para eventos ou ferramentas digitais para o agro, a Mediatrix Tech transforma ideias em experiências online úteis.",
-      optionsLabel: "Opções de contato",
-      whatsappUs: "WhatsApp EUA",
-      whatsappBrazil: "WhatsApp Brasil",
-      form: {
-        title: "Envie uma mensagem",
-        intro: "Conte um pouco sobre o projeto e sua mensagem será enviada diretamente para nossa caixa de entrada.",
-        name: "Nome",
-        email: "E-mail",
-        message: "Mensagem",
-        send: "Enviar mensagem",
-        sending: "Enviando…",
-        success: "Obrigado — sua mensagem foi enviada.",
-        error: "Não foi possível enviar a mensagem. Tente novamente ou use o botão de e-mail.",
-      },
-    },
+  {
+    icon: ImageIcon,
+    title: "Edição de Fotos",
+    description: "Tratamento profissional para produtos, eventos e redes sociais.",
+    benefit: "Valorize sua marca em cada imagem.",
   },
-  es: {
-    quoteMessage:
-      "Hola Mediatrix Tech, me gustaría solicitar un presupuesto para un proyecto digital.",
-    nav: ["Servicios", "Paquetes", "Portafolio", "Contacto"],
-    hero: {
-      eyebrow: "Servicios digitales para negocios locales modernos",
-      tagline: "Conectando ideas, medios y tecnología.",
-      subtitle:
-        "Sitios web, medios y soluciones digitales para empresas, eventos, creadores y agronegocios.",
-      quote: "Solicitar presupuesto",
-      services: "Ver servicios",
-      proof: [["Web", "Desarrollo"], ["Medios", "Video, audio, música"], ["IA", "Automatización útil"]],
-    },
-    servicesSection: {
-      eyebrow: "Lo que creamos",
-      title: "Servicios digitales que conectan lo práctico y lo creativo.",
-      intro:
-        "Una mezcla flexible de web, medios, automatización y AgTech para equipos que necesitan trabajo digital útil sin complejidad innecesaria.",
-    },
-    services: [
-      ["Desarrollo Web", "Sitios y landing pages rápidos y responsivos para explicar, vender y convertir."],
-      ["Soluciones Digitales para Eventos", "Páginas con QR Code para fotos, videos, galerías de eventos y uso compartido con marca."],
-      ["Edición de Video", "Ediciones limpias en Final Cut Pro para marcas, creadores, eventos, reels y presentaciones."],
-      ["Edición de Audio", "Limpieza de podcasts, procesamiento de voz, reparación de sonido, mezcla y entrega pulida."],
-      ["Producción Musical", "Pistas originales, arreglos, identidad sonora y apoyo de producción para medios digitales."],
-      ["IA y Automatización", "Automatizaciones prácticas que reducen trabajo repetitivo para pequeños negocios y equipos independientes."],
-      ["Soluciones AgTech", "Herramientas digitales para flujos agro, datos de campo, clima y operaciones locales."],
-    ],
-    packagesSection: {
-      eyebrow: "Puntos de partida",
-      title: "Paquetes pensados para necesidades reales de negocio.",
-      intro: "Elige un kit enfocado y adapta el alcance a tus metas, presupuesto y calendario.",
-      badge: "Más completo",
-    },
-    packages: [
-      ["Sitio Básico", "Para pequeños negocios", ["Sitio de una página", "Diseño mobile-first", "Botones de contacto"]],
-      ["Kit Digital para Eventos", "Para eventos y espacios", ["Página de carga por QR", "Flujo de foto/video", "Galería lista para compartir"]],
-      ["Kit de Redes Sociales", "Para creadores y marcas", ["Ediciones de video", "Audio pulido", "Recursos listos para contenido"]],
-      ["Presencia Digital Completa", "Para equipos en crecimiento", ["Sitio web", "Paquete de medios", "Guía de automatización"]],
-      ["Kit Agro Digital", "Para agronegocios", ["Sitio AgTech", "Herramientas de campo", "Estructura amigable para datos"]],
-    ],
-    portfolioSection: {
-      eyebrow: "Trabajo seleccionado",
-      title: "Espacios de portafolio listos para tus enlaces reales.",
-      intro:
-        "Usa estas entradas como estructura inicial y conecta cada tarjeta a un sitio, video, demo de audio o caso de estudio.",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "Concepto de plataforma AgTech", "Experiencia digital climática para decisiones agrícolas."],
-      ["Frasson LLC", "Sitio empresarial", "Presencia local práctica con estructura centrada en servicios."],
-      ["Sitio de Fotos por QR para Eventos", "Flujo de carga para eventos", "Destino QR simple para reunir medios de invitados."],
-      ["Muestra de Edición de Video", "Final Cut Pro", "Ediciones rítmicas para promociones, eventos y creadores."],
-      ["Muestra de Audio/Música", "Producción de audio", "Sonido pulido para voz, música y proyectos multimedia."],
-    ],
-    why: {
-      eyebrow: "Por qué elegirnos",
-      title: "Tecnología con oído creativo y mano práctica.",
-      advantages: [
-        "Desarrollo web + medios creativos en un solo lugar",
-        "Experiencia con proyectos reales",
-        "Diseño mobile-first",
-        "Soluciones prácticas para negocios locales",
-        "Base técnica y creativa",
-      ],
-    },
-    contact: {
-      eyebrow: "Inicia un proyecto",
-      title: "Cuéntame qué quieres crear, mejorar, editar o automatizar.",
-      intro:
-        "Desde una landing page simple hasta flujos de medios para eventos o herramientas digitales agro, Mediatrix Tech convierte ideas en experiencias online útiles.",
-      optionsLabel: "Opciones de contacto",
-      whatsappUs: "WhatsApp EE. UU.",
-      whatsappBrazil: "WhatsApp Brasil",
-    },
+  {
+    icon: Clapperboard,
+    title: "Edição de Vídeos",
+    description: "Vídeos claros e envolventes para marcas, criadores e eventos.",
+    benefit: "Prenda a atenção e comunique melhor.",
   },
-  fr: {
-    quoteMessage:
-      "Bonjour Mediatrix Tech, je souhaite demander un devis pour un projet digital.",
-    nav: ["Services", "Offres", "Portfolio", "Contact"],
-    hero: {
-      eyebrow: "Services digitaux pour les entreprises locales modernes",
-      tagline: "Connecter les idées, les médias et la technologie.",
-      subtitle:
-        "Sites web, médias et solutions digitales pour entreprises, événements, créateurs et agrobusiness.",
-      quote: "Demander un devis",
-      services: "Voir les services",
-      proof: [["Web", "Développement"], ["Média", "Vidéo, audio, musique"], ["IA", "Automatisation utile"]],
-    },
-    servicesSection: {
-      eyebrow: "Ce que nous créons",
-      title: "Des services digitaux entre pratique et créativité.",
-      intro:
-        "Un mélange flexible de web, média, automatisation et AgTech pour des équipes qui veulent du digital utile sans complexité inutile.",
-    },
-    services: [
-      ["Développement Web", "Sites et landing pages rapides et responsives pour expliquer, vendre et convertir."],
-      ["Solutions Digitales Événementielles", "Pages QR Code pour photos, vidéos, galeries d'événements et partage de marque."],
-      ["Montage Vidéo", "Montages propres sur Final Cut Pro pour marques, créateurs, événements, reels et présentations."],
-      ["Montage Audio", "Nettoyage de podcasts, traitement vocal, réparation sonore, mixage et livraison soignée."],
-      ["Production Musicale", "Morceaux originaux, arrangements, identité sonore et support de production digitale."],
-      ["IA et Automatisation", "Automatisations pratiques pour réduire les tâches répétitives des petites équipes."],
-      ["Solutions AgTech", "Outils digitaux pour flux agricoles, données terrain, climat et opérations locales."],
-    ],
-    packagesSection: {
-      eyebrow: "Points de départ",
-      title: "Des offres pensées pour de vrais besoins business.",
-      intro: "Choisissez un kit ciblé, puis adaptez le périmètre à vos objectifs, budget et calendrier.",
-      badge: "Le plus complet",
-    },
-    packages: [
-      ["Site Basique", "Pour petites entreprises", ["Site d'une page", "Design mobile-first", "Boutons de contact"]],
-      ["Kit Digital Événement", "Pour événements et lieux", ["Page d'envoi QR", "Flux photo/vidéo", "Galerie prête à partager"]],
-      ["Kit Réseaux Sociaux", "Pour créateurs et marques", ["Montages vidéo", "Audio optimisé", "Assets prêts à publier"]],
-      ["Présence Digitale Complète", "Pour équipes en croissance", ["Site web", "Pack média", "Conseil automatisation"]],
-      ["Kit Agro Digital", "Pour agrobusiness", ["Site AgTech", "Outils terrain", "Structure orientée données"]],
-    ],
-    portfolioSection: {
-      eyebrow: "Travaux choisis",
-      title: "Des emplacements portfolio prêts pour vos liens réels.",
-      intro: "Connectez chaque carte à un site, une vidéo, une démo audio ou une étude de cas.",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "Concept de plateforme AgTech", "Expérience digitale liée au climat pour décisions agricoles."],
-      ["Frasson LLC", "Site d'entreprise", "Présence locale pratique avec structure orientée services."],
-      ["Site Photo QR Code Événement", "Flux d'envoi événementiel", "Destination QR simple pour collecter les médias des invités."],
-      ["Exemple de Montage Vidéo", "Final Cut Pro", "Montages rythmés pour promotion, événements et créateurs."],
-      ["Exemple Audio/Musique", "Production audio", "Son soigné pour voix, musique et projets multimédias."],
-    ],
-    why: {
-      eyebrow: "Pourquoi nous choisir",
-      title: "Une technologie avec une oreille créative et une main pratique.",
-      advantages: [
-        "Web + média créatif au même endroit",
-        "Expérience sur des projets réels",
-        "Design mobile-first",
-        "Solutions pratiques pour entreprises locales",
-        "Base technique et créative",
-      ],
-    },
-    contact: {
-      eyebrow: "Démarrer un projet",
-      title: "Dites-moi ce que vous voulez créer, améliorer, monter ou automatiser.",
-      intro:
-        "D'une landing page simple aux flux média événementiels ou outils digitaux agricoles, Mediatrix Tech transforme l'idée en expérience utile.",
-      optionsLabel: "Options de contact",
-      whatsappUs: "WhatsApp États-Unis",
-      whatsappBrazil: "WhatsApp Brésil",
-    },
-  },
-  de: {
-    quoteMessage:
-      "Hallo Mediatrix Tech, ich möchte ein Angebot für ein digitales Projekt anfragen.",
-    nav: ["Services", "Pakete", "Portfolio", "Kontakt"],
-    hero: {
-      eyebrow: "Digitale Services für moderne lokale Unternehmen",
-      tagline: "Ideen, Medien und Technologie verbinden.",
-      subtitle:
-        "Websites, Medien und digitale Lösungen für Unternehmen, Events, Creator und Agribusiness.",
-      quote: "Angebot anfragen",
-      services: "Services ansehen",
-      proof: [["Web", "Entwicklung"], ["Medien", "Video, Audio, Musik"], ["KI", "Nützliche Automatisierung"]],
-    },
-    servicesSection: {
-      eyebrow: "Was wir bauen",
-      title: "Digitale Services, die Praxis und Kreativität verbinden.",
-      intro:
-        "Ein flexibler Mix aus Web, Medien, Automatisierung und AgTech für Teams, die nützliche digitale Arbeit ohne unnötige Komplexität brauchen.",
-    },
-    services: [
-      ["Webentwicklung", "Schnelle, responsive Websites und Landingpages zum Erklären, Verkaufen und Konvertieren."],
-      ["Digitale Eventlösungen", "QR-Code-Seiten für Fotos, Videos, Event-Galerien und gebrandetes Teilen."],
-      ["Videoschnitt", "Saubere Final-Cut-Pro-Edits für Marken, Creator, Events, Reels und Präsentationen."],
-      ["Audiobearbeitung", "Podcast-Cleanup, Sprachbearbeitung, Sound-Reparatur, Mix und polierte Lieferung."],
-      ["Musikproduktion", "Originaltracks, Arrangements, Sound Identity und Produktionssupport für digitale Medien."],
-      ["KI und Automatisierung", "Praktische Automationen, die wiederholte Arbeit für kleine Teams reduzieren."],
-      ["AgTech-Lösungen", "Digitale Tools für Agrar-Workflows, Felddaten, Klimaeinblicke und lokale Abläufe."],
-    ],
-    packagesSection: {
-      eyebrow: "Startpunkte",
-      title: "Pakete für echte Geschäftsanforderungen.",
-      intro: "Wählen Sie ein fokussiertes Kit und passen Sie Umfang, Budget und Zeitplan an.",
-      badge: "Am vollständigsten",
-    },
-    packages: [
-      ["Basis-Website", "Für kleine Unternehmen", ["One-Page-Website", "Mobile-first Layout", "Kontaktbuttons"]],
-      ["Digitales Event-Kit", "Für Events und Locations", ["QR-Upload-Seite", "Foto/Video-Flow", "Teilbare Galerie"]],
-      ["Social-Media-Kit", "Für Creator und Marken", ["Video-Edits", "Audio-Polish", "Content-fertige Assets"]],
-      ["Komplette Digitale Präsenz", "Für wachsende Teams", ["Website", "Medienpaket", "Automatisierungsberatung"]],
-      ["Agro Digital Kit", "Für Agribusiness", ["AgTech-Website", "Feldorientierte Tools", "Datenfreundliche Struktur"]],
-    ],
-    portfolioSection: {
-      eyebrow: "Ausgewählte Arbeit",
-      title: "Portfolio-Platzhalter bereit für echte Projektlinks.",
-      intro: "Verbinden Sie jede Karte mit Website, Video, Audio-Demo oder Case Study.",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "AgTech-Plattformkonzept", "Klimaorientierte digitale Erfahrung für Agrarentscheidungen."],
-      ["Frasson LLC", "Business-Website", "Praktische lokale Präsenz mit serviceorientierter Struktur."],
-      ["Event QR-Code Foto-Website", "Event-Upload-Flow", "Einfaches QR-Ziel zum Sammeln von Gästemedien."],
-      ["Videoschnitt-Beispiel", "Final Cut Pro", "Rhythmische Edits für Promotion, Events und Creator."],
-      ["Audio/Musik-Beispiel", "Audioproduktion", "Polierter Sound für Stimme, Musik und Multimedia-Projekte."],
-    ],
-    why: {
-      eyebrow: "Warum wir",
-      title: "Technologie mit kreativem Ohr und praktischer Hand.",
-      advantages: [
-        "Webentwicklung + kreative Medien an einem Ort",
-        "Erfahrung mit echten Projekten",
-        "Mobile-first Design",
-        "Praktische Lösungen für lokale Unternehmen",
-        "Technische und kreative Basis",
-      ],
-    },
-    contact: {
-      eyebrow: "Projekt starten",
-      title: "Sagen Sie, was Sie bauen, verbessern, schneiden oder automatisieren möchten.",
-      intro:
-        "Von einfachen Landingpages bis zu Event-Media-Flows oder digitalen Agrar-Tools macht Mediatrix Tech Ideen zu nützlichen Online-Erfahrungen.",
-      optionsLabel: "Kontaktoptionen",
-      whatsappUs: "WhatsApp USA",
-      whatsappBrazil: "WhatsApp Brasilien",
-    },
-  },
-  it: {
-    quoteMessage:
-      "Ciao Mediatrix Tech, vorrei richiedere un preventivo per un progetto digitale.",
-    nav: ["Servizi", "Pacchetti", "Portfolio", "Contatti"],
-    hero: {
-      eyebrow: "Servizi digitali per aziende locali moderne",
-      tagline: "Connettere idee, media e tecnologia.",
-      subtitle:
-        "Siti web, media e soluzioni digitali per aziende, eventi, creator e agribusiness.",
-      quote: "Richiedi preventivo",
-      services: "Vedi servizi",
-      proof: [["Web", "Sviluppo"], ["Media", "Video, audio, musica"], ["AI", "Automazione utile"]],
-    },
-    servicesSection: {
-      eyebrow: "Cosa creiamo",
-      title: "Servizi digitali che uniscono praticità e creatività.",
-      intro:
-        "Un mix flessibile di web, media, automazione e AgTech per team che vogliono lavoro digitale utile senza complessità inutili.",
-    },
-    services: [
-      ["Sviluppo Web", "Siti e landing page rapidi e responsive per spiegare, vendere e convertire."],
-      ["Soluzioni Digitali per Eventi", "Pagine QR Code per foto, video, gallerie eventi e condivisione brandizzata."],
-      ["Montaggio Video", "Editing pulito in Final Cut Pro per brand, creator, eventi, reel e presentazioni."],
-      ["Editing Audio", "Pulizia podcast, trattamento voce, riparazione audio, mix e consegna rifinita."],
-      ["Produzione Musicale", "Tracce originali, arrangiamenti, identità sonora e supporto produttivo per media digitali."],
-      ["AI e Automazione", "Automazioni pratiche che riducono il lavoro ripetitivo per piccoli team."],
-      ["Soluzioni AgTech", "Strumenti digitali per flussi agricoli, dati di campo, clima e operazioni locali."],
-    ],
-    packagesSection: {
-      eyebrow: "Punti di partenza",
-      title: "Pacchetti pensati per esigenze aziendali reali.",
-      intro: "Scegli un kit focalizzato e adatta lo scope a obiettivi, budget e tempi.",
-      badge: "Più completo",
-    },
-    packages: [
-      ["Sito Base", "Per piccole imprese", ["Sito one-page", "Layout mobile-first", "Pulsanti di contatto"]],
-      ["Kit Digitale Eventi", "Per eventi e location", ["Pagina upload QR", "Flusso foto/video", "Galleria pronta da condividere"]],
-      ["Kit Social Media", "Per creator e brand", ["Editing video", "Audio rifinito", "Asset pronti per contenuti"]],
-      ["Presenza Digitale Completa", "Per team in crescita", ["Sito web", "Pacchetto media", "Guida automazione"]],
-      ["Kit Agro Digitale", "Per agribusiness", ["Sito AgTech", "Strumenti per il campo", "Struttura data-friendly"]],
-    ],
-    portfolioSection: {
-      eyebrow: "Lavori selezionati",
-      title: "Spazi portfolio pronti per i tuoi link reali.",
-      intro: "Collega ogni card a un sito, video, demo audio o case study.",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "Concept piattaforma AgTech", "Esperienza digitale climatica per decisioni agricole."],
-      ["Frasson LLC", "Sito aziendale", "Presenza locale pratica con struttura orientata ai servizi."],
-      ["Sito Foto QR Code Eventi", "Flusso upload eventi", "Destinazione QR semplice per raccogliere media dagli ospiti."],
-      ["Esempio Editing Video", "Final Cut Pro", "Editing ritmici per promozioni, eventi e creator."],
-      ["Esempio Audio/Musica", "Produzione audio", "Suono rifinito per voce, musica e progetti multimediali."],
-    ],
-    why: {
-      eyebrow: "Perché sceglierci",
-      title: "Tecnologia con orecchio creativo e mano pratica.",
-      advantages: [
-        "Web development + media creativi in un solo posto",
-        "Esperienza con progetti reali",
-        "Design mobile-first",
-        "Soluzioni pratiche per imprese locali",
-        "Base tecnica e creativa",
-      ],
-    },
-    contact: {
-      eyebrow: "Avvia un progetto",
-      title: "Raccontami cosa vuoi creare, migliorare, editare o automatizzare.",
-      intro:
-        "Da una semplice landing page a flussi media per eventi o strumenti digitali agro, Mediatrix Tech trasforma idee in esperienze online utili.",
-      optionsLabel: "Opzioni di contatto",
-      whatsappUs: "WhatsApp USA",
-      whatsappBrazil: "WhatsApp Brasile",
-    },
-  },
-};
-
-Object.assign(translations, {
-  "zh-CN": {
-    quoteMessage: "你好 Mediatrix Tech，我想为一个数字项目申请报价。",
-    nav: ["服务", "套餐", "作品集", "联系"],
-    hero: {
-      eyebrow: "面向现代本地企业的数字服务",
-      tagline: "连接创意、媒体与技术。",
-      subtitle: "为企业、活动、创作者和农业商务打造网站、媒体和数字解决方案。",
-      quote: "申请报价",
-      services: "查看服务",
-      proof: [["网站", "开发"], ["媒体", "视频、音频、音乐"], ["AI", "实用自动化"]],
-    },
-    servicesSection: {
-      eyebrow: "我们打造什么",
-      title: "连接实用性与创造力的数字服务。",
-      intro: "灵活结合网站、媒体、自动化和 AgTech 支持，为团队提供有用且不过度复杂的数字工作。",
-    },
-    services: [
-      ["网站开发", "快速、响应式的网站和落地页，用于说明、销售和转化。"],
-      ["活动数字解决方案", "用于宾客照片、视频、活动图库和品牌分享的二维码上传页面。"],
-      ["视频剪辑", "使用 Final Cut Pro 为品牌、创作者、活动、Reels 和演示制作干净剪辑。"],
-      ["音频编辑", "播客清理、人声处理、声音修复、混音和精修交付。"],
-      ["音乐制作", "原创曲目、编曲、声音识别和数字媒体制作支持。"],
-      ["AI 与自动化", "为小企业和个人团队减少重复工作的实用自动化。"],
-      ["AgTech 解决方案", "面向农业商务流程、田间数据、气候洞察和本地运营的数字工具。"],
-    ],
-    packagesSection: {
-      eyebrow: "起点",
-      title: "围绕真实业务需求设计的套餐。",
-      intro: "选择一个聚焦的套件，再根据目标、预算和时间线调整范围。",
-      badge: "最完整",
-    },
-    packages: [
-      ["基础网站", "适合小企业", ["单页网站", "移动优先布局", "联系按钮"]],
-      ["活动数字套件", "适合活动和场地", ["二维码上传页", "照片/视频流程", "可分享图库"]],
-      ["社交媒体套件", "适合创作者和品牌", ["视频剪辑", "音频精修", "内容就绪素材"]],
-      ["完整数字形象", "适合成长型团队", ["网站", "媒体套餐", "自动化指导"]],
-      ["农业数字套件", "适合农业商务", ["AgTech 网站", "田间工具", "数据友好结构"]],
-    ],
-    portfolioSection: {
-      eyebrow: "精选作品",
-      title: "作品集占位已准备好连接真实项目链接。",
-      intro: "可将每张卡片连接到网站、视频、音频演示或案例研究。",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "AgTech 平台概念", "面向农业决策的气候感知数字体验。"],
-      ["Frasson LLC", "企业网站", "以服务为核心结构的实用本地业务展示。"],
-      ["活动二维码照片网站", "活动上传流程", "方便宾客上传活动媒体的二维码入口。"],
-      ["视频剪辑样例", "Final Cut Pro", "适合推广、活动和创作者内容的节奏化剪辑。"],
-      ["音频/音乐样例", "音频制作", "适用于人声、音乐和多媒体项目的精修声音。"],
-    ],
-    why: {
-      eyebrow: "为什么选择我们",
-      title: "兼具创意听觉与实用执行力的技术。",
-      advantages: ["网站开发与创意媒体一站式服务", "真实项目经验", "移动优先设计", "面向本地企业的实用方案", "技术与创意背景"],
-    },
-    contact: {
-      eyebrow: "开始项目",
-      title: "告诉我你想构建、改进、剪辑或自动化什么。",
-      intro: "从简单落地页到活动媒体流程或农业数字工具，Mediatrix Tech 将想法转化为有用的在线体验。",
-      optionsLabel: "联系方式",
-      whatsappUs: "美国 WhatsApp",
-      whatsappBrazil: "巴西 WhatsApp",
-    },
-  },
-  hi: {
-    quoteMessage: "नमस्ते Mediatrix Tech, मैं एक डिजिटल प्रोजेक्ट के लिए कोटेशन लेना चाहता/चाहती हूं।",
-    nav: ["सेवाएं", "पैकेज", "पोर्टफोलियो", "संपर्क"],
-    hero: {
-      eyebrow: "आधुनिक स्थानीय व्यवसायों के लिए डिजिटल सेवाएं",
-      tagline: "विचारों, मीडिया और तकनीक को जोड़ना।",
-      subtitle: "व्यवसायों, इवेंट्स, क्रिएटर्स और एग्रीबिजनेस के लिए वेबसाइट, मीडिया और डिजिटल समाधान।",
-      quote: "कोटेशन मांगें",
-      services: "सेवाएं देखें",
-      proof: [["वेब", "डेवलपमेंट"], ["मीडिया", "वीडियो, ऑडियो, संगीत"], ["AI", "उपयोगी ऑटोमेशन"]],
-    },
-    servicesSection: {
-      eyebrow: "हम क्या बनाते हैं",
-      title: "डिजिटल सेवाएं जो व्यावहारिकता और रचनात्मकता को जोड़ती हैं।",
-      intro: "वेब, मीडिया, ऑटोमेशन और AgTech सपोर्ट का लचीला मिश्रण, उन टीमों के लिए जिन्हें बिना अनावश्यक जटिलता के उपयोगी डिजिटल काम चाहिए।",
-    },
-    services: [
-      ["वेब डेवलपमेंट", "तेज, रिस्पॉन्सिव वेबसाइट और लैंडिंग पेज जो समझाने, बेचने और कन्वर्ट करने के लिए बनाए जाते हैं।"],
-      ["इवेंट डिजिटल समाधान", "मेहमानों की फोटो, वीडियो, इवेंट गैलरी और ब्रांडेड शेयरिंग के लिए QR Code अपलोड पेज।"],
-      ["वीडियो एडिटिंग", "ब्रांड, क्रिएटर्स, इवेंट्स, reels और प्रस्तुतियों के लिए साफ Final Cut Pro एडिट्स।"],
-      ["ऑडियो एडिटिंग", "पॉडकास्ट क्लीनअप, वॉइस प्रोसेसिंग, साउंड रिपेयर, मिक्सिंग और पॉलिश्ड डिलीवरी।"],
-      ["म्यूजिक प्रोडक्शन", "डिजिटल मीडिया के लिए ओरिजिनल ट्रैक्स, अरेंजमेंट, साउंड आइडेंटिटी और प्रोडक्शन सपोर्ट।"],
-      ["AI और ऑटोमेशन", "छोटे व्यवसायों और solo teams के repetitive काम को कम करने वाले व्यावहारिक ऑटोमेशन।"],
-      ["AgTech समाधान", "एग्रीबिजनेस workflows, field data, climate insights और local operations के लिए डिजिटल टूल्स।"],
-    ],
-    packagesSection: {
-      eyebrow: "शुरुआती विकल्प",
-      title: "वास्तविक व्यवसायिक जरूरतों के अनुसार बनाए गए पैकेज।",
-      intro: "एक focused kit चुनें, फिर अपने goals, budget और timeline के अनुसार scope बदलें।",
-      badge: "सबसे पूरा",
-    },
-    packages: [
-      ["बेसिक वेबसाइट", "छोटे व्यवसायों के लिए", ["One-page website", "Mobile-first layout", "Contact buttons"]],
-      ["इवेंट डिजिटल किट", "इवेंट्स और venues के लिए", ["QR upload page", "Photo/video flow", "Share-ready gallery"]],
-      ["सोशल मीडिया किट", "क्रिएटर्स और brands के लिए", ["Video edits", "Audio polish", "Content-ready assets"]],
-      ["Complete Digital Presence", "बढ़ती teams के लिए", ["Website", "Media package", "Automation guidance"]],
-      ["Agro Digital Kit", "एग्रीबिजनेस के लिए", ["AgTech website", "Field-focused tools", "Data-friendly structure"]],
-    ],
-    portfolioSection: {
-      eyebrow: "चुना हुआ काम",
-      title: "आपके real project links के लिए तैयार portfolio placeholders.",
-      intro: "हर card को live website, video, audio demo या case study से जोड़ें।",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "AgTech platform concept", "कृषि निर्णयों के लिए climate-aware digital experience."],
-      ["Frasson LLC", "Business website", "Service-first structure के साथ practical local business presence."],
-      ["Event QR Code Photo Website", "Event upload flow", "Event media इकट्ठा करने के लिए guest-friendly QR destination."],
-      ["Video Editing Sample", "Final Cut Pro", "Promotional, event और creator content के लिए rhythmic edits."],
-      ["Audio/Music Sample", "Audio production", "Voice, music और multimedia projects के लिए polished sound."],
-    ],
-    why: {
-      eyebrow: "हमें क्यों चुनें",
-      title: "रचनात्मक कान और व्यावहारिक हाथ वाली तकनीक।",
-      advantages: ["Web development + creative media एक जगह", "Real projects का अनुभव", "Mobile-first design", "Local businesses के लिए practical solutions", "Technical और creative background"],
-    },
-    contact: {
-      eyebrow: "प्रोजेक्ट शुरू करें",
-      title: "बताएं कि आप क्या बनाना, सुधारना, edit करना या automate करना चाहते हैं।",
-      intro: "Simple landing page से लेकर event media flows या agribusiness digital tools तक, Mediatrix Tech विचार को उपयोगी online experience में बदलता है।",
-      optionsLabel: "Contact options",
-      whatsappUs: "WhatsApp US",
-      whatsappBrazil: "WhatsApp Brazil",
-    },
-  },
-  ar: {
-    quoteMessage: "مرحباً Mediatrix Tech، أود طلب عرض سعر لمشروع رقمي.",
-    nav: ["الخدمات", "الباقات", "الأعمال", "تواصل"],
-    hero: {
-      eyebrow: "خدمات رقمية للأعمال المحلية الحديثة",
-      tagline: "نصل الأفكار والإعلام والتقنية.",
-      subtitle: "مواقع ويب، وميديا، وحلول رقمية للشركات والفعاليات وصناع المحتوى والأعمال الزراعية.",
-      quote: "اطلب عرض سعر",
-      services: "عرض الخدمات",
-      proof: [["ويب", "تطوير"], ["ميديا", "فيديو، صوت، موسيقى"], ["ذكاء اصطناعي", "أتمتة مفيدة"]],
-    },
-    servicesSection: {
-      eyebrow: "ما نبنيه",
-      title: "خدمات رقمية تجمع بين العملي والإبداعي.",
-      intro: "مزيج مرن من الويب والميديا والأتمتة و AgTech للفرق التي تحتاج عملاً رقمياً مفيداً دون تعقيد غير ضروري.",
-    },
-    services: [
-      ["تطوير الويب", "مواقع وصفحات هبوط سريعة ومتجاوبة لشرح الخدمات والبيع وزيادة التحويل."],
-      ["حلول رقمية للفعاليات", "صفحات رفع عبر QR Code لصور وفيديوهات الضيوف ومعارض الفعاليات والمشاركة بعلامتك."],
-      ["مونتاج الفيديو", "تعديلات نظيفة على Final Cut Pro للعلامات وصناع المحتوى والفعاليات و reels والعروض."],
-      ["تحرير الصوت", "تنظيف البودكاست، معالجة الصوت، إصلاح المشاكل الصوتية، المزج، وتسليم مصقول."],
-      ["إنتاج موسيقي", "مقاطع أصلية، توزيعات، هوية صوتية، ودعم إنتاج للميديا الرقمية."],
-      ["الذكاء الاصطناعي والأتمتة", "أتمتة عملية تقلل العمل المتكرر للشركات الصغيرة والفرق الفردية."],
-      ["حلول AgTech", "أدوات رقمية لسير عمل الأعمال الزراعية وبيانات الحقول والرؤى المناخية والعمليات المحلية."],
-    ],
-    packagesSection: {
-      eyebrow: "نقاط بداية",
-      title: "باقات مصممة حول احتياجات أعمال حقيقية.",
-      intro: "اختر حزمة مركزة ثم عدل النطاق حسب أهدافك وميزانيتك وجدولك.",
-      badge: "الأكثر اكتمالاً",
-    },
-    packages: [
-      ["موقع أساسي", "للشركات الصغيرة", ["موقع من صفحة واحدة", "تصميم للجوال أولاً", "أزرار تواصل"]],
-      ["حزمة فعاليات رقمية", "للفعاليات والأماكن", ["صفحة رفع QR", "تدفق صور/فيديو", "معرض جاهز للمشاركة"]],
-      ["حزمة سوشيال ميديا", "لصناع المحتوى والعلامات", ["تعديلات فيديو", "تحسين صوت", "مواد جاهزة للنشر"]],
-      ["حضور رقمي كامل", "للفرق النامية", ["موقع ويب", "حزمة ميديا", "إرشاد للأتمتة"]],
-      ["حزمة Agro رقمية", "للأعمال الزراعية", ["موقع AgTech", "أدوات ميدانية", "هيكل مناسب للبيانات"]],
-    ],
-    portfolioSection: {
-      eyebrow: "أعمال مختارة",
-      title: "مساحات أعمال جاهزة لروابط مشاريعك الحقيقية.",
-      intro: "اربط كل بطاقة بموقع مباشر أو فيديو أو عرض صوتي أو دراسة حالة.",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "تصور لمنصة AgTech", "تجربة رقمية واعية بالمناخ لقرارات زراعية."],
-      ["Frasson LLC", "موقع أعمال", "حضور محلي عملي بهيكل يركز على الخدمات."],
-      ["موقع صور فعاليات عبر QR", "تدفق رفع للفعاليات", "وجهة QR سهلة للضيوف لجمع ميديا الفعالية."],
-      ["عينة مونتاج فيديو", "Final Cut Pro", "تعديلات إيقاعية للمحتوى الترويجي والفعاليات وصناع المحتوى."],
-      ["عينة صوت/موسيقى", "إنتاج صوتي", "صوت مصقول للصوت البشري والموسيقى والمشاريع متعددة الوسائط."],
-    ],
-    why: {
-      eyebrow: "لماذا تختارنا",
-      title: "تقنية بأذن إبداعية ويد عملية.",
-      advantages: ["تطوير ويب وميديا إبداعية في مكان واحد", "خبرة بمشاريع حقيقية", "تصميم للجوال أولاً", "حلول عملية للشركات المحلية", "خلفية تقنية وإبداعية"],
-    },
-    contact: {
-      eyebrow: "ابدأ مشروعاً",
-      title: "أخبرني بما تريد بناءه أو تحسينه أو تحريره أو أتمتته.",
-      intro: "من صفحة هبوط بسيطة إلى تدفقات ميديا للفعاليات أو أدوات رقمية زراعية، تساعد Mediatrix Tech على تحويل الفكرة إلى تجربة مفيدة على الإنترنت.",
-      optionsLabel: "خيارات التواصل",
-      whatsappUs: "واتساب الولايات المتحدة",
-      whatsappBrazil: "واتساب البرازيل",
-    },
-  },
-  bn: {
-    quoteMessage: "হ্যালো Mediatrix Tech, আমি একটি ডিজিটাল প্রকল্পের জন্য কোটেশন চাই।",
-    nav: ["সেবা", "প্যাকেজ", "পোর্টফোলিও", "যোগাযোগ"],
-    hero: {
-      eyebrow: "আধুনিক স্থানীয় ব্যবসার জন্য ডিজিটাল সেবা",
-      tagline: "আইডিয়া, মিডিয়া ও প্রযুক্তিকে সংযুক্ত করা।",
-      subtitle: "ব্যবসা, ইভেন্ট, ক্রিয়েটর এবং কৃষি ব্যবসার জন্য ওয়েবসাইট, মিডিয়া ও ডিজিটাল সমাধান।",
-      quote: "কোটেশন চান",
-      services: "সেবা দেখুন",
-      proof: [["ওয়েব", "ডেভেলপমেন্ট"], ["মিডিয়া", "ভিডিও, অডিও, মিউজিক"], ["AI", "উপযোগী অটোমেশন"]],
-    },
-    servicesSection: {
-      eyebrow: "আমরা যা তৈরি করি",
-      title: "ডিজিটাল সেবা যা ব্যবহারিকতা ও সৃজনশীলতাকে যুক্ত করে।",
-      intro: "ওয়েব, মিডিয়া, অটোমেশন এবং AgTech সহায়তার নমনীয় মিশ্রণ, যেসব টিম অপ্রয়োজনীয় জটিলতা ছাড়া কার্যকর ডিজিটাল কাজ চায় তাদের জন্য।",
-    },
-    services: [
-      ["ওয়েব ডেভেলপমেন্ট", "দ্রুত, রেসপনসিভ ওয়েবসাইট ও ল্যান্ডিং পেজ যা ব্যাখ্যা, বিক্রি এবং কনভার্ট করার জন্য তৈরি।"],
-      ["ইভেন্ট ডিজিটাল সমাধান", "অতিথির ছবি, ভিডিও, ইভেন্ট গ্যালারি এবং ব্র্যান্ডেড শেয়ারিংয়ের জন্য QR Code আপলোড পেজ।"],
-      ["ভিডিও এডিটিং", "ব্র্যান্ড, ক্রিয়েটর, ইভেন্ট, reels এবং প্রেজেন্টেশনের জন্য পরিষ্কার Final Cut Pro এডিট।"],
-      ["অডিও এডিটিং", "পডকাস্ট ক্লিনআপ, ভয়েস প্রসেসিং, সাউন্ড রিপেয়ার, মিক্সিং এবং polished delivery।"],
-      ["মিউজিক প্রোডাকশন", "ডিজিটাল মিডিয়ার জন্য original tracks, arrangements, sound identity এবং production support।"],
-      ["AI ও অটোমেশন", "ছোট ব্যবসা এবং solo teams-এর repetitive কাজ কমানোর practical automation।"],
-      ["AgTech সমাধান", "কৃষি ব্যবসার workflow, field data, climate insights এবং local operations-এর জন্য digital tools।"],
-    ],
-    packagesSection: {
-      eyebrow: "শুরুর জায়গা",
-      title: "বাস্তব ব্যবসায়িক চাহিদা ঘিরে তৈরি প্যাকেজ।",
-      intro: "একটি focused kit বেছে নিন, তারপর goal, budget এবং timeline অনুযায়ী scope বদলান।",
-      badge: "সবচেয়ে সম্পূর্ণ",
-    },
-    packages: [
-      ["বেসিক ওয়েবসাইট", "ছোট ব্যবসার জন্য", ["One-page website", "Mobile-first layout", "Contact buttons"]],
-      ["ইভেন্ট ডিজিটাল কিট", "ইভেন্ট ও venue-এর জন্য", ["QR upload page", "Photo/video flow", "Share-ready gallery"]],
-      ["সোশ্যাল মিডিয়া কিট", "ক্রিয়েটর ও ব্র্যান্ডের জন্য", ["Video edits", "Audio polish", "Content-ready assets"]],
-      ["Complete Digital Presence", "বর্ধনশীল টিমের জন্য", ["Website", "Media package", "Automation guidance"]],
-      ["Agro Digital Kit", "কৃষি ব্যবসার জন্য", ["AgTech website", "Field-focused tools", "Data-friendly structure"]],
-    ],
-    portfolioSection: {
-      eyebrow: "নির্বাচিত কাজ",
-      title: "আপনার real project links-এর জন্য প্রস্তুত portfolio placeholders.",
-      intro: "প্রতিটি card-কে live website, video, audio demo বা case study-এর সাথে যুক্ত করুন।",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "AgTech platform concept", "কৃষি সিদ্ধান্তের জন্য climate-aware digital experience."],
-      ["Frasson LLC", "Business website", "Service-first structure সহ practical local business presence."],
-      ["Event QR Code Photo Website", "Event upload flow", "অতিথিদের event media সংগ্রহের জন্য সহজ QR destination."],
-      ["Video Editing Sample", "Final Cut Pro", "Promotional, event ও creator content-এর জন্য rhythmic edits."],
-      ["Audio/Music Sample", "Audio production", "Voice, music ও multimedia projects-এর জন্য polished sound."],
-    ],
-    why: {
-      eyebrow: "কেন আমাদের বেছে নেবেন",
-      title: "সৃজনশীল কান ও ব্যবহারিক হাতে প্রযুক্তি।",
-      advantages: ["Web development + creative media এক জায়গায়", "Real projects-এর অভিজ্ঞতা", "Mobile-first design", "Local businesses-এর জন্য practical solutions", "Technical ও creative background"],
-    },
-    contact: {
-      eyebrow: "প্রকল্প শুরু করুন",
-      title: "আপনি কী build, improve, edit বা automate করতে চান বলুন।",
-      intro: "Simple landing page থেকে event media flows বা agribusiness digital tools পর্যন্ত, Mediatrix Tech আইডিয়াকে useful online experience-এ রূপ দেয়।",
-      optionsLabel: "Contact options",
-      whatsappUs: "WhatsApp US",
-      whatsappBrazil: "WhatsApp Brazil",
-    },
-  },
-  ru: {
-    quoteMessage: "Здравствуйте, Mediatrix Tech. Я хотел(а) бы запросить смету для цифрового проекта.",
-    nav: ["Услуги", "Пакеты", "Портфолио", "Контакты"],
-    hero: {
-      eyebrow: "Цифровые услуги для современных локальных бизнесов",
-      tagline: "Соединяем идеи, медиа и технологии.",
-      subtitle: "Сайты, медиа и цифровые решения для бизнеса, мероприятий, авторов и агробизнеса.",
-      quote: "Запросить смету",
-      services: "Посмотреть услуги",
-      proof: [["Веб", "Разработка"], ["Медиа", "Видео, аудио, музыка"], ["AI", "Полезная автоматизация"]],
-    },
-    servicesSection: {
-      eyebrow: "Что мы создаем",
-      title: "Цифровые услуги на стыке практичности и креатива.",
-      intro: "Гибкое сочетание веба, медиа, автоматизации и AgTech для команд, которым нужна полезная цифровая работа без лишней сложности.",
-    },
-    services: [
-      ["Веб-разработка", "Быстрые адаптивные сайты и лендинги, созданные объяснять, продавать и конвертировать."],
-      ["Цифровые решения для мероприятий", "Страницы загрузки по QR Code для фото, видео, галерей мероприятий и брендированного обмена."],
-      ["Видеомонтаж", "Чистый монтаж в Final Cut Pro для брендов, авторов, мероприятий, reels и презентаций."],
-      ["Аудиомонтаж", "Очистка подкастов, обработка голоса, восстановление звука, миксинг и polished delivery."],
-      ["Музыкальное производство", "Оригинальные треки, аранжировки, звуковая идентичность и продакшн-поддержка для цифровых медиа."],
-      ["AI и автоматизация", "Практичная автоматизация, которая сокращает повторяющуюся работу для малого бизнеса и solo teams."],
-      ["AgTech-решения", "Цифровые инструменты для агробизнес-процессов, полевых данных, климатических инсайтов и локальных операций."],
-    ],
-    packagesSection: {
-      eyebrow: "Точки старта",
-      title: "Пакеты под реальные бизнес-потребности.",
-      intro: "Выберите сфокусированный набор, а затем адаптируйте объем под цели, бюджет и сроки.",
-      badge: "Самый полный",
-    },
-    packages: [
-      ["Базовый сайт", "Для малого бизнеса", ["Одностраничный сайт", "Mobile-first layout", "Кнопки контакта"]],
-      ["Цифровой набор для мероприятий", "Для мероприятий и площадок", ["QR upload page", "Фото/видео поток", "Галерея для публикации"]],
-      ["Набор для соцсетей", "Для авторов и брендов", ["Видео edits", "Аудио polish", "Готовые content assets"]],
-      ["Полное цифровое присутствие", "Для растущих команд", ["Сайт", "Медиа-пакет", "Советы по автоматизации"]],
-      ["Agro Digital Kit", "Для агробизнеса", ["AgTech сайт", "Полевые инструменты", "Структура для данных"]],
-    ],
-    portfolioSection: {
-      eyebrow: "Избранные работы",
-      title: "Плейсхолдеры портфолио готовы для реальных ссылок.",
-      intro: "Свяжите каждую карточку с сайтом, видео, аудио-демо или кейсом.",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "Концепт AgTech платформы", "Климатически осознанный цифровой опыт для аграрных решений."],
-      ["Frasson LLC", "Бизнес-сайт", "Практичное локальное присутствие со структурой вокруг услуг."],
-      ["Сайт фото по QR для мероприятий", "Поток загрузки для мероприятий", "Простая QR-точка для сбора медиа от гостей."],
-      ["Пример видеомонтажа", "Final Cut Pro", "Ритмичный монтаж для промо, мероприятий и авторского контента."],
-      ["Пример аудио/музыки", "Аудиопродакшн", "Полированный звук для голоса, музыки и мультимедийных проектов."],
-    ],
-    why: {
-      eyebrow: "Почему мы",
-      title: "Технологии с творческим слухом и практической рукой.",
-      advantages: ["Веб-разработка + креативные медиа в одном месте", "Опыт реальных проектов", "Mobile-first дизайн", "Практичные решения для локального бизнеса", "Техническая и творческая база"],
-    },
-    contact: {
-      eyebrow: "Начать проект",
-      title: "Расскажите, что вы хотите создать, улучшить, смонтировать или автоматизировать.",
-      intro: "От простого лендинга до event media flows или цифровых агроинструментов, Mediatrix Tech превращает идею в полезный онлайн-опыт.",
-      optionsLabel: "Варианты связи",
-      whatsappUs: "WhatsApp США",
-      whatsappBrazil: "WhatsApp Бразилия",
-    },
-  },
-  ur: {
-    quoteMessage: "السلام علیکم Mediatrix Tech، میں ایک ڈیجیٹل پروجیکٹ کے لیے کوٹیشن لینا چاہتا/چاہتی ہوں۔",
-    nav: ["سروسز", "پیکجز", "پورٹ فولیو", "رابطہ"],
-    hero: {
-      eyebrow: "جدید مقامی کاروباروں کے لیے ڈیجیٹل سروسز",
-      tagline: "خیالات، میڈیا اور ٹیکنالوجی کو جوڑنا۔",
-      subtitle: "کاروبار، ایونٹس، creators اور agribusiness کے لیے ویب سائٹس، میڈیا اور ڈیجیٹل حل۔",
-      quote: "کوٹیشن طلب کریں",
-      services: "سروسز دیکھیں",
-      proof: [["ویب", "ڈویلپمنٹ"], ["میڈیا", "ویڈیو، آڈیو، موسیقی"], ["AI", "مفید آٹومیشن"]],
-    },
-    servicesSection: {
-      eyebrow: "ہم کیا بناتے ہیں",
-      title: "ڈیجیٹل سروسز جو عملی کام اور تخلیقی سوچ کو جوڑتی ہیں۔",
-      intro: "ویب، میڈیا، آٹومیشن اور AgTech support کا لچکدار امتزاج، ان teams کے لیے جنہیں غیر ضروری complexity کے بغیر useful digital work چاہیے۔",
-    },
-    services: [
-      ["ویب ڈویلپمنٹ", "تیز، responsive websites اور landing pages جو explain، sell اور convert کرنے کے لیے بنائے جاتے ہیں۔"],
-      ["ایونٹ ڈیجیٹل حل", "مہمانوں کی photos، videos، event galleries اور branded sharing کے لیے QR Code upload pages۔"],
-      ["ویڈیو ایڈیٹنگ", "Brands، creators، events، reels اور presentations کے لیے clean Final Cut Pro edits۔"],
-      ["آڈیو ایڈیٹنگ", "Podcast cleanup، voice processing، sound repair، mixing اور polished delivery۔"],
-      ["میوزک پروڈکشن", "Digital media کے لیے original tracks، arrangements، sound identity اور production support۔"],
-      ["AI اور آٹومیشن", "Small businesses اور solo teams کے repetitive work کو کم کرنے والی practical automations۔"],
-      ["AgTech حل", "Agribusiness workflows، field data، climate insights اور local operations کے لیے digital tools۔"],
-    ],
-    packagesSection: {
-      eyebrow: "شروع کرنے کے پوائنٹس",
-      title: "حقیقی business needs کے مطابق بنے پیکجز۔",
-      intro: "Focused kit منتخب کریں، پھر goals، budget اور timeline کے مطابق scope adjust کریں۔",
-      badge: "سب سے مکمل",
-    },
-    packages: [
-      ["Basic Website", "Small businesses کے لیے", ["One-page website", "Mobile-first layout", "Contact buttons"]],
-      ["Event Digital Kit", "Events اور venues کے لیے", ["QR upload page", "Photo/video flow", "Share-ready gallery"]],
-      ["Social Media Kit", "Creators اور brands کے لیے", ["Video edits", "Audio polish", "Content-ready assets"]],
-      ["Complete Digital Presence", "Growing teams کے لیے", ["Website", "Media package", "Automation guidance"]],
-      ["Agro Digital Kit", "Agribusiness کے لیے", ["AgTech website", "Field-focused tools", "Data-friendly structure"]],
-    ],
-    portfolioSection: {
-      eyebrow: "منتخب کام",
-      title: "آپ کے real project links کے لیے portfolio placeholders تیار ہیں۔",
-      intro: "ہر card کو live website، video، audio demo یا case study سے connect کریں۔",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "AgTech platform concept", "Agricultural decisions کے لیے climate-aware digital experience۔"],
-      ["Frasson LLC", "Business website", "Service-first structure کے ساتھ practical local business presence۔"],
-      ["Event QR Code Photo Website", "Event upload flow", "Guests سے event media collect کرنے کے لیے آسان QR destination۔"],
-      ["Video Editing Sample", "Final Cut Pro", "Promotional، event اور creator content کے لیے rhythmic edits۔"],
-      ["Audio/Music Sample", "Audio production", "Voice، music اور multimedia projects کے لیے polished sound۔"],
-    ],
-    why: {
-      eyebrow: "ہمیں کیوں منتخب کریں",
-      title: "تخلیقی سماعت اور عملی ہاتھ والی ٹیکنالوجی۔",
-      advantages: ["Web development + creative media ایک جگہ", "Real projects کا تجربہ", "Mobile-first design", "Local businesses کے لیے practical solutions", "Technical اور creative background"],
-    },
-    contact: {
-      eyebrow: "پروجیکٹ شروع کریں",
-      title: "بتائیں آپ کیا build، improve، edit یا automate کرنا چاہتے ہیں۔",
-      intro: "Simple landing page سے event media flows یا agribusiness digital tools تک، Mediatrix Tech idea کو useful online experience میں بدلتا ہے۔",
-      optionsLabel: "Contact options",
-      whatsappUs: "WhatsApp US",
-      whatsappBrazil: "WhatsApp Brazil",
-    },
-  },
-  id: {
-    quoteMessage: "Halo Mediatrix Tech, saya ingin meminta penawaran untuk proyek digital.",
-    nav: ["Layanan", "Paket", "Portofolio", "Kontak"],
-    hero: {
-      eyebrow: "Layanan digital untuk bisnis lokal modern",
-      tagline: "Menghubungkan ide, media, dan teknologi.",
-      subtitle: "Website, media, dan solusi digital untuk bisnis, acara, kreator, dan agribisnis.",
-      quote: "Minta penawaran",
-      services: "Lihat layanan",
-      proof: [["Web", "Pengembangan"], ["Media", "Video, audio, musik"], ["AI", "Automasi yang berguna"]],
-    },
-    servicesSection: {
-      eyebrow: "Yang kami bangun",
-      title: "Layanan digital yang menghubungkan sisi praktis dan kreatif.",
-      intro: "Kombinasi fleksibel antara web, media, automasi, dan dukungan AgTech untuk tim yang membutuhkan kerja digital berguna tanpa kerumitan berlebihan.",
-    },
-    services: [
-      ["Pengembangan Web", "Website dan landing page cepat serta responsif untuk menjelaskan, menjual, dan mengonversi."],
-      ["Solusi Digital Acara", "Halaman unggah QR Code untuk foto, video, galeri acara, dan berbagi dengan branding."],
-      ["Editing Video", "Edit Final Cut Pro yang bersih untuk brand, kreator, acara, reels, dan presentasi."],
-      ["Editing Audio", "Pembersihan podcast, pemrosesan suara, perbaikan audio, mixing, dan hasil akhir yang rapi."],
-      ["Produksi Musik", "Track orisinal, aransemen, identitas suara, dan dukungan produksi untuk media digital."],
-      ["AI & Automasi", "Automasi praktis yang mengurangi pekerjaan berulang untuk bisnis kecil dan tim mandiri."],
-      ["Solusi AgTech", "Alat digital untuk workflow agribisnis, data lapangan, insight iklim, dan operasi lokal."],
-    ],
-    packagesSection: {
-      eyebrow: "Titik awal",
-      title: "Paket yang dibentuk untuk kebutuhan bisnis nyata.",
-      intro: "Pilih kit yang fokus, lalu sesuaikan scope dengan tujuan, anggaran, dan timeline Anda.",
-      badge: "Paling lengkap",
-    },
-    packages: [
-      ["Website Dasar", "Untuk bisnis kecil", ["Website satu halaman", "Layout mobile-first", "Tombol kontak"]],
-      ["Kit Digital Acara", "Untuk acara dan venue", ["Halaman unggah QR", "Alur foto/video", "Galeri siap dibagikan"]],
-      ["Kit Media Sosial", "Untuk kreator dan brand", ["Edit video", "Audio rapi", "Aset siap konten"]],
-      ["Kehadiran Digital Lengkap", "Untuk tim yang berkembang", ["Website", "Paket media", "Panduan automasi"]],
-      ["Kit Agro Digital", "Untuk agribisnis", ["Website AgTech", "Alat fokus lapangan", "Struktur ramah data"]],
-    ],
-    portfolioSection: {
-      eyebrow: "Karya pilihan",
-      title: "Placeholder portofolio siap untuk link proyek asli Anda.",
-      intro: "Hubungkan setiap kartu ke website live, video, demo audio, atau studi kasus.",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "Konsep platform AgTech", "Pengalaman digital berbasis iklim untuk keputusan pertanian."],
-      ["Frasson LLC", "Website bisnis", "Kehadiran lokal praktis dengan struktur yang mengutamakan layanan."],
-      ["Website Foto QR Code Acara", "Alur unggah acara", "Tujuan QR yang ramah tamu untuk mengumpulkan media acara."],
-      ["Contoh Editing Video", "Final Cut Pro", "Edit ritmis untuk promosi, acara, dan konten kreator."],
-      ["Contoh Audio/Musik", "Produksi audio", "Suara rapi untuk voice, musik, dan proyek multimedia."],
-    ],
-    why: {
-      eyebrow: "Mengapa memilih kami",
-      title: "Teknologi dengan telinga kreatif dan tangan praktis.",
-      advantages: ["Pengembangan web + media kreatif di satu tempat", "Pengalaman dengan proyek nyata", "Desain mobile-first", "Solusi praktis untuk bisnis lokal", "Latar teknis dan kreatif"],
-    },
-    contact: {
-      eyebrow: "Mulai proyek",
-      title: "Ceritakan apa yang ingin Anda bangun, tingkatkan, edit, atau otomatisasi.",
-      intro: "Dari landing page sederhana hingga alur media acara atau alat digital agribisnis, Mediatrix Tech membantu mengubah ide menjadi pengalaman online yang berguna.",
-      optionsLabel: "Pilihan kontak",
-      whatsappUs: "WhatsApp AS",
-      whatsappBrazil: "WhatsApp Brasil",
-    },
-  },
-  ja: {
-    quoteMessage: "こんにちは Mediatrix Tech。デジタルプロジェクトの見積もりを依頼したいです。",
-    nav: ["サービス", "パッケージ", "ポートフォリオ", "お問い合わせ"],
-    hero: {
-      eyebrow: "現代のローカルビジネス向けデジタルサービス",
-      tagline: "アイデア、メディア、テクノロジーをつなぐ。",
-      subtitle: "ビジネス、イベント、クリエイター、アグリビジネス向けのWebサイト、メディア、デジタルソリューション。",
-      quote: "見積もりを依頼",
-      services: "サービスを見る",
-      proof: [["Web", "開発"], ["Media", "動画、音声、音楽"], ["AI", "役立つ自動化"]],
-    },
-    servicesSection: {
-      eyebrow: "制作内容",
-      title: "実用性と創造性をつなぐデジタルサービス。",
-      intro: "Web、メディア、自動化、AgTechサポートを柔軟に組み合わせ、不要な複雑さなしで実用的なデジタル制作を提供します。",
-    },
-    services: [
-      ["Web開発", "説明、販売、コンバージョンのための高速でレスポンシブなWebサイトとランディングページ。"],
-      ["イベント向けデジタルソリューション", "ゲストの写真・動画、イベントギャラリー、ブランド共有のためのQR Codeアップロードページ。"],
-      ["動画編集", "ブランド、クリエイター、イベント、reels、プレゼン向けのクリーンなFinal Cut Pro編集。"],
-      ["音声編集", "ポッドキャストのクリーンアップ、ボイス処理、音声修復、ミキシング、磨き上げた納品。"],
-      ["音楽制作", "デジタルメディア向けのオリジナルトラック、アレンジ、サウンドアイデンティティ、制作サポート。"],
-      ["AI & 自動化", "小規模ビジネスやsolo teamsの反復作業を減らす実用的な自動化。"],
-      ["AgTechソリューション", "アグリビジネスのワークフロー、フィールドデータ、気候インサイト、ローカル運用のためのデジタルツール。"],
-    ],
-    packagesSection: {
-      eyebrow: "開始ポイント",
-      title: "実際のビジネスニーズに合わせたパッケージ。",
-      intro: "目的、予算、スケジュールに合わせて、集中したキットからスコープを調整できます。",
-      badge: "最も充実",
-    },
-    packages: [
-      ["基本Webサイト", "小規模ビジネス向け", ["1ページWebサイト", "モバイル優先レイアウト", "問い合わせボタン"]],
-      ["イベントデジタルキット", "イベント・会場向け", ["QRアップロードページ", "写真/動画フロー", "共有用ギャラリー"]],
-      ["ソーシャルメディアキット", "クリエイター・ブランド向け", ["動画編集", "音声仕上げ", "投稿用素材"]],
-      ["完全なデジタルプレゼンス", "成長中のチーム向け", ["Webサイト", "メディアパッケージ", "自動化ガイド"]],
-      ["Agro Digital Kit", "アグリビジネス向け", ["AgTechサイト", "現場向けツール", "データに強い構造"]],
-    ],
-    portfolioSection: {
-      eyebrow: "選定作品",
-      title: "実際のプロジェクトリンクに接続できるポートフォリオ枠。",
-      intro: "各カードをWebサイト、動画、音声デモ、ケーススタディに接続できます。",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "AgTechプラットフォームコンセプト", "農業判断のための気候対応デジタル体験。"],
-      ["Frasson LLC", "ビジネスWebサイト", "サービス中心の構成による実用的なローカルビジネスプレゼンス。"],
-      ["イベントQRコード写真サイト", "イベントアップロードフロー", "ゲストがイベントメディアを集めやすいQR導線。"],
-      ["動画編集サンプル", "Final Cut Pro", "プロモーション、イベント、クリエイターコンテンツ向けのリズミカルな編集。"],
-      ["音声/音楽サンプル", "音声制作", "声、音楽、マルチメディアプロジェクトのための磨かれたサウンド。"],
-    ],
-    why: {
-      eyebrow: "選ばれる理由",
-      title: "創造的な耳と実用的な手を持つテクノロジー。",
-      advantages: ["Web開発とクリエイティブメディアを一箇所で", "実案件の経験", "モバイル優先デザイン", "ローカルビジネス向けの実用的な解決策", "技術と創造性の背景"],
-    },
-    contact: {
-      eyebrow: "プロジェクト開始",
-      title: "作りたいもの、改善したいもの、編集したいもの、自動化したいものを教えてください。",
-      intro: "シンプルなランディングページからイベントメディアフロー、アグリビジネス向けデジタルツールまで、Mediatrix Techがアイデアを役立つオンライン体験にします。",
-      optionsLabel: "連絡方法",
-      whatsappUs: "WhatsApp 米国",
-      whatsappBrazil: "WhatsApp ブラジル",
-    },
-  },
-  sw: {
-    quoteMessage: "Habari Mediatrix Tech, ningependa kuomba bei ya mradi wa kidijitali.",
-    nav: ["Huduma", "Vifurushi", "Portfolio", "Mawasiliano"],
-    hero: {
-      eyebrow: "Huduma za kidijitali kwa biashara za kisasa za karibu",
-      tagline: "Kuunganisha mawazo, media, na teknolojia.",
-      subtitle: "Tovuti, media, na suluhisho za kidijitali kwa biashara, matukio, creators, na agribusiness.",
-      quote: "Omba bei",
-      services: "Tazama huduma",
-      proof: [["Web", "Development"], ["Media", "Video, sauti, muziki"], ["AI", "Automation yenye manufaa"]],
-    },
-    servicesSection: {
-      eyebrow: "Tunachojenga",
-      title: "Huduma za kidijitali zinazounganisha vitendo na ubunifu.",
-      intro: "Mchanganyiko rahisi wa web, media, automation, na msaada wa AgTech kwa timu zinazohitaji kazi ya kidijitali yenye manufaa bila ugumu usiohitajika.",
-    },
-    services: [
-      ["Utengenezaji wa Web", "Tovuti na landing pages za haraka na responsive zilizojengwa kueleza, kuuza, na kubadilisha wateja."],
-      ["Suluhisho za Kidijitali za Matukio", "Kurasa za QR Code kwa uploads za picha, video, galleries za matukio, na sharing yenye brand."],
-      ["Uhariri wa Video", "Final Cut Pro edits safi kwa brands, creators, matukio, reels, na presentations."],
-      ["Uhariri wa Sauti", "Podcast cleanup, voice processing, sound repair, mixing, na delivery iliyosafishwa."],
-      ["Utayarishaji wa Muziki", "Original tracks, arrangements, sound identity, na production support kwa digital media."],
-      ["AI & Automation", "Automation za vitendo zinazopunguza kazi zinazorudiwa kwa biashara ndogo na solo teams."],
-      ["Suluhisho za AgTech", "Digital tools kwa agribusiness workflows, field data, climate insights, na local operations."],
-    ],
-    packagesSection: {
-      eyebrow: "Mahali pa kuanzia",
-      title: "Vifurushi vilivyoundwa kwa mahitaji halisi ya biashara.",
-      intro: "Chagua kit iliyolenga, kisha badilisha scope kulingana na goals, budget, na timeline yako.",
-      badge: "Kamili zaidi",
-    },
-    packages: [
-      ["Basic Website", "Kwa biashara ndogo", ["One-page website", "Mobile-first layout", "Contact buttons"]],
-      ["Event Digital Kit", "Kwa matukio na venues", ["QR upload page", "Photo/video flow", "Share-ready gallery"]],
-      ["Social Media Kit", "Kwa creators na brands", ["Video edits", "Audio polish", "Content-ready assets"]],
-      ["Complete Digital Presence", "Kwa teams zinazokua", ["Website", "Media package", "Automation guidance"]],
-      ["Agro Digital Kit", "Kwa agribusiness", ["AgTech website", "Field-focused tools", "Data-friendly structure"]],
-    ],
-    portfolioSection: {
-      eyebrow: "Kazi zilizochaguliwa",
-      title: "Portfolio placeholders tayari kwa links halisi za miradi yako.",
-      intro: "Unganisha kila card na live website, video, audio demo, au case study.",
-    },
-    portfolio: [
-      ["AgriClimate Pro", "AgTech platform concept", "Climate-aware digital experience kwa maamuzi ya kilimo."],
-      ["Frasson LLC", "Business website", "Practical local business presence yenye service-first structure."],
-      ["Event QR Code Photo Website", "Event upload flow", "QR destination rahisi kwa wageni kukusanya event media."],
-      ["Video Editing Sample", "Final Cut Pro", "Rhythmic edits kwa promotional, event, na creator content."],
-      ["Audio/Music Sample", "Audio production", "Polished sound kwa voice, music, na multimedia projects."],
-    ],
-    why: {
-      eyebrow: "Kwa nini utuchague",
-      title: "Teknolojia yenye sikio la ubunifu na mkono wa vitendo.",
-      advantages: ["Web development + creative media sehemu moja", "Uzoefu na real projects", "Mobile-first design", "Practical solutions kwa local businesses", "Technical na creative background"],
-    },
-    contact: {
-      eyebrow: "Anza mradi",
-      title: "Niambie unachotaka kujenga, kuboresha, kuhariri, au ku-automate.",
-      intro: "Kutoka landing page rahisi hadi event media flows au agribusiness digital tools, Mediatrix Tech hubadilisha idea kuwa useful online experience.",
-      optionsLabel: "Contact options",
-      whatsappUs: "WhatsApp US",
-      whatsappBrazil: "WhatsApp Brazil",
-    },
-  },
-});
-
-const teamProfile = (role, specialty) => ({
-  role,
-  ...(specialty ? { specialty } : {}),
-});
-
-const localizedTeamContent = {
-  en: {
-    navLabel: "Team",
-    eyebrow: "Our team",
-    title: "Meet the Mediatrix Tech Team",
-    intro:
-      "A multidisciplinary team creating digital solutions that connect businesses, events, and people.",
-    imageAlt:
-      "The Mediatrix Tech multidisciplinary team together in a modern collaborative office",
-    members: [
-      teamProfile("Founder & CEO", "Full-Stack Developer and Agronomic Engineer"),
-      teamProfile("Co-Founder & Administrative Director", "Administration and Client Relations"),
-      teamProfile("Sales & Customer Success Manager"),
-      teamProfile("Front-End Developer"),
-      teamProfile("UI/UX Designer"),
-      teamProfile("Back-End Developer"),
-      teamProfile("International Business Manager"),
-      teamProfile("Digital Marketing Manager"),
-      teamProfile("Mobile App Developer"),
-    ],
-  },
-  "pt-BR": {
-    navLabel: "Equipe",
-    eyebrow: "Nossa equipe",
-    title: "Conheça a equipe da Mediatrix Tech",
-    intro:
-      "Uma equipe multidisciplinar que cria soluções digitais para conectar empresas, eventos e pessoas.",
-    imageAlt:
-      "A equipe multidisciplinar da Mediatrix Tech reunida em um escritório colaborativo moderno",
-    members: [
-      teamProfile("Fundador e CEO", "Desenvolvedor Full-Stack e Engenheiro Agrônomo"),
-      teamProfile("Cofundadora e Diretora Administrativa", "Administração e Relacionamento com Clientes"),
-      teamProfile("Gerente de Vendas e Sucesso do Cliente"),
-      teamProfile("Desenvolvedor Front-End"),
-      teamProfile("Designer de UI/UX"),
-      teamProfile("Desenvolvedor Back-End"),
-      teamProfile("Gerente de Negócios Internacionais"),
-      teamProfile("Gerente de Marketing Digital"),
-      teamProfile("Desenvolvedor de Aplicativos Móveis"),
-    ],
-  },
-  es: {
-    navLabel: "Equipo",
-    eyebrow: "Nuestro equipo",
-    title: "Conoce al equipo de Mediatrix Tech",
-    intro:
-      "Un equipo multidisciplinario que crea soluciones digitales para conectar empresas, eventos y personas.",
-    imageAlt:
-      "El equipo multidisciplinario de Mediatrix Tech reunido en una oficina colaborativa moderna",
-    members: [
-      teamProfile("Fundador y CEO", "Desarrollador Full-Stack e Ingeniero Agrónomo"),
-      teamProfile("Cofundadora y Directora Administrativa", "Administración y Relaciones con Clientes"),
-      teamProfile("Gerente de Ventas y Éxito del Cliente"),
-      teamProfile("Desarrollador Front-End"),
-      teamProfile("Diseñadora UI/UX"),
-      teamProfile("Desarrollador Back-End"),
-      teamProfile("Gerente de Negocios Internacionales"),
-      teamProfile("Gerente de Marketing Digital"),
-      teamProfile("Desarrollador de Aplicaciones Móviles"),
-    ],
-  },
-  fr: {
-    navLabel: "Équipe",
-    eyebrow: "Notre équipe",
-    title: "Rencontrez l'équipe Mediatrix Tech",
-    intro:
-      "Une équipe pluridisciplinaire qui crée des solutions numériques reliant entreprises, événements et personnes.",
-    imageAlt:
-      "L'équipe pluridisciplinaire de Mediatrix Tech réunie dans un bureau collaboratif moderne",
-    members: [
-      teamProfile("Fondateur et PDG", "Développeur Full-Stack et ingénieur agronome"),
-      teamProfile("Cofondatrice et directrice administrative", "Administration et relations clients"),
-      teamProfile("Responsable des ventes et de la réussite client"),
-      teamProfile("Développeur Front-End"),
-      teamProfile("Designer UI/UX"),
-      teamProfile("Développeur Back-End"),
-      teamProfile("Responsable du développement international"),
-      teamProfile("Responsable marketing digital"),
-      teamProfile("Développeur d'applications mobiles"),
-    ],
-  },
-  de: {
-    navLabel: "Team",
-    eyebrow: "Unser Team",
-    title: "Lernen Sie das Mediatrix Tech Team kennen",
-    intro:
-      "Ein multidisziplinäres Team, das digitale Lösungen entwickelt, die Unternehmen, Veranstaltungen und Menschen verbinden.",
-    imageAlt:
-      "Das multidisziplinäre Team von Mediatrix Tech gemeinsam in einem modernen kollaborativen Büro",
-    members: [
-      teamProfile("Gründer & CEO", "Full-Stack-Entwickler und Agraringenieur"),
-      teamProfile("Mitgründerin & Verwaltungsleiterin", "Verwaltung und Kundenbeziehungen"),
-      teamProfile("Leiterin Vertrieb & Customer Success"),
-      teamProfile("Front-End-Entwickler"),
-      teamProfile("UI/UX-Designerin"),
-      teamProfile("Back-End-Entwickler"),
-      teamProfile("Leiter Internationales Geschäft"),
-      teamProfile("Leiterin Digitales Marketing"),
-      teamProfile("Mobile-App-Entwickler"),
-    ],
-  },
-  it: {
-    navLabel: "Team",
-    eyebrow: "Il nostro team",
-    title: "Conosci il team di Mediatrix Tech",
-    intro:
-      "Un team multidisciplinare che crea soluzioni digitali per connettere aziende, eventi e persone.",
-    imageAlt:
-      "Il team multidisciplinare di Mediatrix Tech riunito in un moderno ufficio collaborativo",
-    members: [
-      teamProfile("Founder e CEO", "Sviluppatore Full-Stack e Ingegnere Agronomo"),
-      teamProfile("Co-Founder e Direttrice Amministrativa", "Amministrazione e Relazioni con i Clienti"),
-      teamProfile("Responsabile Vendite e Customer Success"),
-      teamProfile("Sviluppatore Front-End"),
-      teamProfile("UI/UX Designer"),
-      teamProfile("Sviluppatore Back-End"),
-      teamProfile("Responsabile Business Internazionale"),
-      teamProfile("Responsabile Marketing Digitale"),
-      teamProfile("Sviluppatore di App Mobile"),
-    ],
-  },
-  "zh-CN": {
-    navLabel: "团队",
-    eyebrow: "我们的团队",
-    title: "认识 Mediatrix Tech 团队",
-    intro: "一支跨学科团队，打造连接企业、活动与人群的数字解决方案。",
-    imageAlt: "Mediatrix Tech 多学科团队在现代协作办公室合影",
-    members: [
-      teamProfile("创始人兼首席执行官", "全栈开发工程师兼农艺工程师"),
-      teamProfile("联合创始人兼行政总监", "行政管理与客户关系"),
-      teamProfile("销售与客户成功经理"),
-      teamProfile("前端开发工程师"),
-      teamProfile("UI/UX 设计师"),
-      teamProfile("后端开发工程师"),
-      teamProfile("国际业务经理"),
-      teamProfile("数字营销经理"),
-      teamProfile("移动应用开发工程师"),
-    ],
-  },
-  hi: {
-    navLabel: "टीम",
-    eyebrow: "हमारी टीम",
-    title: "Mediatrix Tech टीम से मिलें",
-    intro:
-      "एक बहुविषयक टीम जो व्यवसायों, आयोजनों और लोगों को जोड़ने वाले डिजिटल समाधान बनाती है।",
-    imageAlt:
-      "आधुनिक सहयोगी कार्यालय में एक साथ Mediatrix Tech की बहुविषयक टीम",
-    members: [
-      teamProfile("संस्थापक और CEO", "फुल-स्टैक डेवलपर और कृषि अभियंता"),
-      teamProfile("सह-संस्थापक और प्रशासनिक निदेशक", "प्रशासन और ग्राहक संबंध"),
-      teamProfile("बिक्री और ग्राहक सफलता प्रबंधक"),
-      teamProfile("फ्रंट-एंड डेवलपर"),
-      teamProfile("UI/UX डिज़ाइनर"),
-      teamProfile("बैक-एंड डेवलपर"),
-      teamProfile("अंतरराष्ट्रीय व्यापार प्रबंधक"),
-      teamProfile("डिजिटल मार्केटिंग प्रबंधक"),
-      teamProfile("मोबाइल ऐप डेवलपर"),
-    ],
-  },
-  ar: {
-    navLabel: "الفريق",
-    eyebrow: "فريقنا",
-    title: "تعرّف على فريق Mediatrix Tech",
-    intro:
-      "فريق متعدد التخصصات يصمم حلولاً رقمية تربط الشركات والفعاليات والأشخاص.",
-    imageAlt:
-      "فريق Mediatrix Tech متعدد التخصصات مجتمعاً في مكتب تعاوني حديث",
-    members: [
-      teamProfile("المؤسس والرئيس التنفيذي", "مطور متكامل ومهندس زراعي"),
-      teamProfile("الشريكة المؤسسة والمديرة الإدارية", "الإدارة وعلاقات العملاء"),
-      teamProfile("مديرة المبيعات ونجاح العملاء"),
-      teamProfile("مطور الواجهة الأمامية"),
-      teamProfile("مصممة UI/UX"),
-      teamProfile("مطور الواجهة الخلفية"),
-      teamProfile("مدير الأعمال الدولية"),
-      teamProfile("مديرة التسويق الرقمي"),
-      teamProfile("مطور تطبيقات الجوال"),
-    ],
-  },
-  bn: {
-    navLabel: "টিম",
-    eyebrow: "আমাদের টিম",
-    title: "Mediatrix Tech টিমের সাথে পরিচিত হোন",
-    intro:
-      "একটি বহুবিষয়ক টিম, যারা ব্যবসা, ইভেন্ট ও মানুষকে সংযুক্ত করার ডিজিটাল সমাধান তৈরি করে।",
-    imageAlt:
-      "একটি আধুনিক সহযোগিতামূলক অফিসে Mediatrix Tech-এর বহুবিষয়ক টিম",
-    members: [
-      teamProfile("প্রতিষ্ঠাতা ও CEO", "ফুল-স্ট্যাক ডেভেলপার এবং কৃষি প্রকৌশলী"),
-      teamProfile("সহ-প্রতিষ্ঠাতা ও প্রশাসনিক পরিচালক", "প্রশাসন ও ক্লায়েন্ট সম্পর্ক"),
-      teamProfile("বিক্রয় ও গ্রাহক সাফল্য ব্যবস্থাপক"),
-      teamProfile("ফ্রন্ট-এন্ড ডেভেলপার"),
-      teamProfile("UI/UX ডিজাইনার"),
-      teamProfile("ব্যাক-এন্ড ডেভেলপার"),
-      teamProfile("আন্তর্জাতিক ব্যবসা ব্যবস্থাপক"),
-      teamProfile("ডিজিটাল মার্কেটিং ব্যবস্থাপক"),
-      teamProfile("মোবাইল অ্যাপ ডেভেলপার"),
-    ],
-  },
-  ru: {
-    navLabel: "Команда",
-    eyebrow: "Наша команда",
-    title: "Познакомьтесь с командой Mediatrix Tech",
-    intro:
-      "Многопрофильная команда, создающая цифровые решения, которые объединяют компании, мероприятия и людей.",
-    imageAlt:
-      "Многопрофильная команда Mediatrix Tech вместе в современном офисе для совместной работы",
-    members: [
-      teamProfile("Основатель и генеральный директор", "Full-Stack-разработчик и инженер-агроном"),
-      teamProfile("Сооснователь и административный директор", "Администрирование и работа с клиентами"),
-      teamProfile("Менеджер по продажам и успеху клиентов"),
-      teamProfile("Front-End-разработчик"),
-      teamProfile("UI/UX-дизайнер"),
-      teamProfile("Back-End-разработчик"),
-      teamProfile("Менеджер по международному бизнесу"),
-      teamProfile("Менеджер по цифровому маркетингу"),
-      teamProfile("Разработчик мобильных приложений"),
-    ],
-  },
-  ur: {
-    navLabel: "ٹیم",
-    eyebrow: "ہماری ٹیم",
-    title: "Mediatrix Tech کی ٹیم سے ملیں",
-    intro:
-      "ایک کثیر الشعبہ ٹیم جو کاروباروں، تقریبات اور لوگوں کو جوڑنے والے ڈیجیٹل حل بناتی ہے۔",
-    imageAlt:
-      "ایک جدید اشتراکی دفتر میں Mediatrix Tech کی کثیر الشعبہ ٹیم",
-    members: [
-      teamProfile("بانی اور سی ای او", "فل اسٹیک ڈویلپر اور زرعی انجینئر"),
-      teamProfile("شریک بانی اور انتظامی ڈائریکٹر", "انتظامیہ اور کلائنٹ تعلقات"),
-      teamProfile("سیلز اور کسٹمر کامیابی مینیجر"),
-      teamProfile("فرنٹ اینڈ ڈویلپر"),
-      teamProfile("UI/UX ڈیزائنر"),
-      teamProfile("بیک اینڈ ڈویلپر"),
-      teamProfile("بین الاقوامی کاروبار مینیجر"),
-      teamProfile("ڈیجیٹل مارکیٹنگ مینیجر"),
-      teamProfile("موبائل ایپ ڈویلپر"),
-    ],
-  },
-  id: {
-    navLabel: "Tim",
-    eyebrow: "Tim kami",
-    title: "Kenali Tim Mediatrix Tech",
-    intro:
-      "Tim multidisiplin yang menciptakan solusi digital untuk menghubungkan bisnis, acara, dan masyarakat.",
-    imageAlt:
-      "Tim multidisiplin Mediatrix Tech bersama di kantor kolaboratif modern",
-    members: [
-      teamProfile("Pendiri & CEO", "Full-Stack Developer dan Insinyur Agronomi"),
-      teamProfile("Co-Founder & Direktur Administrasi", "Administrasi dan Hubungan Klien"),
-      teamProfile("Manajer Penjualan & Kesuksesan Pelanggan"),
-      teamProfile("Front-End Developer"),
-      teamProfile("Desainer UI/UX"),
-      teamProfile("Back-End Developer"),
-      teamProfile("Manajer Bisnis Internasional"),
-      teamProfile("Manajer Pemasaran Digital"),
-      teamProfile("Mobile App Developer"),
-    ],
-  },
-  ja: {
-    navLabel: "チーム",
-    eyebrow: "私たちのチーム",
-    title: "Mediatrix Tech チームのご紹介",
-    intro:
-      "企業、イベント、人々をつなぐデジタルソリューションを生み出す、多分野の専門チームです。",
-    imageAlt:
-      "現代的な共同オフィスに集まったMediatrix Techの多分野チーム",
-    members: [
-      teamProfile("創業者兼CEO", "フルスタック開発者・農業工学技術者"),
-      teamProfile("共同創業者兼管理部門ディレクター", "管理業務・顧客関係"),
-      teamProfile("セールス＆カスタマーサクセスマネージャー"),
-      teamProfile("フロントエンド開発者"),
-      teamProfile("UI/UXデザイナー"),
-      teamProfile("バックエンド開発者"),
-      teamProfile("国際事業マネージャー"),
-      teamProfile("デジタルマーケティングマネージャー"),
-      teamProfile("モバイルアプリ開発者"),
-    ],
-  },
-  sw: {
-    navLabel: "Timu",
-    eyebrow: "Timu yetu",
-    title: "Kutana na Timu ya Mediatrix Tech",
-    intro:
-      "Timu yenye taaluma mbalimbali inayounda suluhisho za kidijitali zinazounganisha biashara, matukio na watu.",
-    imageAlt:
-      "Timu ya Mediatrix Tech yenye taaluma mbalimbali pamoja katika ofisi ya kisasa ya ushirikiano",
-    members: [
-      teamProfile("Mwanzilishi na CEO", "Msanidi Full-Stack na Mhandisi wa Kilimo"),
-      teamProfile("Mwanzilishi Mwenza na Mkurugenzi wa Utawala", "Utawala na Mahusiano ya Wateja"),
-      teamProfile("Meneja wa Mauzo na Mafanikio ya Wateja"),
-      teamProfile("Msanidi Front-End"),
-      teamProfile("Mbunifu wa UI/UX"),
-      teamProfile("Msanidi Back-End"),
-      teamProfile("Meneja wa Biashara za Kimataifa"),
-      teamProfile("Meneja wa Masoko ya Kidijitali"),
-      teamProfile("Msanidi wa Programu za Simu"),
-    ],
-  },
-};
-
-Object.entries(localizedTeamContent).forEach(([locale, teamContent]) => {
-  const { navLabel, ...teamSection } = teamContent;
-  translations[locale] = {
-    ...translations[locale],
-    teamNavLabel: navLabel,
-    teamSection,
-  };
-});
-
-const mergeLocale = (locale) => ({
-  ...translations.en,
-  ...locale,
-  hero: { ...translations.en.hero, ...locale.hero },
-  servicesSection: { ...translations.en.servicesSection, ...locale.servicesSection },
-  packagesSection: { ...translations.en.packagesSection, ...locale.packagesSection },
-  portfolioSection: { ...translations.en.portfolioSection, ...locale.portfolioSection },
-  why: { ...translations.en.why, ...locale.why },
-  teamSection: { ...translations.en.teamSection, ...locale.teamSection },
-  contact: {
-    ...translations.en.contact,
-    ...locale.contact,
-    form: { ...translations.en.contact.form, ...locale.contact?.form },
-  },
-});
-
-const supportedLocales = Object.keys(translations);
-const rtlLocales = new Set(["ar", "ur"]);
-const localeLabels = {
-  en: "EN",
-  "pt-BR": "PT",
-  es: "ES",
-  fr: "FR",
-  de: "DE",
-  it: "IT",
-  "zh-CN": "中文",
-  hi: "HI",
-  ar: "AR",
-  bn: "BN",
-  ru: "RU",
-  ur: "UR",
-  id: "ID",
-  ja: "JA",
-  sw: "SW",
-};
-const localeNames = {
-  en: "English",
-  "pt-BR": "Português",
-  es: "Español",
-  fr: "Français",
-  de: "Deutsch",
-  it: "Italiano",
-  "zh-CN": "中文",
-  hi: "हिन्दी",
-  ar: "العربية",
-  bn: "বাংলা",
-  ru: "Русский",
-  ur: "اردو",
-  id: "Bahasa Indonesia",
-  ja: "日本語",
-  sw: "Kiswahili",
-};
-const portfolioDemoVideos = {
-  0: "/agriclimate-pro-demo.mp4",
-  2: "/event-qr-code-demo.mp4",
-};
-const portfolioDemoImages = {
-  1: "/frasson-llc-demo.jpg",
-  3: "/video-editing-demo.png",
-};
-const portfolioDemoAudio = {
-  4: "/all-alone-edit.mp3",
-};
-const cardBackgroundVideo = "/tech-blue-and-dark.mp4";
-const teamMemberNames = [
-  "Luigi Benaduce",
-  "Cândida Mastella",
-  "Mariana Costa",
-  "Lucas Martins",
-  "Camila Rocha",
-  "Gabriel Almeida",
-  "Daniel Foster",
-  "Beatriz Santos",
-  "Kenji Nakamura",
 ];
 
-const LocaleContentContext = React.createContext(null);
+const projects = [
+  {
+    name: "AgriClimate Pro",
+    category: "Desenvolvimento Web · AgTech",
+    description: "Experiência digital para apoiar decisões agrícolas com dados climáticos.",
+    media: "/agriclimate-pro-demo.mp4",
+    poster: "/agriclimate-pro-poster.jpg",
+    kind: "video",
+  },
+  {
+    name: "Frasson LLC",
+    category: "Desenvolvimento Web",
+    description: "Site empresarial objetivo, criado para apresentar serviços e facilitar o contato.",
+    media: "/frasson-llc-demo-optimized.jpg",
+    kind: "image",
+  },
+  {
+    name: "Event QR Code",
+    category: "Experiência digital para eventos",
+    description: "Fluxo simples por QR Code para convidados enviarem fotos e vídeos.",
+    media: "/event-qr-code-demo.mp4",
+    poster: "/event-qr-code-poster.jpg",
+    kind: "video",
+  },
+];
 
-const useLocaleContent = () => React.useContext(LocaleContentContext);
-
-const normalizeLocale = (locale) => locale?.toLowerCase().replace("_", "-");
-
-const getDeviceLocale = () => {
-  const deviceLocales =
-    typeof navigator === "undefined"
-      ? []
-      : [...(navigator.languages || []), navigator.language].filter(Boolean);
-
-  const locale = deviceLocales.find((deviceLocale) => {
-    const normalizedDeviceLocale = normalizeLocale(deviceLocale);
-    return supportedLocales.some(
-      (supportedLocale) =>
-        normalizeLocale(supportedLocale) === normalizedDeviceLocale ||
-        normalizeLocale(supportedLocale).split("-")[0] ===
-          normalizedDeviceLocale.split("-")[0],
-    );
-  });
-
-  if (!locale) {
-    return "en";
-  }
-
-  const normalizedLocale = normalizeLocale(locale);
-  return (
-    supportedLocales.find(
-      (supportedLocale) => normalizeLocale(supportedLocale) === normalizedLocale,
-    ) ||
-    supportedLocales.find(
-      (supportedLocale) =>
-        normalizeLocale(supportedLocale).split("-")[0] === normalizedLocale.split("-")[0],
-    ) ||
-    "en"
-  );
+const contactLinks = {
+  brasil:
+    "https://wa.me/5555999357388?text=Ol%C3%A1%2C%20Mediatrix%20Tech.%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento.",
+  estadosUnidos:
+    "https://wa.me/13059920833?text=Hello%20Mediatrix%20Tech%2C%20I%20would%20like%20to%20request%20a%20quote.",
+  email: "mailto:mediatrixtech@proton.me",
+  upwork: "https://www.upwork.com/freelancers/~015020486545a9742b",
 };
 
-const whatsappUrl = (phoneNumber, quoteMessage) =>
-  `https://wa.me/${phoneNumber}?text=${encodeURIComponent(quoteMessage)}`;
-
-const getQuoteMessageForLocale = (locale) =>
-  mergeLocale(translations[locale] || translations.en).quoteMessage;
-
-const getQuickAccessLabels = (locale, copy) => {
-  if (locale === "pt-BR") {
-    return [
-      "Sites para Empresas",
-      "Eventos com QR Code",
-      "Mídias Sociais",
-      "Soluções para o Agronegócio",
-      "Edição de Vídeo",
-      "Portfólio",
-      "Contato",
-    ];
-  }
-
-  return [
-    copy.packages[0][0],
-    copy.services[1][0],
-    copy.packages[2][0],
-    copy.services[6][0],
-    copy.services[2][0],
-    copy.nav[2],
-    copy.nav[3],
-  ];
-};
-
-// Change these links to your real phone, email, Instagram, and Upwork profile.
-const getContactLinks = (locale) => {
-  const quoteMessage = getQuoteMessageForLocale(locale);
-
-  return {
-    // Replace this placeholder with your real US WhatsApp number, for example: 13059920833.
-    whatsappUs: whatsappUrl("+13059920833", quoteMessage),
-    // Replace this placeholder with your real Brazil WhatsApp number, for example: 5555999357388.
-    whatsappBrazil: whatsappUrl("+5555999357388", quoteMessage),
-    email: "mailto:mediatrixtech@proton.me",
-    instagram: "https://instagram.com/mediatrixtech",
-    upwork: "https://www.upwork.com/freelancers/~015020486545a9742b",
-  };
-};
-
-function App() {
-  const [currentLocale, setCurrentLocale] = React.useState(getDeviceLocale);
-  const copy = React.useMemo(
-    () => mergeLocale(translations[currentLocale]),
-    [currentLocale],
-  );
-  const content = React.useMemo(() => {
-    const services = copy.services.map(([title, description], index) => ({
-      id: serviceAnchorIds[index],
-      title,
-      description,
-      icon: serviceIcons[index],
-    }));
-    const packages = copy.packages.map(([name, audience, features], index) => ({
-      id: packageAnchorIds[index],
-      name,
-      audience,
-      features,
-      featured: index === 3,
-    }));
-    const portfolio = copy.portfolio.map(([title, category, description], index) => ({
-      title,
-      category,
-      description,
-      demoAudio: portfolioDemoAudio[index] || null,
-      demoImage: portfolioDemoImages[index] || null,
-      demoVideo: portfolioDemoVideos[index] || null,
-    }));
-
-    return {
-      contactLinks: getContactLinks(currentLocale),
-      copy,
-      currentLocale,
-      packages,
-      portfolio,
-      quickAccessLabels: getQuickAccessLabels(currentLocale, copy),
-      services,
-      setCurrentLocale,
-    };
-  }, [copy, currentLocale]);
-
-  React.useLayoutEffect(() => {
-    const encodedTargetId = window.location.hash.slice(1);
-
-    if (!encodedTargetId) {
-      return;
-    }
-
-    let targetId;
-
-    try {
-      targetId = decodeURIComponent(encodedTargetId);
-    } catch {
-      return;
-    }
-
-    document.getElementById(targetId)?.scrollIntoView({
-      behavior: "instant",
-      block: "start",
-    });
-  }, []);
+function useActiveSection() {
+  const [activeSection, setActiveSection] = React.useState("top");
 
   React.useEffect(() => {
-    document.documentElement.lang = currentLocale;
-    document.documentElement.dir = rtlLocales.has(currentLocale) ? "rtl" : "ltr";
-  }, [currentLocale]);
+    const sections = navigation
+      .map(([id]) => document.getElementById(id))
+      .filter(Boolean);
+    const updateActiveSection = () => {
+      const marker = 112;
+      const current = sections.find((section) => {
+        const rect = section.getBoundingClientRect();
+        return rect.top <= marker && rect.bottom > marker;
+      });
+
+      if (current) setActiveSection(current.id);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, []);
+
+  return activeSection;
+}
+
+function App() {
+  const activeSection = useActiveSection();
+  const [selectedService, setSelectedService] = React.useState("");
 
   return (
-    <LocaleContentContext.Provider value={content}>
-      <Header />
-      <main>
+    <>
+      <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
+      <Header activeSection={activeSection} />
+      <main id="conteudo">
         <Hero />
-        <QuickAccess />
-        <Services />
-        <Packages />
+        <Services onSelectService={setSelectedService} />
         <Portfolio />
-        <WhyChooseUs />
-        <Team />
-        <Contact />
+        <Company />
+        <Contact
+          selectedService={selectedService}
+          onSelectService={setSelectedService}
+        />
       </main>
-      <FloatingWhatsApp />
-    </LocaleContentContext.Provider>
+      <Footer />
+    </>
   );
 }
 
-function Header() {
-  const { copy, currentLocale, setCurrentLocale } = useLocaleContent();
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
-  const mobileMenuId = "mobile-navigation";
-  const changeLanguage = (locale, event) => {
-    setCurrentLocale(locale);
-    event.currentTarget.closest("details")?.removeAttribute("open");
-  };
+function Header({ activeSection }) {
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const menuButtonRef = React.useRef(null);
 
   React.useEffect(() => {
-    if (!mobileMenuOpen) return undefined;
-
     const closeOnEscape = (event) => {
-      if (event.key === "Escape") setMobileMenuOpen(false);
+      if (event.key === "Escape" && menuOpen) {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
     };
 
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
-  }, [mobileMenuOpen]);
+  }, [menuOpen]);
 
-  const closeMobileMenu = () => setMobileMenuOpen(false);
-  const isPortuguese = currentLocale === "pt-BR";
-  const homeLabel = isPortuguese ? "Início" : "Home";
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <header className="site-header">
-      <div className="header-actions">
-        <a className="mobile-brand" href="#top" aria-label={`Mediatrix Tech — ${homeLabel}`}>
-          MT
+      <div className="header-inner">
+        <a className="brand" href="#top" aria-label="Mediatrix Tech — Início" onClick={closeMenu}>
+          <img src="/mediatrix-brand-mark.jpg" alt="" width="44" height="44" />
+          <span>Mediatrix Tech</span>
         </a>
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="#services">{copy.nav[0]}</a>
-          <a href="#packages">{copy.nav[1]}</a>
-          <a href="#portfolio">{copy.nav[2]}</a>
-          <a href="#team">{copy.teamNavLabel}</a>
-          <a href="#contact">{copy.nav[3]}</a>
+
+        <nav className="desktop-nav" aria-label="Navegação principal">
+          {navigation.map(([id, label]) => (
+            <a
+              href={`#${id}`}
+              className={activeSection === id ? "active" : ""}
+              aria-current={activeSection === id ? "page" : undefined}
+              key={id}
+            >
+              {label}
+            </a>
+          ))}
         </nav>
-        <a className="header-quote" href="#contact">
-          {copy.hero.quote}
-        </a>
-        <details className="language-menu">
-          <summary aria-label={`Change language. Current language: ${localeNames[currentLocale]}.`}>
-            <Globe size={17} aria-hidden="true" />
-            <span>{localeLabels[currentLocale]}</span>
-          </summary>
-          <div className="language-options" role="listbox" aria-label="Language options">
-            {supportedLocales.map((locale) => (
-              <button
-                className={locale === currentLocale ? "active" : ""}
-                key={locale}
-                type="button"
-                onClick={(event) => changeLanguage(locale, event)}
-                role="option"
-                aria-selected={locale === currentLocale}
-              >
-                <span>{localeLabels[locale]}</span>
-                {localeNames[locale]}
-              </button>
-            ))}
-          </div>
-        </details>
+
+        <a className="header-cta" href="#formulario">Solicitar orçamento</a>
+
         <button
-          className="mobile-menu-toggle"
+          ref={menuButtonRef}
+          className="menu-toggle"
           type="button"
-          aria-label={mobileMenuOpen ? (isPortuguese ? "Fechar menu" : "Close menu") : (isPortuguese ? "Abrir menu" : "Open menu")}
-          aria-expanded={mobileMenuOpen}
-          aria-controls={mobileMenuId}
-          onClick={() => setMobileMenuOpen((open) => !open)}
+          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={menuOpen}
+          aria-controls="menu-mobile"
+          onClick={() => setMenuOpen((open) => !open)}
         >
-          {mobileMenuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+          {menuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
-        <nav
-          className={`mobile-nav${mobileMenuOpen ? " is-open" : ""}`}
-          id={mobileMenuId}
-          aria-label={isPortuguese ? "Navegação mobile" : "Mobile navigation"}
-          hidden={!mobileMenuOpen}
-        >
-          <a href="#top" onClick={closeMobileMenu}>{homeLabel}</a>
-          <a href="#services" onClick={closeMobileMenu}>{copy.nav[0]}</a>
-          <a href="#portfolio" onClick={closeMobileMenu}>{copy.nav[2]}</a>
-          <a href="#team" onClick={closeMobileMenu}>{copy.teamNavLabel}</a>
-          <a href="#contact" onClick={closeMobileMenu}>{copy.nav[3]}</a>
-        </nav>
       </div>
+
+      <nav
+        className={`mobile-nav ${menuOpen ? "open" : ""}`}
+        id="menu-mobile"
+        aria-label="Navegação mobile"
+        hidden={!menuOpen}
+      >
+        {navigation.map(([id, label]) => (
+          <a
+            href={`#${id}`}
+            className={activeSection === id ? "active" : ""}
+            aria-current={activeSection === id ? "page" : undefined}
+            onClick={closeMenu}
+            key={id}
+          >
+            {label}
+          </a>
+        ))}
+        <a className="mobile-quote" href="#formulario" onClick={closeMenu}>
+          Solicitar orçamento
+        </a>
+      </nav>
     </header>
   );
 }
 
 function Hero() {
-  const [videoReady, setVideoReady] = React.useState(false);
-
   return (
-    <section className="hero" id="top">
-      <img
-        className="hero-fallback"
-        src="/mediatrix-tech-header.png"
-        alt=""
-        aria-hidden="true"
-      />
-      <video
-        className={`hero-video${videoReady ? " is-ready" : ""}`}
-        aria-hidden="true"
-        autoPlay
-        loop
-        muted
-        playsInline
-        poster="/mediatrix-tech-header.png"
-        preload="auto"
-        onCanPlay={() => setVideoReady(true)}
-        onPlaying={() => setVideoReady(true)}
-      >
-        <source src="/header-video-mediatrix.mp4" type="video/mp4" />
-      </video>
-    </section>
-  );
-}
-
-function QuickAccess() {
-  const { currentLocale, quickAccessLabels } = useLocaleContent();
-
-  return (
-    <nav
-      className="quick-access"
-      aria-label={currentLocale === "pt-BR" ? "Acesso rápido aos serviços" : "Quick access to services"}
-    >
-      <div className="section-shell quick-access-grid">
-        {quickAccessLabels.map((label, index) => {
-          const Icon = quickAccessIcons[index];
-
-          return (
-            <a className="quick-access-card" href={quickAccessTargets[index]} key={label}>
-              <Icon size={22} aria-hidden="true" />
-              <span>{label}</span>
-              <ChevronRight className="quick-access-arrow" size={18} aria-hidden="true" />
-            </a>
-          );
-        })}
-      </div>
-    </nav>
-  );
-}
-
-function Services() {
-  const { copy, services } = useLocaleContent();
-
-  return (
-    <Section
-      id="services"
-      eyebrow={copy.servicesSection.eyebrow}
-      title={copy.servicesSection.title}
-      intro={copy.servicesSection.intro}
-    >
-      <div className="service-grid">
-        {services.map((service) => (
-          <ServiceCard key={service.title} {...service} />
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function ServiceCard({ id, title, description, icon: Icon }) {
-  return (
-    <article className="glass-card service-card" id={id}>
-      <CardBackgroundVideo />
-      <div className="service-card-top">
-        <div className="icon-tile" aria-hidden="true">
-          <Icon size={24} />
-        </div>
-        <span className="service-arrow" aria-hidden="true">
-          <ChevronRight size={18} />
-        </span>
-      </div>
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </article>
-  );
-}
-
-function Packages() {
-  const { copy, packages } = useLocaleContent();
-
-  return (
-    <Section
-      id="packages"
-      eyebrow={copy.packagesSection.eyebrow}
-      title={copy.packagesSection.title}
-      intro={copy.packagesSection.intro}
-    >
-      <div className="package-grid">
-        {packages.map((item) => (
-          <article
-            className={`package-card ${item.featured ? "featured" : ""}`}
-            id={item.id}
-            key={item.name}
-          >
-            <CardBackgroundVideo />
-            {item.featured && <span className="badge">{copy.packagesSection.badge}</span>}
-            <p className="package-audience">{item.audience}</p>
-            <h3>{item.name}</h3>
-            <ul>
-              {item.features.map((feature) => (
-                <li key={feature}>{feature}</li>
-              ))}
-            </ul>
-          </article>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
-function Portfolio() {
-  const { copy, portfolio } = useLocaleContent();
-
-  return (
-    <Section
-      id="portfolio"
-      eyebrow={copy.portfolioSection.eyebrow}
-      title={copy.portfolioSection.title}
-      intro={copy.portfolioSection.intro}
-    >
-      <div className="portfolio-grid">
-        {portfolio.map((project, index) => {
-          const PortfolioCard = project.demoAudio ? "article" : "a";
-          const portfolioCardProps = project.demoAudio ? {} : { href: "#contact" };
-
-          return (
-            <PortfolioCard
-              className="portfolio-card"
-              key={project.title}
-              {...portfolioCardProps}
-            >
-              {/* Change this href to the real portfolio URL for this project. */}
-              <CardBackgroundVideo />
-              <span className="portfolio-number">{String(index + 1).padStart(2, "0")}</span>
-              <p>{project.category}</p>
-              <h3>{project.title}</h3>
-              {project.demoVideo && (
-                <video
-                  className="portfolio-demo"
-                  aria-label={`${project.title} demo video`}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  preload="metadata"
-                >
-                  <source src={project.demoVideo} type="video/mp4" />
-                </video>
-              )}
-              {project.demoImage && (
-                <img
-                  className="portfolio-demo"
-                  src={project.demoImage}
-                  alt={`${project.title} demo preview`}
-                  loading="lazy"
-                />
-              )}
-              {project.demoAudio && (
-                <audio
-                  className="portfolio-audio"
-                  controls
-                  preload="metadata"
-                  aria-label={`${project.title} audio sample`}
-                >
-                  <source src={project.demoAudio} type="audio/mpeg" />
-                </audio>
-              )}
-              <span>{project.description}</span>
-              {!project.demoAudio && <ExternalLink size={18} aria-hidden="true" />}
-            </PortfolioCard>
-          );
-        })}
-      </div>
-    </Section>
-  );
-}
-
-function CardBackgroundVideo() {
-  return (
-    <video
-      className="card-background-video"
-      aria-hidden="true"
-      autoPlay
-      loop
-      muted
-      playsInline
-      preload="metadata"
-    >
-      <source src={cardBackgroundVideo} type="video/mp4" />
-    </video>
-  );
-}
-
-function SectionBackgroundVideo() {
-  return (
-    <video
-      className="section-background-video"
-      aria-hidden="true"
-      autoPlay
-      loop
-      muted
-      playsInline
-      preload="metadata"
-    >
-      <source src={cardBackgroundVideo} type="video/mp4" />
-    </video>
-  );
-}
-
-function WhyChooseUs() {
-  const { copy } = useLocaleContent();
-
-  return (
-    <section className="why-section">
-      <SectionBackgroundVideo />
-      <div className="section-shell why-layout">
-        <div>
-          <p className="section-eyebrow">{copy.why.eyebrow}</p>
-          <h2>{copy.why.title}</h2>
-        </div>
-        <div className="advantage-list">
-          {copy.why.advantages.map((item) => (
-            <div className="advantage-item" key={item}>
-              <CardBackgroundVideo />
-              <Cpu size={18} />
-              <span>{item}</span>
-            </div>
-          ))}
+    <section className="hero" id="top" aria-labelledby="hero-title">
+      <div className="hero-glow" aria-hidden="true" />
+      <div className="shell hero-content">
+        <img
+          className="hero-logo"
+          src="/mediatrix-brand-mark.jpg"
+          alt="Logo da Mediatrix Tech"
+          width="112"
+          height="112"
+        />
+        <p className="motto">Create. Connect. Convert.</p>
+        <h1 id="hero-title">Tecnologia e conteúdo que fazem sua marca avançar.</h1>
+        <p className="hero-description">
+          Criamos sites e conteúdos visuais profissionais para negócios no Brasil e nos Estados Unidos.
+        </p>
+        <div className="hero-actions">
+          <a className="button primary" href="#servicos">
+            Ver serviços <ArrowRight size={18} aria-hidden="true" />
+          </a>
+          <a className="button secondary" href="#formulario">Solicitar orçamento</a>
         </div>
       </div>
     </section>
   );
 }
 
-function Team() {
-  const { copy } = useLocaleContent();
-
+function SectionHeading({ eyebrow, title, description, id }) {
   return (
-    <section className="content-section team-section" id="team" aria-labelledby="team-title">
-      <SectionBackgroundVideo />
-      <div className="section-shell">
-        <div className="section-heading team-heading">
-          <p className="section-eyebrow">{copy.teamSection.eyebrow}</p>
-          <h2 id="team-title">{copy.teamSection.title}</h2>
-          <p>{copy.teamSection.intro}</p>
-        </div>
-        <figure className="team-photo-frame">
-          <img
-            className="team-photo"
-            src="/images/mediatrix-team.png"
-            alt={copy.teamSection.imageAlt}
-            loading="lazy"
-            width="1448"
-            height="1086"
-          />
-        </figure>
-        <div className="team-grid" aria-labelledby="team-title">
-          {copy.teamSection.members.map((member, index) => (
-            <article className="team-card" key={teamMemberNames[index]}>
-              <h3>{teamMemberNames[index]}</h3>
-              <p className="team-role">{member.role}</p>
-              {member.specialty && <p className="team-specialty">{member.specialty}</p>}
+    <div className="section-heading">
+      <p className="eyebrow">{eyebrow}</p>
+      <h2 id={id}>{title}</h2>
+      {description && <p className="section-description">{description}</p>}
+    </div>
+  );
+}
+
+function Services({ onSelectService }) {
+  return (
+    <section className="section" id="servicos" aria-labelledby="servicos-title">
+      <div className="shell">
+        <SectionHeading
+          eyebrow="Serviços"
+          title="O essencial para apresentar sua marca com qualidade."
+          description="Três soluções claras, adaptadas ao objetivo e ao momento do seu negócio."
+          id="servicos-title"
+        />
+        <div className="services-grid">
+          {services.map(({ icon: Icon, title, description, benefit }) => (
+            <article className="service-card" key={title}>
+              <div className="icon-box" aria-hidden="true"><Icon size={25} /></div>
+              <h3>{title}</h3>
+              <p>{description}</p>
+              <p className="benefit"><Check size={17} aria-hidden="true" />{benefit}</p>
+              <a
+                className="text-link"
+                href="#formulario"
+                onClick={() => onSelectService(title)}
+              >
+                Solicitar orçamento <ArrowRight size={17} aria-hidden="true" />
+              </a>
             </article>
           ))}
         </div>
@@ -2063,186 +281,181 @@ function Team() {
   );
 }
 
-function Contact() {
-  const { contactLinks, copy } = useLocaleContent();
-  const [formStatus, setFormStatus] = React.useState("idle");
+function Portfolio() {
+  return (
+    <section className="section portfolio-section" id="portfolio" aria-labelledby="portfolio-title">
+      <div className="shell">
+        <SectionHeading
+          eyebrow="Portfólio"
+          title="Projetos selecionados."
+          description="Alguns trabalhos que unem clareza, experiência e resultado."
+          id="portfolio-title"
+        />
+        <div className="portfolio-grid">
+          {projects.map((project) => (
+            <article className="project-card" key={project.name}>
+              <div className="project-media">
+                {project.kind === "video" ? (
+                  <video muted playsInline preload="none" poster={project.poster} aria-label={`Demonstração do projeto ${project.name}`}>
+                    <source src={project.media} type="video/mp4" />
+                  </video>
+                ) : (
+                  <img src={project.media} alt={`Captura de tela do projeto ${project.name}`} loading="lazy" />
+                )}
+              </div>
+              <div className="project-content">
+                <p className="project-category">{project.category}</p>
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
+                <a className="text-link" href={project.media} target="_blank" rel="noreferrer">
+                  Ver projeto <ExternalLink size={16} aria-hidden="true" />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
-  const submitContactForm = async (event) => {
+function Company() {
+  const facts = [
+    ["Quem somos", "Uma empresa de tecnologia e criação focada em soluções digitais úteis."],
+    ["O que fazemos", "Unimos desenvolvimento web e edição visual em uma entrega consistente."],
+    ["Como trabalhamos", "Entendemos o objetivo, simplificamos o caminho e mantemos você por perto."],
+    ["Onde atendemos", "Negócios, profissionais e criadores no Brasil e nos Estados Unidos."],
+  ];
+
+  return (
+    <section className="section company-section" id="empresa" aria-labelledby="empresa-title">
+      <div className="shell company-layout">
+        <div>
+          <SectionHeading
+            eyebrow="Empresa"
+            title="Sobre a Mediatrix Tech"
+            description="Criatividade e tecnologia trabalhando para aproximar marcas e pessoas."
+            id="empresa-title"
+          />
+          <div className="market-note">
+            <Globe2 size={20} aria-hidden="true" />
+            Atendimento em português e inglês
+          </div>
+        </div>
+        <div className="company-facts">
+          {facts.map(([title, text], index) => (
+            <article key={title}>
+              <span aria-hidden="true">0{index + 1}</span>
+              <div><h3>{title}</h3><p>{text}</p></div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact({ selectedService, onSelectService }) {
+  const [status, setStatus] = React.useState("idle");
+
+  const submitForm = async (event) => {
     event.preventDefault();
-    setFormStatus("sending");
+    setStatus("sending");
     const form = event.currentTarget;
-    const formData = Object.fromEntries(new FormData(form).entries());
+    const data = Object.fromEntries(new FormData(form).entries());
 
     try {
       const response = await fetch("https://formsubmit.co/ajax/mediatrixtech@proton.me", {
         method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...formData,
-          _url: window.location.href.split("#")[0],
-        }),
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, _url: window.location.href.split("#")[0] }),
       });
-
-      let result = {};
-
-      try {
-        result = await response.json();
-      } catch {
-        // A successful HTTP response is sufficient if the service returns no JSON body.
-      }
-
-      if (!response.ok || result.success === false || result.success === "false") {
-        throw new Error(result.message || "Form submission failed");
-      }
-
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || result.success === false || result.success === "false") throw new Error();
       form.reset();
-      setFormStatus("success");
+      onSelectService("");
+      setStatus("success");
     } catch {
-      setFormStatus("error");
+      setStatus("error");
     }
   };
 
+  const channels = [
+    ["WhatsApp Brasil", "Atendimento em português", contactLinks.brasil, MessageCircle],
+    ["WhatsApp Estados Unidos", "Atendimento em inglês", contactLinks.estadosUnidos, MessageCircle],
+    ["E-mail", "mediatrixtech@proton.me", contactLinks.email, Mail],
+    ["Perfil na Upwork", "Projetos internacionais", contactLinks.upwork, ExternalLink],
+  ];
+
   return (
-    <section className="contact-section" id="contact">
-      <SectionBackgroundVideo />
-      <div className="section-shell contact-layout">
-        <div>
-          <p className="section-eyebrow">{copy.contact.eyebrow}</p>
-          <h2>{copy.contact.title}</h2>
-          <p>{copy.contact.intro}</p>
-        </div>
-        <div className="contact-actions" aria-label={copy.contact.optionsLabel}>
-          <a className="button primary" href={contactLinks.whatsappUs}>
-            {copy.contact.whatsappUs}
-            <Send size={18} />
-          </a>
-          <a className="button primary" href={contactLinks.whatsappBrazil}>
-            {copy.contact.whatsappBrazil}
-            <Send size={18} />
-          </a>
-          <a className="button secondary" href={contactLinks.email}>
-            Email
-            <Mail size={18} />
-          </a>
-          <a className="button secondary" href={contactLinks.instagram}>
-            Instagram
-            <ExternalLink size={18} />
-          </a>
-          <a className="button secondary" href={contactLinks.upwork}>
-            Upwork
-            <ExternalLink size={18} />
-          </a>
-        </div>
-      </div>
-      <div className="section-shell contact-form-shell" id="contact-form">
-        <div className="contact-form-heading">
-          <p className="section-eyebrow">{copy.contact.eyebrow}</p>
-          <h3>{copy.contact.form.title}</h3>
-          <p>{copy.contact.form.intro}</p>
-        </div>
-        <form
-          className="contact-form"
-          action="https://formsubmit.co/mediatrixtech@proton.me"
-          method="POST"
-          onSubmit={submitContactForm}
-        >
-          <input type="hidden" name="_subject" value="New message from Mediatrix Tech website" />
-          <input
-            type="text"
-            name="_honey"
-            className="form-honey"
-            tabIndex="-1"
-            autoComplete="off"
-            aria-hidden="true"
-          />
-          <label>
-            <span>{copy.contact.form.name}</span>
-            <input name="name" type="text" autoComplete="name" required />
-          </label>
-          <label>
-            <span>{copy.contact.form.email}</span>
-            <input name="email" type="email" autoComplete="email" required />
-          </label>
-          <label className="message-field">
-            <span>{copy.contact.form.message}</span>
-            <textarea name="message" rows="6" required />
-          </label>
-          <div className="form-submit-row">
-            <button className="button primary" type="submit" disabled={formStatus === "sending"}>
-              {formStatus === "sending" ? copy.contact.form.sending : copy.contact.form.send}
-              <Send size={18} aria-hidden="true" />
-            </button>
-            <p className={`form-status ${formStatus}`} aria-live="polite">
-              {formStatus === "success" && copy.contact.form.success}
-              {formStatus === "error" && copy.contact.form.error}
-            </p>
+    <section className="section contact-section" id="contato" aria-labelledby="contato-title">
+      <div className="shell">
+        <SectionHeading
+          eyebrow="Contato"
+          title="Vamos conversar sobre seu projeto?"
+          description="Escolha o canal mais prático ou envie uma mensagem pelo formulário."
+          id="contato-title"
+        />
+        <div className="contact-layout">
+          <div className="contact-channels" aria-label="Canais de contato">
+            {channels.map(([title, detail, href, Icon]) => (
+              <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" key={title}>
+                <span className="contact-icon"><Icon size={21} aria-hidden="true" /></span>
+                <span><strong>{title}</strong><small>{detail}</small></span>
+                <ArrowRight className="channel-arrow" size={18} aria-hidden="true" />
+              </a>
+            ))}
           </div>
-        </form>
-      </div>
-      <footer>
-        <span>L. Benaduce © {new Date().getFullYear()}</span>
-        <span>{copy.hero.tagline}</span>
-        <span className="quiet-marker" aria-hidden="true">
-          //////////\\\\\\\\\\\\\\\\\\\\
-        </span>
-      </footer>
-    </section>
-  );
-}
 
-function FloatingWhatsApp() {
-  const { contactLinks, currentLocale } = useLocaleContent();
-  const [protectedAreaVisible, setProtectedAreaVisible] = React.useState(false);
-
-  React.useEffect(() => {
-    const protectedAreas = [...document.querySelectorAll(".quick-access, #portfolio, #contact")];
-    if (!protectedAreas.length || !("IntersectionObserver" in window)) return undefined;
-    const visibleAreas = new Set();
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) visibleAreas.add(entry.target);
-          else visibleAreas.delete(entry.target);
-        });
-        setProtectedAreaVisible(visibleAreas.size > 0);
-      },
-      { threshold: 0.08 },
-    );
-
-    protectedAreas.forEach((area) => observer.observe(area));
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <a
-      className={`floating-whatsapp${protectedAreaVisible ? " is-hidden" : ""}`}
-      href={contactLinks.whatsappBrazil}
-      target="_blank"
-      rel="noreferrer"
-      aria-label={currentLocale === "pt-BR" ? "Conversar com a Mediatrix Tech pelo WhatsApp" : "Chat with Mediatrix Tech on WhatsApp"}
-    >
-      <MessageCircle size={25} aria-hidden="true" />
-    </a>
-  );
-}
-
-function Section({ id, eyebrow, title, intro, children }) {
-  return (
-    <section className="content-section" id={id}>
-      <SectionBackgroundVideo />
-      <div className="section-shell">
-        <div className="section-heading">
-          <p className="section-eyebrow">{eyebrow}</p>
-          <h2>{title}</h2>
-          <p>{intro}</p>
+          <div className="form-card" id="formulario">
+            <h3>Envie uma mensagem</h3>
+            <p>Conte brevemente o que você precisa.</p>
+            <form onSubmit={submitForm} action="https://formsubmit.co/mediatrixtech@proton.me" method="POST">
+              <input type="hidden" name="_subject" value="Nova mensagem pelo site Mediatrix Tech" />
+              <label>
+                <span>Nome</span>
+                <input name="name" type="text" autoComplete="name" required />
+              </label>
+              <label>
+                <span>E-mail</span>
+                <input name="email" type="email" autoComplete="email" required />
+              </label>
+              <label>
+                <span>Serviço de interesse</span>
+                <select name="service" value={selectedService} onChange={(event) => onSelectService(event.target.value)} required>
+                  <option value="" disabled>Selecione um serviço</option>
+                  {services.map((service) => <option value={service.title} key={service.title}>{service.title}</option>)}
+                </select>
+              </label>
+              <label>
+                <span>Mensagem</span>
+                <textarea name="message" rows="5" required />
+              </label>
+              <button className="button primary submit-button" type="submit" disabled={status === "sending"}>
+                {status === "sending" ? "Enviando..." : "Enviar mensagem"}
+                <Send size={18} aria-hidden="true" />
+              </button>
+              <p className={`form-status ${status}`} role="status" aria-live="polite">
+                {status === "success" && "Mensagem enviada com sucesso. Em breve entraremos em contato."}
+                {status === "error" && "Não foi possível enviar. Tente novamente ou fale conosco pelo WhatsApp."}
+              </p>
+            </form>
+          </div>
         </div>
-        {children}
       </div>
     </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer>
+      <div className="shell footer-inner">
+        <a className="footer-brand" href="#top">Mediatrix Tech</a>
+        <p>Create. Connect. Convert.</p>
+        <p>© {new Date().getFullYear()} Todos os direitos reservados.</p>
+      </div>
+    </footer>
   );
 }
 
