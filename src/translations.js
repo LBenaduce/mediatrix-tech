@@ -1,6 +1,6 @@
 export const languages = [
-  ["pt-BR", "PT", "Português"],
   ["en", "EN", "English"],
+  ["pt-BR", "PT", "Português"],
   ["es", "ES", "Español"],
   ["fr", "FR", "Français"],
   ["de", "DE", "Deutsch"],
