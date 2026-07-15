@@ -1645,19 +1645,35 @@ function Contact() {
   const submitContactForm = async (event) => {
     event.preventDefault();
     setFormStatus("sending");
+    const form = event.currentTarget;
+    const formData = Object.fromEntries(new FormData(form).entries());
 
     try {
       const response = await fetch("https://formsubmit.co/ajax/mediatrixtech@proton.me", {
         method: "POST",
-        body: new FormData(event.currentTarget),
-        headers: { Accept: "application/json" },
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          _url: window.location.href.split("#")[0],
+        }),
       });
 
-      if (!response.ok) {
-        throw new Error("Form submission failed");
+      let result = {};
+
+      try {
+        result = await response.json();
+      } catch {
+        // A successful HTTP response is sufficient if the service returns no JSON body.
       }
 
-      event.currentTarget.reset();
+      if (!response.ok || result.success === false || result.success === "false") {
+        throw new Error(result.message || "Form submission failed");
+      }
+
+      form.reset();
       setFormStatus("success");
     } catch {
       setFormStatus("error");
