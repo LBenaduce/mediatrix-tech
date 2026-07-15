@@ -24,7 +24,6 @@ const translations = {
     quoteMessage:
       "Hello Mediatrix Tech, I would like to request a quote for a digital project.",
     nav: ["Services", "Packages", "Portfolio", "Contact"],
-    teamNavLabel: "Team",
     hero: {
       eyebrow: "Digital services for modern local businesses",
       tagline: "Connecting ideas, media, and technology.",
@@ -111,14 +110,6 @@ const translations = {
         "Practical solutions for local businesses",
         "Technical and creative background",
       ],
-    },
-    teamSection: {
-      eyebrow: "Our team",
-      title: "Meet the Mediatrix Tech Team",
-      intro:
-        "A multidisciplinary team creating digital solutions that connect businesses, events, and people.",
-      imageAlt:
-        "The Mediatrix Tech multidisciplinary team together in a modern collaborative office",
     },
     contact: {
       eyebrow: "Start a project",
@@ -1110,6 +1101,321 @@ Object.assign(translations, {
   },
 });
 
+const teamProfile = (role, specialty) => ({
+  role,
+  ...(specialty ? { specialty } : {}),
+});
+
+const localizedTeamContent = {
+  en: {
+    navLabel: "Team",
+    eyebrow: "Our team",
+    title: "Meet the Mediatrix Tech Team",
+    intro:
+      "A multidisciplinary team creating digital solutions that connect businesses, events, and people.",
+    imageAlt:
+      "The Mediatrix Tech multidisciplinary team together in a modern collaborative office",
+    members: [
+      teamProfile("Founder & CEO", "Full-Stack Developer and Agronomic Engineer"),
+      teamProfile("Co-Founder & Administrative Director", "Administration and Client Relations"),
+      teamProfile("Sales & Customer Success Manager"),
+      teamProfile("Front-End Developer"),
+      teamProfile("UI/UX Designer"),
+      teamProfile("Back-End Developer"),
+      teamProfile("International Business Manager"),
+      teamProfile("Digital Marketing Manager"),
+      teamProfile("Mobile App Developer"),
+    ],
+  },
+  "pt-BR": {
+    navLabel: "Equipe",
+    eyebrow: "Nossa equipe",
+    title: "Conheça a equipe da Mediatrix Tech",
+    intro:
+      "Uma equipe multidisciplinar que cria soluções digitais para conectar empresas, eventos e pessoas.",
+    imageAlt:
+      "A equipe multidisciplinar da Mediatrix Tech reunida em um escritório colaborativo moderno",
+    members: [
+      teamProfile("Fundador e CEO", "Desenvolvedor Full-Stack e Engenheiro Agrônomo"),
+      teamProfile("Cofundadora e Diretora Administrativa", "Administração e Relacionamento com Clientes"),
+      teamProfile("Gerente de Vendas e Sucesso do Cliente"),
+      teamProfile("Desenvolvedor Front-End"),
+      teamProfile("Designer de UI/UX"),
+      teamProfile("Desenvolvedor Back-End"),
+      teamProfile("Gerente de Negócios Internacionais"),
+      teamProfile("Gerente de Marketing Digital"),
+      teamProfile("Desenvolvedor de Aplicativos Móveis"),
+    ],
+  },
+  es: {
+    navLabel: "Equipo",
+    eyebrow: "Nuestro equipo",
+    title: "Conoce al equipo de Mediatrix Tech",
+    intro:
+      "Un equipo multidisciplinario que crea soluciones digitales para conectar empresas, eventos y personas.",
+    imageAlt:
+      "El equipo multidisciplinario de Mediatrix Tech reunido en una oficina colaborativa moderna",
+    members: [
+      teamProfile("Fundador y CEO", "Desarrollador Full-Stack e Ingeniero Agrónomo"),
+      teamProfile("Cofundadora y Directora Administrativa", "Administración y Relaciones con Clientes"),
+      teamProfile("Gerente de Ventas y Éxito del Cliente"),
+      teamProfile("Desarrollador Front-End"),
+      teamProfile("Diseñadora UI/UX"),
+      teamProfile("Desarrollador Back-End"),
+      teamProfile("Gerente de Negocios Internacionales"),
+      teamProfile("Gerente de Marketing Digital"),
+      teamProfile("Desarrollador de Aplicaciones Móviles"),
+    ],
+  },
+  fr: {
+    navLabel: "Équipe",
+    eyebrow: "Notre équipe",
+    title: "Rencontrez l'équipe Mediatrix Tech",
+    intro:
+      "Une équipe pluridisciplinaire qui crée des solutions numériques reliant entreprises, événements et personnes.",
+    imageAlt:
+      "L'équipe pluridisciplinaire de Mediatrix Tech réunie dans un bureau collaboratif moderne",
+    members: [
+      teamProfile("Fondateur et PDG", "Développeur Full-Stack et ingénieur agronome"),
+      teamProfile("Cofondatrice et directrice administrative", "Administration et relations clients"),
+      teamProfile("Responsable des ventes et de la réussite client"),
+      teamProfile("Développeur Front-End"),
+      teamProfile("Designer UI/UX"),
+      teamProfile("Développeur Back-End"),
+      teamProfile("Responsable du développement international"),
+      teamProfile("Responsable marketing digital"),
+      teamProfile("Développeur d'applications mobiles"),
+    ],
+  },
+  de: {
+    navLabel: "Team",
+    eyebrow: "Unser Team",
+    title: "Lernen Sie das Mediatrix Tech Team kennen",
+    intro:
+      "Ein multidisziplinäres Team, das digitale Lösungen entwickelt, die Unternehmen, Veranstaltungen und Menschen verbinden.",
+    imageAlt:
+      "Das multidisziplinäre Team von Mediatrix Tech gemeinsam in einem modernen kollaborativen Büro",
+    members: [
+      teamProfile("Gründer & CEO", "Full-Stack-Entwickler und Agraringenieur"),
+      teamProfile("Mitgründerin & Verwaltungsleiterin", "Verwaltung und Kundenbeziehungen"),
+      teamProfile("Leiterin Vertrieb & Customer Success"),
+      teamProfile("Front-End-Entwickler"),
+      teamProfile("UI/UX-Designerin"),
+      teamProfile("Back-End-Entwickler"),
+      teamProfile("Leiter Internationales Geschäft"),
+      teamProfile("Leiterin Digitales Marketing"),
+      teamProfile("Mobile-App-Entwickler"),
+    ],
+  },
+  it: {
+    navLabel: "Team",
+    eyebrow: "Il nostro team",
+    title: "Conosci il team di Mediatrix Tech",
+    intro:
+      "Un team multidisciplinare che crea soluzioni digitali per connettere aziende, eventi e persone.",
+    imageAlt:
+      "Il team multidisciplinare di Mediatrix Tech riunito in un moderno ufficio collaborativo",
+    members: [
+      teamProfile("Founder e CEO", "Sviluppatore Full-Stack e Ingegnere Agronomo"),
+      teamProfile("Co-Founder e Direttrice Amministrativa", "Amministrazione e Relazioni con i Clienti"),
+      teamProfile("Responsabile Vendite e Customer Success"),
+      teamProfile("Sviluppatore Front-End"),
+      teamProfile("UI/UX Designer"),
+      teamProfile("Sviluppatore Back-End"),
+      teamProfile("Responsabile Business Internazionale"),
+      teamProfile("Responsabile Marketing Digitale"),
+      teamProfile("Sviluppatore di App Mobile"),
+    ],
+  },
+  "zh-CN": {
+    navLabel: "团队",
+    eyebrow: "我们的团队",
+    title: "认识 Mediatrix Tech 团队",
+    intro: "一支跨学科团队，打造连接企业、活动与人群的数字解决方案。",
+    imageAlt: "Mediatrix Tech 多学科团队在现代协作办公室合影",
+    members: [
+      teamProfile("创始人兼首席执行官", "全栈开发工程师兼农艺工程师"),
+      teamProfile("联合创始人兼行政总监", "行政管理与客户关系"),
+      teamProfile("销售与客户成功经理"),
+      teamProfile("前端开发工程师"),
+      teamProfile("UI/UX 设计师"),
+      teamProfile("后端开发工程师"),
+      teamProfile("国际业务经理"),
+      teamProfile("数字营销经理"),
+      teamProfile("移动应用开发工程师"),
+    ],
+  },
+  hi: {
+    navLabel: "टीम",
+    eyebrow: "हमारी टीम",
+    title: "Mediatrix Tech टीम से मिलें",
+    intro:
+      "एक बहुविषयक टीम जो व्यवसायों, आयोजनों और लोगों को जोड़ने वाले डिजिटल समाधान बनाती है।",
+    imageAlt:
+      "आधुनिक सहयोगी कार्यालय में एक साथ Mediatrix Tech की बहुविषयक टीम",
+    members: [
+      teamProfile("संस्थापक और CEO", "फुल-स्टैक डेवलपर और कृषि अभियंता"),
+      teamProfile("सह-संस्थापक और प्रशासनिक निदेशक", "प्रशासन और ग्राहक संबंध"),
+      teamProfile("बिक्री और ग्राहक सफलता प्रबंधक"),
+      teamProfile("फ्रंट-एंड डेवलपर"),
+      teamProfile("UI/UX डिज़ाइनर"),
+      teamProfile("बैक-एंड डेवलपर"),
+      teamProfile("अंतरराष्ट्रीय व्यापार प्रबंधक"),
+      teamProfile("डिजिटल मार्केटिंग प्रबंधक"),
+      teamProfile("मोबाइल ऐप डेवलपर"),
+    ],
+  },
+  ar: {
+    navLabel: "الفريق",
+    eyebrow: "فريقنا",
+    title: "تعرّف على فريق Mediatrix Tech",
+    intro:
+      "فريق متعدد التخصصات يصمم حلولاً رقمية تربط الشركات والفعاليات والأشخاص.",
+    imageAlt:
+      "فريق Mediatrix Tech متعدد التخصصات مجتمعاً في مكتب تعاوني حديث",
+    members: [
+      teamProfile("المؤسس والرئيس التنفيذي", "مطور متكامل ومهندس زراعي"),
+      teamProfile("الشريكة المؤسسة والمديرة الإدارية", "الإدارة وعلاقات العملاء"),
+      teamProfile("مديرة المبيعات ونجاح العملاء"),
+      teamProfile("مطور الواجهة الأمامية"),
+      teamProfile("مصممة UI/UX"),
+      teamProfile("مطور الواجهة الخلفية"),
+      teamProfile("مدير الأعمال الدولية"),
+      teamProfile("مديرة التسويق الرقمي"),
+      teamProfile("مطور تطبيقات الجوال"),
+    ],
+  },
+  bn: {
+    navLabel: "টিম",
+    eyebrow: "আমাদের টিম",
+    title: "Mediatrix Tech টিমের সাথে পরিচিত হোন",
+    intro:
+      "একটি বহুবিষয়ক টিম, যারা ব্যবসা, ইভেন্ট ও মানুষকে সংযুক্ত করার ডিজিটাল সমাধান তৈরি করে।",
+    imageAlt:
+      "একটি আধুনিক সহযোগিতামূলক অফিসে Mediatrix Tech-এর বহুবিষয়ক টিম",
+    members: [
+      teamProfile("প্রতিষ্ঠাতা ও CEO", "ফুল-স্ট্যাক ডেভেলপার এবং কৃষি প্রকৌশলী"),
+      teamProfile("সহ-প্রতিষ্ঠাতা ও প্রশাসনিক পরিচালক", "প্রশাসন ও ক্লায়েন্ট সম্পর্ক"),
+      teamProfile("বিক্রয় ও গ্রাহক সাফল্য ব্যবস্থাপক"),
+      teamProfile("ফ্রন্ট-এন্ড ডেভেলপার"),
+      teamProfile("UI/UX ডিজাইনার"),
+      teamProfile("ব্যাক-এন্ড ডেভেলপার"),
+      teamProfile("আন্তর্জাতিক ব্যবসা ব্যবস্থাপক"),
+      teamProfile("ডিজিটাল মার্কেটিং ব্যবস্থাপক"),
+      teamProfile("মোবাইল অ্যাপ ডেভেলপার"),
+    ],
+  },
+  ru: {
+    navLabel: "Команда",
+    eyebrow: "Наша команда",
+    title: "Познакомьтесь с командой Mediatrix Tech",
+    intro:
+      "Многопрофильная команда, создающая цифровые решения, которые объединяют компании, мероприятия и людей.",
+    imageAlt:
+      "Многопрофильная команда Mediatrix Tech вместе в современном офисе для совместной работы",
+    members: [
+      teamProfile("Основатель и генеральный директор", "Full-Stack-разработчик и инженер-агроном"),
+      teamProfile("Сооснователь и административный директор", "Администрирование и работа с клиентами"),
+      teamProfile("Менеджер по продажам и успеху клиентов"),
+      teamProfile("Front-End-разработчик"),
+      teamProfile("UI/UX-дизайнер"),
+      teamProfile("Back-End-разработчик"),
+      teamProfile("Менеджер по международному бизнесу"),
+      teamProfile("Менеджер по цифровому маркетингу"),
+      teamProfile("Разработчик мобильных приложений"),
+    ],
+  },
+  ur: {
+    navLabel: "ٹیم",
+    eyebrow: "ہماری ٹیم",
+    title: "Mediatrix Tech کی ٹیم سے ملیں",
+    intro:
+      "ایک کثیر الشعبہ ٹیم جو کاروباروں، تقریبات اور لوگوں کو جوڑنے والے ڈیجیٹل حل بناتی ہے۔",
+    imageAlt:
+      "ایک جدید اشتراکی دفتر میں Mediatrix Tech کی کثیر الشعبہ ٹیم",
+    members: [
+      teamProfile("بانی اور سی ای او", "فل اسٹیک ڈویلپر اور زرعی انجینئر"),
+      teamProfile("شریک بانی اور انتظامی ڈائریکٹر", "انتظامیہ اور کلائنٹ تعلقات"),
+      teamProfile("سیلز اور کسٹمر کامیابی مینیجر"),
+      teamProfile("فرنٹ اینڈ ڈویلپر"),
+      teamProfile("UI/UX ڈیزائنر"),
+      teamProfile("بیک اینڈ ڈویلپر"),
+      teamProfile("بین الاقوامی کاروبار مینیجر"),
+      teamProfile("ڈیجیٹل مارکیٹنگ مینیجر"),
+      teamProfile("موبائل ایپ ڈویلپر"),
+    ],
+  },
+  id: {
+    navLabel: "Tim",
+    eyebrow: "Tim kami",
+    title: "Kenali Tim Mediatrix Tech",
+    intro:
+      "Tim multidisiplin yang menciptakan solusi digital untuk menghubungkan bisnis, acara, dan masyarakat.",
+    imageAlt:
+      "Tim multidisiplin Mediatrix Tech bersama di kantor kolaboratif modern",
+    members: [
+      teamProfile("Pendiri & CEO", "Full-Stack Developer dan Insinyur Agronomi"),
+      teamProfile("Co-Founder & Direktur Administrasi", "Administrasi dan Hubungan Klien"),
+      teamProfile("Manajer Penjualan & Kesuksesan Pelanggan"),
+      teamProfile("Front-End Developer"),
+      teamProfile("Desainer UI/UX"),
+      teamProfile("Back-End Developer"),
+      teamProfile("Manajer Bisnis Internasional"),
+      teamProfile("Manajer Pemasaran Digital"),
+      teamProfile("Mobile App Developer"),
+    ],
+  },
+  ja: {
+    navLabel: "チーム",
+    eyebrow: "私たちのチーム",
+    title: "Mediatrix Tech チームのご紹介",
+    intro:
+      "企業、イベント、人々をつなぐデジタルソリューションを生み出す、多分野の専門チームです。",
+    imageAlt:
+      "現代的な共同オフィスに集まったMediatrix Techの多分野チーム",
+    members: [
+      teamProfile("創業者兼CEO", "フルスタック開発者・農業工学技術者"),
+      teamProfile("共同創業者兼管理部門ディレクター", "管理業務・顧客関係"),
+      teamProfile("セールス＆カスタマーサクセスマネージャー"),
+      teamProfile("フロントエンド開発者"),
+      teamProfile("UI/UXデザイナー"),
+      teamProfile("バックエンド開発者"),
+      teamProfile("国際事業マネージャー"),
+      teamProfile("デジタルマーケティングマネージャー"),
+      teamProfile("モバイルアプリ開発者"),
+    ],
+  },
+  sw: {
+    navLabel: "Timu",
+    eyebrow: "Timu yetu",
+    title: "Kutana na Timu ya Mediatrix Tech",
+    intro:
+      "Timu yenye taaluma mbalimbali inayounda suluhisho za kidijitali zinazounganisha biashara, matukio na watu.",
+    imageAlt:
+      "Timu ya Mediatrix Tech yenye taaluma mbalimbali pamoja katika ofisi ya kisasa ya ushirikiano",
+    members: [
+      teamProfile("Mwanzilishi na CEO", "Msanidi Full-Stack na Mhandisi wa Kilimo"),
+      teamProfile("Mwanzilishi Mwenza na Mkurugenzi wa Utawala", "Utawala na Mahusiano ya Wateja"),
+      teamProfile("Meneja wa Mauzo na Mafanikio ya Wateja"),
+      teamProfile("Msanidi Front-End"),
+      teamProfile("Mbunifu wa UI/UX"),
+      teamProfile("Msanidi Back-End"),
+      teamProfile("Meneja wa Biashara za Kimataifa"),
+      teamProfile("Meneja wa Masoko ya Kidijitali"),
+      teamProfile("Msanidi wa Programu za Simu"),
+    ],
+  },
+};
+
+Object.entries(localizedTeamContent).forEach(([locale, teamContent]) => {
+  const { navLabel, ...teamSection } = teamContent;
+  translations[locale] = {
+    ...translations[locale],
+    teamNavLabel: navLabel,
+    teamSection,
+  };
+});
+
 const mergeLocale = (locale) => ({
   ...translations.en,
   ...locale,
@@ -1174,45 +1480,16 @@ const portfolioDemoAudio = {
   4: "/all-alone-edit.mp3",
 };
 const cardBackgroundVideo = "/tech-blue-and-dark.mp4";
-const teamMembers = [
-  {
-    name: "Luigi Benaduce",
-    role: "Founder & CEO",
-    specialty: "Full-Stack Developer and Agronomic Engineer",
-  },
-  {
-    name: "Cândida Mastella",
-    role: "Co-Founder & Administrative Director",
-    specialty: "Administration and Client Relations",
-  },
-  {
-    name: "Mariana Costa",
-    role: "Sales & Customer Success Manager",
-  },
-  {
-    name: "Lucas Martins",
-    role: "Front-End Developer",
-  },
-  {
-    name: "Camila Rocha",
-    role: "UI/UX Designer",
-  },
-  {
-    name: "Gabriel Almeida",
-    role: "Back-End Developer",
-  },
-  {
-    name: "Daniel Foster",
-    role: "International Business Manager",
-  },
-  {
-    name: "Beatriz Santos",
-    role: "Digital Marketing Manager",
-  },
-  {
-    name: "Kenji Nakamura",
-    role: "Mobile App Developer",
-  },
+const teamMemberNames = [
+  "Luigi Benaduce",
+  "Cândida Mastella",
+  "Mariana Costa",
+  "Lucas Martins",
+  "Camila Rocha",
+  "Gabriel Almeida",
+  "Daniel Foster",
+  "Beatriz Santos",
+  "Kenji Nakamura",
 ];
 
 const LocaleContentContext = React.createContext(null);
@@ -1645,10 +1922,10 @@ function Team() {
             height="1086"
           />
         </figure>
-        <div className="team-grid" aria-label="Mediatrix Tech team members">
-          {teamMembers.map((member) => (
-            <article className="team-card" key={member.name}>
-              <h3>{member.name}</h3>
+        <div className="team-grid" aria-labelledby="team-title">
+          {copy.teamSection.members.map((member, index) => (
+            <article className="team-card" key={teamMemberNames[index]}>
+              <h3>{teamMemberNames[index]}</h3>
               <p className="team-role">{member.role}</p>
               {member.specialty && <p className="team-specialty">{member.specialty}</p>}
             </article>
