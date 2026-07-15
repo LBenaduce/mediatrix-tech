@@ -226,7 +226,7 @@ function TopBanner() {
             onPlaying={() => setVideoReady(true)}
             onError={() => setVideoReady(false)}
           >
-            <source src="/mediatrix-header-banner.mp4" type="video/mp4" />
+            <source src="/mediatrix-header-banner.mp4?v=enhanced" type="video/mp4" />
           </video>
       </div>
     </div>

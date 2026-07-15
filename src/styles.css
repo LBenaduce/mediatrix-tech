@@ -265,6 +265,7 @@ button, a, select { -webkit-tap-highlight-color: transparent; }
 .top-banner-video {
   z-index: 1;
   background: transparent;
+  object-fit: contain;
   opacity: 0;
   transition: opacity 320ms ease;
 }
