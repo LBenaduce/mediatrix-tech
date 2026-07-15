@@ -1,6 +1,7 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import {
+  AudioLines,
   ArrowRight,
   BriefcaseBusiness,
   Check,
@@ -19,7 +20,7 @@ import { languages, rtlLanguages, translations } from "./translations";
 import "./styles.css";
 
 const navigationIds = ["top", "servicos", "portfolio", "empresa", "contato"];
-const serviceIcons = { web: Code2, photo: ImageIcon, video: Clapperboard };
+const serviceIcons = { web: Code2, photo: ImageIcon, video: Clapperboard, audio: AudioLines };
 
 const projectMedia = [
   { media: "/agriclimate-pro-demo.mp4", poster: "/agriclimate-pro-poster.jpg", kind: "video" },
