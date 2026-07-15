@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import {
   AudioLines,
   Bot,
+  BriefcaseBusiness,
   ChevronRight,
   Clapperboard,
   Code2,
@@ -11,13 +12,42 @@ import {
   Globe,
   Leaf,
   Mail,
+  Menu,
+  MessageCircle,
   Music2,
   QrCode,
   Send,
+  X,
 } from "lucide-react";
 import "./styles.css";
 
 const serviceIcons = [Code2, QrCode, Clapperboard, AudioLines, Music2, Bot, Leaf];
+const serviceAnchorIds = [
+  "service-web",
+  "service-events",
+  "service-video",
+  "service-audio",
+  "service-music",
+  "service-automation",
+  "service-agtech",
+];
+const packageAnchorIds = [
+  "package-website",
+  "package-events",
+  "package-social",
+  "package-complete",
+  "package-agro",
+];
+const quickAccessIcons = [Code2, QrCode, Send, Leaf, Clapperboard, BriefcaseBusiness, Mail];
+const quickAccessTargets = [
+  "#service-web",
+  "#service-events",
+  "#package-social",
+  "#service-agtech",
+  "#service-video",
+  "#portfolio",
+  "#contact",
+];
 
 const translations = {
   en: {
@@ -1537,6 +1567,30 @@ const whatsappUrl = (phoneNumber, quoteMessage) =>
 const getQuoteMessageForLocale = (locale) =>
   mergeLocale(translations[locale] || translations.en).quoteMessage;
 
+const getQuickAccessLabels = (locale, copy) => {
+  if (locale === "pt-BR") {
+    return [
+      "Sites para Empresas",
+      "Eventos com QR Code",
+      "Mídias Sociais",
+      "Soluções para o Agronegócio",
+      "Edição de Vídeo",
+      "Portfólio",
+      "Contato",
+    ];
+  }
+
+  return [
+    copy.packages[0][0],
+    copy.services[1][0],
+    copy.packages[2][0],
+    copy.services[6][0],
+    copy.services[2][0],
+    copy.nav[2],
+    copy.nav[3],
+  ];
+};
+
 // Change these links to your real phone, email, Instagram, and Upwork profile.
 const getContactLinks = (locale) => {
   const quoteMessage = getQuoteMessageForLocale(locale);
@@ -1560,11 +1614,13 @@ function App() {
   );
   const content = React.useMemo(() => {
     const services = copy.services.map(([title, description], index) => ({
+      id: serviceAnchorIds[index],
       title,
       description,
       icon: serviceIcons[index],
     }));
     const packages = copy.packages.map(([name, audience, features], index) => ({
+      id: packageAnchorIds[index],
       name,
       audience,
       features,
@@ -1585,6 +1641,7 @@ function App() {
       currentLocale,
       packages,
       portfolio,
+      quickAccessLabels: getQuickAccessLabels(currentLocale, copy),
       services,
       setCurrentLocale,
     };
@@ -1621,6 +1678,7 @@ function App() {
       <Header />
       <main>
         <Hero />
+        <QuickAccess />
         <Services />
         <Packages />
         <Portfolio />
@@ -1628,21 +1686,42 @@ function App() {
         <Team />
         <Contact />
       </main>
+      <FloatingWhatsApp />
     </LocaleContentContext.Provider>
   );
 }
 
 function Header() {
   const { copy, currentLocale, setCurrentLocale } = useLocaleContent();
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const mobileMenuId = "mobile-navigation";
   const changeLanguage = (locale, event) => {
     setCurrentLocale(locale);
     event.currentTarget.closest("details")?.removeAttribute("open");
   };
 
+  React.useEffect(() => {
+    if (!mobileMenuOpen) return undefined;
+
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setMobileMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [mobileMenuOpen]);
+
+  const closeMobileMenu = () => setMobileMenuOpen(false);
+  const isPortuguese = currentLocale === "pt-BR";
+  const homeLabel = isPortuguese ? "Início" : "Home";
+
   return (
     <header className="site-header">
       <div className="header-actions">
-        <nav aria-label="Primary navigation">
+        <a className="mobile-brand" href="#top" aria-label={`Mediatrix Tech — ${homeLabel}`}>
+          MT
+        </a>
+        <nav className="desktop-nav" aria-label="Primary navigation">
           <a href="#services">{copy.nav[0]}</a>
           <a href="#packages">{copy.nav[1]}</a>
           <a href="#portfolio">{copy.nav[2]}</a>
@@ -1673,6 +1752,28 @@ function Header() {
             ))}
           </div>
         </details>
+        <button
+          className="mobile-menu-toggle"
+          type="button"
+          aria-label={mobileMenuOpen ? (isPortuguese ? "Fechar menu" : "Close menu") : (isPortuguese ? "Abrir menu" : "Open menu")}
+          aria-expanded={mobileMenuOpen}
+          aria-controls={mobileMenuId}
+          onClick={() => setMobileMenuOpen((open) => !open)}
+        >
+          {mobileMenuOpen ? <X size={22} aria-hidden="true" /> : <Menu size={22} aria-hidden="true" />}
+        </button>
+        <nav
+          className={`mobile-nav${mobileMenuOpen ? " is-open" : ""}`}
+          id={mobileMenuId}
+          aria-label={isPortuguese ? "Navegação mobile" : "Mobile navigation"}
+          hidden={!mobileMenuOpen}
+        >
+          <a href="#top" onClick={closeMobileMenu}>{homeLabel}</a>
+          <a href="#services" onClick={closeMobileMenu}>{copy.nav[0]}</a>
+          <a href="#portfolio" onClick={closeMobileMenu}>{copy.nav[2]}</a>
+          <a href="#team" onClick={closeMobileMenu}>{copy.teamNavLabel}</a>
+          <a href="#contact" onClick={closeMobileMenu}>{copy.nav[3]}</a>
+        </nav>
       </div>
     </header>
   );
@@ -1707,6 +1808,31 @@ function Hero() {
   );
 }
 
+function QuickAccess() {
+  const { currentLocale, quickAccessLabels } = useLocaleContent();
+
+  return (
+    <nav
+      className="quick-access"
+      aria-label={currentLocale === "pt-BR" ? "Acesso rápido aos serviços" : "Quick access to services"}
+    >
+      <div className="section-shell quick-access-grid">
+        {quickAccessLabels.map((label, index) => {
+          const Icon = quickAccessIcons[index];
+
+          return (
+            <a className="quick-access-card" href={quickAccessTargets[index]} key={label}>
+              <Icon size={22} aria-hidden="true" />
+              <span>{label}</span>
+              <ChevronRight className="quick-access-arrow" size={18} aria-hidden="true" />
+            </a>
+          );
+        })}
+      </div>
+    </nav>
+  );
+}
+
 function Services() {
   const { copy, services } = useLocaleContent();
 
@@ -1726,9 +1852,9 @@ function Services() {
   );
 }
 
-function ServiceCard({ title, description, icon: Icon }) {
+function ServiceCard({ id, title, description, icon: Icon }) {
   return (
-    <article className="glass-card service-card">
+    <article className="glass-card service-card" id={id}>
       <CardBackgroundVideo />
       <div className="service-card-top">
         <div className="icon-tile" aria-hidden="true">
@@ -1758,6 +1884,7 @@ function Packages() {
         {packages.map((item) => (
           <article
             className={`package-card ${item.featured ? "featured" : ""}`}
+            id={item.id}
             key={item.name}
           >
             <CardBackgroundVideo />
@@ -2063,6 +2190,43 @@ function Contact() {
         </span>
       </footer>
     </section>
+  );
+}
+
+function FloatingWhatsApp() {
+  const { contactLinks, currentLocale } = useLocaleContent();
+  const [protectedAreaVisible, setProtectedAreaVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    const protectedAreas = [...document.querySelectorAll(".quick-access, #portfolio, #contact")];
+    if (!protectedAreas.length || !("IntersectionObserver" in window)) return undefined;
+    const visibleAreas = new Set();
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) visibleAreas.add(entry.target);
+          else visibleAreas.delete(entry.target);
+        });
+        setProtectedAreaVisible(visibleAreas.size > 0);
+      },
+      { threshold: 0.08 },
+    );
+
+    protectedAreas.forEach((area) => observer.observe(area));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <a
+      className={`floating-whatsapp${protectedAreaVisible ? " is-hidden" : ""}`}
+      href={contactLinks.whatsappBrazil}
+      target="_blank"
+      rel="noreferrer"
+      aria-label={currentLocale === "pt-BR" ? "Conversar com a Mediatrix Tech pelo WhatsApp" : "Chat with Mediatrix Tech on WhatsApp"}
+    >
+      <MessageCircle size={25} aria-hidden="true" />
+    </a>
   );
 }
 
