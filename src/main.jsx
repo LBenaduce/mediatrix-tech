@@ -17,6 +17,7 @@ import {
   X,
 } from "lucide-react";
 import { languages, rtlLanguages, translations } from "./translations";
+import { InternationalLanding, isInternationalRoute } from "./InternationalLanding";
 import "./styles.css";
 
 const navigationIds = ["top", "servicos", "portfolio", "empresa", "contato"];
@@ -390,4 +391,4 @@ function Footer({ copy }) {
   return <footer><div className="shell footer-inner"><a className="footer-brand" href="#top">Mediatrix Tech</a><p>Create. Connect. Convert.</p><div className="footer-signature"><p>© {currentYear} L. Benaduce · {copy.rights}</p><p className="footer-message" aria-hidden="true">/////////\\\\\\\\\\\\\\\\\\\</p></div></div></footer>;
 }
 
-createRoot(document.getElementById("root")).render(<App />);
+createRoot(document.getElementById("root")).render(isInternationalRoute() ? <InternationalLanding /> : <App />);
