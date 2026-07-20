@@ -26,7 +26,7 @@ const serviceIcons = { web: Code2, photo: ImageIcon, video: Clapperboard, audio:
 const projectMedia = [
   { media: "/agriclimate-pro-demo.mp4", poster: "/agriclimate-pro-poster.jpg", kind: "video" },
   { media: "/frasson-llc-demo-optimized.jpg", kind: "image" },
-  { media: "/event-qr-code-demo.mp4", poster: "/event-qr-code-poster.jpg", kind: "video" },
+  { media: "/event-qr-code-demo.mp4", nonPortugueseMedia: "/event-qr-code-demo-english.mp4", poster: "/event-qr-code-poster.jpg", kind: "video" },
   { media: "/cafeteria-demo-pt.png", nonPortugueseMedia: "/cafeteria-demo-en.png", kind: "image" },
 ];
 
