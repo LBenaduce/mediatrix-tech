@@ -24,9 +24,9 @@ const navigationIds = ["top", "servicos", "portfolio", "empresa", "contato"];
 const serviceIcons = { web: Code2, photo: ImageIcon, video: Clapperboard, audio: AudioLines };
 
 const projectMedia = [
-  { media: "/agriclimate-pro-demo-pt.mp4", nonPortugueseMedia: "/agriclimate-pro-demo.mp4", poster: "/agriclimate-pro-poster.jpg", kind: "video" },
+  { media: "/agriclimate-pro-demo-pt.mp4", nonPortugueseMedia: "/agriclimate-pro-demo.mp4", poster: "/agriclimate-pro-poster-pt.jpg", nonPortuguesePoster: "/agriclimate-pro-poster.jpg", kind: "video" },
   { media: "/frasson-farois-demo-pt.jpg", nonPortugueseMedia: "/frasson-llc-demo-optimized.jpg", kind: "image" },
-  { media: "/event-qr-code-demo.mp4", nonPortugueseMedia: "/event-qr-code-demo-english.mp4", poster: "/event-qr-code-poster.jpg", kind: "video" },
+  { media: "/event-qr-code-demo.mp4", nonPortugueseMedia: "/event-qr-code-demo-english.mp4", poster: "/event-qr-code-poster.jpg", nonPortuguesePoster: "/event-qr-code-poster-en.jpg", kind: "video" },
   { media: "/cafeteria-demo-pt.png", nonPortugueseMedia: "/cafeteria-demo-en.png", kind: "image" },
 ];
 
@@ -290,6 +290,7 @@ function Portfolio({ copy, language }) {
       ...project,
       ...projectAssets,
       media: language === "pt-BR" ? projectAssets.media : projectAssets.nonPortugueseMedia || projectAssets.media,
+      poster: language === "pt-BR" ? projectAssets.poster : projectAssets.nonPortuguesePoster || projectAssets.poster,
     };
   });
   return (
