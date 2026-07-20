@@ -27,7 +27,7 @@ const projectMedia = [
   { media: "/agriclimate-pro-demo.mp4", poster: "/agriclimate-pro-poster.jpg", kind: "video" },
   { media: "/frasson-llc-demo-optimized.jpg", kind: "image" },
   { media: "/event-qr-code-demo.mp4", poster: "/event-qr-code-poster.jpg", kind: "video" },
-  { media: "/cafeteria-demo.jpg", kind: "image" },
+  { media: "/cafeteria-demo.jpg", nonPortugueseMedia: "/cafeteria-demo-en.png", kind: "image" },
 ];
 
 const contactLinks = {
@@ -107,7 +107,7 @@ function App() {
         <TopBanner />
         <Hero copy={copy} />
         <Services copy={copy} onSelectService={setSelectedService} />
-        <Portfolio copy={copy} />
+        <Portfolio copy={copy} language={language} />
         <Company copy={copy} />
         <Contact copy={copy} selectedService={selectedService} onSelectService={setSelectedService} />
       </main>
@@ -283,8 +283,15 @@ function Services({ copy, onSelectService }) {
   );
 }
 
-function Portfolio({ copy }) {
-  const projects = copy.projects.map((project, index) => ({ ...project, ...projectMedia[index] }));
+function Portfolio({ copy, language }) {
+  const projects = copy.projects.map((project, index) => {
+    const projectAssets = projectMedia[index];
+    return {
+      ...project,
+      ...projectAssets,
+      media: language === "pt-BR" ? projectAssets.media : projectAssets.nonPortugueseMedia || projectAssets.media,
+    };
+  });
   return (
     <section className="section portfolio-section" id="portfolio" aria-labelledby="portfolio-title">
       <div className="shell">
