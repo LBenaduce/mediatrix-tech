@@ -117,7 +117,7 @@
 .care-terms h3 { margin-bottom: .7rem; }
 .care-terms ul { margin: 0; padding-left: 1.2rem; color: var(--intl-muted); line-height: 1.75; }
 
-.case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 .case-grid article { overflow: hidden; border: 1px solid var(--intl-line); border-radius: 17px; background: var(--intl-surface); }
 .case-grid img { width: 100%; aspect-ratio: 16/10; object-fit: cover; border-bottom: 1px solid var(--intl-line); }
 .case-grid article > div { padding: 1.25rem; }
