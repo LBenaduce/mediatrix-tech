@@ -2,9 +2,12 @@ import React from "react";
 import { createPortal } from "react-dom";
 import { Award, X } from "lucide-react";
 import { AchievementShare } from "./AchievementShare";
+import { formatEasterEggText, useEasterEggI18n } from "./EasterEggI18n";
 import { useAccessibleModal } from "./useAccessibleModal";
 
-export function AchievementModal({ achievementTitle, isOpen, onClose, returnFocusRef }) {
+export function AchievementModal({ achievementId, isOpen, onClose, returnFocusRef }) {
+  const { copy } = useEasterEggI18n();
+  const achievement = copy.achievements[achievementId];
   const dialogRef = React.useRef(null);
   const closeButtonRef = React.useRef(null);
   const titleId = React.useId();
@@ -41,15 +44,15 @@ export function AchievementModal({ achievementTitle, isOpen, onClose, returnFocu
           className="achievement-modal-close"
           type="button"
           onClick={onClose}
-          aria-label={`Close ${achievementTitle} achievement`}
+          aria-label={formatEasterEggText(copy.modal.close, { achievement: achievement.name })}
         >
           <X size={18} aria-hidden="true" />
         </button>
         <span className="achievement-modal-icon" aria-hidden="true"><Award size={28} /></span>
-        <p className="achievement-modal-eyebrow">Achievement unlocked</p>
-        <h2 id={titleId}>{achievementTitle}</h2>
-        <p id={descriptionId}>You found one of the hidden details on the Mediatrix Tech website.</p>
-        <AchievementShare achievementTitle={achievementTitle} />
+        <p className="achievement-modal-eyebrow">{copy.modal.eyebrow}</p>
+        <h2 id={titleId}>{achievement.name}</h2>
+        <p id={descriptionId}>{achievement.description}</p>
+        <AchievementShare achievementId={achievementId} />
       </section>
     </div>,
     document.body,

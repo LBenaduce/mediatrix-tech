@@ -367,3 +367,309 @@
   .not-found-object,
   .not-found-object:active { transform: none; }
 }
+
+.junk-drawer-entry {
+  width: fit-content;
+  min-height: 36px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  color: #8f9aa7;
+  font: inherit;
+  font-size: 0.76rem;
+  cursor: pointer;
+  transition: color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.junk-drawer-entry:hover,
+.junk-drawer-entry:focus-visible {
+  border-color: currentColor;
+  color: #c6d0da;
+  transform: translateX(2px);
+}
+
+.junk-drawer-entry:focus-visible,
+.junk-drawer-button:focus-visible,
+.junk-drawer-close:focus-visible,
+.junk-drawer-why:focus-visible,
+.junk-drawer-continue:focus-visible {
+  outline: 3px solid #2875a3;
+  outline-offset: 3px;
+}
+
+.junk-drawer-loading {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 1000;
+  margin: 0;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid #3a4854;
+  border-radius: 6px;
+  background: #f2eee5;
+  color: #1d2830;
+  font-size: 0.82rem;
+}
+
+.junk-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.65rem, 3vw, 2rem);
+  background: rgba(5, 10, 14, 0.78);
+  animation: achievement-fade 160ms ease-out both;
+}
+
+.junk-drawer-dialog {
+  width: min(100%, 1100px);
+  max-height: min(94dvh, 980px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  border: 1px solid #c7bdac;
+  border-radius: 10px;
+  background: #f3efe6;
+  color: #20272b;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+}
+
+.junk-drawer-dialog.is-warning { width: min(100%, 610px); }
+
+.junk-drawer-warning {
+  display: grid;
+  justify-items: start;
+  gap: 1rem;
+  padding: clamp(1.5rem, 5vw, 3.25rem);
+}
+
+.junk-drawer-warning-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid #9b8d78;
+  border-radius: 50%;
+  color: #2e6689;
+}
+
+.junk-drawer-warning h2,
+.junk-drawer-header h2,
+.junk-drawer-copy h3,
+.junk-drawer-achievement h3,
+.junk-drawer-empty h3 {
+  margin: 0;
+  color: #172128;
+  font-family: Inter, system-ui, sans-serif;
+  letter-spacing: -0.025em;
+}
+
+.junk-drawer-warning h2 { font-size: clamp(2rem, 7vw, 3.25rem); }
+.junk-drawer-warning p { max-width: 48ch; margin: 0; color: #4c555a; font-size: 1rem; }
+
+.junk-drawer-warning-actions,
+.junk-drawer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.junk-drawer-button {
+  display: inline-flex;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid #27343c;
+  border-radius: 6px;
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+  transition: transform 150ms ease, background 150ms ease;
+}
+
+.junk-drawer-button.primary { background: #243f51; color: #fff; }
+.junk-drawer-button.secondary { background: transparent; color: #24323a; }
+.junk-drawer-button:hover { transform: translateY(-1px); }
+
+.junk-drawer-viewer { padding: clamp(1rem, 3vw, 2rem); }
+
+.junk-drawer-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #cfc5b5;
+}
+
+.junk-drawer-header p {
+  margin: 0 0 0.35rem;
+  color: #657078;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.73rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.junk-drawer-header h2 { font-size: clamp(1.45rem, 4vw, 2.2rem); }
+
+.junk-drawer-close {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  place-items: center;
+  border: 1px solid #a99e8d;
+  border-radius: 50%;
+  background: transparent;
+  color: #23313a;
+  cursor: pointer;
+}
+
+.junk-drawer-close:disabled { cursor: wait; opacity: 0.5; }
+
+.junk-drawer-memory {
+  display: grid;
+  grid-template-columns: minmax(250px, 1.08fr) minmax(260px, 0.92fr);
+  gap: clamp(1.5rem, 5vw, 4rem);
+  align-items: center;
+  padding: clamp(1.3rem, 4vw, 3rem) 0;
+}
+
+.junk-drawer-figure {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0.55rem 0.55rem 0.7rem;
+  border: 1px solid #c9bead;
+  background: #fffdf8;
+  box-shadow: 0 9px 24px rgba(48, 40, 28, 0.11);
+  transform: rotate(-0.2deg);
+}
+
+.junk-drawer-figure img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  max-height: min(62dvh, 680px);
+  height: auto;
+  object-fit: contain;
+  background: #ded8cc;
+}
+
+.junk-drawer-figure figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+  padding: 0.7rem 0.2rem 0;
+  color: #677078;
+  font-size: 0.68rem;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+}
+
+.junk-drawer-memory.rarity-legendary { animation: junk-drawer-legendary 460ms ease-out both; }
+
+@keyframes junk-drawer-legendary {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.junk-drawer-copy { min-width: 0; }
+.junk-drawer-copy h3 { font-size: clamp(1.8rem, 4.8vw, 3.6rem); line-height: 1.03; }
+.junk-drawer-copy > p { margin: 1rem 0; color: #4e585e; font-size: clamp(0.98rem, 2vw, 1.13rem); }
+
+.junk-drawer-why,
+.junk-drawer-continue {
+  min-height: 42px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  color: #23648c;
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.junk-drawer-explanation {
+  padding-inline-start: 0.8rem;
+  border-inline-start: 2px solid #8ba4b4;
+  color: #49555c !important;
+  font-size: 0.88rem !important;
+  font-style: italic;
+}
+
+.junk-drawer-controls { margin-top: 1.4rem; }
+.junk-drawer-controls p { margin: 0; color: #667078; font-size: 0.77rem; }
+
+.junk-drawer-image-error,
+.junk-drawer-empty {
+  display: grid;
+  min-height: 240px;
+  place-items: center;
+  padding: 2rem;
+  border: 1px dashed #9e9484;
+  color: #555f64;
+  text-align: center;
+}
+
+.junk-drawer-empty { margin-top: 1.5rem; }
+.junk-drawer-empty p { margin: 0.5rem 0 0; }
+
+.junk-drawer-achievement {
+  margin-top: 0.25rem;
+  padding: clamp(1rem, 3vw, 1.5rem);
+  border: 1px solid #9bb0bb;
+  border-radius: 6px;
+  background: #e9edf0;
+}
+
+.junk-drawer-achievement > p:first-child {
+  margin: 0 0 0.25rem;
+  color: #2b6588;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.junk-drawer-achievement h3 { font-size: 1.35rem; }
+.junk-drawer-achievement > p:not(:first-child) { margin: 0.45rem 0 0.75rem; color: #4c575e; }
+.junk-drawer-achievement .achievement-share { margin-top: 1rem; border-top-color: #bac4c9; }
+.junk-drawer-achievement .achievement-share-note,
+.junk-drawer-achievement .achievement-share-feedback,
+.junk-drawer-achievement .achievement-share-fallback p,
+.junk-drawer-achievement .achievement-share-fallback small { color: #4e5c64 !important; }
+.junk-drawer-achievement .achievement-share-button.secondary { border-color: #81939d; background: transparent; color: #26353d; }
+.junk-drawer-achievement .achievement-share-fallback { border-color: #aab7bd; background: #f4f6f7; }
+
+@media (max-width: 720px) {
+  .junk-drawer-backdrop { place-items: end center; padding: 0; }
+  .junk-drawer-dialog { width: 100%; max-height: 96dvh; border-radius: 12px 12px 0 0; }
+  .junk-drawer-memory { grid-template-columns: 1fr; align-items: start; gap: 1.35rem; }
+  .junk-drawer-figure img { max-height: 48dvh; }
+  .junk-drawer-warning-actions,
+  .junk-drawer-controls { display: grid; width: 100%; }
+  .junk-drawer-button { width: 100%; }
+}
+
+@media (max-height: 560px) and (orientation: landscape) {
+  .junk-drawer-dialog { max-height: 98dvh; }
+  .junk-drawer-memory { grid-template-columns: minmax(220px, 0.8fr) minmax(260px, 1.2fr); align-items: start; padding-top: 1rem; }
+  .junk-drawer-figure img { max-height: 58dvh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .junk-drawer-backdrop,
+  .junk-drawer-memory.rarity-legendary { animation: none; }
+  .junk-drawer-entry:hover,
+  .junk-drawer-entry:focus-visible,
+  .junk-drawer-button:hover { transform: none; }
+}

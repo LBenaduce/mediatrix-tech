@@ -3,6 +3,9 @@ import { ArrowRight, Check, ChevronDown, ExternalLink, Mail, MessageCircle, Phon
 import { brazilWebsiteCarePlans, brazilWebsiteCareTerms, formatPrice, getPricing, introductoryPricing } from "./introductoryPricing";
 import { getAttribution, initializeTracking, trackEvent, trackLink } from "./analytics";
 import { SecretLogo } from "./easter-eggs/SecretLogo";
+import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
+import { getEasterEggCopy } from "./translations";
+import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
 import "./international.css";
 
 const routeMap = {
@@ -68,6 +71,7 @@ export function InternationalLanding() {
   const [marketKey, setMarketKey] = React.useState(route.region);
   const region = React.useMemo(() => getPricing(marketKey), [marketKey]);
   const isPortuguese = route.language === "pt";
+  const locale = isPortuguese ? "pt-BR" : "en";
   const landingPage = path;
   const [selectedPackage, setSelectedPackage] = React.useState("");
   const price = (amount) => isPortuguese && region.currency === "USD" ? `US$ ${amount.toLocaleString("pt-BR")}` : formatPrice(region, amount);
@@ -83,6 +87,10 @@ export function InternationalLanding() {
 
   useSectionView("pricing", "pricing_section_view");
 
+  React.useEffect(() => {
+    printConsoleGreeting(getEasterEggCopy(locale).console);
+  }, [locale]);
+
   const choosePackage = (pkg) => {
     setSelectedPackage(pkg.id);
     trackEvent("package_selected", { package_name: pkg.name, starting_price: region[pkg.priceKey], currency: region.currency, market: region.market, estimated_budget: "", landing_page: landingPage, country_target: region.countryTarget });
@@ -90,6 +98,7 @@ export function InternationalLanding() {
   };
 
   return (
+    <EasterEggI18nProvider locale={locale}>
     <div className="intl-page">
       <header className="intl-header">
         <SecretLogo className="intl-brand" href="#top" ariaLabel="Mediatrix Tech — top" imageSize={42} />
@@ -149,6 +158,7 @@ export function InternationalLanding() {
       <a className="mobile-sticky" href="#quote-form" onClick={() => trackEvent("primary_cta_click", { landing_page: landingPage })}>{isPortuguese ? "Solicitar orçamento" : `Start from ${price(region.starter)}`}<ArrowRight size={17} /></a>
       <footer className="intl-footer"><div className="intl-shell"><strong>Mediatrix Tech</strong><span>Create. Connect. Convert.</span><div><a href="mailto:mediatrixtech@proton.me" onClick={() => trackLink("email_click")}><Mail size={17} />Email</a><a href="https://wa.me/13059920833" onClick={() => trackLink("whatsapp_click")}><MessageCircle size={17} />WhatsApp</a><a href="tel:+13059920833" onClick={() => trackLink("phone_click")}><Phone size={17} />Phone</a></div></div></footer>
     </div>
+    </EasterEggI18nProvider>
   );
 }
 

@@ -16,16 +16,18 @@ import {
   Send,
   X,
 } from "lucide-react";
-import { languages, rtlLanguages, translations } from "./translations";
+import { getEasterEggCopy, languages, rtlLanguages, translations } from "./translations";
 import { InternationalLanding, isInternationalRoute } from "./InternationalLanding";
 import { NotFound } from "./easter-eggs/NotFound";
 import { SecretLogo } from "./easter-eggs/SecretLogo";
 import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
+import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
 import "./styles.css";
 import "./easter-eggs/easter-eggs.css";
 
 const navigationIds = ["top", "servicos", "portfolio", "empresa", "contato"];
 const serviceIcons = { web: Code2, photo: ImageIcon, video: Clapperboard, audio: AudioLines };
+const DigitalJunkDrawer = React.lazy(() => import("./easter-eggs/DigitalJunkDrawer"));
 
 const projectMedia = [
   { media: "/agriclimate-pro-demo-pt.mp4", nonPortugueseMedia: "/agriclimate-pro-demo.mp4", poster: "/agriclimate-pro-poster-pt.jpg", nonPortuguesePoster: "/agriclimate-pro-poster.jpg", kind: "video" },
@@ -98,8 +100,12 @@ function App() {
     window.localStorage.setItem("mediatrix-language", language);
   }, [copy.metaDescription, language]);
 
+  React.useEffect(() => {
+    printConsoleGreeting(copy.easterEggs.console);
+  }, [copy.easterEggs.console]);
+
   return (
-    <>
+    <EasterEggI18nProvider locale={language}>
       <a className="skip-link" href="#conteudo">{copy.skip}</a>
       <Header
         activeSection={activeSection}
@@ -116,7 +122,7 @@ function App() {
         <Contact copy={copy} selectedService={selectedService} onSelectService={setSelectedService} />
       </main>
       <Footer copy={copy} />
-    </>
+    </EasterEggI18nProvider>
   );
 }
 
@@ -402,8 +408,29 @@ function Contact({ copy, selectedService, onSelectService }) {
 
 function Footer({ copy }) {
   const currentYear = new Date().getFullYear();
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const drawerButtonRef = React.useRef(null);
+  const drawerCopy = copy.easterEggs.digitalJunkDrawer;
+  const closeDrawer = React.useCallback(() => setDrawerOpen(false), []);
 
-  return <footer><div className="shell footer-inner"><a className="footer-brand" href="#top">Mediatrix Tech</a><p>Create. Connect. Convert.</p><div className="footer-signature"><p>© {currentYear} L. Benaduce · {copy.rights}</p><p className="footer-message" aria-hidden="true">/////////\\\\\\\\\\\\\\\\\\\</p></div></div></footer>;
+  return (
+    <footer>
+      <div className="shell footer-inner">
+        <a className="footer-brand" href="#top">Mediatrix Tech</a>
+        <p>Create. Connect. Convert.</p>
+        <div className="footer-signature">
+          <p>© {currentYear} L. Benaduce · {copy.rights}</p>
+          <button ref={drawerButtonRef} className="junk-drawer-entry" type="button" onClick={() => setDrawerOpen(true)}>{drawerCopy.entryButton}</button>
+          <p className="footer-message" aria-hidden="true">/////////\\\\\\\\\\\\\\\\\\\</p>
+        </div>
+      </div>
+      {drawerOpen && (
+        <React.Suspense fallback={<p className="junk-drawer-loading" role="status">{drawerCopy.loading}</p>}>
+          <DigitalJunkDrawer isOpen={drawerOpen} onClose={closeDrawer} returnFocusRef={drawerButtonRef} />
+        </React.Suspense>
+      )}
+    </footer>
+  );
 }
 
 function isHomeRoute(pathname = window.location.pathname) {
@@ -411,11 +438,21 @@ function isHomeRoute(pathname = window.location.pathname) {
   return normalizedPath === "/" || normalizedPath === "/index.html";
 }
 
+function LocalizedNotFound() {
+  const [language] = React.useState(getInitialLanguage);
+  const easterEggCopy = React.useMemo(() => getEasterEggCopy(language), [language]);
+
+  React.useEffect(() => {
+    printConsoleGreeting(easterEggCopy.console);
+  }, [easterEggCopy.console]);
+
+  return <EasterEggI18nProvider locale={language}><NotFound /></EasterEggI18nProvider>;
+}
+
 function CurrentRoute() {
   if (isInternationalRoute()) return <InternationalLanding />;
   if (isHomeRoute()) return <App />;
-  return <NotFound />;
+  return <LocalizedNotFound />;
 }
 
-printConsoleGreeting();
 createRoot(document.getElementById("root")).render(<CurrentRoute />);

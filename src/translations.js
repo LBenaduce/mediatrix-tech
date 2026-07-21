@@ -1,3 +1,5 @@
+import { digitalJunkDrawerTranslations } from "./digitalJunkDrawerTranslations.js";
+
 export const languages = [
   ["en", "EN", "English"],
   ["pt-BR", "PT", "Português"],
@@ -11,8 +13,86 @@ export const languages = [
 
 export const rtlLanguages = new Set(["ar"]);
 
+const easterEggTranslations = {
+  en: {
+    common: { achievementUnlocked: "Achievement unlocked: {achievement}" },
+    achievements: {
+      digitalExplorer: { name: "Digital Explorer", description: "You discovered something that was not in the menu." },
+      bugHunter: { name: "Bug Hunter", description: "You tracked down an unstable object on the lost page." },
+    },
+    lab: { title: "MEDIATRIX LAB", accessGranted: "> access granted", lead: "Experimental digital solutions.", close: "Close" },
+    modal: { eyebrow: "Achievement unlocked", close: "Close the {achievement} achievement" },
+    share: {
+      regionLabel: "Share the {achievement} achievement", shareAria: "Share the {achievement} achievement on an Instagram Story",
+      creating: "Creating Story…", shareButton: "Share on Instagram Story", copyAria: "Copy the suggested Instagram Story text", copied: "Copied!", copyButton: "Copy Story text",
+      note: "Choose Instagram from your device’s sharing menu and complete the Story manually.", assetUnavailable: "The Story image is temporarily unavailable. Please try again.",
+      copySuccess: "Story text copied.", copyFailure: "We couldn’t copy the Story text automatically. Please try again.", shareCompleted: "Your device completed the share action. Story publication remains under your control.",
+      shareCanceled: "Sharing canceled. Nothing was published automatically.", createFailure: "We couldn’t create the Story image. Please try again.",
+      fallbackInstructions: "Story image saved. Open Instagram, create a new Story, select the image, and add @mediatrixtech as a mention.",
+      fallbackCopyFailure: "The Story text could not be copied automatically. Use “Copy Story text” above.", instagramAria: "Open @mediatrixtech on Instagram in a new tab", openInstagram: "Open @mediatrixtech",
+      dialogTitle: "Mediatrix Tech — {achievement}",
+    },
+    story: { discovery: "I discovered a secret on the Mediatrix Tech website!", question: "Can you find it too?", achievementUnlocked: "ACHIEVEMENT UNLOCKED", secretFound: "> SECRET FOUND_", tagline: "Create. Connect. Convert." },
+    notFound: { pageTitle: "404 | Mediatrix Tech", homeAria: "Mediatrix Tech homepage", code: "HTTP / LOST_SIGNAL", message: "This page escaped into another dimension.", returnHome: "Return to homepage", objectAria: "Interactive code object. Activate five times to investigate.", objectHint: "unstable object" },
+    console: "You opened the console. Good.\nCurious people build better things.\nCreate. Connect. Convert.",
+  },
+  "pt-BR": {
+    common: { achievementUnlocked: "Conquista desbloqueada: {achievement}" },
+    achievements: { digitalExplorer: { name: "Explorador Digital", description: "Você descobriu algo que não estava no menu." }, bugHunter: { name: "Caçador de Bugs", description: "Você encontrou um objeto instável na página perdida." } },
+    lab: { title: "LABORATÓRIO MEDIATRIX", accessGranted: "> acesso concedido", lead: "Soluções digitais experimentais.", close: "Fechar" },
+    modal: { eyebrow: "Conquista desbloqueada", close: "Fechar a conquista {achievement}" },
+    share: { regionLabel: "Compartilhar a conquista {achievement}", shareAria: "Compartilhar a conquista {achievement} em um Story do Instagram", creating: "Criando Story…", shareButton: "Compartilhar no Story do Instagram", copyAria: "Copiar o texto sugerido para o Story do Instagram", copied: "Copiado!", copyButton: "Copiar texto do Story", note: "Escolha o Instagram no menu de compartilhamento do dispositivo e conclua o Story manualmente.", assetUnavailable: "A imagem do Story está temporariamente indisponível. Tente novamente.", copySuccess: "Texto do Story copiado.", copyFailure: "Não foi possível copiar o texto do Story automaticamente. Tente novamente.", shareCompleted: "Seu dispositivo concluiu a ação de compartilhamento. A publicação do Story continua sob seu controle.", shareCanceled: "Compartilhamento cancelado. Nada foi publicado automaticamente.", createFailure: "Não foi possível criar a imagem do Story. Tente novamente.", fallbackInstructions: "Imagem do Story salva. Abra o Instagram, crie um novo Story, selecione a imagem e adicione @mediatrixtech como menção.", fallbackCopyFailure: "O texto do Story não pôde ser copiado automaticamente. Use “Copiar texto do Story” acima.", instagramAria: "Abrir @mediatrixtech no Instagram em uma nova aba", openInstagram: "Abrir @mediatrixtech", dialogTitle: "Mediatrix Tech — {achievement}" },
+    story: { discovery: "Descobri um segredo no site da Mediatrix Tech!", question: "Você também consegue encontrá-lo?", achievementUnlocked: "CONQUISTA DESBLOQUEADA", secretFound: "> SEGREDO ENCONTRADO_", tagline: "Crie. Conecte. Converta." },
+    notFound: { pageTitle: "404 | Mediatrix Tech", homeAria: "Página inicial da Mediatrix Tech", code: "HTTP / SINAL_PERDIDO", message: "Esta página escapou para outra dimensão.", returnHome: "Voltar à página inicial", objectAria: "Objeto de código interativo. Ative cinco vezes para investigar.", objectHint: "objeto instável" },
+    console: "Você abriu o console. Ótimo.\nPessoas curiosas criam coisas melhores.\nCrie. Conecte. Converta.",
+  },
+  es: {
+    common: { achievementUnlocked: "Logro desbloqueado: {achievement}" }, achievements: { digitalExplorer: { name: "Explorador digital", description: "Descubriste algo que no estaba en el menú." }, bugHunter: { name: "Cazador de errores", description: "Rastreaste un objeto inestable en la página perdida." } },
+    lab: { title: "LABORATORIO MEDIATRIX", accessGranted: "> acceso concedido", lead: "Soluciones digitales experimentales.", close: "Cerrar" }, modal: { eyebrow: "Logro desbloqueado", close: "Cerrar el logro {achievement}" },
+    share: { regionLabel: "Compartir el logro {achievement}", shareAria: "Compartir el logro {achievement} en una historia de Instagram", creating: "Creando historia…", shareButton: "Compartir en una historia de Instagram", copyAria: "Copiar el texto sugerido para la historia de Instagram", copied: "¡Copiado!", copyButton: "Copiar texto de la historia", note: "Elige Instagram en el menú para compartir de tu dispositivo y completa la historia manualmente.", assetUnavailable: "La imagen de la historia no está disponible temporalmente. Inténtalo de nuevo.", copySuccess: "Texto de la historia copiado.", copyFailure: "No pudimos copiar automáticamente el texto de la historia. Inténtalo de nuevo.", shareCompleted: "Tu dispositivo completó la acción de compartir. Tú mantienes el control de la publicación.", shareCanceled: "Se canceló el uso compartido. No se publicó nada automáticamente.", createFailure: "No pudimos crear la imagen de la historia. Inténtalo de nuevo.", fallbackInstructions: "Imagen de la historia guardada. Abre Instagram, crea una historia nueva, selecciona la imagen y añade @mediatrixtech como mención.", fallbackCopyFailure: "El texto de la historia no pudo copiarse automáticamente. Usa «Copiar texto de la historia» arriba.", instagramAria: "Abrir @mediatrixtech en Instagram en una pestaña nueva", openInstagram: "Abrir @mediatrixtech", dialogTitle: "Mediatrix Tech — {achievement}" },
+    story: { discovery: "¡Descubrí un secreto en el sitio web de Mediatrix Tech!", question: "¿Tú también puedes encontrarlo?", achievementUnlocked: "LOGRO DESBLOQUEADO", secretFound: "> SECRETO ENCONTRADO_" }, notFound: { pageTitle: "404 | Mediatrix Tech", homeAria: "Página de inicio de Mediatrix Tech", code: "HTTP / SEÑAL_PERDIDA", message: "Esta página escapó a otra dimensión.", returnHome: "Volver al inicio", objectAria: "Objeto de código interactivo. Actívalo cinco veces para investigar.", objectHint: "objeto inestable" }, console: "Abriste la consola. Bien.\nLas personas curiosas crean cosas mejores.\nCrea. Conecta. Convierte.",
+  },
+  fr: {
+    common: { achievementUnlocked: "Succès débloqué : {achievement}" }, achievements: { digitalExplorer: { name: "Explorateur numérique", description: "Vous avez découvert quelque chose qui ne figurait pas dans le menu." }, bugHunter: { name: "Chasseur de bugs", description: "Vous avez repéré un objet instable sur la page perdue." } }, lab: { title: "LABORATOIRE MEDIATRIX", accessGranted: "> accès autorisé", lead: "Solutions numériques expérimentales.", close: "Fermer" }, modal: { eyebrow: "Succès débloqué", close: "Fermer le succès {achievement}" },
+    share: { regionLabel: "Partager le succès {achievement}", shareAria: "Partager le succès {achievement} dans une story Instagram", creating: "Création de la story…", shareButton: "Partager dans une story Instagram", copyAria: "Copier le texte suggéré pour la story Instagram", copied: "Copié !", copyButton: "Copier le texte de la story", note: "Choisissez Instagram dans le menu de partage de votre appareil et terminez la story manuellement.", assetUnavailable: "L’image de la story est temporairement indisponible. Réessayez.", copySuccess: "Texte de la story copié.", copyFailure: "Impossible de copier automatiquement le texte de la story. Réessayez.", shareCompleted: "Votre appareil a terminé l’action de partage. Vous gardez le contrôle de la publication.", shareCanceled: "Partage annulé. Rien n’a été publié automatiquement.", createFailure: "Impossible de créer l’image de la story. Réessayez.", fallbackInstructions: "Image de la story enregistrée. Ouvrez Instagram, créez une nouvelle story, sélectionnez l’image et ajoutez la mention @mediatrixtech.", fallbackCopyFailure: "Le texte de la story n’a pas pu être copié automatiquement. Utilisez « Copier le texte de la story » ci-dessus.", instagramAria: "Ouvrir @mediatrixtech sur Instagram dans un nouvel onglet", openInstagram: "Ouvrir @mediatrixtech", dialogTitle: "Mediatrix Tech — {achievement}" },
+    story: { discovery: "J’ai découvert un secret sur le site Mediatrix Tech !", question: "Saurez-vous le trouver aussi ?", achievementUnlocked: "SUCCÈS DÉBLOQUÉ", secretFound: "> SECRET TROUVÉ_" }, notFound: { pageTitle: "404 | Mediatrix Tech", homeAria: "Accueil de Mediatrix Tech", code: "HTTP / SIGNAL_PERDU", message: "Cette page s’est échappée dans une autre dimension.", returnHome: "Retour à l’accueil", objectAria: "Objet de code interactif. Activez-le cinq fois pour enquêter.", objectHint: "objet instable" }, console: "Vous avez ouvert la console. Bien.\nLes personnes curieuses créent de meilleures choses.\nCréez. Connectez. Convertissez.",
+  },
+  de: {
+    common: { achievementUnlocked: "Erfolg freigeschaltet: {achievement}" }, achievements: { digitalExplorer: { name: "Digitaler Entdecker", description: "Sie haben etwas entdeckt, das nicht im Menü stand." }, bugHunter: { name: "Bug-Jäger", description: "Sie haben auf der verlorenen Seite ein instabiles Objekt aufgespürt." } }, lab: { title: "MEDIATRIX LABOR", accessGranted: "> Zugriff gewährt", lead: "Experimentelle digitale Lösungen.", close: "Schließen" }, modal: { eyebrow: "Erfolg freigeschaltet", close: "Erfolg {achievement} schließen" },
+    share: { regionLabel: "Erfolg {achievement} teilen", shareAria: "Erfolg {achievement} in einer Instagram-Story teilen", creating: "Story wird erstellt…", shareButton: "In Instagram-Story teilen", copyAria: "Vorgeschlagenen Instagram-Story-Text kopieren", copied: "Kopiert!", copyButton: "Story-Text kopieren", note: "Wählen Sie Instagram im Teilen-Menü Ihres Geräts und stellen Sie die Story manuell fertig.", assetUnavailable: "Das Story-Bild ist vorübergehend nicht verfügbar. Bitte versuchen Sie es erneut.", copySuccess: "Story-Text kopiert.", copyFailure: "Der Story-Text konnte nicht automatisch kopiert werden. Bitte versuchen Sie es erneut.", shareCompleted: "Ihr Gerät hat den Teilen-Vorgang abgeschlossen. Die Veröffentlichung bleibt unter Ihrer Kontrolle.", shareCanceled: "Teilen abgebrochen. Es wurde nichts automatisch veröffentlicht.", createFailure: "Das Story-Bild konnte nicht erstellt werden. Bitte versuchen Sie es erneut.", fallbackInstructions: "Story-Bild gespeichert. Öffnen Sie Instagram, erstellen Sie eine neue Story, wählen Sie das Bild und erwähnen Sie @mediatrixtech.", fallbackCopyFailure: "Der Story-Text konnte nicht automatisch kopiert werden. Verwenden Sie oben „Story-Text kopieren“.", instagramAria: "@mediatrixtech auf Instagram in einem neuen Tab öffnen", openInstagram: "@mediatrixtech öffnen", dialogTitle: "Mediatrix Tech — {achievement}" },
+    story: { discovery: "Ich habe ein Geheimnis auf der Mediatrix Tech Website entdeckt!", question: "Können Sie es auch finden?", achievementUnlocked: "ERFOLG FREIGESCHALTET", secretFound: "> GEHEIMNIS GEFUNDEN_" }, notFound: { pageTitle: "404 | Mediatrix Tech", homeAria: "Startseite von Mediatrix Tech", code: "HTTP / SIGNAL_VERLOREN", message: "Diese Seite ist in eine andere Dimension entkommen.", returnHome: "Zurück zur Startseite", objectAria: "Interaktives Codeobjekt. Fünfmal aktivieren, um es zu untersuchen.", objectHint: "instabiles Objekt" }, console: "Sie haben die Konsole geöffnet. Gut.\nNeugierige Menschen erschaffen bessere Dinge.\nErschaffen. Verbinden. Verwandeln.",
+  },
+  "zh-CN": {
+    common: { achievementUnlocked: "已解锁成就：{achievement}" }, achievements: { digitalExplorer: { name: "数字探索者", description: "你发现了一个菜单中没有的内容。" }, bugHunter: { name: "漏洞猎人", description: "你在迷失页面找到了一个不稳定对象。" } }, lab: { title: "MEDIATRIX 实验室", accessGranted: "> 已获准访问", lead: "实验性数字解决方案。", close: "关闭" }, modal: { eyebrow: "成就已解锁", close: "关闭“{achievement}”成就" },
+    share: { regionLabel: "分享“{achievement}”成就", shareAria: "在 Instagram 快拍中分享“{achievement}”成就", creating: "正在创建快拍…", shareButton: "分享到 Instagram 快拍", copyAria: "复制建议的 Instagram 快拍文字", copied: "已复制！", copyButton: "复制快拍文字", note: "请从设备的分享菜单中选择 Instagram，并手动完成快拍。", assetUnavailable: "快拍图片暂时不可用，请重试。", copySuccess: "快拍文字已复制。", copyFailure: "无法自动复制快拍文字，请重试。", shareCompleted: "你的设备已完成分享操作，是否发布快拍仍由你决定。", shareCanceled: "已取消分享，未自动发布任何内容。", createFailure: "无法创建快拍图片，请重试。", fallbackInstructions: "快拍图片已保存。请打开 Instagram，创建新快拍，选择图片并添加 @mediatrixtech 提及。", fallbackCopyFailure: "无法自动复制快拍文字，请使用上方的“复制快拍文字”。", instagramAria: "在新标签页中打开 Instagram 上的 @mediatrixtech", openInstagram: "打开 @mediatrixtech", dialogTitle: "Mediatrix Tech — {achievement}" },
+    story: { discovery: "我在 Mediatrix Tech 网站发现了一个隐藏彩蛋！", question: "你也能找到它吗？", achievementUnlocked: "成就已解锁", secretFound: "> 已发现秘密_" }, notFound: { pageTitle: "404 | Mediatrix Tech", homeAria: "Mediatrix Tech 首页", code: "HTTP / 信号丢失", message: "这个页面逃到了另一个维度。", returnHome: "返回首页", objectAria: "交互式代码对象。激活五次即可调查。", objectHint: "不稳定对象" }, console: "你打开了控制台。很好。\n好奇的人会创造更好的作品。\n创造。连接。转化。",
+  },
+  hi: {
+    common: { achievementUnlocked: "उपलब्धि अनलॉक हुई: {achievement}" }, achievements: { digitalExplorer: { name: "डिजिटल खोजकर्ता", description: "आपने कुछ ऐसा खोजा जो मेन्यू में नहीं था।" }, bugHunter: { name: "बग हंटर", description: "आपने खोए हुए पेज पर एक अस्थिर ऑब्जेक्ट ढूँढ लिया।" } }, lab: { title: "MEDIATRIX प्रयोगशाला", accessGranted: "> पहुँच स्वीकृत", lead: "प्रयोगात्मक डिजिटल समाधान।", close: "बंद करें" }, modal: { eyebrow: "उपलब्धि अनलॉक हुई", close: "{achievement} उपलब्धि बंद करें" },
+    share: { regionLabel: "{achievement} उपलब्धि साझा करें", shareAria: "{achievement} उपलब्धि Instagram Story पर साझा करें", creating: "Story बनाई जा रही है…", shareButton: "Instagram Story पर साझा करें", copyAria: "सुझाया गया Instagram Story टेक्स्ट कॉपी करें", copied: "कॉपी हो गया!", copyButton: "Story टेक्स्ट कॉपी करें", note: "अपने डिवाइस के शेयर मेन्यू से Instagram चुनें और Story को स्वयं पूरा करें।", assetUnavailable: "Story की इमेज अभी उपलब्ध नहीं है। फिर से कोशिश करें।", copySuccess: "Story टेक्स्ट कॉपी हो गया।", copyFailure: "Story टेक्स्ट अपने आप कॉपी नहीं हो सका। फिर से कोशिश करें।", shareCompleted: "आपके डिवाइस ने शेयर कार्रवाई पूरी कर दी। Story प्रकाशित करना आपके नियंत्रण में है।", shareCanceled: "शेयर करना रद्द हुआ। अपने आप कुछ प्रकाशित नहीं हुआ।", createFailure: "Story इमेज नहीं बनाई जा सकी। फिर से कोशिश करें।", fallbackInstructions: "Story इमेज सेव हो गई। Instagram खोलें, नई Story बनाएँ, इमेज चुनें और @mediatrixtech को मेंशन करें।", fallbackCopyFailure: "Story टेक्स्ट अपने आप कॉपी नहीं हो सका। ऊपर “Story टेक्स्ट कॉपी करें” इस्तेमाल करें।", instagramAria: "Instagram पर @mediatrixtech को नए टैब में खोलें", openInstagram: "@mediatrixtech खोलें", dialogTitle: "Mediatrix Tech — {achievement}" },
+    story: { discovery: "मैंने Mediatrix Tech की वेबसाइट पर एक रहस्य खोजा!", question: "क्या आप भी इसे खोज सकते हैं?", achievementUnlocked: "उपलब्धि अनलॉक हुई", secretFound: "> रहस्य मिला_" }, notFound: { pageTitle: "404 | Mediatrix Tech", homeAria: "Mediatrix Tech होमपेज", code: "HTTP / सिग्नल_खोया", message: "यह पेज दूसरी दुनिया में भाग गया।", returnHome: "होमपेज पर लौटें", objectAria: "इंटरैक्टिव कोड ऑब्जेक्ट। जाँचने के लिए पाँच बार सक्रिय करें।", objectHint: "अस्थिर ऑब्जेक्ट" }, console: "आपने कंसोल खोला। बढ़िया।\nजिज्ञासु लोग बेहतर चीज़ें बनाते हैं।\nबनाएँ। जोड़ें। बदलें।",
+  },
+  ar: {
+    common: { achievementUnlocked: "تم فتح الإنجاز: {achievement}" }, achievements: { digitalExplorer: { name: "المستكشف الرقمي", description: "لقد اكتشفت شيئًا لم يكن موجودًا في القائمة." }, bugHunter: { name: "صياد الأخطاء", description: "لقد تعقبت عنصرًا غير مستقر في الصفحة المفقودة." } }, lab: { title: "مختبر MEDIATRIX", accessGranted: "> تم منح الوصول", lead: "حلول رقمية تجريبية.", close: "إغلاق" }, modal: { eyebrow: "تم فتح الإنجاز", close: "إغلاق إنجاز {achievement}" },
+    share: { regionLabel: "مشاركة إنجاز {achievement}", shareAria: "مشاركة إنجاز {achievement} في قصة Instagram", creating: "جارٍ إنشاء القصة…", shareButton: "المشاركة في قصة Instagram", copyAria: "نسخ النص المقترح لقصة Instagram", copied: "تم النسخ!", copyButton: "نسخ نص القصة", note: "اختر Instagram من قائمة المشاركة في جهازك وأكمل القصة يدويًا.", assetUnavailable: "صورة القصة غير متاحة مؤقتًا. حاول مرة أخرى.", copySuccess: "تم نسخ نص القصة.", copyFailure: "تعذر نسخ نص القصة تلقائيًا. حاول مرة أخرى.", shareCompleted: "أكمل جهازك إجراء المشاركة. يظل نشر القصة تحت سيطرتك.", shareCanceled: "أُلغيت المشاركة. لم يُنشر شيء تلقائيًا.", createFailure: "تعذر إنشاء صورة القصة. حاول مرة أخرى.", fallbackInstructions: "تم حفظ صورة القصة. افتح Instagram وأنشئ قصة جديدة واختر الصورة وأضف @mediatrixtech كإشارة.", fallbackCopyFailure: "تعذر نسخ نص القصة تلقائيًا. استخدم «نسخ نص القصة» أعلاه.", instagramAria: "فتح @mediatrixtech على Instagram في علامة تبويب جديدة", openInstagram: "فتح @mediatrixtech", dialogTitle: "Mediatrix Tech — {achievement}" },
+    story: { discovery: "لقد اكتشفت سراً في موقع Mediatrix Tech!", question: "هل يمكنك العثور عليه أيضًا؟", achievementUnlocked: "تم فتح الإنجاز", secretFound: "> تم العثور على السر_" }, notFound: { pageTitle: "404 | Mediatrix Tech", homeAria: "الصفحة الرئيسية لـ Mediatrix Tech", code: "HTTP / إشارة_مفقودة", message: "هربت هذه الصفحة إلى بُعد آخر.", returnHome: "العودة إلى الصفحة الرئيسية", objectAria: "عنصر برمجي تفاعلي. فعّله خمس مرات للتحقيق.", objectHint: "عنصر غير مستقر" }, console: "لقد فتحت وحدة التحكم. جيد.\nالأشخاص الفضوليون يصنعون أشياء أفضل.\nابتكر. تواصل. حوّل.",
+  },
+};
+
+easterEggTranslations.es.story.tagline = "Crea. Conecta. Convierte.";
+easterEggTranslations.fr.story.tagline = "Créez. Connectez. Convertissez.";
+easterEggTranslations.de.story.tagline = "Erschaffen. Verbinden. Verwandeln.";
+easterEggTranslations["zh-CN"].story.tagline = "创造。连接。转化。";
+easterEggTranslations.hi.story.tagline = "बनाएँ। जोड़ें। बदलें।";
+easterEggTranslations.ar.story.tagline = "ابتكر. تواصل. حوّل.";
+
+Object.entries(digitalJunkDrawerTranslations).forEach(([locale, copy]) => {
+  easterEggTranslations[locale].digitalJunkDrawer = copy;
+});
+
 export const translations = {
   "pt-BR": {
+    easterEggs: easterEggTranslations["pt-BR"],
     metaDescription: "A Mediatrix Tech cria sites e conteúdos visuais profissionais para negócios em todo o mundo.",
     skip: "Pular para o conteúdo",
     nav: ["Início", "Serviços", "Portfólio", "Empresa", "Contato"],
@@ -64,6 +144,7 @@ export const translations = {
   },
 
   en: {
+    easterEggs: easterEggTranslations.en,
     metaDescription: "Mediatrix Tech creates professional websites and visual content for businesses worldwide.",
     skip: "Skip to content",
     nav: ["Home", "Services", "Portfolio", "Company", "Contact"],
@@ -98,6 +179,7 @@ export const translations = {
   },
 
   es: {
+    easterEggs: easterEggTranslations.es,
     metaDescription: "Mediatrix Tech crea sitios web y contenido visual profesional para empresas de todo el mundo.",
     skip: "Saltar al contenido",
     nav: ["Inicio", "Servicios", "Portafolio", "Empresa", "Contacto"],
@@ -118,6 +200,7 @@ export const translations = {
   },
 
   fr: {
+    easterEggs: easterEggTranslations.fr,
     metaDescription: "Mediatrix Tech crée des sites web et des contenus visuels professionnels pour les entreprises du monde entier.",
     skip: "Aller au contenu", nav: ["Accueil", "Services", "Portfolio", "Entreprise", "Contact"], primaryNavigation: "Navigation principale", mobileNavigation: "Navigation mobile", language: "Langue", openMenu: "Ouvrir le menu", closeMenu: "Fermer le menu", quote: "Demander un devis",
     hero: { logoAlt: "Logo de Mediatrix Tech", title: "La technologie et le contenu qui font avancer votre marque.", description: "Nous créons des sites web et des contenus visuels professionnels pour les entreprises du monde entier.", services: "Voir les services" },
@@ -131,6 +214,7 @@ export const translations = {
   },
 
   de: {
+    easterEggs: easterEggTranslations.de,
     metaDescription: "Mediatrix Tech erstellt professionelle Websites und visuelle Inhalte für Unternehmen weltweit.",
     skip: "Zum Inhalt springen", nav: ["Start", "Leistungen", "Portfolio", "Unternehmen", "Kontakt"], primaryNavigation: "Hauptnavigation", mobileNavigation: "Mobile Navigation", language: "Sprache", openMenu: "Menü öffnen", closeMenu: "Menü schließen", quote: "Angebot anfordern",
     hero: { logoAlt: "Logo von Mediatrix Tech", title: "Technologie und Inhalte, die Ihre Marke voranbringen.", description: "Wir erstellen professionelle Websites und visuelle Inhalte für Unternehmen weltweit.", services: "Leistungen ansehen" },
@@ -144,6 +228,7 @@ export const translations = {
   },
 
   "zh-CN": {
+    easterEggs: easterEggTranslations["zh-CN"],
     metaDescription: "Mediatrix Tech 为全球企业打造专业网站和视觉内容。",
     skip: "跳到主要内容", nav: ["首页", "服务", "作品集", "公司", "联系"], primaryNavigation: "主导航", mobileNavigation: "移动端导航", language: "语言", openMenu: "打开菜单", closeMenu: "关闭菜单", quote: "获取报价",
     hero: { logoAlt: "Mediatrix Tech 标志", title: "以技术与内容，推动您的品牌向前。", description: "我们为全球企业打造专业网站和视觉内容。", services: "查看服务" },
@@ -157,6 +242,7 @@ export const translations = {
   },
 
   hi: {
+    easterEggs: easterEggTranslations.hi,
     metaDescription: "Mediatrix Tech दुनिया भर के व्यवसायों के लिए पेशेवर वेबसाइट और विज़ुअल कंटेंट बनाता है।",
     skip: "मुख्य सामग्री पर जाएँ", nav: ["होम", "सेवाएँ", "पोर्टफोलियो", "कंपनी", "संपर्क"], primaryNavigation: "मुख्य नेविगेशन", mobileNavigation: "मोबाइल नेविगेशन", language: "भाषा", openMenu: "मेन्यू खोलें", closeMenu: "मेन्यू बंद करें", quote: "कोटेशन माँगें",
     hero: { logoAlt: "Mediatrix Tech का लोगो", title: "तकनीक और कंटेंट जो आपके ब्रांड को आगे बढ़ाएँ।", description: "हम दुनिया भर के व्यवसायों के लिए पेशेवर वेबसाइट और विज़ुअल कंटेंट बनाते हैं।", services: "सेवाएँ देखें" },
@@ -170,6 +256,7 @@ export const translations = {
   },
 
   ar: {
+    easterEggs: easterEggTranslations.ar,
     metaDescription: "تصمم Mediatrix Tech مواقع إلكترونية ومحتوى بصريًا احترافيًا للشركات حول العالم.",
     skip: "الانتقال إلى المحتوى", nav: ["الرئيسية", "الخدمات", "الأعمال", "الشركة", "التواصل"], primaryNavigation: "التنقل الرئيسي", mobileNavigation: "التنقل عبر الهاتف", language: "اللغة", openMenu: "فتح القائمة", closeMenu: "إغلاق القائمة", quote: "طلب عرض سعر",
     hero: { logoAlt: "شعار Mediatrix Tech", title: "تقنية ومحتوى يدفعان علامتك التجارية إلى الأمام.", description: "نصمم مواقع إلكترونية ومحتوى بصريًا احترافيًا للشركات حول العالم.", services: "عرض الخدمات" },
@@ -182,3 +269,23 @@ export const translations = {
     rights: "جميع الحقوق محفوظة.",
   },
 };
+
+function mergeWithEnglishFallback(englishValue, localizedValue) {
+  if (!englishValue || typeof englishValue !== "object" || Array.isArray(englishValue)) {
+    return localizedValue ?? englishValue;
+  }
+
+  return Object.fromEntries(
+    Object.keys(englishValue).map((key) => [
+      key,
+      mergeWithEnglishFallback(englishValue[key], localizedValue?.[key]),
+    ]),
+  );
+}
+
+export function getEasterEggCopy(locale) {
+  return mergeWithEnglishFallback(
+    translations.en.easterEggs,
+    translations[locale]?.easterEggs,
+  );
+}

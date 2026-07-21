@@ -2,6 +2,7 @@ import React from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
 import { AchievementShare } from "./AchievementShare";
+import { formatEasterEggText, useEasterEggI18n } from "./EasterEggI18n";
 import { useAccessibleModal } from "./useAccessibleModal";
 import { useRapidActivation } from "./useRapidActivation";
 
@@ -18,6 +19,8 @@ function unlockLabAchievement() {
 }
 
 function MediatrixLab({ isOpen, isNewlyUnlocked, onClose, returnFocusRef }) {
+  const { copy } = useEasterEggI18n();
+  const achievement = copy.achievements.digitalExplorer;
   const dialogRef = React.useRef(null);
   const closeButtonRef = React.useRef(null);
 
@@ -52,19 +55,19 @@ function MediatrixLab({ isOpen, isNewlyUnlocked, onClose, returnFocusRef }) {
           <code>lab://mediatrix</code>
         </div>
         <div className="lab-content">
-          <p className="lab-prompt" aria-hidden="true">&gt; access granted</p>
-          <h2 id="mediatrix-lab-title">MEDIATRIX LAB</h2>
-          <p className="lab-lead">Experimental digital solutions.</p>
-          <p id="mediatrix-lab-description">You discovered something that was not in the menu.</p>
+          <p className="lab-prompt" aria-hidden="true">{copy.lab.accessGranted}</p>
+          <h2 id="mediatrix-lab-title">{copy.lab.title}</h2>
+          <p className="lab-lead">{copy.lab.lead}</p>
+          <p id="mediatrix-lab-description">{achievement.description}</p>
           {isNewlyUnlocked && <div className="lab-achievement-panel">
             <p className="lab-achievement" role="status">
-              <span aria-hidden="true">◆</span> Achievement unlocked: Digital Explorer
+              <span aria-hidden="true">◆</span> {formatEasterEggText(copy.common.achievementUnlocked, { achievement: achievement.name })}
             </p>
-            <AchievementShare achievementTitle="Digital Explorer" />
+            <AchievementShare achievementId="digitalExplorer" />
           </div>}
         </div>
         <button ref={closeButtonRef} className="lab-close" type="button" onClick={onClose}>
-          <X size={17} aria-hidden="true" /> Close
+          <X size={17} aria-hidden="true" /> {copy.lab.close}
         </button>
       </section>
     </div>,

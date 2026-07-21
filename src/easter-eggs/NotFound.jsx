@@ -1,6 +1,8 @@
 import React from "react";
 import { ArrowLeft, Code2 } from "lucide-react";
 import { AchievementModal } from "./AchievementModal";
+import { formatEasterEggText, useEasterEggI18n } from "./EasterEggI18n";
+import { rtlLanguages } from "../translations";
 
 const objectPositions = [
   { x: 9, y: -6, rotation: 5 },
@@ -11,6 +13,8 @@ const objectPositions = [
 ];
 
 export function NotFound() {
+  const { copy, locale } = useEasterEggI18n();
+  const bugHunter = copy.achievements.bugHunter;
   const [clicks, setClicks] = React.useState(0);
   const [positionIndex, setPositionIndex] = React.useState(-1);
   const [achievementOpen, setAchievementOpen] = React.useState(false);
@@ -26,9 +30,9 @@ export function NotFound() {
     const previousRobotsContent = existingRobots?.getAttribute("content");
     const robots = existingRobots || document.createElement("meta");
 
-    document.documentElement.lang = "en";
-    document.documentElement.dir = "ltr";
-    document.title = "404 | Mediatrix Tech";
+    document.documentElement.lang = locale;
+    document.documentElement.dir = rtlLanguages.has(locale) ? "rtl" : "ltr";
+    document.title = copy.notFound.pageTitle;
     robots.setAttribute("name", "robots");
     robots.setAttribute("content", "noindex");
     if (!existingRobots) document.head.appendChild(robots);
@@ -44,7 +48,7 @@ export function NotFound() {
         robots.remove();
       }
     };
-  }, []);
+  }, [copy.notFound.pageTitle, locale]);
 
   React.useEffect(() => {
     if (achievementUnlocked) setAchievementOpen(true);
@@ -59,17 +63,17 @@ export function NotFound() {
     <main className="not-found-page">
       <div className="not-found-grid" aria-hidden="true" />
       <section className="not-found-card" aria-labelledby="not-found-title">
-        <a className="not-found-brand" href="/" aria-label="Mediatrix Tech homepage">
+        <a className="not-found-brand" href="/" aria-label={copy.notFound.homeAria}>
           <img src="/mediatrix-brand-mark.jpg" alt="" width="38" height="38" />
           <span>Mediatrix Tech</span>
         </a>
 
         <div className="not-found-content">
-          <p className="not-found-code" aria-hidden="true">HTTP / LOST_SIGNAL</p>
+          <p className="not-found-code" aria-hidden="true">{copy.notFound.code}</p>
           <h1 id="not-found-title">404</h1>
-          <p className="not-found-message">This page escaped into another dimension.</p>
+          <p className="not-found-message">{copy.notFound.message}</p>
           <a className="button primary not-found-home" href="/">
-            <ArrowLeft size={18} aria-hidden="true" /> Return to homepage
+            <ArrowLeft size={18} aria-hidden="true" /> {copy.notFound.returnHome}
           </a>
         </div>
 
@@ -79,7 +83,7 @@ export function NotFound() {
             className="not-found-object"
             type="button"
             onClick={moveObject}
-            aria-label="Interactive code object. Activate five times to investigate."
+            aria-label={copy.notFound.objectAria}
             style={{
               "--object-x": `${position.x}px`,
               "--object-y": `${position.y}px`,
@@ -88,14 +92,14 @@ export function NotFound() {
           >
             <Code2 size={38} strokeWidth={1.6} aria-hidden="true" />
           </button>
-          <p className="not-found-hint" aria-hidden="true">unstable object</p>
+          <p className="not-found-hint" aria-hidden="true">{copy.notFound.objectHint}</p>
           <p className="not-found-achievement" role="status" aria-live="polite">
-            {achievementUnlocked ? "Achievement unlocked: Bug Hunter" : ""}
+            {achievementUnlocked ? formatEasterEggText(copy.common.achievementUnlocked, { achievement: bugHunter.name }) : ""}
           </p>
         </div>
       </section>
       <AchievementModal
-        achievementTitle="Bug Hunter"
+        achievementId="bugHunter"
         isOpen={achievementOpen}
         onClose={() => setAchievementOpen(false)}
         returnFocusRef={objectButtonRef}
