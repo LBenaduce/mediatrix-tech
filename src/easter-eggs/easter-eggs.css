@@ -80,6 +80,21 @@
   font-size: 0.78rem !important;
 }
 
+.lab-congratulations {
+  margin: 0 !important;
+  color: #f0d18e !important;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: clamp(1rem, 3vw, 1.15rem) !important;
+  font-weight: 800;
+}
+
+.lab-story-prompt {
+  margin: 0 !important;
+  color: #c8d6df !important;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 0.82rem !important;
+}
+
 .lab-achievement-panel {
   display: grid;
   gap: 1rem;

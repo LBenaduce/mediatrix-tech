@@ -59,12 +59,14 @@ function MediatrixLab({ isOpen, isNewlyUnlocked, onClose, returnFocusRef }) {
           <h2 id="mediatrix-lab-title">{copy.lab.title}</h2>
           <p className="lab-lead">{copy.lab.lead}</p>
           <p id="mediatrix-lab-description">{achievement.description}</p>
-          {isNewlyUnlocked && <div className="lab-achievement-panel">
-            <p className="lab-achievement" role="status">
+          <div className="lab-achievement-panel">
+            <p className="lab-congratulations">{copy.lab.congratulations}</p>
+            {isNewlyUnlocked && <p className="lab-achievement" role="status">
               <span aria-hidden="true">◆</span> {formatEasterEggText(copy.common.achievementUnlocked, { achievement: achievement.name })}
-            </p>
+            </p>}
+            <p className="lab-story-prompt">{copy.lab.storyPrompt}</p>
             <AchievementShare achievementId="digitalExplorer" />
-          </div>}
+          </div>
         </div>
         <button ref={closeButtonRef} className="lab-close" type="button" onClick={onClose}>
           <X size={17} aria-hidden="true" /> {copy.lab.close}
