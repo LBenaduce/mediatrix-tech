@@ -6,6 +6,7 @@ import { AchievementShare } from "./AchievementShare";
 import { formatEasterEggText, useEasterEggI18n } from "./EasterEggI18n";
 import {
   chooseArchiveItem,
+  isArchivePassword,
   readArchiveSession,
   readUnlockedAchievements,
   unlockArchiveAchievements,
@@ -47,6 +48,8 @@ export default function DigitalJunkDrawer({ isOpen, onClose, returnFocusRef }) {
   const sessionRef = React.useRef(readArchiveSession(sessionStorageRef.current, publicMediatrixArchive));
   const unlockedRef = React.useRef(readUnlockedAchievements(localStorageRef.current));
   const [phase, setPhase] = React.useState("warning");
+  const [password, setPassword] = React.useState("");
+  const [passwordError, setPasswordError] = React.useState(false);
   const [item, setItem] = React.useState(null);
   const [progress, setProgress] = React.useState(sessionRef.current.seenIds.length);
   const [explanation, setExplanation] = React.useState("");
@@ -73,6 +76,14 @@ export default function DigitalJunkDrawer({ isOpen, onClose, returnFocusRef }) {
     onClose: requestClose,
     returnFocusRef,
   });
+
+  React.useEffect(() => {
+    if (isOpen) return;
+    setPhase("warning");
+    setPassword("");
+    setPasswordError(false);
+    setItem(null);
+  }, [isOpen]);
 
   React.useEffect(() => {
     if (phase !== "viewer") return undefined;
@@ -102,9 +113,16 @@ export default function DigitalJunkDrawer({ isOpen, onClose, returnFocusRef }) {
     ]);
   }, [queueNewAchievements]);
 
-  const openDrawer = () => {
+  const openDrawer = (event) => {
+    event.preventDefault();
+    if (!isArchivePassword(password)) {
+      setPasswordError(true);
+      return;
+    }
     showAnother(["curiosityWon"]);
     setPhase("viewer");
+    setPassword("");
+    setPasswordError(false);
   };
 
   const toggleExplanation = () => {
@@ -148,10 +166,29 @@ export default function DigitalJunkDrawer({ isOpen, onClose, returnFocusRef }) {
             <span className="junk-drawer-warning-icon" aria-hidden="true"><Archive size={28} /></span>
             <h2 id={titleId}>{drawer.warning.title}</h2>
             <p id={descriptionId}>{drawer.warning.text}</p>
-            <div className="junk-drawer-warning-actions">
-              <button ref={primaryActionRef} className="junk-drawer-button primary" type="button" onClick={openDrawer}>{drawer.warning.open}</button>
-              <button className="junk-drawer-button secondary" type="button" onClick={requestClose}>{drawer.warning.back}</button>
-            </div>
+            <form className="junk-drawer-password-form" onSubmit={openDrawer}>
+              <label htmlFor={`${titleId}-password`}>{drawer.warning.passwordLabel}</label>
+              <input
+                ref={primaryActionRef}
+                id={`${titleId}-password`}
+                type="password"
+                value={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                  if (passwordError) setPasswordError(false);
+                }}
+                autoComplete="off"
+                autoCapitalize="none"
+                spellCheck="false"
+                aria-invalid={passwordError}
+                aria-describedby={passwordError ? `${titleId}-password-error` : undefined}
+              />
+              {passwordError && <p id={`${titleId}-password-error`} className="junk-drawer-password-error" role="alert">{drawer.warning.passwordError}</p>}
+              <div className="junk-drawer-warning-actions">
+                <button className="junk-drawer-button primary" type="submit">{drawer.warning.open}</button>
+                <button className="junk-drawer-button secondary" type="button" onClick={requestClose}>{drawer.warning.back}</button>
+              </div>
+            </form>
           </div>
         ) : (
           <div className="junk-drawer-viewer">

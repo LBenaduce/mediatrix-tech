@@ -27,6 +27,8 @@ const distinctlyLocalizedPaths = [
   "console",
   "digitalJunkDrawer.entryButton",
   "digitalJunkDrawer.warning.title",
+  "digitalJunkDrawer.warning.passwordLabel",
+  "digitalJunkDrawer.warning.passwordError",
   "digitalJunkDrawer.viewer.another",
   "digitalJunkDrawer.achievements.curiosityWon.name",
   "digitalJunkDrawer.items.lastMetroid.caption",

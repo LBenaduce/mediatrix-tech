@@ -468,6 +468,32 @@
 .junk-drawer-warning h2 { font-size: clamp(2rem, 7vw, 3.25rem); }
 .junk-drawer-warning p { max-width: 48ch; margin: 0; color: #4c555a; font-size: 1rem; }
 
+.junk-drawer-password-form {
+  display: grid;
+  width: 100%;
+  gap: 0.65rem;
+}
+
+.junk-drawer-password-form label {
+  color: #27343c;
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.junk-drawer-password-form input {
+  width: 100%;
+  min-height: 46px;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid #8f8372;
+  border-radius: 6px;
+  background: #fffdf8;
+  color: #172128;
+  font: 1rem ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+.junk-drawer-password-form input[aria-invalid="true"] { border-color: #9f2f2f; }
+.junk-drawer-warning .junk-drawer-password-error { color: #8d2323; font-size: 0.9rem; }
+
 .junk-drawer-warning-actions,
 .junk-drawer-controls {
   display: flex;

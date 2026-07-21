@@ -2,7 +2,7 @@ export const digitalJunkDrawerTranslations = {
   en: {
     entryButton: "Don’t click here",
     loading: "Opening an old drawer…",
-    warning: { label: "Digital Junk Drawer warning", title: "You were warned.", text: "This is where old files go when nobody remembers why they were saved.", open: "Open the drawer anyway", back: "Take me back" },
+    warning: { label: "Digital Junk Drawer warning", title: "You were warned.", text: "This is where old files go when nobody remembers why they were saved.", passwordLabel: "Password", passwordError: "That password does not open this archive.", open: "Open the drawer anyway", back: "Take me back" },
     viewer: { label: "The Digital Junk Drawer", title: "The Digital Junk Drawer", close: "Close the Digital Junk Drawer", another: "Show me another", memory: "Memory {current} of {total}", progress: "{count} memories discovered this visit", why: "Why is this here?", hideWhy: "Hide the explanation", emptyTitle: "The drawer is suspiciously empty.", emptyText: "No public archive items are available right now.", imageError: "This memory could not be loaded. The archive pretends this is intentional.", categoryLabel: "Category: {category}", rarityLabel: "Rarity: {rarity}" },
     categories: { technology: "Technology", music: "Music", "early-projects": "Early projects", objects: "Objects", travel: "Travel", "behind-the-scenes": "Behind the scenes", unexplained: "Unexplained" },
     rarities: { common: "Common Memory", uncommon: "Uncommon Memory", rare: "Rare Memory", legendary: "Legendary Memory" },
@@ -26,7 +26,7 @@ export const digitalJunkDrawerTranslations = {
   },
   "pt-BR": {
     entryButton: "Não clique aqui", loading: "Abrindo uma gaveta antiga…",
-    warning: { label: "Aviso da Gaveta Digital de Bugigangas", title: "Você foi avisado.", text: "É aqui que os arquivos antigos vão parar quando ninguém lembra por que foram salvos.", open: "Abrir a gaveta mesmo assim", back: "Quero voltar" },
+    warning: { label: "Aviso da Gaveta Digital de Bugigangas", title: "Você foi avisado.", text: "É aqui que os arquivos antigos vão parar quando ninguém lembra por que foram salvos.", passwordLabel: "Senha", passwordError: "Essa senha não abre este arquivo.", open: "Abrir a gaveta mesmo assim", back: "Quero voltar" },
     viewer: { label: "A Gaveta Digital de Bugigangas", title: "A Gaveta Digital de Bugigangas", close: "Fechar a Gaveta Digital de Bugigangas", another: "Mostre outra", memory: "Memória {current} de {total}", progress: "{count} memórias descobertas nesta visita", why: "Por que isto está aqui?", hideWhy: "Ocultar a explicação", emptyTitle: "A gaveta está suspeitosamente vazia.", emptyText: "Não há itens públicos no arquivo neste momento.", imageError: "Esta memória não pôde ser carregada. O arquivo finge que foi de propósito.", categoryLabel: "Categoria: {category}", rarityLabel: "Raridade: {rarity}" },
     categories: { technology: "Tecnologia", music: "Música", "early-projects": "Primeiros projetos", objects: "Objetos", travel: "Viagens", "behind-the-scenes": "Bastidores", unexplained: "Sem explicação" },
     rarities: { common: "Memória comum", uncommon: "Memória incomum", rare: "Memória rara", legendary: "Memória lendária" },
@@ -37,7 +37,7 @@ export const digitalJunkDrawerTranslations = {
   },
   es: {
     entryButton: "No hagas clic aquí", loading: "Abriendo un cajón antiguo…",
-    warning: { label: "Aviso del Cajón Digital de Trastos", title: "Te lo advertimos.", text: "Aquí terminan los archivos antiguos cuando nadie recuerda por qué se guardaron.", open: "Abrir el cajón de todos modos", back: "Volver atrás" },
+    warning: { label: "Aviso del Cajón Digital de Trastos", title: "Te lo advertimos.", text: "Aquí terminan los archivos antiguos cuando nadie recuerda por qué se guardaron.", passwordLabel: "Contraseña", passwordError: "Esa contraseña no abre este archivo.", open: "Abrir el cajón de todos modos", back: "Volver atrás" },
     viewer: { label: "El Cajón Digital de Trastos", title: "El Cajón Digital de Trastos", close: "Cerrar el Cajón Digital de Trastos", another: "Muéstrame otro", memory: "Recuerdo {current} de {total}", progress: "{count} recuerdos descubiertos en esta visita", why: "¿Por qué está esto aquí?", hideWhy: "Ocultar la explicación", emptyTitle: "El cajón está sospechosamente vacío.", emptyText: "Ahora mismo no hay elementos públicos en el archivo.", imageError: "Este recuerdo no pudo cargarse. El archivo finge que fue intencional.", categoryLabel: "Categoría: {category}", rarityLabel: "Rareza: {rarity}" },
     categories: { technology: "Tecnología", music: "Música", "early-projects": "Primeros proyectos", objects: "Objetos", travel: "Viajes", "behind-the-scenes": "Entre bastidores", unexplained: "Sin explicación" },
     rarities: { common: "Recuerdo común", uncommon: "Recuerdo poco común", rare: "Recuerdo raro", legendary: "Recuerdo legendario" },
@@ -48,7 +48,7 @@ export const digitalJunkDrawerTranslations = {
   },
   fr: {
     entryButton: "Ne cliquez pas ici", loading: "Ouverture d’un vieux tiroir…",
-    warning: { label: "Avertissement du Tiroir Numérique", title: "Vous étiez prévenu.", text: "C’est ici que finissent les vieux fichiers lorsque personne ne sait plus pourquoi ils ont été enregistrés.", open: "Ouvrir quand même le tiroir", back: "Faire demi-tour" },
+    warning: { label: "Avertissement du Tiroir Numérique", title: "Vous étiez prévenu.", text: "C’est ici que finissent les vieux fichiers lorsque personne ne sait plus pourquoi ils ont été enregistrés.", passwordLabel: "Mot de passe", passwordError: "Ce mot de passe n’ouvre pas ces archives.", open: "Ouvrir quand même le tiroir", back: "Faire demi-tour" },
     viewer: { label: "Le Tiroir Numérique", title: "Le Tiroir Numérique", close: "Fermer le Tiroir Numérique", another: "Montrez-m’en un autre", memory: "Souvenir {current} sur {total}", progress: "{count} souvenirs découverts pendant cette visite", why: "Pourquoi est-ce ici ?", hideWhy: "Masquer l’explication", emptyTitle: "Le tiroir est étrangement vide.", emptyText: "Aucun élément public n’est disponible pour le moment.", imageError: "Ce souvenir n’a pas pu être chargé. Les archives prétendent que c’est volontaire.", categoryLabel: "Catégorie : {category}", rarityLabel: "Rareté : {rarity}" },
     categories: { technology: "Technologie", music: "Musique", "early-projects": "Premiers projets", objects: "Objets", travel: "Voyages", "behind-the-scenes": "Coulisses", unexplained: "Inexpliqué" },
     rarities: { common: "Souvenir commun", uncommon: "Souvenir inhabituel", rare: "Souvenir rare", legendary: "Souvenir légendaire" },
@@ -59,7 +59,7 @@ export const digitalJunkDrawerTranslations = {
   },
   de: {
     entryButton: "Nicht hier klicken", loading: "Eine alte Schublade wird geöffnet…",
-    warning: { label: "Warnung zur digitalen Krimskrams-Schublade", title: "Sie wurden gewarnt.", text: "Hier landen alte Dateien, wenn niemand mehr weiß, warum sie gespeichert wurden.", open: "Schublade trotzdem öffnen", back: "Zurückgehen" },
+    warning: { label: "Warnung zur digitalen Krimskrams-Schublade", title: "Sie wurden gewarnt.", text: "Hier landen alte Dateien, wenn niemand mehr weiß, warum sie gespeichert wurden.", passwordLabel: "Passwort", passwordError: "Dieses Passwort öffnet das Archiv nicht.", open: "Schublade trotzdem öffnen", back: "Zurückgehen" },
     viewer: { label: "Die Digitale Krimskrams-Schublade", title: "Die Digitale Krimskrams-Schublade", close: "Digitale Krimskrams-Schublade schließen", another: "Noch eine zeigen", memory: "Erinnerung {current} von {total}", progress: "{count} Erinnerungen bei diesem Besuch entdeckt", why: "Warum ist das hier?", hideWhy: "Erklärung ausblenden", emptyTitle: "Die Schublade ist verdächtig leer.", emptyText: "Zurzeit sind keine öffentlichen Archivstücke verfügbar.", imageError: "Diese Erinnerung konnte nicht geladen werden. Das Archiv behauptet, das sei Absicht.", categoryLabel: "Kategorie: {category}", rarityLabel: "Seltenheit: {rarity}" },
     categories: { technology: "Technik", music: "Musik", "early-projects": "Frühe Projekte", objects: "Objekte", travel: "Reisen", "behind-the-scenes": "Hinter den Kulissen", unexplained: "Unerklärt" },
     rarities: { common: "Gewöhnliche Erinnerung", uncommon: "Ungewöhnliche Erinnerung", rare: "Seltene Erinnerung", legendary: "Legendäre Erinnerung" },
@@ -70,7 +70,7 @@ export const digitalJunkDrawerTranslations = {
   },
   "zh-CN": {
     entryButton: "不要点这里", loading: "正在打开旧抽屉…",
-    warning: { label: "数字杂物抽屉警告", title: "已经警告过你了。", text: "这里存放那些没人记得为何保存的旧文件。", open: "还是打开抽屉", back: "带我回去" },
+    warning: { label: "数字杂物抽屉警告", title: "已经警告过你了。", text: "这里存放那些没人记得为何保存的旧文件。", passwordLabel: "密码", passwordError: "该密码无法打开此档案。", open: "还是打开抽屉", back: "带我回去" },
     viewer: { label: "数字杂物抽屉", title: "数字杂物抽屉", close: "关闭数字杂物抽屉", another: "再看一个", memory: "记忆 {current} / {total}", progress: "本次访问已发现 {count} 条记忆", why: "为什么它会在这里？", hideWhy: "收起说明", emptyTitle: "这个抽屉空得可疑。", emptyText: "目前没有可公开查看的档案。", imageError: "无法加载这段记忆。档案库坚称这是故意的。", categoryLabel: "类别：{category}", rarityLabel: "稀有度：{rarity}" },
     categories: { technology: "科技", music: "音乐", "early-projects": "早期项目", objects: "物件", travel: "旅行", "behind-the-scenes": "幕后", unexplained: "无法解释" },
     rarities: { common: "普通记忆", uncommon: "不寻常记忆", rare: "稀有记忆", legendary: "传奇记忆" },
@@ -81,7 +81,7 @@ export const digitalJunkDrawerTranslations = {
   },
   hi: {
     entryButton: "यहाँ क्लिक न करें", loading: "पुरानी दराज़ खुल रही है…",
-    warning: { label: "डिजिटल कबाड़ दराज़ चेतावनी", title: "आपको चेतावनी दी गई थी।", text: "पुरानी फ़ाइलें यहीं पहुँचती हैं, जब किसी को याद नहीं रहता कि उन्हें क्यों सहेजा गया था।", open: "फिर भी दराज़ खोलें", back: "मुझे वापस ले चलें" },
+    warning: { label: "डिजिटल कबाड़ दराज़ चेतावनी", title: "आपको चेतावनी दी गई थी।", text: "पुरानी फ़ाइलें यहीं पहुँचती हैं, जब किसी को याद नहीं रहता कि उन्हें क्यों सहेजा गया था।", passwordLabel: "पासवर्ड", passwordError: "यह पासवर्ड इस संग्रह को नहीं खोलता।", open: "फिर भी दराज़ खोलें", back: "मुझे वापस ले चलें" },
     viewer: { label: "डिजिटल कबाड़ दराज़", title: "डिजिटल कबाड़ दराज़", close: "डिजिटल कबाड़ दराज़ बंद करें", another: "एक और दिखाएँ", memory: "याद {current} / {total}", progress: "इस मुलाक़ात में {count} यादें मिलीं", why: "यह यहाँ क्यों है?", hideWhy: "स्पष्टीकरण छिपाएँ", emptyTitle: "दराज़ संदेहजनक रूप से खाली है।", emptyText: "अभी कोई सार्वजनिक संग्रह वस्तु उपलब्ध नहीं है।", imageError: "यह याद लोड नहीं हुई। संग्रह इसे जानबूझकर किया गया बताता है।", categoryLabel: "श्रेणी: {category}", rarityLabel: "दुर्लभता: {rarity}" },
     categories: { technology: "तकनीक", music: "संगीत", "early-projects": "शुरुआती प्रोजेक्ट", objects: "वस्तुएँ", travel: "यात्रा", "behind-the-scenes": "पर्दे के पीछे", unexplained: "अस्पष्ट" },
     rarities: { common: "सामान्य याद", uncommon: "असामान्य याद", rare: "दुर्लभ याद", legendary: "पौराणिक याद" },
@@ -92,7 +92,7 @@ export const digitalJunkDrawerTranslations = {
   },
   ar: {
     entryButton: "لا تنقر هنا", loading: "جارٍ فتح درج قديم…",
-    warning: { label: "تحذير درج الخردة الرقمي", title: "لقد حُذّرت.", text: "هنا تنتهي الملفات القديمة عندما لا يتذكر أحد سبب حفظها.", open: "افتح الدرج على أي حال", back: "أعدني" },
+    warning: { label: "تحذير درج الخردة الرقمي", title: "لقد حُذّرت.", text: "هنا تنتهي الملفات القديمة عندما لا يتذكر أحد سبب حفظها.", passwordLabel: "كلمة المرور", passwordError: "كلمة المرور هذه لا تفتح الأرشيف.", open: "افتح الدرج على أي حال", back: "أعدني" },
     viewer: { label: "درج الخردة الرقمي", title: "درج الخردة الرقمي", close: "إغلاق درج الخردة الرقمي", another: "اعرض ذكرى أخرى", memory: "الذكرى {current} من {total}", progress: "اكتشفت {count} ذكريات في هذه الزيارة", why: "لماذا هذا هنا؟", hideWhy: "إخفاء التفسير", emptyTitle: "الدرج فارغ بشكل مريب.", emptyText: "لا توجد عناصر أرشيف عامة متاحة الآن.", imageError: "تعذر تحميل هذه الذكرى. يدّعي الأرشيف أن ذلك مقصود.", categoryLabel: "الفئة: {category}", rarityLabel: "الندرة: {rarity}" },
     categories: { technology: "التقنية", music: "الموسيقى", "early-projects": "المشاريع الأولى", objects: "الأشياء", travel: "السفر", "behind-the-scenes": "خلف الكواليس", unexplained: "بلا تفسير" },
     rarities: { common: "ذكرى عادية", uncommon: "ذكرى غير مألوفة", rare: "ذكرى نادرة", legendary: "ذكرى أسطورية" },

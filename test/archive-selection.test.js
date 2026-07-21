@@ -3,13 +3,23 @@ import assert from "node:assert/strict";
 import { mediatrixArchive, publicMediatrixArchive } from "../src/data/mediatrixArchive.js";
 import {
   ARCHIVE_ACHIEVEMENTS_KEY,
+  ARCHIVE_PASSWORD,
   ARCHIVE_SESSION_KEY,
   chooseArchiveItem,
+  isArchivePassword,
   readArchiveSession,
   readUnlockedAchievements,
   unlockArchiveAchievements,
   writeArchiveSession,
 } from "../src/easter-eggs/archiveSelection.js";
+
+test("archive photos require the exact slash password", () => {
+  assert.equal(ARCHIVE_PASSWORD, `${"/".repeat(9)}${"\\".repeat(19)}`);
+  assert.equal(isArchivePassword(ARCHIVE_PASSWORD), true);
+  assert.equal(isArchivePassword(`${ARCHIVE_PASSWORD} `), false);
+  assert.equal(isArchivePassword(`${"/".repeat(9)}${"\\".repeat(18)}`), false);
+  assert.equal(isArchivePassword(""), false);
+});
 
 function memoryStorage(initial = {}) {
   const values = new Map(Object.entries(initial));

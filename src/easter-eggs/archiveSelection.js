@@ -1,5 +1,10 @@
 export const ARCHIVE_SESSION_KEY = "mediatrix-digital-junk-drawer-session";
 export const ARCHIVE_ACHIEVEMENTS_KEY = "mediatrix-digital-junk-drawer-achievements";
+export const ARCHIVE_PASSWORD = `${"/".repeat(9)}${"\\".repeat(19)}`;
+
+export function isArchivePassword(value) {
+  return value === ARCHIVE_PASSWORD;
+}
 
 export const rarityWeights = {
   common: 0.65,
