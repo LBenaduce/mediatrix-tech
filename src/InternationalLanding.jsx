@@ -2,6 +2,7 @@ import React from "react";
 import { ArrowRight, Check, ChevronDown, ExternalLink, Mail, MessageCircle, Phone } from "lucide-react";
 import { brazilWebsiteCarePlans, brazilWebsiteCareTerms, formatPrice, getPricing, introductoryPricing } from "./introductoryPricing";
 import { getAttribution, initializeTracking, trackEvent, trackLink } from "./analytics";
+import { SecretLogo } from "./easter-eggs/SecretLogo";
 import "./international.css";
 
 const routeMap = {
@@ -91,7 +92,7 @@ export function InternationalLanding() {
   return (
     <div className="intl-page">
       <header className="intl-header">
-        <a className="intl-brand" href="#top"><img src="/mediatrix-brand-mark.jpg" alt="" />Mediatrix Tech</a>
+        <SecretLogo className="intl-brand" href="#top" ariaLabel="Mediatrix Tech — top" imageSize={42} />
         <nav aria-label="Campaign navigation"><a href="#pricing">Pricing</a><a href="#portfolio">Work</a><a href="#faq">FAQ</a></nav>
         <a className="intl-header-cta" href="#quote-form" onClick={() => trackEvent("primary_cta_click", { landing_page: landingPage })}>{isPortuguese ? "Solicitar orçamento" : "Request a Quote"}</a>
       </header>

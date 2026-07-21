@@ -18,7 +18,11 @@ import {
 } from "lucide-react";
 import { languages, rtlLanguages, translations } from "./translations";
 import { InternationalLanding, isInternationalRoute } from "./InternationalLanding";
+import { NotFound } from "./easter-eggs/NotFound";
+import { SecretLogo } from "./easter-eggs/SecretLogo";
+import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
 import "./styles.css";
+import "./easter-eggs/easter-eggs.css";
 
 const navigationIds = ["top", "servicos", "portfolio", "empresa", "contato"];
 const serviceIcons = { web: Code2, photo: ImageIcon, video: Clapperboard, audio: AudioLines };
@@ -141,10 +145,12 @@ function Header({ activeSection, copy, language, onLanguageChange }) {
   return (
     <header className="site-header">
       <div className="header-inner">
-        <a className="brand" href="#top" aria-label={`Mediatrix Tech — ${copy.nav[0]}`} onClick={closeMenu}>
-          <img src="/mediatrix-brand-mark.jpg" alt="" width="44" height="44" />
-          <span>Mediatrix Tech</span>
-        </a>
+        <SecretLogo
+          className="brand"
+          href="#top"
+          ariaLabel={`Mediatrix Tech — ${copy.nav[0]}`}
+          onClick={closeMenu}
+        />
 
         <nav className="desktop-nav" aria-label={copy.primaryNavigation}>
           {navigation.map(([id, label]) => (
@@ -400,4 +406,16 @@ function Footer({ copy }) {
   return <footer><div className="shell footer-inner"><a className="footer-brand" href="#top">Mediatrix Tech</a><p>Create. Connect. Convert.</p><div className="footer-signature"><p>© {currentYear} L. Benaduce · {copy.rights}</p><p className="footer-message" aria-hidden="true">/////////\\\\\\\\\\\\\\\\\\\</p></div></div></footer>;
 }
 
-createRoot(document.getElementById("root")).render(isInternationalRoute() ? <InternationalLanding /> : <App />);
+function isHomeRoute(pathname = window.location.pathname) {
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+  return normalizedPath === "/" || normalizedPath === "/index.html";
+}
+
+function CurrentRoute() {
+  if (isInternationalRoute()) return <InternationalLanding />;
+  if (isHomeRoute()) return <App />;
+  return <NotFound />;
+}
+
+printConsoleGreeting();
+createRoot(document.getElementById("root")).render(<CurrentRoute />);
