@@ -34,6 +34,7 @@ const projectMedia = [
   { media: "/frasson-farois-demo-pt.jpg", nonPortugueseMedia: "/frasson-llc-demo-optimized.jpg", kind: "image" },
   { media: "/event-qr-code-demo.mp4", nonPortugueseMedia: "/event-qr-code-demo-english.mp4", poster: "/event-qr-code-poster.jpg", nonPortuguesePoster: "/event-qr-code-poster-en.jpg", kind: "video" },
   { media: "/cafeteria-demo-pt.png", nonPortugueseMedia: "/cafeteria-demo-en.png", kind: "image" },
+  { media: "/itamec-mecanica-demo.jpg", kind: "image" },
 ];
 
 const contactLinks = {
