@@ -419,6 +419,15 @@ function Footer({ copy }) {
       <div className="shell footer-inner">
         <a className="footer-brand" href="#top">Mediatrix Tech</a>
         <p>Create. Connect. Convert.</p>
+        <a
+          className="crea-rs-mark"
+          href="https://www.crea-rs.org.br/"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="CREA-RS — Conselho Regional de Engenharia e Agronomia do Rio Grande do Sul"
+        >
+          <img src="/crea-rs-logo.png" alt="CREA-RS" />
+        </a>
         <div className="footer-signature">
           <p>© {currentYear} L. Benaduce · {copy.rights}</p>
           <button ref={drawerButtonRef} className="junk-drawer-entry" type="button" onClick={() => setDrawerOpen(true)}>{drawerCopy.entryButton}</button>
