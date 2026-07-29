@@ -1,0 +1,23 @@
+{
+  "rewrites": [
+    {
+      "source": "/area-interna/:path*",
+      "destination": "/"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/area-interna/:path*",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "no-store"
+        }
+      ]
+    }
+  ]
+}

@@ -28,6 +28,7 @@ import "./easter-eggs/easter-eggs.css";
 const navigationIds = ["top", "servicos", "portfolio", "empresa", "contato"];
 const serviceIcons = { web: Code2, photo: ImageIcon, video: Clapperboard, audio: AudioLines };
 const DigitalJunkDrawer = React.lazy(() => import("./easter-eggs/DigitalJunkDrawer"));
+const InternalQuotes = React.lazy(() => import("./internal/InternalQuotes").then((module) => ({ default: module.InternalQuotes })));
 
 const projectMedia = [
   { media: "/agriclimate-pro-demo-pt.mp4", nonPortugueseMedia: "/agriclimate-pro-demo.mp4", poster: "/agriclimate-pro-poster-pt.jpg", nonPortuguesePoster: "/agriclimate-pro-poster.jpg", kind: "video" },
@@ -460,6 +461,9 @@ function LocalizedNotFound() {
 }
 
 function CurrentRoute() {
+  if (window.location.pathname.startsWith("/area-interna/")) {
+    return <React.Suspense fallback={null}><InternalQuotes /></React.Suspense>;
+  }
   if (isInternationalRoute()) return <InternationalLanding />;
   if (isHomeRoute()) return <App />;
   return <LocalizedNotFound />;
