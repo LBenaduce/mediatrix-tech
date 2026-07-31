@@ -21,6 +21,26 @@ test("a home em inglês mantém a mesma proposta de valor", () => {
   assert.equal(copy.services.length, 7);
 });
 
+test("a apresentação da empresa usa o novo texto em todos os idiomas", () => {
+  assert.deepEqual(translations["pt-BR"].company.facts, [
+    ["Quem somos", "Somos uma empresa familiar, criada para transformar boas ideias em soluções digitais úteis, bonitas e funcionais. Porque a beleza também importa."],
+    ["O que fazemos", "Desenvolvemos projetos digitais com cuidado, elegância e atenção aos detalhes. Para nós, qualidade e responsabilidade vêm sempre em primeiro lugar."],
+    ["Como trabalhamos", "Trabalhamos com prazos realistas, comunicação clara e revisão cuidadosa em cada etapa. Não entregamos apenas para terminar: entregamos quando está realmente bem-feito."],
+    ["Onde atendemos", "No planeta Terra e arredores."],
+  ]);
+
+  assert.equal(translations.en.company.facts[0][0], "Who we are");
+  assert.match(translations.en.company.facts[0][1], /family business/);
+
+  for (const locale of ["pt-BR", "en", "es", "fr", "de", "zh-CN", "hi", "ar"]) {
+    assert.equal(translations[locale].company.facts.length, 4);
+    translations[locale].company.facts.forEach(([title, description]) => {
+      assert.ok(title.length > 0);
+      assert.ok(description.length > 0);
+    });
+  }
+});
+
 test("o posicionamento da Mediatrix Tech não antecipa dados jurídicos americanos", () => {
   for (const locale of ["pt-BR", "en"]) {
     const { hero, servicesSection, services, company, contact } = translations[locale];
