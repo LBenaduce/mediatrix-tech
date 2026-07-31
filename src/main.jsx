@@ -31,11 +31,11 @@ const DigitalJunkDrawer = React.lazy(() => import("./easter-eggs/DigitalJunkDraw
 const InternalQuotes = React.lazy(() => import("./internal/InternalQuotes").then((module) => ({ default: module.InternalQuotes })));
 
 const projectMedia = [
-  { media: "/agriclimate-pro-demo-pt.mp4", nonPortugueseMedia: "/agriclimate-pro-demo.mp4", poster: "/agriclimate-pro-poster-pt.jpg", nonPortuguesePoster: "/agriclimate-pro-poster.jpg", kind: "video" },
-  { media: "/frasson-farois-demo-pt.jpg", nonPortugueseMedia: "/frasson-llc-demo-optimized.jpg", kind: "image" },
-  { media: "/event-qr-code-demo.mp4", nonPortugueseMedia: "/event-qr-code-demo-english.mp4", poster: "/event-qr-code-poster.jpg", nonPortuguesePoster: "/event-qr-code-poster-en.jpg", kind: "video" },
-  { media: "/cafeteria-demo-pt.png", nonPortugueseMedia: "/cafeteria-demo-en.png", kind: "image" },
-  { media: "/oficina-mecanica-demo.jpg", kind: "image" },
+  { media: "/agriclimate-pro-demo-pt.mp4", nonPortugueseMedia: "/agriclimate-pro-demo.mp4", poster: "/agriclimate-pro-poster-pt.jpg", nonPortuguesePoster: "/agriclimate-pro-poster.jpg", kind: "video", width: 1280, height: 720 },
+  { media: "/frasson-farois-demo-pt.jpg", nonPortugueseMedia: "/frasson-llc-demo-optimized.jpg", kind: "image", width: 1800, height: 988, nonPortugueseWidth: 800, nonPortugueseHeight: 456 },
+  { media: "/event-qr-code-demo.mp4", nonPortugueseMedia: "/event-qr-code-demo-english.mp4", poster: "/event-qr-code-poster.jpg", nonPortuguesePoster: "/event-qr-code-poster-en.jpg", kind: "video", width: 1280, height: 720 },
+  { media: "/cafeteria-demo-pt.png", nonPortugueseMedia: "/cafeteria-demo-en.png", kind: "image", width: 1024, height: 1536 },
+  { media: "/oficina-mecanica-demo.jpg", kind: "image", width: 2396, height: 1852 },
 ];
 
 const contactLinks = {
@@ -98,9 +98,15 @@ function App() {
   React.useEffect(() => {
     document.documentElement.lang = language;
     document.documentElement.dir = rtlLanguages.has(language) ? "rtl" : "ltr";
+    document.title = copy.metaTitle;
     document.querySelector('meta[name="description"]')?.setAttribute("content", copy.metaDescription);
+    document.querySelector('meta[property="og:title"]')?.setAttribute("content", copy.metaTitle);
+    document.querySelector('meta[property="og:description"]')?.setAttribute("content", copy.metaDescription);
+    document.querySelector('meta[property="og:locale"]')?.setAttribute("content", language.replace("-", "_"));
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", copy.metaTitle);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", copy.metaDescription);
     window.localStorage.setItem("mediatrix-language", language);
-  }, [copy.metaDescription, language]);
+  }, [copy.metaDescription, copy.metaTitle, language]);
 
   React.useEffect(() => {
     printConsoleGreeting(copy.easterEggs.console);
@@ -305,6 +311,8 @@ function Portfolio({ copy, language }) {
       ...projectAssets,
       media: language === "pt-BR" ? projectAssets.media : projectAssets.nonPortugueseMedia || projectAssets.media,
       poster: language === "pt-BR" ? projectAssets.poster : projectAssets.nonPortuguesePoster || projectAssets.poster,
+      width: language === "pt-BR" ? projectAssets.width : projectAssets.nonPortugueseWidth || projectAssets.width,
+      height: language === "pt-BR" ? projectAssets.height : projectAssets.nonPortugueseHeight || projectAssets.height,
     };
   });
   return (
@@ -316,14 +324,14 @@ function Portfolio({ copy, language }) {
             <article className="project-card" key={project.name}>
               <div className="project-media">
                 {project.kind === "video" ? (
-                  <video muted playsInline preload="none" poster={project.poster} aria-label={`${copy.portfolioSection.videoDemo}: ${project.name}`}><source src={project.media} type="video/mp4" /></video>
+                  <video muted playsInline preload="none" poster={project.poster} width={project.width} height={project.height} aria-label={`${copy.portfolioSection.videoDemo}: ${project.name}`}><source src={project.media} type="video/mp4" /></video>
                 ) : (
-                  <img src={project.media} alt={`${copy.portfolioSection.screenshot}: ${project.name}`} loading="lazy" />
+                  <img src={project.media} alt={`${copy.portfolioSection.screenshot}: ${project.name}`} width={project.width} height={project.height} loading="lazy" />
                 )}
               </div>
               <div className="project-content">
                 <p className="project-category">{project.category}</p><h3>{project.name}</h3><p>{project.description}</p>
-                <a className="text-link" href={project.media} target="_blank" rel="noreferrer">{copy.portfolioSection.view} <ExternalLink size={16} aria-hidden="true" /></a>
+                <a className="text-link" href={project.media} target="_blank" rel="noopener noreferrer">{copy.portfolioSection.view} <ExternalLink size={16} aria-hidden="true" /></a>
               </div>
             </article>
           ))}
@@ -386,7 +394,7 @@ function Contact({ copy, selectedService, onSelectService }) {
           <div className="contact-channels" aria-label={copy.contact.channelsLabel}>
             {copy.contact.channels.map(([title, detail], index) => {
               const [href, Icon, channel] = channelData[index];
-              return <a className={`contact-channel ${channel}`} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noreferrer" key={title}><span className="contact-icon"><Icon size={21} aria-hidden="true" /></span><span><strong>{title}</strong><small>{detail}</small></span><span className="channel-arrow"><ArrowRight size={17} aria-hidden="true" /></span></a>;
+              return <a className={`contact-channel ${channel}`} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} key={title}><span className="contact-icon"><Icon size={21} aria-hidden="true" /></span><span><strong>{title}</strong><small>{detail}</small></span><span className="channel-arrow"><ArrowRight size={17} aria-hidden="true" /></span></a>;
             })}
           </div>
 
@@ -424,10 +432,10 @@ function Footer({ copy }) {
           className="crea-rs-mark"
           href="https://www.crea-rs.org.br/"
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           aria-label="CREA-RS — Conselho Regional de Engenharia e Agronomia do Rio Grande do Sul"
         >
-          <img src="/crea-rs-logo.png" alt="CREA-RS" />
+          <img src="/crea-rs-logo.png" alt="CREA-RS" width="580" height="150" />
         </a>
         <div className="footer-signature">
           <p>© {currentYear} L. Benaduce · {copy.rights}</p>

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
-User-agent: *
 Disallow: /area-interna/
+
+Sitemap: https://www.mediatrix-tech.com/sitemap.xml

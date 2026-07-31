@@ -95,6 +95,7 @@ Object.entries(digitalJunkDrawerTranslations).forEach(([locale, copy]) => {
 export const translations = {
   "pt-BR": {
     easterEggs: easterEggTranslations["pt-BR"],
+    metaTitle: "Sites profissionais e soluções digitais | Mediatrix Tech",
     metaDescription: "A Mediatrix Tech cria sites e conteúdos visuais profissionais para negócios em todo o mundo.",
     skip: "Pular para o conteúdo",
     nav: ["Início", "Serviços", "Portfólio", "Empresa", "Contato"],
@@ -148,6 +149,7 @@ export const translations = {
 
   en: {
     easterEggs: easterEggTranslations.en,
+    metaTitle: "Professional websites and digital solutions | Mediatrix Tech",
     metaDescription: "Mediatrix Tech creates professional websites and visual content for businesses worldwide.",
     skip: "Skip to content",
     nav: ["Home", "Services", "Portfolio", "Company", "Contact"],
@@ -184,6 +186,7 @@ export const translations = {
 
   es: {
     easterEggs: easterEggTranslations.es,
+    metaTitle: "Sitios web profesionales y soluciones digitales | Mediatrix Tech",
     metaDescription: "Mediatrix Tech crea sitios web y contenido visual profesional para empresas de todo el mundo.",
     skip: "Saltar al contenido",
     nav: ["Inicio", "Servicios", "Portafolio", "Empresa", "Contacto"],
@@ -205,6 +208,7 @@ export const translations = {
 
   fr: {
     easterEggs: easterEggTranslations.fr,
+    metaTitle: "Sites web professionnels et solutions numériques | Mediatrix Tech",
     metaDescription: "Mediatrix Tech crée des sites web et des contenus visuels professionnels pour les entreprises du monde entier.",
     skip: "Aller au contenu", nav: ["Accueil", "Services", "Portfolio", "Entreprise", "Contact"], primaryNavigation: "Navigation principale", mobileNavigation: "Navigation mobile", language: "Langue", openMenu: "Ouvrir le menu", closeMenu: "Fermer le menu", quote: "Demander un devis",
     hero: { logoAlt: "Logo de Mediatrix Tech", title: "La technologie et le contenu qui font avancer votre marque.", description: "Nous créons des sites web et des contenus visuels professionnels pour les entreprises du monde entier.", services: "Voir les services" },
@@ -219,6 +223,7 @@ export const translations = {
 
   de: {
     easterEggs: easterEggTranslations.de,
+    metaTitle: "Professionelle Websites und digitale Lösungen | Mediatrix Tech",
     metaDescription: "Mediatrix Tech erstellt professionelle Websites und visuelle Inhalte für Unternehmen weltweit.",
     skip: "Zum Inhalt springen", nav: ["Start", "Leistungen", "Portfolio", "Unternehmen", "Kontakt"], primaryNavigation: "Hauptnavigation", mobileNavigation: "Mobile Navigation", language: "Sprache", openMenu: "Menü öffnen", closeMenu: "Menü schließen", quote: "Angebot anfordern",
     hero: { logoAlt: "Logo von Mediatrix Tech", title: "Technologie und Inhalte, die Ihre Marke voranbringen.", description: "Wir erstellen professionelle Websites und visuelle Inhalte für Unternehmen weltweit.", services: "Leistungen ansehen" },
@@ -233,6 +238,7 @@ export const translations = {
 
   "zh-CN": {
     easterEggs: easterEggTranslations["zh-CN"],
+    metaTitle: "专业网站与数字解决方案 | Mediatrix Tech",
     metaDescription: "Mediatrix Tech 为全球企业打造专业网站和视觉内容。",
     skip: "跳到主要内容", nav: ["首页", "服务", "作品集", "公司", "联系"], primaryNavigation: "主导航", mobileNavigation: "移动端导航", language: "语言", openMenu: "打开菜单", closeMenu: "关闭菜单", quote: "获取报价",
     hero: { logoAlt: "Mediatrix Tech 标志", title: "以技术与内容推动您的品牌向前。", description: "我们为全球企业打造专业网站和视觉内容。", services: "查看服务" },
@@ -247,6 +253,7 @@ export const translations = {
 
   hi: {
     easterEggs: easterEggTranslations.hi,
+    metaTitle: "पेशेवर वेबसाइट और डिजिटल समाधान | Mediatrix Tech",
     metaDescription: "Mediatrix Tech दुनिया भर के व्यवसायों के लिए पेशेवर वेबसाइट और विज़ुअल कंटेंट बनाता है।",
     skip: "मुख्य सामग्री पर जाएँ", nav: ["होम", "सेवाएँ", "पोर्टफोलियो", "कंपनी", "संपर्क"], primaryNavigation: "मुख्य नेविगेशन", mobileNavigation: "मोबाइल नेविगेशन", language: "भाषा", openMenu: "मेन्यू खोलें", closeMenu: "मेन्यू बंद करें", quote: "कोटेशन प्राप्त करें",
     hero: { logoAlt: "Mediatrix Tech का लोगो", title: "तकनीक और कंटेंट जो आपके ब्रांड को आगे बढ़ाएँ।", description: "हम दुनिया भर के व्यवसायों के लिए पेशेवर वेबसाइट और विज़ुअल कंटेंट बनाते हैं।", services: "सेवाएँ देखें" },
@@ -261,6 +268,7 @@ export const translations = {
 
   ar: {
     easterEggs: easterEggTranslations.ar,
+    metaTitle: "مواقع احترافية وحلول رقمية | Mediatrix Tech",
     metaDescription: "تصمم Mediatrix Tech مواقع إلكترونية ومحتوى بصري احترافي للشركات حول العالم.",
     skip: "الانتقال إلى المحتوى", nav: ["الرئيسية", "الخدمات", "الأعمال", "الشركة", "التواصل"], primaryNavigation: "التنقل الرئيسي", mobileNavigation: "التنقل عبر الهاتف", language: "اللغة", openMenu: "فتح القائمة", closeMenu: "إغلاق القائمة", quote: "طلب عرض سعر",
     hero: { logoAlt: "شعار Mediatrix Tech", title: "تقنية ومحتوى يدفعان بعلامتك التجارية إلى الأمام.", description: "نصمم مواقع إلكترونية ومحتوى بصري احترافي للشركات حول العالم.", services: "عرض الخدمات" },
