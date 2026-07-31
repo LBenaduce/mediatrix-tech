@@ -6,14 +6,15 @@ import { SecretLogo } from "./easter-eggs/SecretLogo";
 import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
 import { getEasterEggCopy } from "./translations";
 import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
+import { applyPageSeo, ROUTE_SEO } from "./seo";
 import "./international.css";
 
 const routeMap = {
-  "/brazil": { region: "brazil", language: "pt" },
-  "/us": { region: "us", language: "en" },
-  "/europe": { region: "europe", language: "en" },
-  "/switzerland": { region: "switzerland", language: "en" },
-  "/brazilian-businesses-abroad": { region: "us", language: "pt" },
+  "/brazil": { region: "brazil", language: "pt", h1: "Sites profissionais para pequenas empresas no Brasil", lead: "Sites modernos, responsivos e fáceis de usar, com escopo claro e comunicação direta durante todo o projeto." },
+  "/us": { region: "us", language: "en", h1: "Professional websites for small businesses in the United States", lead: "Modern, mobile-friendly websites with clear introductory pricing and direct communication with your developer." },
+  "/europe": { region: "europe", language: "en", h1: "Professional websites for small businesses in Europe", lead: "Modern, mobile-friendly websites for European businesses, with clear scope and direct communication with your developer." },
+  "/switzerland": { region: "switzerland", language: "en", h1: "Professional websites for small businesses in Switzerland", lead: "Modern, mobile-friendly websites with pricing in Swiss francs and direct communication with your developer." },
+  "/brazilian-businesses-abroad": { region: "us", language: "pt", h1: "Seu site profissional em inglês para o exterior", lead: "Sites em inglês ou bilíngues para empresas brasileiras que atendem clientes nos Estados Unidos, na Europa e em outros mercados." },
 };
 
 const portfolio = [
@@ -79,8 +80,8 @@ export function InternationalLanding() {
   React.useEffect(() => {
     initializeTracking();
     document.documentElement.lang = isPortuguese ? "pt-BR" : "en";
-    document.title = isPortuguese ? "Sites profissionais no exterior | Mediatrix Tech" : `Professional Websites for Small Businesses — Starting at ${formatPrice(region, region.starter)}`;
-    document.querySelector('meta[name="description"]')?.setAttribute("content", isPortuguese ? "Sites profissionais em inglês para empresas brasileiras nos Estados Unidos e Europa." : `Professional small-business websites with international launch pricing from ${formatPrice(region, region.starter)}.`);
+    document.documentElement.dir = "ltr";
+    applyPageSeo({ pathname: path, seo: ROUTE_SEO[path] });
     trackEvent("google_ads_landing_page_view", { landing_page: landingPage, country_target: region.countryTarget, currency: region.currency, market: region.market });
     if (new URLSearchParams(window.location.search).get("submitted") === "true") trackEvent("thank_you_page_view", { landing_page: landingPage });
   }, [isPortuguese, landingPage, region.countryTarget, region.starter, region]);
@@ -111,8 +112,8 @@ export function InternationalLanding() {
           <div className="intl-shell intl-hero-grid">
             <div>
               <p className="launch-label">{introductoryPricing.launchOfferLabel}</p>
-              <h1>{isPortuguese ? "Seu site profissional no exterior por um valor acessível" : `Professional Websites for Small Businesses — Starting at ${price(region.starter)}`}</h1>
-              <p className="hero-lead">{isPortuguese ? "Preços especiais de lançamento para os primeiros clientes internacionais da Mediatrix Tech." : "Modern, mobile-friendly websites with clear introductory pricing and direct communication with your developer."}</p>
+              <h1>{route.h1}</h1>
+              <p className="hero-lead">{route.lead}</p>
               <p className="launch-note">{introductoryPricing.launchOfferDescription}</p>
               {isPortuguese && <label className="market-selector"><span>Mercado do seu negócio</span><select value={marketKey} onChange={(event) => setMarketKey(event.target.value)}><option value="brazil">Brasil · BRL</option><option value="us">Estados Unidos · USD</option><option value="europe">Europa · EUR</option><option value="switzerland">Suíça · CHF</option></select><small>O mercado e a moeda são escolhidos por você, independentemente do idioma do site.</small></label>}
               <div className="intl-actions">

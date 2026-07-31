@@ -461,6 +461,8 @@ html[dir="rtl"] .contact-channel:hover .channel-arrow { transform: rotate(180deg
 .company-facts article > span { color: var(--gold); font-family: Inter, system-ui, sans-serif; font-size: 0.8rem; font-weight: 700; }
 .company-facts h3 { margin-bottom: 0.45rem; font-size: 1.05rem; }
 .company-facts p { margin-bottom: 0; color: var(--muted); line-height: 1.6; }
+.company-local-note { margin-top: -1rem; padding: 1rem; border: 1px solid rgba(101, 187, 239, 0.22); border-radius: 14px; background: var(--blue-soft); }
+.company-local-note p { margin-bottom: 0.35rem; color: #d6dde6; line-height: 1.65; }
 
 .contact-section { border-top: 1px solid var(--line); background: radial-gradient(circle at 15% 20%, rgba(101, 187, 239, 0.1), transparent 28rem), #090d14; }
 .contact-layout { display: grid; gap: 1.5rem; align-items: start; }

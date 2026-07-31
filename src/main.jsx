@@ -24,10 +24,13 @@ import {
 } from "lucide-react";
 import { getEasterEggCopy, languages, rtlLanguages, translations } from "./translations";
 import { InternationalLanding, isInternationalRoute } from "./InternationalLanding";
+import { LocalSantaMariaLanding } from "./LocalSantaMariaLanding";
+import { PublicSectionPage } from "./PublicSectionPage";
 import { NotFound } from "./easter-eggs/NotFound";
 import { SecretLogo } from "./easter-eggs/SecretLogo";
 import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
 import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
+import { applyPageSeo, getStructuredData, LOCAL_ROUTE, ROUTE_SEO } from "./seo";
 import "./styles.css";
 import "./easter-eggs/easter-eggs.css";
 
@@ -116,13 +119,13 @@ function App() {
   React.useEffect(() => {
     document.documentElement.lang = language;
     document.documentElement.dir = rtlLanguages.has(language) ? "rtl" : "ltr";
-    document.title = copy.metaTitle;
-    document.querySelector('meta[name="description"]')?.setAttribute("content", copy.metaDescription);
-    document.querySelector('meta[property="og:title"]')?.setAttribute("content", copy.metaTitle);
-    document.querySelector('meta[property="og:description"]')?.setAttribute("content", copy.metaDescription);
-    document.querySelector('meta[property="og:locale"]')?.setAttribute("content", language.replace("-", "_"));
-    document.querySelector('meta[name="twitter:title"]')?.setAttribute("content", copy.metaTitle);
-    document.querySelector('meta[name="twitter:description"]')?.setAttribute("content", copy.metaDescription);
+    const homeSeo = {
+      ...ROUTE_SEO["/"],
+      title: copy.metaTitle,
+      description: copy.metaDescription,
+      locale: language.replace("-", "_"),
+    };
+    applyPageSeo({ pathname: "/", seo: homeSeo, structuredData: getStructuredData("/", homeSeo) });
     window.localStorage.setItem("mediatrix-language", language);
   }, [copy.metaDescription, copy.metaTitle, language]);
 
@@ -370,7 +373,10 @@ function Company({ copy }) {
   return (
     <section className="section company-section" id="empresa" aria-labelledby="empresa-title">
       <div className="shell company-layout">
-        <SectionHeading eyebrow={copy.company.eyebrow} title={copy.company.title} description={copy.company.description} id="empresa-title" />
+        <div>
+          <SectionHeading eyebrow={copy.company.eyebrow} title={copy.company.title} description={copy.company.description} id="empresa-title" />
+          {copy.company.localSeo && <div className="company-local-note"><p>{copy.company.localSeo.text}</p><a className="text-link" href={LOCAL_ROUTE}>{copy.company.localSeo.link} <ArrowRight size={17} aria-hidden="true" /></a></div>}
+        </div>
         <div className="company-facts">
           {copy.company.facts.map(([title, text], index) => <article key={title}><span aria-hidden="true">0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}
         </div>
@@ -494,12 +500,29 @@ function LocalizedNotFound() {
 }
 
 function CurrentRoute() {
+  const normalizedPath = window.location.pathname.replace(/\/+$/, "") || "/";
   if (window.location.pathname.startsWith("/area-interna/")) {
     return <React.Suspense fallback={null}><InternalQuotes /></React.Suspense>;
   }
+  if (normalizedPath === LOCAL_ROUTE) return <LocalSantaMariaLanding />;
+  if (["/servicos", "/portfolio", "/empresa", "/contato"].includes(normalizedPath)) return <PublicSectionPage pathname={normalizedPath} />;
   if (isInternationalRoute()) return <InternationalLanding />;
   if (isHomeRoute()) return <App />;
   return <LocalizedNotFound />;
 }
 
+function configureGoogleSiteVerification() {
+  const verification = import.meta.env.VITE_GOOGLE_SITE_VERIFICATION?.trim();
+  const existingMeta = document.querySelector('meta[name="google-site-verification"]');
+  if (!verification) {
+    existingMeta?.remove();
+    return;
+  }
+  const verificationMeta = existingMeta || document.createElement("meta");
+  verificationMeta.setAttribute("name", "google-site-verification");
+  verificationMeta.setAttribute("content", verification);
+  if (!existingMeta) document.head.appendChild(verificationMeta);
+}
+
+configureGoogleSiteVerification();
 createRoot(document.getElementById("root")).render(<CurrentRoute />);

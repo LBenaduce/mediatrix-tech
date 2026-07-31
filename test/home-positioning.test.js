@@ -10,6 +10,8 @@ test("a home em português apresenta posicionamento e CTAs concretos", () => {
   assert.equal(copy.hero.secondaryCta, "Ver projetos");
   assert.equal(copy.services.length, 7);
   assert.deepEqual(copy.services.map(({ id }) => id), ["site", "landing", "custom", "media", "event", "agri", "care"]);
+  assert.match(copy.company.localSeo.text, /Santa Maria.+Rio Grande do Sul.+Brasil e do mundo/);
+  assert.equal(copy.company.localSeo.link, "Criação de sites em Santa Maria, RS");
 });
 
 test("a home em inglês mantém a mesma proposta de valor", () => {
@@ -34,6 +36,8 @@ test("a apresentação da empresa usa o novo texto em todos os idiomas", () => {
 
   for (const locale of ["pt-BR", "en", "es", "fr", "de", "zh-CN", "hi", "ar"]) {
     assert.equal(translations[locale].company.facts.length, 4);
+    assert.ok(translations[locale].company.localSeo.text.length > 0);
+    assert.ok(translations[locale].company.localSeo.link.length > 0);
     translations[locale].company.facts.forEach(([title, description]) => {
       assert.ok(title.length > 0);
       assert.ok(description.length > 0);

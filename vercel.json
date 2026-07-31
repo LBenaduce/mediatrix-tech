@@ -3,6 +3,46 @@
     {
       "source": "/area-interna/:path*",
       "destination": "/"
+    },
+    {
+      "source": "/criacao-de-sites-santa-maria-rs",
+      "destination": "/criacao-de-sites-santa-maria-rs/index.html"
+    },
+    {
+      "source": "/servicos",
+      "destination": "/servicos/index.html"
+    },
+    {
+      "source": "/portfolio",
+      "destination": "/portfolio/index.html"
+    },
+    {
+      "source": "/empresa",
+      "destination": "/empresa/index.html"
+    },
+    {
+      "source": "/contato",
+      "destination": "/contato/index.html"
+    },
+    {
+      "source": "/brazil",
+      "destination": "/brazil/index.html"
+    },
+    {
+      "source": "/us",
+      "destination": "/us/index.html"
+    },
+    {
+      "source": "/europe",
+      "destination": "/europe/index.html"
+    },
+    {
+      "source": "/switzerland",
+      "destination": "/switzerland/index.html"
+    },
+    {
+      "source": "/brazilian-businesses-abroad",
+      "destination": "/brazilian-businesses-abroad/index.html"
     }
   ],
   "headers": [
