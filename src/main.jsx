@@ -4,16 +4,22 @@ import {
   AudioLines,
   ArrowRight,
   BriefcaseBusiness,
+  Building2,
   Check,
   Clapperboard,
   Code2,
   ExternalLink,
   Globe2,
   Image as ImageIcon,
+  LayoutTemplate,
   Mail,
   Menu,
   MessageCircle,
+  QrCode,
   Send,
+  Sprout,
+  Wrench,
+  Workflow,
   X,
 } from "lucide-react";
 import { getEasterEggCopy, languages, rtlLanguages, translations } from "./translations";
@@ -26,7 +32,19 @@ import "./styles.css";
 import "./easter-eggs/easter-eggs.css";
 
 const navigationIds = ["top", "servicos", "portfolio", "empresa", "contato"];
-const serviceIcons = { web: Code2, photo: ImageIcon, video: Clapperboard, audio: AudioLines };
+const serviceIcons = {
+  web: Code2,
+  photo: ImageIcon,
+  video: Clapperboard,
+  audio: AudioLines,
+  site: Building2,
+  landing: LayoutTemplate,
+  custom: Workflow,
+  media: Clapperboard,
+  event: QrCode,
+  agri: Sprout,
+  care: Wrench,
+};
 const DigitalJunkDrawer = React.lazy(() => import("./easter-eggs/DigitalJunkDrawer"));
 const InternalQuotes = React.lazy(() => import("./internal/InternalQuotes").then((module) => ({ default: module.InternalQuotes })));
 
@@ -122,8 +140,8 @@ function App() {
         onLanguageChange={setLanguage}
       />
       <main id="conteudo">
-        <TopBanner />
         <Hero copy={copy} />
+        <TopBanner />
         <Services copy={copy} onSelectService={setSelectedService} />
         <Portfolio copy={copy} language={language} />
         <Company copy={copy} />
@@ -228,7 +246,7 @@ function TopBanner() {
   }, []);
 
   return (
-    <div className="top-banner-section" id="top" aria-hidden="true">
+    <div className="top-banner-section" aria-hidden="true">
       <div className="top-banner-frame">
           <img
             className="top-banner-poster"
@@ -257,8 +275,15 @@ function TopBanner() {
 }
 
 function Hero({ copy }) {
+  const primaryAction = copy.hero.primaryCta
+    ? { href: "#formulario", label: copy.hero.primaryCta }
+    : { href: "#servicos", label: copy.hero.services };
+  const secondaryAction = copy.hero.secondaryCta
+    ? { href: "#portfolio", label: copy.hero.secondaryCta }
+    : { href: "#formulario", label: copy.quote };
+
   return (
-    <section className="hero" aria-labelledby="hero-title">
+    <section className="hero" id="top" aria-labelledby="hero-title">
       <div className="hero-glow" aria-hidden="true" />
       <div className="shell hero-content">
         <div className="hero-copy">
@@ -266,8 +291,8 @@ function Hero({ copy }) {
           <h1 id="hero-title">{copy.hero.title}</h1>
           <p className="hero-description">{copy.hero.description}</p>
           <div className="hero-actions">
-            <a className="button primary" href="#servicos">{copy.hero.services} <ArrowRight size={18} aria-hidden="true" /></a>
-            <a className="button secondary" href="#formulario">{copy.quote}</a>
+            <a className="button primary" href={primaryAction.href}>{primaryAction.label} <ArrowRight size={18} aria-hidden="true" /></a>
+            <a className="button secondary" href={secondaryAction.href}>{secondaryAction.label}</a>
           </div>
         </div>
       </div>
@@ -284,7 +309,7 @@ function Services({ copy, onSelectService }) {
     <section className="section" id="servicos" aria-labelledby="servicos-title">
       <div className="shell">
         <SectionHeading {...copy.servicesSection} id="servicos-title" />
-        <div className="services-grid">
+        <div className={`services-grid${copy.services.length > 4 ? " expanded" : ""}`}>
           {copy.services.map((service) => {
             const Icon = serviceIcons[service.id];
             return (
