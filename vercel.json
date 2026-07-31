@@ -5,6 +5,38 @@
       "destination": "/"
     },
     {
+      "source": "/en",
+      "destination": "/en/index.html"
+    },
+    {
+      "source": "/pt",
+      "destination": "/pt/index.html"
+    },
+    {
+      "source": "/es",
+      "destination": "/es/index.html"
+    },
+    {
+      "source": "/fr",
+      "destination": "/fr/index.html"
+    },
+    {
+      "source": "/de",
+      "destination": "/de/index.html"
+    },
+    {
+      "source": "/zh",
+      "destination": "/zh/index.html"
+    },
+    {
+      "source": "/hi",
+      "destination": "/hi/index.html"
+    },
+    {
+      "source": "/ar",
+      "destination": "/ar/index.html"
+    },
+    {
       "source": "/criacao-de-sites-santa-maria-rs",
       "destination": "/criacao-de-sites-santa-maria-rs/index.html"
     },

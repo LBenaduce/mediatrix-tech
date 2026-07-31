@@ -1,7 +1,7 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { DEFAULT_OG_IMAGE, getStructuredData, PUBLIC_ROUTES, ROUTE_SEO } from "../src/seo.js";
+import { DEFAULT_OG_IMAGE, getLanguageAlternates, getStructuredData, PUBLIC_ROUTES, ROUTE_SEO } from "../src/seo.js";
 
 const projectRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const distRoot = join(projectRoot, "dist");
@@ -23,6 +23,7 @@ function replaceMeta(html, selector, value) {
 function renderShell(pathname) {
   const seo = ROUTE_SEO[pathname];
   let html = template
+    .replace(/<html(?=[^>]*lang=["'])[^>]*>/i, `<html lang="${escapeHtml(seo.locale.replace("_", "-"))}">`)
     .replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(seo.title)}</title>`)
     .replace(/<link(?=[^>]*rel=["']canonical["'])[^>]*>/i, `<link rel="canonical" href="${seo.canonical}" />`)
     .replace(/<script(?=[^>]*id=["']structured-data["'])[^>]*>[\s\S]*?<\/script>/i, `<script id="structured-data" type="application/ld+json">${JSON.stringify(getStructuredData(pathname, seo)).replaceAll("<", "\\u003c")}</script>`);
@@ -40,6 +41,12 @@ function renderShell(pathname) {
   html = replaceMeta(html, ["name", "twitter:title"], seo.title);
   html = replaceMeta(html, ["name", "twitter:description"], seo.description);
   html = replaceMeta(html, ["name", "twitter:image"], DEFAULT_OG_IMAGE);
+
+  html = html.replace(/\s*<link(?=[^>]*data-mediatrix-hreflang)[^>]*>\s*/gi, "\n");
+  const alternates = getLanguageAlternates(pathname)
+    .map(({ hreflang, href }) => `    <link rel="alternate" hreflang="${escapeHtml(hreflang)}" href="${escapeHtml(href)}" data-mediatrix-hreflang="true" />`)
+    .join("\n");
+  if (alternates) html = html.replace("</head>", `${alternates}\n  </head>`);
 
   const oldVerification = /\s*<meta(?=[^>]*name=["']google-site-verification["'])[^>]*>\s*/i;
   html = html.replace(oldVerification, "\n");

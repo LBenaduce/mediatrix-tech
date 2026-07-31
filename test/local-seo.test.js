@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
-import { getStructuredData, LOCAL_FAQS, LOCAL_ROUTE, PUBLIC_ROUTES, ROUTE_SEO, SITE_ORIGIN } from "../src/seo.js";
+import { languageRoutes, supportedLanguages } from "../src/i18n.js";
+import { getLanguageAlternates, getStructuredData, LOCAL_FAQS, LOCAL_ROUTE, PUBLIC_ROUTES, ROUTE_SEO, SITE_ORIGIN } from "../src/seo.js";
 
 test("a página local usa os metadados e a URL canônica definidos", () => {
   const seo = ROUTE_SEO[LOCAL_ROUTE];
@@ -12,12 +13,26 @@ test("a página local usa os metadados e a URL canônica definidos", () => {
 });
 
 test("cada rota pública possui title, description e canonical exclusivos", () => {
-  const entries = PUBLIC_ROUTES.map((route) => ROUTE_SEO[route]);
+  const entries = PUBLIC_ROUTES.filter((route) => route !== "/").map((route) => ROUTE_SEO[route]);
 
   assert.equal(new Set(entries.map(({ title }) => title)).size, entries.length);
   assert.equal(new Set(entries.map(({ description }) => description)).size, entries.length);
   assert.equal(new Set(entries.map(({ canonical }) => canonical)).size, entries.length);
   entries.forEach(({ canonical }) => assert.match(canonical, /^https:\/\/www\.mediatrix-tech\.com\//));
+  assert.equal(ROUTE_SEO["/"].canonical, ROUTE_SEO["/en"].canonical);
+});
+
+test("cada home traduzida possui locale, canonical e hreflang corretos", () => {
+  const alternates = getLanguageAlternates("/pt");
+
+  for (const locale of supportedLanguages) {
+    const route = languageRoutes[locale];
+    assert.equal(ROUTE_SEO[route].locale, locale.replace("-", "_"));
+    assert.equal(ROUTE_SEO[route].canonical, `${SITE_ORIGIN}${route}`);
+    assert.ok(alternates.some((alternate) => alternate.hreflang === locale && alternate.href === `${SITE_ORIGIN}${route}`));
+  }
+  assert.ok(alternates.some((alternate) => alternate.hreflang === "x-default" && alternate.href === `${SITE_ORIGIN}/`));
+  assert.deepEqual(getLanguageAlternates("/servicos"), []);
 });
 
 test("o JSON-LD local usa somente informações publicadas e FAQ visível", () => {
@@ -40,7 +55,7 @@ test("sitemap e robots usam HTTPS e excluem a área privada", async () => {
     readFile(new URL("../public/robots.txt", import.meta.url), "utf8"),
   ]);
 
-  for (const route of ["/servicos", "/portfolio", "/empresa", "/contato", LOCAL_ROUTE]) {
+  for (const route of ["/servicos", "/portfolio", "/empresa", "/contato", LOCAL_ROUTE, ...Object.values(languageRoutes)]) {
     assert.match(sitemap, new RegExp(`${SITE_ORIGIN}${route}`));
   }
   assert.doesNotMatch(sitemap, /area-interna/);

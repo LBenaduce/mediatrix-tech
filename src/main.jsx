@@ -23,6 +23,13 @@ import {
   X,
 } from "lucide-react";
 import { getEasterEggCopy, languages, rtlLanguages, translations } from "./translations";
+import {
+  getLanguageRoute,
+  getLocalizedUrl,
+  getPreferredLanguage,
+  getRouteLanguage,
+  saveManualLanguage,
+} from "./i18n";
 import { InternationalLanding, isInternationalRoute } from "./InternationalLanding";
 import { LocalSantaMariaLanding } from "./LocalSantaMariaLanding";
 import { PublicSectionPage } from "./PublicSectionPage";
@@ -66,22 +73,12 @@ const contactLinks = {
   upwork: "https://www.upwork.com/freelancers/~015020486545a9742b",
 };
 
-const supportedLanguages = languages.map(([locale]) => locale);
-
-function getInitialLanguage() {
-  const savedLanguage = window.localStorage.getItem("mediatrix-language");
-  if (supportedLanguages.includes(savedLanguage)) return savedLanguage;
-
-  const deviceLanguages = navigator.languages || [navigator.language];
-  for (const deviceLanguage of deviceLanguages) {
-    const normalized = deviceLanguage.toLowerCase();
-    const exact = supportedLanguages.find((locale) => locale.toLowerCase() === normalized);
-    if (exact) return exact;
-    const base = supportedLanguages.find((locale) => locale.split("-")[0] === normalized.split("-")[0]);
-    if (base) return base;
+function getLanguageStorage() {
+  try {
+    return window.localStorage;
+  } catch {
+    return null;
   }
-
-  return "pt-BR";
 }
 
 function useActiveSection() {
@@ -110,23 +107,29 @@ function useActiveSection() {
   return activeSection;
 }
 
-function App() {
+function App({ initialLanguage }) {
   const activeSection = useActiveSection();
   const [selectedService, setSelectedService] = React.useState("");
-  const [language, setLanguage] = React.useState(getInitialLanguage);
+  const [language, setLanguage] = React.useState(initialLanguage);
   const copy = translations[language];
+
+  const changeLanguage = React.useCallback((nextLanguage) => {
+    saveManualLanguage(nextLanguage, getLanguageStorage());
+    setLanguage(nextLanguage);
+    window.history.replaceState(window.history.state, "", getLocalizedUrl(nextLanguage, window.location));
+  }, []);
 
   React.useEffect(() => {
     document.documentElement.lang = language;
     document.documentElement.dir = rtlLanguages.has(language) ? "rtl" : "ltr";
+    const pathname = getLanguageRoute(language);
     const homeSeo = {
-      ...ROUTE_SEO["/"],
+      ...ROUTE_SEO[pathname],
       title: copy.metaTitle,
       description: copy.metaDescription,
       locale: language.replace("-", "_"),
     };
-    applyPageSeo({ pathname: "/", seo: homeSeo, structuredData: getStructuredData("/", homeSeo) });
-    window.localStorage.setItem("mediatrix-language", language);
+    applyPageSeo({ pathname, seo: homeSeo, structuredData: getStructuredData(pathname, homeSeo) });
   }, [copy.metaDescription, copy.metaTitle, language]);
 
   React.useEffect(() => {
@@ -140,7 +143,7 @@ function App() {
         activeSection={activeSection}
         copy={copy}
         language={language}
-        onLanguageChange={setLanguage}
+        onLanguageChange={changeLanguage}
       />
       <main id="conteudo">
         <Hero copy={copy} />
@@ -489,7 +492,10 @@ function isHomeRoute(pathname = window.location.pathname) {
 }
 
 function LocalizedNotFound() {
-  const [language] = React.useState(getInitialLanguage);
+  const [language] = React.useState(() => getPreferredLanguage({
+    storage: getLanguageStorage(),
+    browserNavigator: window.navigator,
+  }));
   const easterEggCopy = React.useMemo(() => getEasterEggCopy(language), [language]);
 
   React.useEffect(() => {
@@ -507,7 +513,16 @@ function CurrentRoute() {
   if (normalizedPath === LOCAL_ROUTE) return <LocalSantaMariaLanding />;
   if (["/servicos", "/portfolio", "/empresa", "/contato"].includes(normalizedPath)) return <PublicSectionPage pathname={normalizedPath} />;
   if (isInternationalRoute()) return <InternationalLanding />;
-  if (isHomeRoute()) return <App />;
+  const routeLanguage = getRouteLanguage(normalizedPath);
+  if (routeLanguage) return <App initialLanguage={routeLanguage} />;
+  if (isHomeRoute()) {
+    const preferredLanguage = getPreferredLanguage({
+      storage: getLanguageStorage(),
+      browserNavigator: window.navigator,
+    });
+    window.location.replace(getLocalizedUrl(preferredLanguage, window.location));
+    return null;
+  }
   return <LocalizedNotFound />;
 }
 

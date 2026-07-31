@@ -1,3 +1,6 @@
+import { languageRoutes, supportedLanguages } from "./i18n.js";
+import { translations } from "./translations.js";
+
 export const SITE_ORIGIN = "https://www.mediatrix-tech.com";
 export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/og-home.png`;
 
@@ -26,13 +29,26 @@ export const LOCAL_FAQS = [
   ],
 ];
 
+const localizedHomeSeo = Object.fromEntries(
+  supportedLanguages.map((locale) => {
+    const pathname = languageRoutes[locale];
+    return [pathname, {
+      title: translations[locale].metaTitle,
+      description: translations[locale].metaDescription,
+      canonical: `${SITE_ORIGIN}${pathname}`,
+      locale: locale.replace("-", "_"),
+    }];
+  }),
+);
+
 export const ROUTE_SEO = {
   "/": {
-    title: "Criação de sites profissionais | Mediatrix Tech",
-    description: "Sites rápidos, responsivos e personalizados para pequenas empresas, profissionais, eventos e agronegócio em Santa Maria, no Brasil e no exterior.",
-    canonical: `${SITE_ORIGIN}/`,
-    locale: "pt_BR",
+    title: translations.en.metaTitle,
+    description: translations.en.metaDescription,
+    canonical: `${SITE_ORIGIN}${languageRoutes.en}`,
+    locale: "en",
   },
+  ...localizedHomeSeo,
   "/servicos": {
     title: "Serviços de criação de sites e soluções digitais | Mediatrix Tech",
     description: "Sites institucionais, landing pages, páginas para eventos, manutenção e soluções digitais personalizadas para empresas e profissionais.",
@@ -120,8 +136,22 @@ const website = {
   url: `${SITE_ORIGIN}/`,
   name: "Mediatrix Tech",
   publisher: { "@id": `${SITE_ORIGIN}/#organization` },
-  inLanguage: ["pt-BR", "en"],
+  inLanguage: supportedLanguages,
 };
+
+export function getLanguageAlternates(pathname = "/") {
+  const normalizedPath = pathname.replace(/\/+$/, "") || "/";
+  const localizedRoutes = new Set(Object.values(languageRoutes));
+  if (normalizedPath !== "/" && !localizedRoutes.has(normalizedPath)) return [];
+
+  return [
+    ...supportedLanguages.map((locale) => ({
+      hreflang: locale,
+      href: `${SITE_ORIGIN}${languageRoutes[locale]}`,
+    })),
+    { hreflang: "x-default", href: `${SITE_ORIGIN}/` },
+  ];
+}
 
 export function getStructuredData(pathname = "/", seo = ROUTE_SEO[pathname] || ROUTE_SEO["/"]) {
   const pageId = `${seo.canonical}#webpage`;
@@ -220,6 +250,16 @@ export function applyPageSeo({
     document.head.appendChild(canonical);
   }
   canonical.setAttribute("href", seo.canonical);
+
+  document.querySelectorAll('link[data-mediatrix-hreflang]').forEach((link) => link.remove());
+  for (const alternate of getLanguageAlternates(pathname)) {
+    const link = document.createElement("link");
+    link.setAttribute("rel", "alternate");
+    link.setAttribute("hreflang", alternate.hreflang);
+    link.setAttribute("href", alternate.href);
+    link.dataset.mediatrixHreflang = "true";
+    document.head.appendChild(link);
+  }
 
   let jsonLd = document.getElementById("structured-data");
   if (!jsonLd) {
