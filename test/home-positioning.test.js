@@ -23,6 +23,16 @@ test("a home em inglês mantém a mesma proposta de valor", () => {
   assert.equal(copy.services.length, 7);
 });
 
+test("os canais de contato exibem os dois números do WhatsApp", () => {
+  for (const locale of ["pt-BR", "en", "es", "fr", "de", "zh-CN", "hi", "ar"]) {
+    assert.deepEqual(translations[locale].contact.channels.slice(0, 2), [
+      ["WhatsApp", "+1 305 992 0833"],
+      ["WhatsApp", "+55 55 99935-7388"],
+    ]);
+    assert.equal(translations[locale].contact.channels.length, 4);
+  }
+});
+
 test("a apresentação da empresa usa o novo texto em todos os idiomas", () => {
   assert.deepEqual(translations["pt-BR"].company.facts, [
     ["Quem somos", "Somos uma empresa familiar, criada para transformar boas ideias em soluções digitais úteis, bonitas e funcionais. Porque a beleza também importa."],

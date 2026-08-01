@@ -4,6 +4,7 @@ import { SecretLogo } from "./easter-eggs/SecretLogo";
 import { LOCAL_ROUTE } from "./seo";
 
 export const BRAZIL_WHATSAPP = "https://wa.me/5555999357388?text=Ol%C3%A1%2C%20Mediatrix%20Tech.%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento.";
+export const US_WHATSAPP = "https://wa.me/13059920833?text=Hello%20Mediatrix%20Tech%2C%20I%20would%20like%20to%20request%20a%20quote.";
 
 const navigation = [
   ["/", "Início"],
