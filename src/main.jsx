@@ -1,5 +1,5 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import {
   AudioLines,
   ArrowRight,
@@ -74,6 +74,7 @@ const contactLinks = {
 };
 
 function getLanguageStorage() {
+  if (typeof window === "undefined") return null;
   try {
     return window.localStorage;
   } catch {
@@ -153,7 +154,7 @@ function App({ initialLanguage }) {
         <Company copy={copy} />
         <Contact copy={copy} selectedService={selectedService} onSelectService={setSelectedService} />
       </main>
-      <Footer copy={copy} />
+      <Footer copy={copy} language={language} />
     </EasterEggI18nProvider>
   );
 }
@@ -240,12 +241,11 @@ function LanguageSelector({ copy, language, onChange }) {
 
 function TopBanner() {
   const [videoReady, setVideoReady] = React.useState(false);
-  const [reduceMotion, setReduceMotion] = React.useState(
-    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches,
-  );
+  const [reduceMotion, setReduceMotion] = React.useState(false);
 
   React.useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReduceMotion(mediaQuery.matches);
     const updateMotionPreference = (event) => setReduceMotion(event.matches);
     mediaQuery.addEventListener("change", updateMotionPreference);
     return () => mediaQuery.removeEventListener("change", updateMotionPreference);
@@ -450,7 +450,7 @@ function Contact({ copy, selectedService, onSelectService }) {
   );
 }
 
-function Footer({ copy }) {
+function Footer({ copy, language }) {
   const currentYear = new Date().getFullYear();
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const drawerButtonRef = React.useRef(null);
@@ -462,6 +462,11 @@ function Footer({ copy }) {
       <div className="shell footer-inner">
         <a className="footer-brand" href="#top">Mediatrix Tech</a>
         <p>Create. Connect. Convert.</p>
+        {language === "pt-BR" && (
+          <a className="text-link footer-local-link" href={LOCAL_ROUTE}>
+            Criação de sites em Santa Maria, RS <ArrowRight size={17} aria-hidden="true" />
+          </a>
+        )}
         <a
           className="crea-rs-mark"
           href="https://www.crea-rs.org.br/"
@@ -486,15 +491,15 @@ function Footer({ copy }) {
   );
 }
 
-function isHomeRoute(pathname = window.location.pathname) {
+function isHomeRoute(pathname = typeof window !== "undefined" ? window.location.pathname : "/") {
   const normalizedPath = pathname.replace(/\/+$/, "") || "/";
   return normalizedPath === "/" || normalizedPath === "/index.html";
 }
 
-function LocalizedNotFound() {
-  const [language] = React.useState(() => getPreferredLanguage({
+function LocalizedNotFound({ initialLanguage }) {
+  const [language] = React.useState(() => initialLanguage || getPreferredLanguage({
     storage: getLanguageStorage(),
-    browserNavigator: window.navigator,
+    browserNavigator: typeof window !== "undefined" ? window.navigator : undefined,
   }));
   const easterEggCopy = React.useMemo(() => getEasterEggCopy(language), [language]);
 
@@ -505,17 +510,19 @@ function LocalizedNotFound() {
   return <EasterEggI18nProvider locale={language}><NotFound /></EasterEggI18nProvider>;
 }
 
-function CurrentRoute() {
-  const normalizedPath = window.location.pathname.replace(/\/+$/, "") || "/";
-  if (window.location.pathname.startsWith("/area-interna/")) {
+export function CurrentRoute({ pathname, initialLanguage }) {
+  const currentPath = pathname || (typeof window !== "undefined" ? window.location.pathname : "/");
+  const normalizedPath = currentPath.replace(/\/+$/, "") || "/";
+  if (currentPath.startsWith("/area-interna/")) {
     return <React.Suspense fallback={null}><InternalQuotes /></React.Suspense>;
   }
   if (normalizedPath === LOCAL_ROUTE) return <LocalSantaMariaLanding />;
   if (["/servicos", "/portfolio", "/empresa", "/contato"].includes(normalizedPath)) return <PublicSectionPage pathname={normalizedPath} />;
-  if (isInternationalRoute()) return <InternationalLanding />;
+  if (isInternationalRoute(normalizedPath)) return <InternationalLanding pathname={normalizedPath} />;
   const routeLanguage = getRouteLanguage(normalizedPath);
   if (routeLanguage) return <App initialLanguage={routeLanguage} />;
-  if (isHomeRoute()) {
+  if (isHomeRoute(normalizedPath)) {
+    if (typeof window === "undefined") return <App initialLanguage="en" />;
     const preferredLanguage = getPreferredLanguage({
       storage: getLanguageStorage(),
       browserNavigator: window.navigator,
@@ -523,7 +530,8 @@ function CurrentRoute() {
     window.location.replace(getLocalizedUrl(preferredLanguage, window.location));
     return null;
   }
-  return <LocalizedNotFound />;
+  const documentLanguage = typeof document !== "undefined" ? getRouteLanguage(`/${document.documentElement.lang.split("-")[0]}`) : null;
+  return <LocalizedNotFound initialLanguage={initialLanguage || documentLanguage || "pt-BR"} />;
 }
 
 function configureGoogleSiteVerification() {
@@ -539,5 +547,10 @@ function configureGoogleSiteVerification() {
   if (!existingMeta) document.head.appendChild(verificationMeta);
 }
 
-configureGoogleSiteVerification();
-createRoot(document.getElementById("root")).render(<CurrentRoute />);
+if (typeof document !== "undefined") {
+  configureGoogleSiteVerification();
+  const rootElement = document.getElementById("root");
+  const application = <CurrentRoute />;
+  if (rootElement.hasChildNodes()) hydrateRoot(rootElement, application);
+  else createRoot(rootElement).render(application);
+}

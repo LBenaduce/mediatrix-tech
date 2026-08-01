@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
 import { languageRoutes, supportedLanguages } from "../src/i18n.js";
-import { getLanguageAlternates, getStructuredData, LOCAL_FAQS, LOCAL_ROUTE, PUBLIC_ROUTES, ROUTE_SEO, SITE_ORIGIN } from "../src/seo.js";
+import { getLanguageAlternates, getStructuredData, LOCAL_FAQS, LOCAL_ROUTE, ORGANIZATION_SAME_AS, PUBLIC_ROUTES, ROUTE_SEO, SITE_ORIGIN } from "../src/seo.js";
 
 test("a página local usa os metadados e a URL canônica definidos", () => {
   const seo = ROUTE_SEO[LOCAL_ROUTE];
@@ -35,16 +35,24 @@ test("cada home traduzida possui locale, canonical e hreflang corretos", () => {
   assert.deepEqual(getLanguageAlternates("/servicos"), []);
 });
 
-test("o JSON-LD local usa somente informações publicadas e FAQ visível", () => {
+test("o JSON-LD local usa somente informações publicadas e perfis confirmados", () => {
   const data = getStructuredData(LOCAL_ROUTE, ROUTE_SEO[LOCAL_ROUTE]);
   const types = data["@graph"].map((item) => item["@type"]);
-  const faqPage = data["@graph"].find((item) => item["@type"] === "FAQPage");
+  const organization = data["@graph"].find((item) => item["@type"] === "Organization");
   const breadcrumb = data["@graph"].find((item) => item["@type"] === "BreadcrumbList");
   const serialized = JSON.stringify(data);
 
-  assert.deepEqual(types, ["Organization", "WebSite", "WebPage", "ProfessionalService", "BreadcrumbList", "FAQPage"]);
-  assert.deepEqual(faqPage.mainEntity.map(({ name }) => name), LOCAL_FAQS.map(([question]) => question));
+  assert.deepEqual(types, ["Organization", "WebSite", "WebPage", "Service", "BreadcrumbList"]);
+  assert.deepEqual(organization.sameAs, ORGANIZATION_SAME_AS);
+  assert.deepEqual(ORGANIZATION_SAME_AS, [
+    "https://www.instagram.com/mediatrixtech/",
+    "https://www.upwork.com/freelancers/~015020486545a9742b",
+    "https://www.facebook.com/profile.php?id=61591868652596",
+  ]);
+  assert.equal(new Set(ORGANIZATION_SAME_AS).size, ORGANIZATION_SAME_AS.length);
   assert.deepEqual(breadcrumb.itemListElement.map(({ name }) => name), ["Início", "Criação de Sites em Santa Maria RS"]);
+  assert.equal(breadcrumb.itemListElement[0].item, `${SITE_ORIGIN}/pt`);
+  assert.doesNotMatch(serialized, /FAQPage/);
   assert.doesNotMatch(serialized, /"address"|PostalAddress|Mediatrix Tech LLC|state of formation/i);
   assert.doesNotThrow(() => JSON.parse(serialized));
 });

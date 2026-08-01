@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/generate-route-shells.mjs",
+    "build": "vite build && vite build --config vite.ssr.config.js && node scripts/generate-route-shells.mjs",
     "test": "node --test",
     "preview": "vite preview",
     "dev:internal": "node scripts/dev-internal.mjs",

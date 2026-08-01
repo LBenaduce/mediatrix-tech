@@ -66,8 +66,8 @@ function useSectionView(id, event) {
   }, [id, event]);
 }
 
-export function InternationalLanding() {
-  const path = window.location.pathname.replace(/\/$/, "") || "/us";
+export function InternationalLanding({ pathname }) {
+  const path = (pathname || (typeof window !== "undefined" ? window.location.pathname : "/us")).replace(/\/$/, "") || "/us";
   const route = routeMap[path] || routeMap["/us"];
   const [marketKey, setMarketKey] = React.useState(route.region);
   const region = React.useMemo(() => getPricing(marketKey), [marketKey]);
@@ -204,4 +204,4 @@ function QuoteForm({ region, marketKey, setMarketKey, landingPage, selectedPacka
   </form></div></section>;
 }
 
-export function isInternationalRoute(pathname = window.location.pathname) { return Boolean(routeMap[pathname.replace(/\/$/, "")]); }
+export function isInternationalRoute(pathname = typeof window !== "undefined" ? window.location.pathname : "") { return Boolean(routeMap[pathname.replace(/\/$/, "")]); }

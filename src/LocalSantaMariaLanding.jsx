@@ -90,7 +90,7 @@ export function LocalSantaMariaLanding() {
 
           <section className="section" id="servicos-locais" aria-labelledby="servicos-locais-title">
             <div className="shell">
-              <div className="section-heading"><p className="eyebrow">Serviços</p><h2 id="servicos-locais-title">Soluções digitais construídas para objetivos reais.</h2><p className="section-description">O formato do projeto é definido pelo que sua empresa precisa comunicar, organizar ou tornar mais simples.</p></div>
+              <div className="section-heading"><p className="eyebrow">Serviços</p><h2 id="servicos-locais-title">Desenvolvimento de sites e soluções digitais para objetivos reais.</h2><p className="section-description">O formato do projeto é definido pelo que sua empresa precisa comunicar, organizar ou tornar mais simples.</p></div>
               <div className="local-card-grid">{services.map(([Icon, title, text]) => <article className="local-card compact" key={title}><span className="icon-box" aria-hidden="true"><Icon size={24} /></span><h3>{title}</h3><p>{text}</p></article>)}</div>
               <div className="local-performance"><Gauge size={28} aria-hidden="true" /><div><h3>Velocidade desde o planejamento</h3><p>Imagens dimensionadas, carregamento cuidadoso e uma estrutura enxuta fazem parte do desenvolvimento. O objetivo é entregar páginas estáveis e agradáveis de usar, inclusive em conexões móveis.</p></div></div>
             </div>

@@ -6,6 +6,12 @@ export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/og-home.png`;
 
 export const LOCAL_ROUTE = "/criacao-de-sites-santa-maria-rs";
 
+export const ORGANIZATION_SAME_AS = [
+  "https://www.instagram.com/mediatrixtech/",
+  "https://www.upwork.com/freelancers/~015020486545a9742b",
+  "https://www.facebook.com/profile.php?id=61591868652596",
+];
+
 export const LOCAL_FAQS = [
   [
     "Quanto custa criar um site em Santa Maria?",
@@ -121,7 +127,7 @@ const organization = {
   logo: `${SITE_ORIGIN}/mediatrix-brand-mark.png`,
   email: "mediatrixtech@proton.me",
   telephone: "+55 55 99935-7388",
-  sameAs: ["https://www.upwork.com/freelancers/~015020486545a9742b"],
+  sameAs: ORGANIZATION_SAME_AS,
   areaServed: [
     { "@type": "City", name: "Santa Maria" },
     { "@type": "AdministrativeArea", name: "Rio Grande do Sul" },
@@ -173,13 +179,11 @@ export function getStructuredData(pathname = "/", seo = ROUTE_SEO[pathname] || R
   if (pathname === LOCAL_ROUTE) {
     graph.push(
       {
-        "@type": "ProfessionalService",
+        "@type": "Service",
         "@id": `${seo.canonical}#service`,
         name: "Mediatrix Tech — criação de sites em Santa Maria, RS",
         url: seo.canonical,
         description: seo.description,
-        email: "mediatrixtech@proton.me",
-        telephone: "+55 55 99935-7388",
         provider: { "@id": `${SITE_ORIGIN}/#organization` },
         areaServed: [
           { "@type": "City", name: "Santa Maria" },
@@ -193,18 +197,9 @@ export function getStructuredData(pathname = "/", seo = ROUTE_SEO[pathname] || R
         "@type": "BreadcrumbList",
         "@id": `${seo.canonical}#breadcrumb`,
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Início", item: `${SITE_ORIGIN}/` },
+          { "@type": "ListItem", position: 1, name: "Início", item: `${SITE_ORIGIN}/pt` },
           { "@type": "ListItem", position: 2, name: "Criação de Sites em Santa Maria RS", item: seo.canonical },
         ],
-      },
-      {
-        "@type": "FAQPage",
-        "@id": `${seo.canonical}#faq`,
-        mainEntity: LOCAL_FAQS.map(([question, answer]) => ({
-          "@type": "Question",
-          name: question,
-          acceptedAnswer: { "@type": "Answer", text: answer },
-        })),
       },
     );
   }
