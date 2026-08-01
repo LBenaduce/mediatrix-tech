@@ -68,7 +68,6 @@ const projectMedia = [
 
 const contactLinks = {
   brasil: "https://wa.me/5555999357388?text=Ol%C3%A1%2C%20Mediatrix%20Tech.%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento.",
-  estadosUnidos: "https://wa.me/13059920833?text=Hello%20Mediatrix%20Tech%2C%20I%20would%20like%20to%20request%20a%20quote.",
   email: "mailto:mediatrixtech@proton.me",
   upwork: "https://www.upwork.com/freelancers/~015020486545a9742b",
 };
@@ -391,7 +390,6 @@ function Company({ copy }) {
 function Contact({ copy, selectedService, onSelectService }) {
   const [status, setStatus] = React.useState("idle");
   const channelData = [
-    [contactLinks.estadosUnidos, MessageCircle, "whatsapp"],
     [contactLinks.brasil, MessageCircle, "whatsapp"],
     [contactLinks.email, Mail, "email"],
     [contactLinks.upwork, BriefcaseBusiness, "upwork"],
