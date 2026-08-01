@@ -146,7 +146,7 @@ export const translations = {
     },
     contact: {
       eyebrow: "Contato", title: "Conte o que sua empresa precisa melhorar no digital.", description: "Envie uma mensagem para solicitar uma avaliação inicial, esclarecer dúvidas ou conversar sobre um novo projeto.", channelsLabel: "Canais de contato",
-      channels: [["WhatsApp", "Atendimento em português"], ["E-mail", "mediatrixtech@proton.me"], ["Perfil na Upwork", "Projetos internacionais"]],
+      channels: [["WhatsApp", "Entre em contato"], ["E-mail", "mediatrixtech@proton.me"], ["Perfil na Upwork", "Projetos internacionais"]],
       form: { title: "Envie uma mensagem", description: "Conte brevemente o que você precisa.", name: "Nome", email: "E-mail", service: "Serviço de interesse", chooseService: "Selecione um serviço", message: "Mensagem", send: "Enviar mensagem", sending: "Enviando...", success: "Mensagem enviada com sucesso. Em breve entraremos em contato.", error: "Não foi possível enviar. Tente novamente ou fale conosco pelo WhatsApp.", subject: "Nova mensagem pelo site Mediatrix Tech" },
     },
     rights: "Todos os direitos reservados.",
