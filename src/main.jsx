@@ -464,18 +464,9 @@ function Footer({ copy, language }) {
         <p>Create. Connect. Convert.</p>
         {language === "pt-BR" && (
           <a className="text-link footer-local-link" href={LOCAL_ROUTE}>
-            Criação de sites em Santa Maria, RS <ArrowRight size={17} aria-hidden="true" />
+            Criação de sites<ArrowRight size={17} aria-hidden="true" />
           </a>
         )}
-        <a
-          className="crea-rs-mark"
-          href="https://www.crea-rs.org.br/"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="CREA-RS — Conselho Regional de Engenharia e Agronomia do Rio Grande do Sul"
-        >
-          <img src="/crea-rs-logo.png" alt="CREA-RS" width="580" height="150" />
-        </a>
         <div className="footer-signature">
           <p>© {currentYear} L. Benaduce · {copy.rights}</p>
           <button ref={drawerButtonRef} className="junk-drawer-entry" type="button" onClick={() => setDrawerOpen(true)}>{drawerCopy.entryButton}</button>
@@ -490,7 +481,6 @@ function Footer({ copy, language }) {
     </footer>
   );
 }
-
 function isHomeRoute(pathname = typeof window !== "undefined" ? window.location.pathname : "/") {
   const normalizedPath = pathname.replace(/\/+$/, "") || "/";
   return normalizedPath === "/" || normalizedPath === "/index.html";
