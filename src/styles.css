@@ -444,13 +444,58 @@ html[dir="rtl"] .text-link:hover svg { transform: rotate(180deg) translateX(3px)
 html[dir="rtl"] .contact-channel:hover .channel-arrow { transform: rotate(180deg) translateX(3px); }
 
 .portfolio-section { border-block: 1px solid var(--line); background: #090e15; }
-.project-card { overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow); }
+.project-card {
+  --pointer-x: 50%;
+  --pointer-y: 50%;
+  --rotate-x: 0deg;
+  --rotate-y: 0deg;
+  min-width: 0;
+  perspective: 1000px;
+}
+
+.project-card-surface {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  transform: translateY(0) rotateX(0) rotateY(0);
+  transform-style: preserve-3d;
+  transition: transform 260ms cubic-bezier(0.2, 0.7, 0.2, 1), border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.project-card-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  background: radial-gradient(circle 260px at var(--pointer-x) var(--pointer-y), rgba(101, 187, 239, 0.18), transparent 68%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
 .project-media { aspect-ratio: 16 / 10; overflow: hidden; border-bottom: 1px solid var(--line); background: #020305; }
-.project-media img, .project-media video { width: 100%; height: 100%; object-fit: cover; }
+.project-media img, .project-media video { width: 100%; height: 100%; object-fit: cover; transition: transform 360ms ease; }
 .project-content { padding: 1.35rem; }
 .project-category { margin-bottom: 0.65rem; color: var(--blue); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 .project-content h3 { margin-bottom: 0.65rem; font-size: 1.3rem; }
 .project-content > p:last-of-type { min-height: 4.6rem; margin-bottom: 0.65rem; color: var(--muted); line-height: 1.6; }
+
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover .project-card-surface {
+    border-color: rgba(101, 187, 239, 0.42);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.42), 0 0 0 1px rgba(101, 187, 239, 0.08);
+    transform: translateY(-5px) rotateX(var(--rotate-x)) rotateY(var(--rotate-y));
+  }
+
+  .project-card:hover .project-card-surface::after { opacity: 1; }
+  .project-card:hover .project-media img,
+  .project-card:hover .project-media video { transform: scale(1.025); }
+}
 
 .company-section { overflow: hidden; }
 .company-layout { display: grid; gap: 2.5rem; }
@@ -681,6 +726,10 @@ footer { border-top: 1px solid var(--line); padding: 2rem 0; background: #06090e
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+  .project-card:hover .project-card-surface,
+  .project-card:hover .project-media img,
+  .project-card:hover .project-media video { transform: none; }
+  .project-card-surface::after { display: none; }
 }
 
 /* Tighten the spacing between the video banner and Services. */

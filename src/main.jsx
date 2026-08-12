@@ -334,6 +334,56 @@ function Services({ copy, onSelectService }) {
   );
 }
 
+function ProjectCard({ project, copy }) {
+  const cardRef = React.useRef(null);
+
+  const handlePointerMove = (event) => {
+    if (event.pointerType !== "mouse" && event.pointerType !== "pen") return;
+
+    const card = cardRef.current;
+    if (!card) return;
+
+    const bounds = card.getBoundingClientRect();
+    const pointerX = event.clientX - bounds.left;
+    const pointerY = event.clientY - bounds.top;
+    const normalizedX = pointerX / bounds.width - 0.5;
+    const normalizedY = pointerY / bounds.height - 0.5;
+
+    card.style.setProperty("--pointer-x", `${pointerX}px`);
+    card.style.setProperty("--pointer-y", `${pointerY}px`);
+    card.style.setProperty("--rotate-x", `${(-normalizedY * 7).toFixed(2)}deg`);
+    card.style.setProperty("--rotate-y", `${(normalizedX * 7).toFixed(2)}deg`);
+  };
+
+  const resetPointerEffect = () => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    card.style.setProperty("--pointer-x", "50%");
+    card.style.setProperty("--pointer-y", "50%");
+    card.style.setProperty("--rotate-x", "0deg");
+    card.style.setProperty("--rotate-y", "0deg");
+  };
+
+  return (
+    <article className="project-card" ref={cardRef} onPointerMove={handlePointerMove} onPointerLeave={resetPointerEffect}>
+      <div className="project-card-surface">
+        <div className="project-media">
+          {project.kind === "video" ? (
+            <video muted playsInline preload="none" poster={project.poster} width={project.width} height={project.height} aria-label={`${copy.portfolioSection.videoDemo}: ${project.name}`}><source src={project.media} type="video/mp4" /></video>
+          ) : (
+            <img src={project.media} alt={`${copy.portfolioSection.screenshot}: ${project.name}`} width={project.width} height={project.height} loading="lazy" />
+          )}
+        </div>
+        <div className="project-content">
+          <p className="project-category">{project.category}</p><h3>{project.name}</h3><p>{project.description}</p>
+          <a className="text-link" href={project.media} target="_blank" rel="noopener noreferrer">{copy.portfolioSection.view} <ExternalLink size={16} aria-hidden="true" /></a>
+        </div>
+      </div>
+    </article>
+  );
+}
+
 function Portfolio({ copy, language }) {
   const projects = copy.projects.map((project, index) => {
     const projectAssets = projectMedia[index];
@@ -352,19 +402,7 @@ function Portfolio({ copy, language }) {
         <SectionHeading eyebrow={copy.portfolioSection.eyebrow} title={copy.portfolioSection.title} description={copy.portfolioSection.description} id="portfolio-title" />
         <div className="portfolio-grid">
           {projects.map((project) => (
-            <article className="project-card" key={project.name}>
-              <div className="project-media">
-                {project.kind === "video" ? (
-                  <video muted playsInline preload="none" poster={project.poster} width={project.width} height={project.height} aria-label={`${copy.portfolioSection.videoDemo}: ${project.name}`}><source src={project.media} type="video/mp4" /></video>
-                ) : (
-                  <img src={project.media} alt={`${copy.portfolioSection.screenshot}: ${project.name}`} width={project.width} height={project.height} loading="lazy" />
-                )}
-              </div>
-              <div className="project-content">
-                <p className="project-category">{project.category}</p><h3>{project.name}</h3><p>{project.description}</p>
-                <a className="text-link" href={project.media} target="_blank" rel="noopener noreferrer">{copy.portfolioSection.view} <ExternalLink size={16} aria-hidden="true" /></a>
-              </div>
-            </article>
+            <ProjectCard project={project} copy={copy} key={project.name} />
           ))}
         </div>
       </div>
