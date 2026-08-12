@@ -507,6 +507,23 @@ html[dir="rtl"] .contact-channel:hover .channel-arrow { transform: rotate(180deg
   gap: 1rem;
   padding: 1.4rem 0;
   border-bottom: 1px solid var(--line);
+  border-radius: 12px;
+  transform: scale(1);
+  transform-origin: center;
+  transition: background 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .company-facts article:hover {
+    background: rgba(101, 187, 239, 0.055);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+    transform: scale(1.025);
+  }
+}
+
+.company-facts article:active {
+  background: rgba(101, 187, 239, 0.075);
+  transform: scale(1.018);
 }
 
 .company-facts article > span { color: var(--gold); font-family: Inter, system-ui, sans-serif; font-size: 0.8rem; font-weight: 700; }
@@ -548,10 +565,10 @@ html[dir="rtl"] .contact-channel:hover .channel-arrow { transform: rotate(180deg
   border-color: rgba(var(--channel-rgb), 0.58);
   background: linear-gradient(135deg, rgba(var(--channel-rgb), 0.17), rgba(var(--channel-rgb), 0.045));
   box-shadow: 0 12px 28px rgba(var(--channel-rgb), 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.055);
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.025);
 }
 
-.contact-channels > a:active { transform: scale(0.99); }
+.contact-channels > a:active { transform: scale(1.018); }
 .contact-icon { width: 2.75rem; height: 2.75rem; border-radius: 11px; }
 .contact-channel .contact-icon { background: var(--channel); color: #fff; box-shadow: 0 8px 20px rgba(var(--channel-rgb), 0.2); }
 .contact-channel.upwork .contact-icon { background: #fff; color: #050605; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28); }
@@ -730,6 +747,10 @@ footer { border-top: 1px solid var(--line); padding: 2rem 0; background: #06090e
   .project-card:hover .project-media img,
   .project-card:hover .project-media video { transform: none; }
   .project-card-surface::after { display: none; }
+  .company-facts article:hover,
+  .company-facts article:active,
+  .contact-channels > a:hover,
+  .contact-channels > a:active { transform: none; }
 }
 
 /* Tighten the spacing between the video banner and Services. */
