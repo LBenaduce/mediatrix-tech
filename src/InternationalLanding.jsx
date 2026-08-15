@@ -1,7 +1,8 @@
 import React from "react";
-import { ArrowRight, Check, ChevronDown, ExternalLink, Mail, MessageCircle, Phone } from "lucide-react";
+import { ArrowRight, Check, ChevronDown, Mail, MessageCircle, Phone } from "lucide-react";
 import { brazilWebsiteCarePlans, brazilWebsiteCareTerms, formatPrice, getPricing, introductoryPricing } from "./introductoryPricing";
 import { getAttribution, initializeTracking, trackEvent, trackLink } from "./analytics";
+import { ClientGrowthChart } from "./ClientGrowthChart";
 import { SecretLogo } from "./easter-eggs/SecretLogo";
 import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
 import { getEasterEggCopy } from "./translations";
@@ -18,10 +19,10 @@ const routeMap = {
 };
 
 const portfolio = [
-  { name: "AgriClimate Pro", image: "/agriclimate-pro-poster.jpg", need: "Agricultural teams needed climate information that was easier to use in day-to-day decisions.", solution: "A responsive AgTech experience that organizes climate data into a clear interface.", functionality: "Climate-data presentation and decision-support views.", technology: "Modern responsive web development.", result: "Faster access to practical information across desktop and mobile." },
-  { name: "Frasson LLC", image: "/frasson-llc-demo-optimized.jpg", need: "A service business needed a credible online presence that clearly explained its work.", solution: "A focused business website with straightforward service presentation and contact paths.", functionality: "Service pages, responsive layout and direct lead contact.", technology: "Modern frontend web development.", result: "A clearer, more professional way for potential clients to understand and contact the business." },
-  { name: "Event QR Code", image: "/event-qr-code-poster.jpg", need: "Event guests needed a frictionless way to share their memories.", solution: "A custom event website that allowed guests to upload photos and videos through table QR codes without installing an application.", functionality: "QR access plus photo and video uploads.", technology: "Custom web application and cloud uploads.", result: "Guests could contribute event media directly from their phones." },
-  { name: "Cafeteria", image: "/cafeteria-demo-pt.png", nonPortugueseImage: "/cafeteria-demo-en.png", need: "A local café needed a warm digital presence that reflected its atmosphere and encouraged visitors to explore the menu.", solution: "An elegant, mobile-first website with expressive typography, inviting brand colors and a direct menu call to action.", functionality: "Responsive presentation, brand storytelling and menu access.", technology: "Modern responsive web development.", result: "A memorable online experience that helps turn interest into in-person visits." },
+  { name: "AgriClimate Pro", industry: "AgTech · Climate Intelligence", problem: "Agricultural teams needed climate information that was easier to use in day-to-day decisions.", solution: "A responsive AgTech experience that turns complex climate data into clear decision-support views.", impact: "100% Mobile Optimized" },
+  { name: "Frasson LLC", industry: "Service Business · Home Services", problem: "A service business needed a credible online presence that explained its work and made contact effortless.", solution: "A focused website with clear services, trust-building content and direct lead contact paths.", impact: "Faster Lead Contact" },
+  { name: "Event QR Code", industry: "Events · Guest Experience", problem: "Event guests needed a frictionless way to share their memories without installing an app.", solution: "A custom QR-enabled experience for simple photo and video uploads from any phone.", impact: "Mobile-First Uploads" },
+  { name: "Cafeteria", industry: "Food & Beverage · Hospitality", problem: "A local café needed a warm digital presence that invited visitors to explore the menu and venue.", solution: "An expressive, mobile-first website with brand storytelling and a direct menu call to action.", impact: "Menu Access on Any Device" },
 ];
 
 const faq = [
@@ -36,23 +37,6 @@ const faq = [
   ["Can I add more pages later?", "Yes. Additional pages can be added during the project or in a later phase and are quoted separately."],
   ["Do you provide monthly maintenance?", "Yes. Website Care Plans include monitoring, updates, support and a defined amount of minor content-editing time. The allowance depends on the selected plan and does not include unlimited changes."],
 ];
-
-const projectTypes = [
-  { value: "starter", label: "Starter landing page" },
-  { value: "business", label: "Small business website" },
-  { value: "redesign", label: "Website redesign" },
-  { value: "bilingual", label: "Bilingual website" },
-  { value: "ecommerce", label: "E-commerce" },
-  { value: "booking", label: "Booking website" },
-  { value: "custom", label: "Custom web application" },
-  { value: "other", label: "Other" },
-];
-const budgets = {
-  BRL: ["Under R$500", "R$500–R$900", "R$900–R$1.600", "R$1.600–R$3.000", "R$3.000+"],
-  USD: ["Under $250", "$250–$500", "$500–$800", "$800–$1,500", "$1,500+"],
-  EUR: ["Under €230", "€230–€450", "€450–€750", "€750–€1,400", "€1,400+"],
-  CHF: ["Under CHF 290", "CHF 290–550", "CHF 550–900", "CHF 900–1,600", "CHF 1,600+"],
-};
 
 function useSectionView(id, event) {
   React.useEffect(() => {
@@ -151,19 +135,20 @@ export function InternationalLanding({ pathname }) {
         <section className="intl-section"><div className={`intl-shell add-ons${marketKey === "brazil" ? " single" : ""}`}><article><p className="eyebrow">{isPortuguese ? "Upgrade opcional" : "Optional upgrade"}</p><h2>English + Portuguese</h2><strong>{isPortuguese ? "a partir de" : "from"} {price(region.bilingual)}</strong><p>{isPortuguese ? "Adicione versões em inglês e português ao seu site. Tradução ou redação podem ser cobradas separadamente, dependendo do volume de conteúdo." : "Add an English and Portuguese version to your website. Translation or copywriting may be charged separately depending on content volume."}</p></article>{marketKey !== "brazil" && <article><p className="eyebrow">Website Care Plan</p><h2>{isPortuguese ? "Manutenção mensal confiável" : "Reliable monthly care"}</h2><strong>{isPortuguese ? "a partir de" : "from"} {price(region.care)}/{isPortuguese ? "mês" : "month"}</strong><ul>{["Hosting monitoring", "Backups", "Security updates", "Dependency updates", "Uptime monitoring", "Up to 30 minutes of minor content changes per month", "Email support"].map((item) => <li key={item}><Check size={16} />{item}</li>)}</ul><p>{isPortuguese ? "Os custos de hospedagem são cobrados separadamente. O plano não inclui suporte ou alterações ilimitadas." : "Hosting costs are charged separately. The plan does not include unlimited support or unlimited changes."}</p></article>}</div></section>
         {marketKey === "brazil" && <BrazilWebsiteCare price={price} />}
 
-        <Portfolio isPortuguese={isPortuguese} />
+        <ClientGrowthChart isPortuguese={isPortuguese} />
+        <Portfolio />
         <Process />
         <Faq />
-        <QuoteForm region={region} marketKey={marketKey} setMarketKey={setMarketKey} landingPage={landingPage} selectedPackage={selectedPackage} setSelectedPackage={setSelectedPackage} isPortuguese={isPortuguese} />
+        <QuoteForm region={region} landingPage={landingPage} selectedPackage={selectedPackage} setSelectedPackage={setSelectedPackage} isPortuguese={isPortuguese} />
       </main>
-      <a className="mobile-sticky" href="#quote-form" onClick={() => trackEvent("primary_cta_click", { landing_page: landingPage })}>{isPortuguese ? "Solicitar orçamento" : `Start from ${price(region.starter)}`}<ArrowRight size={17} /></a>
+      <WhatsAppFloat landingPage={landingPage} />
       <footer className="intl-footer"><div className="intl-shell"><strong>Mediatrix Tech</strong><span>Create. Connect. Convert.</span><div><a href="mailto:mediatrixtech@proton.me" onClick={() => trackLink("email_click")}><Mail size={17} />Email</a><a href="https://wa.me/13059920833" onClick={() => trackLink("whatsapp_click")}><MessageCircle size={17} />WhatsApp</a><a href="tel:+13059920833" onClick={() => trackLink("phone_click")}><Phone size={17} />Phone</a></div></div></footer>
     </div>
     </EasterEggI18nProvider>
   );
 }
 
-function Portfolio({ isPortuguese }) { return <section className="intl-section alt" id="portfolio"><div className="intl-shell"><div className="intl-heading"><p className="eyebrow">Real work</p><h2>Websites built around practical needs.</h2><p>Clear outcomes for real businesses and events—not just technical specifications.</p></div><div className="case-grid">{portfolio.map((project) => <article key={project.name}><img src={isPortuguese ? project.image : project.nonPortugueseImage || project.image} alt={`${project.name} project preview`} loading="lazy" /><div><h3>{project.name}</h3><p><strong>Need:</strong> {project.need}</p><p><strong>Solution:</strong> {project.solution}</p><p><strong>Functionality:</strong> {project.functionality}</p><p><strong>Technology:</strong> {project.technology}</p><p><strong>Benefit:</strong> {project.result}</p></div></article>)}</div></div></section>; }
+function Portfolio() { return <section className="intl-section alt" id="portfolio"><div className="intl-shell"><div className="intl-heading"><p className="eyebrow">Case studies</p><h2>Websites built around practical business outcomes.</h2><p>Each project begins with a real problem, a focused solution and a clearer path to action.</p></div><div className="case-grid">{portfolio.map((project) => <article className="case-study-card" key={project.name}><header className="case-study-card__header"><p>{project.industry}</p><h3>{project.name}</h3></header><div className="case-study-card__breakdown"><p><strong>Problem</strong>{project.problem}</p><p><strong>Solution</strong>{project.solution}</p><div className="case-study-card__impact"><span>Impact / Result</span><strong>{project.impact}</strong></div></div><a className="case-study-card__link" href="#quote-form">View Live Project <span aria-hidden="true">→</span></a></article>)}</div></div></section>; }
 
 function BrazilWebsiteCare({ price }) {
   return <section className="intl-section care-section" id="website-care"><div className="intl-shell">
@@ -173,35 +158,39 @@ function BrazilWebsiteCare({ price }) {
   </div></section>;
 }
 
-function Process() { return <section className="intl-section"><div className="intl-shell"><div className="intl-heading"><p className="eyebrow">A straightforward process</p><h2>From brief to launch, without mystery.</h2></div><div className="process-grid">{[["01", "Project fit", "We clarify your goal, audience, content and required functionality."], ["02", "Proposal", "You receive a defined scope, schedule and confirmed price."], ["03", "Design & build", "Your responsive website is developed with direct communication throughout."], ["04", "Review & launch", "Included revisions are completed before deployment assistance."]].map(([n, title, text]) => <article key={n}><span>{n}</span><h3>{title}</h3><p>{text}</p></article>)}</div></div></section>; }
+function Process() { return <section className="intl-section"><div className="intl-shell"><div className="intl-heading"><p className="eyebrow">A clear four-step process</p><h2>How We Work With Clients Anywhere in Brazil & Worldwide</h2><p>A direct process that keeps scope, feedback and launch details easy to follow from any location.</p></div><div className="process-steps">{[["01", "15-Min WhatsApp Alignment", "Understand goals, budget, and business needs."], ["02", "Clear Scope & Timeline", "No hidden fees, realistic milestones."], ["03", "Live Staging Review", "Test and give feedback on a private staging link."], ["04", "Launch & Google Local Setup", "Go live with Google Maps & analytics fully configured."]].map(([number, title, text]) => <article key={number}><span className="process-steps__number" aria-hidden="true">{number}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}</div></div></section>; }
 
 function Faq() { return <section className="intl-section alt" id="faq"><div className="intl-shell faq-layout"><div><p className="eyebrow">FAQ</p><h2>Clear answers before you request a quote.</h2></div><div>{faq.map(([question, answer]) => <details key={question}><summary>{question}<ChevronDown size={18} /></summary><p>{answer}</p></details>)}</div></div></section>; }
 
-function QuoteForm({ region, marketKey, setMarketKey, landingPage, selectedPackage, setSelectedPackage, isPortuguese }) {
-  const [currency, setCurrency] = React.useState(region.currency);
+function QuoteForm({ region, landingPage, selectedPackage, setSelectedPackage, isPortuguese }) {
   const [status, setStatus] = React.useState("idle");
   const started = React.useRef(false);
   const packageNames = Object.fromEntries(introductoryPricing.packages.map((pkg) => [pkg.id, pkg.name]));
-  React.useEffect(() => setCurrency(region.currency), [region.currency]);
   const onStart = () => { if (!started.current) { started.current = true; trackEvent("quote_form_start", { landing_page: landingPage }); } };
   const submit = async (event) => {
     event.preventDefault(); setStatus("sending");
     const form = event.currentTarget; const formData = new FormData(form); const attribution = getAttribution();
-    const estimatedBudget = formData.get("estimated_budget") || "";
-    const isLowBudget = estimatedBudget.startsWith("Under");
-    const selectedPackageId = formData.get("selected_package");
+    const selectedPackageId = selectedPackage || "";
     const selectedPackageConfig = introductoryPricing.packages.find((pkg) => pkg.id === selectedPackageId);
-    const analyticsData = { package_name: packageNames[selectedPackageId] || selectedPackageId, selected_package: packageNames[selectedPackageId] || selectedPackageId, starting_price: selectedPackageConfig ? region[selectedPackageConfig.priceKey] : undefined, currency: formData.get("preferred_currency"), preferred_currency: formData.get("preferred_currency"), market: region.market, estimated_budget: estimatedBudget, landing_page: landingPage, ...attribution };
+    const analyticsData = { package_name: packageNames[selectedPackageId] || "quick_review", selected_package: selectedPackageId, starting_price: selectedPackageConfig ? region[selectedPackageConfig.priceKey] : undefined, currency: region.currency, market: region.market, landing_page: landingPage, ...attribution };
     try {
-      const response = await fetch("https://formsubmit.co/ajax/mediatrixtech@proton.me", { method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json" }, body: JSON.stringify({ ...Object.fromEntries(formData.entries()), ...attribution, low_budget_lead: isLowBudget ? "yes" : "no", landing_page: landingPage, _subject: "International website quote request" }) });
+      const response = await fetch("https://formsubmit.co/ajax/mediatrixtech@proton.me", { method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json" }, body: JSON.stringify({ ...Object.fromEntries(formData.entries()), selected_package: selectedPackageId, ...attribution, landing_page: landingPage, _subject: "Website review request" }) });
       const result = await response.json().catch(() => ({}));
       if (!response.ok || result.success === false || result.success === "false") throw new Error("Submission failed");
       trackEvent("quote_form_submit", analyticsData); form.reset(); setSelectedPackage(""); setStatus("success");
     } catch { trackEvent("quote_form_error", analyticsData); setStatus("error"); }
   };
   return <section className="intl-section quote-section" id="quote-form"><div className="intl-shell quote-layout"><div><p className="eyebrow">Request a quote</p><h2>{isPortuguese ? "Conte sobre o seu projeto." : "Let’s define the right starting point."}</h2><p>Share a few details. Low-budget enquiries are welcome and reviewed rather than automatically rejected.</p><div className="direct-contact"><a href="mailto:mediatrixtech@proton.me" onClick={() => trackLink("email_click")}><Mail size={18} />mediatrixtech@proton.me</a><a href="https://wa.me/13059920833" onClick={() => trackLink("whatsapp_click")}><MessageCircle size={18} />WhatsApp</a></div></div><form onSubmit={submit} onFocus={onStart}>
-    <label><span>Full name</span><input name="full_name" autoComplete="name" required /></label><label><span>Business name</span><input name="business_name" autoComplete="organization" required /></label><label><span>Country</span><input name="country" autoComplete="country-name" required /></label><label><span>Email</span><input name="email" type="email" autoComplete="email" required /></label><label><span>Phone or WhatsApp</span><input name="phone_whatsapp" type="tel" autoComplete="tel" required /></label><label className="wide"><span>Current website</span><input name="current_website" type="url" placeholder="https:// (optional)" /></label><label><span>Project type</span><select name="selected_package" value={selectedPackage} onChange={(e) => setSelectedPackage(e.target.value)} required><option value="">Select one</option>{projectTypes.map((type) => <option value={type.value} key={type.value}>{type.label}</option>)}</select></label><label><span>Target market</span><select name="market" value={marketKey} onChange={(e) => setMarketKey(e.target.value)}><option value="brazil">Brazil</option><option value="us">United States</option><option value="europe">Europe</option><option value="switzerland">Switzerland</option></select></label><label><span>Preferred currency</span><select name="preferred_currency" value={currency} onChange={(e) => setCurrency(e.target.value)}><option>BRL</option><option>USD</option><option>EUR</option><option>CHF</option></select></label><label><span>Estimated budget</span><select name="estimated_budget" required><option value="">Select a range</option>{budgets[currency].map((budget) => <option key={budget}>{budget}</option>)}</select></label><label><span>Desired launch date</span><input name="desired_launch_date" type="date" /></label><label className="wide"><span>Project description</span><textarea name="project_description" rows="5" required /></label><button className="intl-button primary wide" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Request Your Introductory Quote"}<ArrowRight size={18} /></button><p className={`form-feedback wide ${status}`} role="status">{status === "success" && "Thank you. Your request was sent successfully."}{status === "error" && "We couldn’t send the form. Please try again or contact us by email."}</p>
+    <label><span>Name</span><input name="name" autoComplete="name" required /></label><label><span>WhatsApp / Phone Number</span><input name="phone_whatsapp" type="tel" autoComplete="tel" required /></label><label className="wide"><span>Quick Business Type / Message <em>(optional)</em></span><textarea name="message" rows="4" placeholder="For example: auto repair shop, restaurant, local service…" /></label><button className="intl-button primary wide" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Get Free Review via WhatsApp / Email"}<ArrowRight size={18} /></button><p className="form-trust wide">🔒 Zero spam. We typically reply within 30 minutes during business hours.</p><p className={`form-feedback wide ${status}`} role="status">{status === "success" && "Thank you. Your request was sent successfully."}{status === "error" && "We couldn’t send the form. Please try again or contact us by email."}</p>
   </form></div></section>;
+}
+
+function WhatsAppFloat({ landingPage }) {
+  const href = "https://wa.me/13059920833?text=Hi!%20I'm%20interested%20in%20a%20website%20review%20for%20my%20business.";
+  return <a className="whatsapp-float" href={href} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp for a fast reply" onClick={() => trackEvent("whatsapp_float_click", { landing_page: landingPage })}>
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19.11 17.21c-.27-.14-1.58-.78-1.82-.86-.24-.09-.42-.14-.59.14-.18.27-.69.86-.85 1.04-.16.18-.31.2-.58.07a7.5 7.5 0 0 1-2.2-1.36 8.22 8.22 0 0 1-1.52-1.9c-.16-.27 0-.41.12-.54.12-.12.27-.31.41-.46.14-.16.18-.27.27-.46.09-.18.05-.34-.02-.48-.07-.14-.59-1.42-.81-1.95-.21-.51-.43-.44-.59-.45h-.5c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29 0 1.35.98 2.65 1.12 2.83.14.18 1.93 2.95 4.67 4.14.65.28 1.16.45 1.56.58.66.21 1.27.18 1.75.11.53-.08 1.58-.65 1.8-1.27.22-.63.22-1.16.15-1.27-.06-.12-.24-.19-.5-.32Z" /><path fill="currentColor" d="M16.02 3.2c-7.07 0-12.8 5.72-12.8 12.78 0 2.26.59 4.47 1.71 6.42L3.1 28.8l6.57-1.72a12.79 12.79 0 0 0 6.34 1.68h.01c7.06 0 12.78-5.73 12.78-12.79 0-3.42-1.33-6.63-3.75-9.05A12.69 12.69 0 0 0 16.02 3.2Zm0 23.4h-.01a10.6 10.6 0 0 1-5.4-1.48l-.39-.23-3.9 1.02 1.04-3.79-.25-.4a10.6 10.6 0 1 1 8.91 4.88Z" /></svg>
+    <span>Chat on WhatsApp <small>(Fast Reply)</small></span>
+  </a>;
 }
 
 export function isInternationalRoute(pathname = typeof window !== "undefined" ? window.location.pathname : "") { return Boolean(routeMap[pathname.replace(/\/$/, "")]); }
