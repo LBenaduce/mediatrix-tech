@@ -388,7 +388,7 @@ function Services({ copy, onSelectService }) {
   );
 }
 
-function ProjectCard({ project, copy, labels }) {
+function CaseStudyCard({ title, category, clientName, challengeText, solutionText, metrics, imageUrl, projectUrl, labels = phaseOneCopy.en }) {
   const cardRef = React.useRef(null);
 
   const handlePointerMove = (event) => {
@@ -419,56 +419,29 @@ function ProjectCard({ project, copy, labels }) {
     card.style.setProperty("--rotate-y", "0deg");
   };
 
-  if (project.kind === "collaboration") {
-    return (
-      <article className="project-card project-card--collaboration">
-        <div className="project-card-surface collaboration-card">
-          <div className="collaboration-visual" aria-hidden="true">
-            <span className="collaboration-icon"><BrainCircuit size={44} strokeWidth={1.5} /></span>
-            <span className="data-node node-one" /><span className="data-node node-two" /><span className="data-node node-three" />
-            <span className="data-line line-one" /><span className="data-line line-two" />
-          </div>
-          <div className="collaboration-content">
-            <div className="collaboration-copy">
-              <p className="collaboration-eyebrow">{project.collection}</p>
-              <p className="project-category">{project.category}</p>
-              <h3>{project.name}</h3>
-              <p className="collaboration-description">{project.description}</p>
-            </div>
-            <dl className="collaboration-metrics">
-              {project.metrics.map(({ value, label }) => <div key={value}><dt>{value}</dt><dd>{label}</dd></div>)}
-            </dl>
-            <ul className="collaboration-tags" aria-label={project.tagsLabel}>
-              {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
-            </ul>
-          </div>
-        </div>
-      </article>
-    );
-  }
-
   return (
     <article className="project-card" ref={cardRef} onPointerMove={handlePointerMove} onPointerLeave={resetPointerEffect}>
       <div className="project-card-surface">
         <div className="project-media">
-          {project.kind === "video" ? (
-            <video muted playsInline preload="none" poster={project.poster} width={project.width} height={project.height} aria-label={`${copy.portfolioSection.videoDemo}: ${project.name}`}><source src={project.media} type="video/mp4" /></video>
-          ) : (
-            <img src={project.media} alt={`${copy.portfolioSection.screenshot}: ${project.name}`} width={project.width} height={project.height} loading="lazy" />
-          )}
+          <img src={imageUrl} alt={`${title} project preview`} loading="lazy" />
         </div>
         <div className="project-content">
-          <p className="project-category">{project.category}</p><h3>{project.name}</h3>
+          <div className="case-study-meta"><p className="project-category">{category}</p><span>{clientName}</span></div>
+          <h3>{title}</h3>
           <div className="case-study-narrative">
-            <div><strong>{labels.challenge}</strong><p>{project.problem || project.description}</p></div>
-            <div><strong>{labels.solution}</strong><p>{project.description}</p></div>
+            <div><strong>{labels.challenge}</strong><p>{challengeText}</p></div>
+            <div><strong>{labels.solution}</strong><p>{solutionText}</p></div>
           </div>
-          <div className="case-study-outcome"><span>{labels.evidence}</span><strong>{project.outcome || labels.evidenceValue}</strong></div>
-          <a className="text-link" href={project.media} target="_blank" rel="noopener noreferrer">{copy.portfolioSection.view} <ExternalLink size={16} aria-hidden="true" /></a>
+          {metrics?.length > 0 && <dl className="case-study-metrics">{metrics.map(({ label, value }) => <div key={`${label}-${value}`}><dt>{value}</dt><dd>{label}</dd></div>)}</dl>}
+          <a className="text-link" href={projectUrl} target="_blank" rel="noopener noreferrer">{labels.viewProject || "View project"} <ExternalLink size={16} aria-hidden="true" /></a>
         </div>
       </div>
     </article>
   );
+}
+
+function CollaborationCard({ project }) {
+  return <article className="project-card project-card--collaboration"><div className="project-card-surface collaboration-card"><div className="collaboration-visual" aria-hidden="true"><span className="collaboration-icon"><BrainCircuit size={44} strokeWidth={1.5} /></span><span className="data-node node-one" /><span className="data-node node-two" /><span className="data-node node-three" /><span className="data-line line-one" /><span className="data-line line-two" /></div><div className="collaboration-content"><div className="collaboration-copy"><p className="collaboration-eyebrow">{project.collection}</p><p className="project-category">{project.category}</p><h3>{project.name}</h3><p className="collaboration-description">{project.description}</p></div><dl className="collaboration-metrics">{project.metrics.map(({ value, label }) => <div key={value}><dt>{value}</dt><dd>{label}</dd></div>)}</dl><ul className="collaboration-tags" aria-label={project.tagsLabel}>{project.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></div></div></article>;
 }
 
 function BeforeAfterComparison({ labels }) {
@@ -500,7 +473,14 @@ function Testimonials({ labels }) {
 }
 
 function Portfolio({ copy, language }) {
-  const labels = phaseOneCopy[language] || phaseOneCopy.en;
+  const labels = { ...(phaseOneCopy[language] || phaseOneCopy.en), viewProject: copy.portfolioSection.view };
+  const metricSets = [
+    [{ value: "Mobile-first", label: labels.evidenceValue }, { value: "Live", label: "Climate views" }, { value: "1", label: "Decision dashboard" }],
+    [{ value: "Responsive", label: "Layout" }, { value: "Direct", label: "Lead contact" }, { value: "Focused", label: "Service path" }],
+    [{ value: "0", label: "Apps required" }, { value: "2", label: "Media types" }, { value: "1", label: "QR entry point" }],
+    [{ value: "Mobile-first", label: "Menu access" }, { value: "2", label: "Localized previews" }, { value: "Direct", label: "Visitor path" }],
+    [{ value: "Responsive", label: "Layout" }, { value: "Local", label: "Contact path" }, { value: "Clear", label: "Service catalog" }],
+  ];
   const projects = copy.projects.map((project, index) => {
     const projectAssets = projectMedia[index];
     return {
@@ -518,9 +498,7 @@ function Portfolio({ copy, language }) {
       <div className="shell">
         <SectionHeading eyebrow={copy.portfolioSection.eyebrow} title={copy.portfolioSection.title} description={copy.portfolioSection.description} id="portfolio-title" />
         <div className="portfolio-grid">
-          {projects.map((project) => (
-            <ProjectCard project={project} copy={copy} labels={labels} key={project.name} />
-          ))}
+          {projects.map((project, index) => project.kind === "collaboration" ? <CollaborationCard project={project} key={project.name} /> : <CaseStudyCard title={project.name} category={project.category} clientName={index === 1 ? "Frasson LLC" : project.name} challengeText={project.problem} solutionText={project.description} metrics={metricSets[index]} imageUrl={project.poster || project.media} projectUrl={project.media} labels={labels} key={project.name} />)}
         </div>
         <BeforeAfterComparison labels={labels} />
         <Testimonials labels={labels} />

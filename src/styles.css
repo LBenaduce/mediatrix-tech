@@ -642,14 +642,19 @@ html[dir="rtl"] .contact-channel:hover .channel-arrow { transform: rotate(180deg
 .project-media img, .project-media video { width: 100%; height: 100%; object-fit: cover; transition: transform 360ms ease; }
 .project-content { padding: 1.35rem; }
 .project-category { margin-bottom: 0.65rem; color: var(--gold); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.case-study-meta { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.case-study-meta .project-category { margin-bottom: 0; }
+.case-study-meta > span { color: var(--muted); font-size: 0.72rem; text-align: end; }
 .project-content h3 { margin-bottom: 0.65rem; font-size: 1.3rem; }
 .case-study-narrative { display: grid; gap: 1rem; margin-block: 1rem 1.2rem; }
 .case-study-narrative > div { padding-inline-start: 0.85rem; border-inline-start: 2px solid rgba(216, 178, 103, 0.3); }
 .case-study-narrative strong { display: block; margin-bottom: 0.28rem; color: #c8cbd0; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
 .case-study-narrative p { margin: 0; color: var(--muted); font-size: 0.88rem; line-height: 1.58; }
-.case-study-outcome { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 0.65rem; padding: 0.8rem 0.9rem; border: 1px solid rgba(216, 178, 103, 0.16); border-radius: 11px; background: rgba(216, 178, 103, 0.045); }
-.case-study-outcome span { color: var(--muted); font-size: 0.72rem; }
-.case-study-outcome strong { color: var(--gold-light); font-size: 0.8rem; text-align: end; }
+.case-study-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0 0 0.65rem; overflow: hidden; border: 1px solid rgba(216, 178, 103, 0.16); border-radius: 11px; background: rgba(216, 178, 103, 0.045); }
+.case-study-metrics div { min-width: 0; padding: 0.8rem 0.55rem; text-align: center; }
+.case-study-metrics div + div { border-inline-start: 1px solid rgba(216, 178, 103, 0.13); }
+.case-study-metrics dt { overflow-wrap: anywhere; color: var(--gold-light); font-size: 0.84rem; font-weight: 800; line-height: 1.25; }
+.case-study-metrics dd { margin: 0.25rem 0 0; color: var(--muted); font-size: 0.66rem; line-height: 1.35; }
 
 .project-comparison { display: grid; gap: 1.25rem; margin-top: clamp(2.5rem, 6vw, 4.5rem); padding: clamp(1.25rem, 4vw, 2.25rem); border: 1px solid var(--line); border-radius: var(--radius); background: #0c1119; }
 .comparison-copy h3 { margin-bottom: 0.75rem; font-size: clamp(1.55rem, 3vw, 2.25rem); }
