@@ -330,6 +330,11 @@ button, a, select { -webkit-tap-highlight-color: transparent; }
   text-transform: uppercase;
 }
 
+.motto {
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+}
+
 h1, h2, h3, p { margin-top: 0; }
 h1, h2, h3 { font-family: Inter, system-ui, sans-serif; }
 
@@ -736,6 +741,16 @@ footer { border-top: 1px solid var(--line); padding: 2rem 0; background: #06090e
 
   .hero h1 {
     font-size: clamp(3rem, 5vw, 4.3rem);
+  }
+
+  html[lang="en"] .hero-copy {
+    max-width: none;
+  }
+
+  html[lang="en"] .hero h1 {
+    max-width: none;
+    white-space: nowrap;
+    font-size: clamp(2rem, 2.5vw, 2.45rem);
   }
 
   .services-grid {
