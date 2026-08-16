@@ -343,10 +343,18 @@ h1 {
 
 .hero-description {
   max-width: 590px;
-  margin-bottom: 2rem;
+  margin-bottom: 0.65rem;
   color: #c5ced9;
   font-size: clamp(1rem, 2vw, 1.18rem);
   line-height: 1.7;
+}
+
+.hero-footnote {
+  max-width: 590px;
+  margin-bottom: 2rem;
+  color: #8f9bab;
+  font-size: 0.72rem;
+  line-height: 1.5;
 }
 
 .hero-actions { display: flex; flex-direction: column; gap: 0.75rem; }

@@ -298,6 +298,7 @@ function Hero({ copy }) {
           <p className="motto">Create. Connect. Convert.</p>
           <h1 id="hero-title">{copy.hero.title}</h1>
           <p className="hero-description">{copy.hero.description}</p>
+          <p className="hero-footnote">{copy.hero.footnote}</p>
           <div className="hero-actions">
             <a className="button primary" href={primaryAction.href}>{primaryAction.label} <ArrowRight size={18} aria-hidden="true" /></a>
             <a className="button secondary" href={secondaryAction.href}>{secondaryAction.label}</a>
