@@ -267,6 +267,12 @@ function Hero({ copy }) {
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
       <div className="hero-glow" aria-hidden="true" />
+      <div className="hero-corner-video" aria-hidden="true">
+        <video autoPlay loop muted playsInline preload="metadata" poster="/mediatrix-header-poster.jpg" tabIndex="-1">
+          <source src="/mediatrix-header.webm" type="video/webm" />
+          <source src="/mediatrix-header.mp4" type="video/mp4" />
+        </video>
+      </div>
       <div className="shell hero-content">
         <div className="hero-copy">
           <p className="motto">Create. Connect. Convert.</p>
