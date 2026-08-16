@@ -3,7 +3,7 @@ import { ArrowRight, ExternalLink, Mail, MessageCircle } from "lucide-react";
 import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
 import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
 import { getEasterEggCopy, translations } from "./translations";
-import { BRAZIL_WHATSAPP, PublicFooter, PublicHeader, US_WHATSAPP } from "./PublicChrome";
+import { BRAZIL_WHATSAPP, PublicFooter, PublicHeader, US_WHATSAPP, WhatsAppFloat } from "./PublicChrome";
 import { applyPageSeo, LOCAL_ROUTE, ROUTE_SEO } from "./seo";
 import "./public-pages.css";
 
@@ -82,6 +82,7 @@ export function PublicSectionPage({ pathname }) {
           </div></section>
         </main>
         <PublicFooter />
+        <WhatsAppFloat />
       </div>
     </EasterEggI18nProvider>
   );

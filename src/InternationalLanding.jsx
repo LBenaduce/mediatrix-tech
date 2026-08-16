@@ -8,6 +8,7 @@ import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
 import { getEasterEggCopy } from "./translations";
 import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
 import { applyPageSeo, ROUTE_SEO } from "./seo";
+import { WhatsAppFloat } from "./PublicChrome";
 import "./international.css";
 
 const routeMap = {
@@ -146,7 +147,7 @@ export function InternationalLanding({ pathname }) {
         <Faq />
         <QuoteForm region={region} landingPage={landingPage} selectedPackage={selectedPackage} setSelectedPackage={setSelectedPackage} isPortuguese={isPortuguese} />
       </main>
-      <WhatsAppFloat landingPage={landingPage} isPortuguese={isPortuguese} />
+      <WhatsAppFloat onClick={() => trackEvent("whatsapp_float_click", { landing_page: landingPage })} />
       <footer className="intl-footer"><div className="intl-shell"><strong>Mediatrix Tech</strong><span>Create. Connect. Convert.</span><div><a href="mailto:mediatrixtech@proton.me" onClick={() => trackLink("email_click")}><Mail size={17} />Email</a><a href="https://wa.me/13059920833" onClick={() => trackLink("whatsapp_click")}><MessageCircle size={17} />WhatsApp</a><a href="tel:+13059920833" onClick={() => trackLink("phone_click")}><Phone size={17} />Phone</a></div></div></footer>
     </div>
     </EasterEggI18nProvider>
@@ -188,15 +189,6 @@ function QuoteForm({ region, landingPage, selectedPackage, setSelectedPackage, i
   return <section className="intl-section quote-section" id="quote-form"><div className="intl-shell quote-layout"><div><p className="eyebrow">Request a quote</p><h2>{isPortuguese ? "Conte sobre o seu projeto." : "Let’s define the right starting point."}</h2><p>Share a few details. Low-budget enquiries are welcome and reviewed rather than automatically rejected.</p><div className="direct-contact"><a href="mailto:mediatrixtech@proton.me" onClick={() => trackLink("email_click")}><Mail size={18} />mediatrixtech@proton.me</a><a href="https://wa.me/13059920833" onClick={() => trackLink("whatsapp_click")}><MessageCircle size={18} />WhatsApp</a></div></div><form onSubmit={submit} onFocus={onStart}>
     <label><span>Name</span><input name="name" autoComplete="name" required /></label><label><span>WhatsApp / Phone Number</span><input name="phone_whatsapp" type="tel" autoComplete="tel" required /></label><label className="wide"><span>Quick Business Type / Message <em>(optional)</em></span><textarea name="message" rows="4" placeholder="For example: auto repair shop, restaurant, local service…" /></label><button className="intl-button primary wide" disabled={status === "sending"}>{status === "sending" ? "Sending…" : "Get Free Review via WhatsApp / Email"}<ArrowRight size={18} /></button><p className="form-trust wide">🔒 Zero spam. We typically reply within 30 minutes during business hours.</p><p className={`form-feedback wide ${status}`} role="status">{status === "success" && "Thank you. Your request was sent successfully."}{status === "error" && "We couldn’t send the form. Please try again or contact us by email."}</p>
   </form></div></section>;
-}
-
-function WhatsAppFloat({ landingPage, isPortuguese }) {
-  const number = isPortuguese ? "5555999357388" : "13059920833";
-  const href = `https://wa.me/${number}?text=Hi!%20I'm%20interested%20in%20a%20free%20website%20review%20for%20my%20business.`;
-  return <a className="whatsapp-float" href={href} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp for a fast reply" onClick={() => trackEvent("whatsapp_float_click", { landing_page: landingPage })}>
-    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" d="M19.11 17.21c-.27-.14-1.58-.78-1.82-.86-.24-.09-.42-.14-.59.14-.18.27-.69.86-.85 1.04-.16.18-.31.2-.58.07a7.5 7.5 0 0 1-2.2-1.36 8.22 8.22 0 0 1-1.52-1.9c-.16-.27 0-.41.12-.54.12-.12.27-.31.41-.46.14-.16.18-.27.27-.46.09-.18.05-.34-.02-.48-.07-.14-.59-1.42-.81-1.95-.21-.51-.43-.44-.59-.45h-.5c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.29 0 1.35.98 2.65 1.12 2.83.14.18 1.93 2.95 4.67 4.14.65.28 1.16.45 1.56.58.66.21 1.27.18 1.75.11.53-.08 1.58-.65 1.8-1.27.22-.63.22-1.16.15-1.27-.06-.12-.24-.19-.5-.32Z" /><path fill="currentColor" d="M16.02 3.2c-7.07 0-12.8 5.72-12.8 12.78 0 2.26.59 4.47 1.71 6.42L3.1 28.8l6.57-1.72a12.79 12.79 0 0 0 6.34 1.68h.01c7.06 0 12.78-5.73 12.78-12.79 0-3.42-1.33-6.63-3.75-9.05A12.69 12.69 0 0 0 16.02 3.2Zm0 23.4h-.01a10.6 10.6 0 0 1-5.4-1.48l-.39-.23-3.9 1.02 1.04-3.79-.25-.4a10.6 10.6 0 1 1 8.91 4.88Z" /></svg>
-    <span className="whatsapp-text">Chat on WhatsApp</span>
-  </a>;
 }
 
 export function isInternationalRoute(pathname = typeof window !== "undefined" ? window.location.pathname : "") { return Boolean(routeMap[pathname.replace(/\/$/, "")]); }

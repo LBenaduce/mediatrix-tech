@@ -164,7 +164,7 @@ export const translations = {
     openMenu: "Open menu",
     closeMenu: "Close menu",
     quote: "Request a free website review",
-    hero: { logoAlt: "Mediatrix Tech logo", title: "Websites Built to Grow Your Business", description: "Fast, professional, and tailored to your goals.", primaryCta: "Request a free website review", secondaryCta: "View our work" },
+    hero: { logoAlt: "Mediatrix Tech logo", title: "Websites Built to Grow Your Business", description: "Fast, professional, and tailored to your goals. Boost your income by up to 40%!", primaryCta: "Request a free website review", secondaryCta: "View our work" },
     servicesSection: { eyebrow: "Services", title: "Digital solutions built around practical business needs.", description: "From a first website to a custom tool, every project starts with a clear goal and a defined scope." },
     services: [
       { id: "site", title: "Professional and company websites", description: "Fast, responsive websites that explain your services, build trust and make it easy to get in touch.", benefit: "A clear online presence your business can keep building on." },

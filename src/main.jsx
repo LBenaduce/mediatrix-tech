@@ -33,6 +33,7 @@ import {
 import { InternationalLanding, isInternationalRoute } from "./InternationalLanding";
 import { LocalSantaMariaLanding } from "./LocalSantaMariaLanding";
 import { PublicSectionPage } from "./PublicSectionPage";
+import { WhatsAppFloat } from "./PublicChrome";
 import { NotFound } from "./easter-eggs/NotFound";
 import { SecretLogo } from "./easter-eggs/SecretLogo";
 import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
@@ -155,6 +156,7 @@ function App({ initialLanguage }) {
         <Contact copy={copy} selectedService={selectedService} onSelectService={setSelectedService} />
       </main>
       <Footer copy={copy} language={language} />
+      <WhatsAppFloat />
     </EasterEggI18nProvider>
   );
 }

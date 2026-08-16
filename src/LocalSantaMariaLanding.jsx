@@ -14,7 +14,7 @@ import {
 import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
 import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
 import { getEasterEggCopy } from "./translations";
-import { BRAZIL_WHATSAPP, PublicFooter, PublicHeader } from "./PublicChrome";
+import { BRAZIL_WHATSAPP, PublicFooter, PublicHeader, WhatsAppFloat } from "./PublicChrome";
 import { applyPageSeo, LOCAL_FAQS, LOCAL_ROUTE, ROUTE_SEO } from "./seo";
 import "./public-pages.css";
 
@@ -130,6 +130,7 @@ export function LocalSantaMariaLanding() {
           </section>
         </main>
         <PublicFooter />
+        <WhatsAppFloat />
       </div>
     </EasterEggI18nProvider>
   );
