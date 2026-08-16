@@ -5,7 +5,6 @@ import {
   ArrowRight,
   BriefcaseBusiness,
   Building2,
-  Check,
   Clapperboard,
   Code2,
   ExternalLink,
@@ -297,7 +296,6 @@ function Hero({ copy }) {
         <div className="hero-copy">
           <p className="motto">Create. Connect. Convert.</p>
           <h1 id="hero-title">{copy.hero.title}</h1>
-          <p className="hero-description">{copy.hero.description}</p>
           <p className="hero-footnote">{copy.hero.footnote}</p>
           <div className="hero-actions">
             <a className="button primary" href={primaryAction.href}>{primaryAction.label} <ArrowRight size={18} aria-hidden="true" /></a>
@@ -315,20 +313,19 @@ function SectionHeading({ eyebrow, title, description, id }) {
 
 function Services({ copy, onSelectService }) {
   return (
-    <section className="section" id="servicos" aria-labelledby="servicos-title">
+    <section className="section services-section" id="servicos" aria-labelledby="servicos-title">
       <div className="shell">
-        <SectionHeading {...copy.servicesSection} id="servicos-title" />
-        <div className={`services-grid${copy.services.length > 4 ? " expanded" : ""}`}>
+        <div className="services-heading">
+          <h2 id="servicos-title">{copy.servicesSection.eyebrow}</h2>
+        </div>
+        <div className="services-grid">
           {copy.services.map((service) => {
             const Icon = serviceIcons[service.id];
             return (
-              <article className="service-card" key={service.id}>
-                <div className="icon-box" aria-hidden="true"><Icon size={25} /></div>
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-                <p className="benefit"><Check size={17} aria-hidden="true" />{service.benefit}</p>
-                <a className="text-link" href="#formulario" onClick={() => onSelectService(service.id)}>{copy.quote} <ArrowRight size={17} aria-hidden="true" /></a>
-              </article>
+              <a className="service-tile" href="#formulario" onClick={() => onSelectService(service.id)} key={service.id}>
+                <span className="icon-box" aria-hidden="true"><Icon size={21} /></span>
+                <span className="service-label">{service.shortTitle || service.title}</span>
+              </a>
             );
           })}
         </div>
@@ -417,13 +414,12 @@ function Company({ copy }) {
   return (
     <section className="section company-section" id="empresa" aria-labelledby="empresa-title">
       <div className="shell company-layout">
-        <div>
-          <SectionHeading eyebrow={copy.company.eyebrow} title={copy.company.title} description={copy.company.description} id="empresa-title" />
-          {copy.company.localSeo && <div className="company-local-note"><p>{copy.company.localSeo.text}</p><a className="text-link" href={LOCAL_ROUTE}>{copy.company.localSeo.link} <ArrowRight size={17} aria-hidden="true" /></a></div>}
-        </div>
+        <p className="eyebrow">{copy.company.eyebrow}</p>
+        <h2 className="company-statement" id="empresa-title">Made by Humans</h2>
         <div className="company-facts">
-          {copy.company.facts.map(([title, text], index) => <article key={title}><span aria-hidden="true">0{index + 1}</span><div><h3>{title}</h3><p>{text}</p></div></article>)}
+          {copy.company.facts.map(([title], index) => <article key={title}><span aria-hidden="true">0{index + 1}</span><div><h3>{title}</h3><p>{copy.company.highlights[index]}</p></div></article>)}
         </div>
+        {copy.company.localSeo && <a className="company-location" href={LOCAL_ROUTE} aria-label={copy.company.localSeo.link}>Santa Maria, RS <ArrowRight size={16} aria-hidden="true" /></a>}
       </div>
     </section>
   );

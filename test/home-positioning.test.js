@@ -5,7 +5,8 @@ import { translations } from "../src/translations.js";
 test("a home em português apresenta posicionamento e CTAs concretos", () => {
   const copy = translations["pt-BR"];
 
-  assert.equal(copy.hero.title, "Sites profissionais para empresas que querem ser encontradas e conquistar mais clientes");
+  assert.equal(copy.hero.title, "Mais clientes. Mais receita. Crescimento da receita até 27% mais rápido.*");
+  assert.match(copy.hero.footnote, /Deloitte Access Economics/);
   assert.equal(copy.hero.primaryCta, "Solicitar uma avaliação");
   assert.equal(copy.hero.secondaryCta, "Ver projetos");
   assert.equal(copy.services.length, 7);
@@ -17,7 +18,8 @@ test("a home em português apresenta posicionamento e CTAs concretos", () => {
 test("a home em inglês mantém a mesma proposta de valor", () => {
   const copy = translations.en;
 
-  assert.equal(copy.hero.title, "Professional websites built to help small businesses grow");
+  assert.equal(copy.hero.title, "More clients. More income. Up to 27% faster revenue growth.*");
+  assert.equal(copy.hero.footnote, "*Based on Deloitte Access Economics research comparing advanced digitally engaged SMBs with offline businesses.");
   assert.equal(copy.hero.primaryCta, "Request a free website review");
   assert.equal(copy.hero.secondaryCta, "View our work");
   assert.equal(copy.services.length, 7);
