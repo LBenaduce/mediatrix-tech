@@ -16,6 +16,7 @@ import {
   Menu,
   MessageCircle,
   QrCode,
+  Quote,
   Send,
   Sprout,
   Wrench,
@@ -67,6 +68,19 @@ const projectMedia = [
   { media: "/oficina-mecanica-demo.jpg", kind: "image", width: 2396, height: 1852 },
   { kind: "collaboration" },
 ];
+
+const verifiedTestimonials = [];
+
+const phaseOneCopy = {
+  "pt-BR": { challenge: "O desafio", solution: "A solução", outcome: "Resultado", before: "Antes", after: "Depois", comparisonEyebrow: "Antes e depois", comparisonTitle: "Da fricção a um fluxo mais simples.", comparisonDescription: "Compare o problema operacional com a experiência entregue.", testimonialsEyebrow: "Depoimentos", testimonialsTitle: "O que os clientes dizem", testimonialsDescription: "Relatos publicados somente com autorização do cliente.", evidence: "Evidência do projeto", evidenceValue: "Experiência responsiva", beforeText: "Informações importantes dispersas e difíceis de consultar durante a rotina.", afterText: "Uma experiência responsiva organiza as informações e deixa a próxima ação clara.", showBefore: "Mostrar situação anterior", showAfter: "Mostrar solução entregue" },
+  en: { challenge: "The challenge", solution: "The solution", outcome: "Outcome", before: "Before", after: "After", comparisonEyebrow: "Before and after", comparisonTitle: "From friction to a simpler workflow.", comparisonDescription: "Compare the operational problem with the experience delivered.", testimonialsEyebrow: "Testimonials", testimonialsTitle: "What clients say", testimonialsDescription: "Quotes are published only with the client’s approval.", evidence: "Project evidence", evidenceValue: "Responsive experience", beforeText: "Important information was scattered and difficult to consult during day-to-day work.", afterText: "A responsive experience organizes the information and makes the next action clear.", showBefore: "Show previous situation", showAfter: "Show delivered solution" },
+  es: { challenge: "El desafío", solution: "La solución", outcome: "Resultado", before: "Antes", after: "Después", comparisonEyebrow: "Antes y después", comparisonTitle: "De la fricción a un flujo más simple.", comparisonDescription: "Compara el problema operativo con la experiencia entregada.", evidence: "Evidencia del proyecto", evidenceValue: "Experiencia adaptable", beforeText: "La información importante estaba dispersa y era difícil de consultar.", afterText: "Una experiencia adaptable organiza la información y aclara la próxima acción.", showBefore: "Mostrar situación anterior", showAfter: "Mostrar solución entregada" },
+  fr: { challenge: "Le défi", solution: "La solution", outcome: "Résultat", before: "Avant", after: "Après", comparisonEyebrow: "Avant et après", comparisonTitle: "De la friction à un parcours plus simple.", comparisonDescription: "Comparez le problème opérationnel à l’expérience livrée.", evidence: "Preuve du projet", evidenceValue: "Expérience adaptative", beforeText: "Les informations importantes étaient dispersées et difficiles à consulter.", afterText: "Une expérience adaptative organise les informations et clarifie l’action suivante.", showBefore: "Afficher la situation initiale", showAfter: "Afficher la solution livrée" },
+  de: { challenge: "Die Herausforderung", solution: "Die Lösung", outcome: "Ergebnis", before: "Vorher", after: "Nachher", comparisonEyebrow: "Vorher und nachher", comparisonTitle: "Von Reibung zu einem einfacheren Ablauf.", comparisonDescription: "Vergleichen Sie das betriebliche Problem mit der gelieferten Lösung.", evidence: "Projektnachweis", evidenceValue: "Responsive Erfahrung", beforeText: "Wichtige Informationen waren verstreut und schwer zugänglich.", afterText: "Eine responsive Lösung ordnet Informationen und macht den nächsten Schritt klar.", showBefore: "Ausgangssituation zeigen", showAfter: "Gelieferte Lösung zeigen" },
+  "zh-CN": { challenge: "挑战", solution: "解决方案", outcome: "成果", before: "之前", after: "之后", comparisonEyebrow: "前后对比", comparisonTitle: "从繁琐到更简单的流程。", comparisonDescription: "对比运营问题与交付的数字体验。", evidence: "项目依据", evidenceValue: "响应式体验", beforeText: "重要信息分散，日常工作中难以快速查阅。", afterText: "响应式体验将信息有序呈现，并明确下一步操作。", showBefore: "显示之前的情况", showAfter: "显示交付的解决方案" },
+  hi: { challenge: "चुनौती", solution: "समाधान", outcome: "परिणाम", before: "पहले", after: "बाद में", comparisonEyebrow: "पहले और बाद में", comparisonTitle: "जटिलता से सरल कार्यप्रवाह तक।", comparisonDescription: "परिचालन समस्या और दिए गए अनुभव की तुलना करें।", evidence: "परियोजना प्रमाण", evidenceValue: "रेस्पॉन्सिव अनुभव", beforeText: "महत्वपूर्ण जानकारी बिखरी हुई थी और देखना कठिन था।", afterText: "रेस्पॉन्सिव अनुभव जानकारी व्यवस्थित करता है और अगला कदम स्पष्ट करता है।", showBefore: "पहले की स्थिति दिखाएँ", showAfter: "दिया गया समाधान दिखाएँ" },
+  ar: { challenge: "التحدي", solution: "الحل", outcome: "النتيجة", before: "قبل", after: "بعد", comparisonEyebrow: "قبل وبعد", comparisonTitle: "من التعقيد إلى مسار عمل أبسط.", comparisonDescription: "قارن المشكلة التشغيلية بالتجربة التي تم تسليمها.", evidence: "دليل المشروع", evidenceValue: "تجربة متجاوبة", beforeText: "كانت المعلومات المهمة متفرقة ويصعب الرجوع إليها.", afterText: "تنظم التجربة المتجاوبة المعلومات وتوضح الخطوة التالية.", showBefore: "عرض الوضع السابق", showAfter: "عرض الحل المُسلَّم" },
+};
 
 const contactLinks = {
   brasil: "https://wa.me/5555999357388?text=Ol%C3%A1%2C%20Mediatrix%20Tech.%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento.",
@@ -365,7 +379,7 @@ function Services({ copy, onSelectService }) {
   );
 }
 
-function ProjectCard({ project, copy }) {
+function ProjectCard({ project, copy, labels }) {
   const cardRef = React.useRef(null);
 
   const handlePointerMove = (event) => {
@@ -435,7 +449,12 @@ function ProjectCard({ project, copy }) {
           )}
         </div>
         <div className="project-content">
-          <p className="project-category">{project.category}</p><h3>{project.name}</h3><p>{project.description}</p>
+          <p className="project-category">{project.category}</p><h3>{project.name}</h3>
+          <div className="case-study-narrative">
+            <div><strong>{labels.challenge}</strong><p>{project.problem || project.description}</p></div>
+            <div><strong>{labels.solution}</strong><p>{project.description}</p></div>
+          </div>
+          <div className="case-study-outcome"><span>{labels.evidence}</span><strong>{project.outcome || labels.evidenceValue}</strong></div>
           <a className="text-link" href={project.media} target="_blank" rel="noopener noreferrer">{copy.portfolioSection.view} <ExternalLink size={16} aria-hidden="true" /></a>
         </div>
       </div>
@@ -443,12 +462,42 @@ function ProjectCard({ project, copy }) {
   );
 }
 
+function BeforeAfterComparison({ labels }) {
+  const [showAfter, setShowAfter] = React.useState(true);
+  return (
+    <section className="project-comparison" aria-labelledby="comparison-title">
+      <div className="comparison-copy">
+        <p className="eyebrow">{labels.comparisonEyebrow}</p>
+        <h3 id="comparison-title">{labels.comparisonTitle}</h3>
+        <p>{labels.comparisonDescription}</p>
+        <div className="comparison-toggle" role="group" aria-label={labels.comparisonEyebrow}>
+          <button type="button" className={!showAfter ? "active" : ""} aria-pressed={!showAfter} onClick={() => setShowAfter(false)}>{labels.before}</button>
+          <button type="button" className={showAfter ? "active" : ""} aria-pressed={showAfter} onClick={() => setShowAfter(true)}>{labels.after}</button>
+        </div>
+      </div>
+      <div className={`comparison-panel ${showAfter ? "is-after" : "is-before"}`} aria-live="polite">
+        <span>{showAfter ? labels.after : labels.before}</span>
+        <Quote size={28} aria-hidden="true" />
+        <p>{showAfter ? labels.afterText : labels.beforeText}</p>
+        <img src="/agriclimate-pro-poster.jpg" alt="" width="1280" height="720" loading="lazy" aria-hidden="true" />
+      </div>
+    </section>
+  );
+}
+
+function Testimonials({ labels }) {
+  if (verifiedTestimonials.length === 0) return null;
+  return <section className="testimonials" aria-labelledby="testimonials-title"><SectionHeading eyebrow={labels.testimonialsEyebrow} title={labels.testimonialsTitle} description={labels.testimonialsDescription} id="testimonials-title" /><div className="testimonial-grid">{verifiedTestimonials.map((testimonial) => <blockquote key={testimonial.quote}><Quote aria-hidden="true" /><p>{testimonial.quote}</p><footer><strong>{testimonial.name}</strong><span>{testimonial.company}</span></footer></blockquote>)}</div></section>;
+}
+
 function Portfolio({ copy, language }) {
+  const labels = phaseOneCopy[language] || phaseOneCopy.en;
   const projects = copy.projects.map((project, index) => {
     const projectAssets = projectMedia[index];
     return {
       ...project,
       ...projectAssets,
+      problem: project.type === "collaboration" ? project.description : labels.beforeText,
       media: language === "pt-BR" ? projectAssets.media : projectAssets.nonPortugueseMedia || projectAssets.media,
       poster: language === "pt-BR" ? projectAssets.poster : projectAssets.nonPortuguesePoster || projectAssets.poster,
       width: language === "pt-BR" ? projectAssets.width : projectAssets.nonPortugueseWidth || projectAssets.width,
@@ -461,9 +510,11 @@ function Portfolio({ copy, language }) {
         <SectionHeading eyebrow={copy.portfolioSection.eyebrow} title={copy.portfolioSection.title} description={copy.portfolioSection.description} id="portfolio-title" />
         <div className="portfolio-grid">
           {projects.map((project) => (
-            <ProjectCard project={project} copy={copy} key={project.name} />
+            <ProjectCard project={project} copy={copy} labels={labels} key={project.name} />
           ))}
         </div>
+        <BeforeAfterComparison labels={labels} />
+        <Testimonials labels={labels} />
       </div>
     </section>
   );
