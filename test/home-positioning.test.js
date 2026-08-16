@@ -17,12 +17,66 @@ test("a home em português apresenta posicionamento e CTAs concretos", () => {
 
 test("a home em inglês mantém a mesma proposta de valor", () => {
   const copy = translations.en;
+  const homepageServices = copy.services.filter(({ id }) => id !== "media");
 
   assert.equal(copy.hero.title, "More clients. More income. Up to 27% faster revenue growth.*");
   assert.equal(copy.hero.footnote, "*Based on Deloitte Access Economics research comparing advanced digitally engaged SMBs with offline businesses.");
   assert.equal(copy.hero.primaryCta, "Request a free website review");
   assert.equal(copy.hero.secondaryCta, "View our work");
+  assert.equal(copy.servicesSection.title, "What we can build for you");
   assert.equal(copy.services.length, 7);
+  assert.deepEqual(homepageServices.map(({ shortTitle, title }) => shortTitle || title), [
+    "Professional Websites",
+    "Landing Pages",
+    "Custom Web Solutions",
+    "Event & QR Websites",
+    "Agribusiness Solutions",
+    "Website Care & Support",
+  ]);
+  assert.deepEqual(homepageServices.map(({ subtitle }) => subtitle), [
+    "Build trust. Attract more clients.",
+    "Turn visitors into leads and sales.",
+    "Tools built around your business.",
+    "Simple experiences people love to use.",
+    "Digital tools built for agriculture.",
+    "Updates, improvements, and ongoing support.",
+  ]);
+  assert.ok(copy.services.some(({ id }) => id === "media"));
+});
+
+test("todos os idiomas exibem seis ofertas concisas na home e preservam edição de mídia", () => {
+  for (const locale of ["pt-BR", "en", "es", "fr", "de", "zh-CN", "hi", "ar"]) {
+    const copy = translations[locale];
+    const homepageServices = copy.services.filter(({ id }) => id !== "media");
+
+    assert.equal(homepageServices.length, 6);
+    assert.ok(copy.services.some(({ id }) => id === "media"));
+    homepageServices.forEach(({ shortTitle, title, subtitle }) => {
+      assert.ok((shortTitle || title).length > 0);
+      assert.ok(subtitle.length > 0);
+    });
+  }
+});
+
+test("a colaboração internacional de IA comunica escopo sem identificar o cliente", () => {
+  const project = translations.en.projects.find(({ type }) => type === "collaboration");
+
+  assert.equal(project.name, "International AI Data Project");
+  assert.equal(project.category, "AI Training & Data Collection");
+  assert.equal(project.description, "Contributed to a large-scale AI training initiative through structured data collection, validation, and quality-controlled delivery.");
+  assert.deepEqual(project.tags, ["AI Training Data", "Data Collection", "Quality Assurance"]);
+  assert.deepEqual(project.metrics, [
+    { value: "30+ hours", label: "Structured data delivered" },
+  ]);
+  assert.doesNotMatch(JSON.stringify(project), /upwork|milestone/i);
+
+  for (const locale of ["pt-BR", "en", "es", "fr", "de", "zh-CN", "hi", "ar"]) {
+    const localizedProject = translations[locale].projects.find(({ type }) => type === "collaboration");
+    assert.ok(localizedProject);
+    assert.equal(localizedProject.tags.length, 3);
+    assert.equal(localizedProject.metrics.length, 1);
+    assert.doesNotMatch(JSON.stringify(localizedProject), /https?:\/\//i);
+  }
 });
 
 test("os canais de contato exibem os dois números do WhatsApp", () => {
@@ -37,16 +91,23 @@ test("os canais de contato exibem os dois números do WhatsApp", () => {
 
 test("a apresentação da empresa usa o novo texto em todos os idiomas", () => {
   assert.deepEqual(translations["pt-BR"].company.facts, [
-    ["Quem somos", "Somos uma empresa familiar, criada para transformar boas ideias em soluções digitais úteis, bonitas e funcionais. Porque a beleza também importa."],
-    ["O que fazemos", "Desenvolvemos projetos digitais com cuidado, elegância e atenção aos detalhes. Para nós, qualidade e responsabilidade vêm sempre em primeiro lugar."],
-    ["Como trabalhamos", "Trabalhamos com prazos realistas, comunicação clara e revisão cuidadosa em cada etapa. Não entregamos apenas para terminar: entregamos quando está realmente bem-feito."],
-    ["Onde atendemos", "No planeta Terra e arredores."],
+    ["Conduzido por pessoas", "Pessoas reais. Comunicação direta."],
+    ["Feito para você", "Soluções moldadas ao seu negócio."],
+    ["Processo claro", "Comunicação simples. Sem complexidade desnecessária."],
+    ["No mundo todo", "Trabalhando com empresas onde quer que estejam."],
   ]);
 
-  assert.equal(translations.en.company.facts[0][0], "Who we are");
-  assert.match(translations.en.company.facts[0][1], /family business/);
+  assert.equal(translations.en.company.description, "Real people building clear, useful digital solutions around real business needs.");
+  assert.deepEqual(translations.en.company.facts, [
+    ["Human-led", "Real people. Direct communication."],
+    ["Built around you", "Solutions shaped around your business."],
+    ["Clear process", "Simple communication. No unnecessary complexity."],
+    ["Worldwide", "Working with businesses wherever they are."],
+  ]);
 
   for (const locale of ["pt-BR", "en", "es", "fr", "de", "zh-CN", "hi", "ar"]) {
+    assert.equal(translations[locale].company.title, "Made by Humans");
+    assert.equal(translations[locale].company.location, undefined);
     assert.equal(translations[locale].company.facts.length, 4);
     assert.ok(translations[locale].company.localSeo.text.length > 0);
     assert.ok(translations[locale].company.localSeo.link.length > 0);

@@ -3,6 +3,7 @@ import { createRoot, hydrateRoot } from "react-dom/client";
 import {
   AudioLines,
   ArrowRight,
+  BrainCircuit,
   BriefcaseBusiness,
   Building2,
   Clapperboard,
@@ -64,6 +65,7 @@ const projectMedia = [
   { media: "/event-qr-code-demo.mp4", nonPortugueseMedia: "/event-qr-code-demo-english.mp4", poster: "/event-qr-code-poster.jpg", nonPortuguesePoster: "/event-qr-code-poster-en.jpg", kind: "video", width: 1280, height: 720 },
   { media: "/cafeteria-demo-pt.png", nonPortugueseMedia: "/cafeteria-demo-en.png", kind: "image", width: 1024, height: 1536 },
   { media: "/oficina-mecanica-demo.jpg", kind: "image", width: 2396, height: 1852 },
+  { kind: "collaboration" },
 ];
 
 const contactLinks = {
@@ -148,7 +150,7 @@ function App({ initialLanguage }) {
       />
       <main id="conteudo">
         <Hero copy={copy} />
-        <TopBanner />
+        <ProjectShowcase copy={copy} language={language} />
         <Services copy={copy} onSelectService={setSelectedService} />
         <Portfolio copy={copy} language={language} />
         <Company copy={copy} />
@@ -240,47 +242,6 @@ function LanguageSelector({ copy, language, onChange }) {
   );
 }
 
-function TopBanner() {
-  const [videoReady, setVideoReady] = React.useState(false);
-  const [reduceMotion, setReduceMotion] = React.useState(false);
-
-  React.useEffect(() => {
-    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduceMotion(mediaQuery.matches);
-    const updateMotionPreference = (event) => setReduceMotion(event.matches);
-    mediaQuery.addEventListener("change", updateMotionPreference);
-    return () => mediaQuery.removeEventListener("change", updateMotionPreference);
-  }, []);
-
-  return (
-    <div className="top-banner-section" aria-hidden="true">
-      <div className="top-banner-frame">
-          <img
-            className="top-banner-poster"
-            src="/mediatrix-header-poster.jpg"
-            alt=""
-            width="1200"
-            height="514"
-            fetchPriority="high"
-          />
-          <video
-            className={`top-banner-video${videoReady ? " is-ready" : ""}`}
-            autoPlay={!reduceMotion}
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster="/mediatrix-header-poster.jpg"
-            onPlaying={() => setVideoReady(true)}
-            onError={() => setVideoReady(false)}
-          >
-            <source src="/mediatrix-header-banner.mp4?v=enhanced" type="video/mp4" />
-          </video>
-      </div>
-    </div>
-  );
-}
-
 function Hero({ copy }) {
   const primaryAction = copy.hero.primaryCta
     ? { href: "#formulario", label: copy.hero.primaryCta }
@@ -295,7 +256,9 @@ function Hero({ copy }) {
       <div className="shell hero-content">
         <div className="hero-copy">
           <p className="motto">Create. Connect. Convert.</p>
-          <h1 id="hero-title">{copy.hero.title}</h1>
+          <h1 id="hero-title">
+            {splitHeroTitle(copy.hero.title).map((line) => <span className="hero-title-line" key={line}>{line}</span>)}
+          </h1>
           <p className="hero-footnote">{copy.hero.footnote}</p>
           <div className="hero-actions">
             <a className="button primary" href={primaryAction.href}>{primaryAction.label} <ArrowRight size={18} aria-hidden="true" /></a>
@@ -307,24 +270,92 @@ function Hero({ copy }) {
   );
 }
 
+function splitHeroTitle(title) {
+  return title.match(/[^.!?。؟।]+(?:[.!?。؟।]+\*?|$)/gu)?.map((line) => line.trim()).filter(Boolean) || [title];
+}
+
+function ProjectShowcase({ copy, language }) {
+  const isPortuguese = language === "pt-BR";
+  const desktopProject = copy.projects[1];
+  const mobileProject = copy.projects[3];
+
+  return (
+    <section className="project-showcase" aria-labelledby="showcase-title">
+      <div className="shell showcase-shell">
+        <h2 className="sr-only" id="showcase-title">{copy.portfolioSection.title}</h2>
+        <div className="showcase-stage">
+          <article className="showcase-browser">
+            <div className="showcase-browser-bar" aria-hidden="true">
+              <span /><span /><span />
+              <div>{desktopProject.name}</div>
+            </div>
+            <div className="showcase-browser-viewport">
+              <img
+                src={isPortuguese ? "/frasson-farois-demo-pt.jpg" : "/frasson-llc-demo-optimized.jpg"}
+                alt={`${copy.portfolioSection.screenshot}: ${desktopProject.name}`}
+                width={isPortuguese ? 1800 : 800}
+                height={isPortuguese ? 988 : 456}
+                fetchPriority="high"
+                decoding="async"
+              />
+            </div>
+            <div className="showcase-project-meta">
+              <strong>{desktopProject.name}</strong>
+              <span>{desktopProject.category}</span>
+            </div>
+          </article>
+
+          <article className="showcase-phone">
+            <div className="showcase-phone-speaker" aria-hidden="true" />
+            <div className="showcase-phone-screen">
+              <img
+                src={isPortuguese ? "/cafeteria-demo-pt-optimized.jpg" : "/cafeteria-demo-en-optimized.jpg"}
+                alt={`${copy.portfolioSection.screenshot}: ${mobileProject.name}`}
+                width="1024"
+                height="1536"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div className="showcase-phone-label">
+              <strong>{mobileProject.name}</strong>
+              <span>{mobileProject.category}</span>
+            </div>
+          </article>
+
+          <a className="showcase-link" href="#portfolio">
+            <span>{copy.hero.secondaryCta || copy.portfolioSection.view}</span>
+            <ArrowRight size={17} aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function SectionHeading({ eyebrow, title, description, id }) {
   return <div className="section-heading"><p className="eyebrow">{eyebrow}</p><h2 id={id}>{title}</h2>{description && <p className="section-description">{description}</p>}</div>;
 }
 
 function Services({ copy, onSelectService }) {
+  const homepageServices = copy.services.filter((service) => service.id !== "media");
+
   return (
     <section className="section services-section" id="servicos" aria-labelledby="servicos-title">
       <div className="shell">
         <div className="services-heading">
-          <h2 id="servicos-title">{copy.servicesSection.eyebrow}</h2>
+          <h2 id="servicos-title">{copy.servicesSection.title}</h2>
         </div>
         <div className="services-grid">
-          {copy.services.map((service) => {
+          {homepageServices.map((service) => {
             const Icon = serviceIcons[service.id];
             return (
-              <a className="service-tile" href="#formulario" onClick={() => onSelectService(service.id)} key={service.id}>
+              <a className={`service-tile${service.id === "site" || service.id === "landing" ? " is-featured" : ""}`} href="#formulario" onClick={() => onSelectService(service.id)} key={service.id}>
                 <span className="icon-box" aria-hidden="true"><Icon size={21} /></span>
-                <span className="service-label">{service.shortTitle || service.title}</span>
+                <span className="service-copy">
+                  <strong className="service-label">{service.shortTitle || service.title}</strong>
+                  <span className="service-subtitle">{service.subtitle}</span>
+                </span>
               </a>
             );
           })}
@@ -364,6 +395,34 @@ function ProjectCard({ project, copy }) {
     card.style.setProperty("--rotate-x", "0deg");
     card.style.setProperty("--rotate-y", "0deg");
   };
+
+  if (project.kind === "collaboration") {
+    return (
+      <article className="project-card project-card--collaboration">
+        <div className="project-card-surface collaboration-card">
+          <div className="collaboration-visual" aria-hidden="true">
+            <span className="collaboration-icon"><BrainCircuit size={44} strokeWidth={1.5} /></span>
+            <span className="data-node node-one" /><span className="data-node node-two" /><span className="data-node node-three" />
+            <span className="data-line line-one" /><span className="data-line line-two" />
+          </div>
+          <div className="collaboration-content">
+            <div className="collaboration-copy">
+              <p className="collaboration-eyebrow">{project.collection}</p>
+              <p className="project-category">{project.category}</p>
+              <h3>{project.name}</h3>
+              <p className="collaboration-description">{project.description}</p>
+            </div>
+            <dl className="collaboration-metrics">
+              {project.metrics.map(({ value, label }) => <div key={value}><dt>{value}</dt><dd>{label}</dd></div>)}
+            </dl>
+            <ul className="collaboration-tags" aria-label={project.tagsLabel}>
+              {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
+            </ul>
+          </div>
+        </div>
+      </article>
+    );
+  }
 
   return (
     <article className="project-card" ref={cardRef} onPointerMove={handlePointerMove} onPointerLeave={resetPointerEffect}>
@@ -416,10 +475,10 @@ function Company({ copy }) {
       <div className="shell company-layout">
         <p className="eyebrow">{copy.company.eyebrow}</p>
         <h2 className="company-statement" id="empresa-title">Made by Humans</h2>
+        <p className="company-intro">{copy.company.description}</p>
         <div className="company-facts">
-          {copy.company.facts.map(([title], index) => <article key={title}><span aria-hidden="true">0{index + 1}</span><div><h3>{title}</h3><p>{copy.company.highlights[index]}</p></div></article>)}
+          {copy.company.facts.map(([title, description], index) => <article key={title}><span aria-hidden="true">0{index + 1}</span><div><h3>{title}</h3><p>{description}</p></div></article>)}
         </div>
-        {copy.company.localSeo && <a className="company-location" href={LOCAL_ROUTE} aria-label={copy.company.localSeo.link}>Santa Maria, RS <ArrowRight size={16} aria-hidden="true" /></a>}
       </div>
     </section>
   );

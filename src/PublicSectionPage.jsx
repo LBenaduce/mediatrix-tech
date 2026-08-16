@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowRight, ExternalLink, Mail, MessageCircle } from "lucide-react";
+import { ArrowRight, BrainCircuit, ExternalLink, Mail, MessageCircle } from "lucide-react";
 import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
 import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
 import { getEasterEggCopy, translations } from "./translations";
@@ -44,7 +44,14 @@ function ServicesContent() {
 }
 
 function PortfolioContent() {
-  return <div className="local-project-grid public-projects">{copy.projects.map((project, index) => { const [src, width, height] = projectAssets[index]; return <article className="project-card" key={project.name}><div className="project-media"><img src={src} alt={`Prévia do projeto ${project.name}`} width={width} height={height} loading="lazy" /></div><div className="project-content"><p className="project-category">{project.category}</p><h2>{project.name}</h2><p>{project.description}</p></div></article>; })}</div>;
+  return <div className="local-project-grid public-projects">{copy.projects.map((project, index) => {
+    if (project.type === "collaboration") {
+      return <article className="project-card project-card--collaboration" key={project.name}><div className="project-card-surface collaboration-card"><div className="collaboration-visual" aria-hidden="true"><span className="collaboration-icon"><BrainCircuit size={44} strokeWidth={1.5} /></span><span className="data-node node-one" /><span className="data-node node-two" /><span className="data-node node-three" /><span className="data-line line-one" /><span className="data-line line-two" /></div><div className="collaboration-content"><div className="collaboration-copy"><p className="collaboration-eyebrow">{project.collection}</p><p className="project-category">{project.category}</p><h2>{project.name}</h2><p className="collaboration-description">{project.description}</p></div><dl className="collaboration-metrics">{project.metrics.map(({ value, label }) => <div key={value}><dt>{value}</dt><dd>{label}</dd></div>)}</dl><ul className="collaboration-tags" aria-label={project.tagsLabel}>{project.tags.map((tag) => <li key={tag}>{tag}</li>)}</ul></div></div></article>;
+    }
+
+    const [src, width, height] = projectAssets[index];
+    return <article className="project-card" key={project.name}><div className="project-media"><img src={src} alt={`Prévia do projeto ${project.name}`} width={width} height={height} loading="lazy" /></div><div className="project-content"><p className="project-category">{project.category}</p><h2>{project.name}</h2><p>{project.description}</p></div></article>;
+  })}</div>;
 }
 
 function CompanyContent() {
