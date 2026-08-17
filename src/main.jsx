@@ -284,13 +284,10 @@ function Hero({ copy }) {
       </video>
       <div className="hero-background-overlay" aria-hidden="true" />
       <div className="hero-glow" aria-hidden="true" />
-      <div className="hero-corner-video" aria-hidden="true">
-        <video autoPlay loop muted playsInline preload="metadata" poster="/mediatrix-header-poster.jpg" tabIndex="-1">
-          <source src="/mediatrix-header-no-pika.mp4" type="video/mp4" />
-        </video>
-      </div>
+      <HeroBrandVisual className="hero-corner-video--desktop" />
       <div className="shell hero-content">
         <div className="hero-copy">
+          <HeroBrandVisual className="hero-corner-video--mobile" />
           <p className="motto">Create. Connect. Convert.</p>
           <h1 id="hero-title">
             {splitHeroTitle(copy.hero.title).map((line) => <span className="hero-title-line" key={line}>{line}</span>)}
@@ -303,6 +300,16 @@ function Hero({ copy }) {
         </div>
       </div>
     </section>
+  );
+}
+
+function HeroBrandVisual({ className }) {
+  return (
+    <div className={`hero-corner-video ${className}`} aria-hidden="true">
+      <video autoPlay loop muted playsInline preload="metadata" poster="/mediatrix-header-poster.jpg" tabIndex="-1">
+        <source src="/mediatrix-header-no-pika.mp4" type="video/mp4" />
+      </video>
+    </div>
   );
 }
 
