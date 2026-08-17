@@ -205,7 +205,26 @@ function PageBackground() {
 function Header({ activeSection, copy, language, onLanguageChange }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuButtonRef = React.useRef(null);
+  const headerRef = React.useRef(null);
   const navigation = navigationIds.map((id, index) => [id, copy.nav[index]]);
+
+  React.useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return undefined;
+
+    const updateHeaderHeight = () => {
+      document.documentElement.style.setProperty("--site-header-height", `${header.getBoundingClientRect().height}px`);
+    };
+
+    updateHeaderHeight();
+    const observer = new ResizeObserver(updateHeaderHeight);
+    observer.observe(header);
+    window.addEventListener("resize", updateHeaderHeight);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", updateHeaderHeight);
+    };
+  }, []);
 
   React.useEffect(() => {
     const closeOnEscape = (event) => {
@@ -225,7 +244,7 @@ function Header({ activeSection, copy, language, onLanguageChange }) {
   };
 
   return (
-    <header className="site-header">
+    <header className="site-header" ref={headerRef}>
       <div className="header-inner">
         <SecretLogo
           className="brand"
