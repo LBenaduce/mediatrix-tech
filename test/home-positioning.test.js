@@ -105,8 +105,19 @@ test("a apresentação da empresa usa o novo texto em todos os idiomas", () => {
     ["Worldwide", "Working with businesses wherever they are."],
   ]);
 
+  const localizedTitles = {
+    "pt-BR": "Feito por pessoas",
+    en: "Made by Humans",
+    es: "Hecho por personas",
+    fr: "Créé par des humains",
+    de: "Von Menschen gemacht",
+    "zh-CN": "由真人打造",
+    hi: "इंसानों द्वारा निर्मित",
+    ar: "صُنع بأيدٍ بشرية",
+  };
+
   for (const locale of ["pt-BR", "en", "es", "fr", "de", "zh-CN", "hi", "ar"]) {
-    assert.equal(translations[locale].company.title, "Made by Humans");
+    assert.equal(translations[locale].company.title, localizedTitles[locale]);
     assert.equal(translations[locale].company.location, undefined);
     assert.equal(translations[locale].company.facts.length, 4);
     assert.ok(translations[locale].company.localSeo.text.length > 0);

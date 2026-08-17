@@ -82,6 +82,19 @@ const phaseOneCopy = {
   ar: { challenge: "التحدي", solution: "الحل", outcome: "النتيجة", before: "قبل", after: "بعد", comparisonEyebrow: "قبل وبعد", comparisonTitle: "من التعقيد إلى مسار عمل أبسط.", comparisonDescription: "قارن المشكلة التشغيلية بالتجربة التي تم تسليمها.", evidence: "دليل المشروع", evidenceValue: "تجربة متجاوبة", beforeText: "كانت المعلومات المهمة متفرقة ويصعب الرجوع إليها.", afterText: "تنظم التجربة المتجاوبة المعلومات وتوضح الخطوة التالية.", showBefore: "عرض الوضع السابق", showAfter: "عرض الحل المُسلَّم" },
 };
 
+const portfolioMetricCopy = {
+  "pt-BR": [["Prioridade móvel", "Experiência responsiva"], ["Ao vivo", "Visualizações climáticas"], ["1", "Painel de decisão"], ["Responsivo", "Layout"], ["Direto", "Contato de leads"], ["Objetivo", "Caminho de serviços"], ["0", "Aplicativos necessários"], ["2", "Tipos de mídia"], ["1", "Ponto de entrada por QR"], ["Prioridade móvel", "Acesso ao cardápio"], ["2", "Prévias localizadas"], ["Direto", "Caminho do visitante"], ["Responsivo", "Layout"], ["Local", "Caminho de contato"], ["Claro", "Catálogo de serviços"]],
+  en: [["Mobile-first", "Responsive experience"], ["Live", "Climate views"], ["1", "Decision dashboard"], ["Responsive", "Layout"], ["Direct", "Lead contact"], ["Focused", "Service path"], ["0", "Apps required"], ["2", "Media types"], ["1", "QR entry point"], ["Mobile-first", "Menu access"], ["2", "Localized previews"], ["Direct", "Visitor path"], ["Responsive", "Layout"], ["Local", "Contact path"], ["Clear", "Service catalog"]],
+  es: [["Prioridad móvil", "Experiencia adaptable"], ["En vivo", "Vistas climáticas"], ["1", "Panel de decisiones"], ["Adaptable", "Diseño"], ["Directo", "Contacto con clientes potenciales"], ["Enfocado", "Ruta de servicios"], ["0", "Aplicaciones necesarias"], ["2", "Tipos de contenido"], ["1", "Acceso mediante QR"], ["Prioridad móvil", "Acceso al menú"], ["2", "Vistas previas localizadas"], ["Directo", "Ruta del visitante"], ["Adaptable", "Diseño"], ["Local", "Ruta de contacto"], ["Claro", "Catálogo de servicios"]],
+  fr: [["Priorité au mobile", "Expérience adaptative"], ["En direct", "Données climatiques"], ["1", "Tableau de décision"], ["Adaptatif", "Mise en page"], ["Direct", "Contact prospect"], ["Ciblé", "Parcours des services"], ["0", "Application requise"], ["2", "Types de médias"], ["1", "Accès par QR code"], ["Priorité au mobile", "Accès au menu"], ["2", "Aperçus localisés"], ["Direct", "Parcours visiteur"], ["Adaptatif", "Mise en page"], ["Local", "Parcours de contact"], ["Clair", "Catalogue de services"]],
+  de: [["Mobile zuerst", "Responsive Nutzung"], ["Live", "Klimaansichten"], ["1", "Entscheidungs-Dashboard"], ["Responsiv", "Layout"], ["Direkt", "Interessentenkontakt"], ["Gezielt", "Leistungsweg"], ["0", "Erforderliche Apps"], ["2", "Medientypen"], ["1", "QR-Einstiegspunkt"], ["Mobile zuerst", "Menüzugriff"], ["2", "Lokalisierte Vorschauen"], ["Direkt", "Besucherweg"], ["Responsiv", "Layout"], ["Lokal", "Kontaktweg"], ["Klar", "Leistungskatalog"]],
+  "zh-CN": [["移动端优先", "响应式体验"], ["实时", "气候视图"], ["1", "决策面板"], ["响应式", "布局"], ["直接", "潜在客户联系"], ["聚焦", "服务路径"], ["0", "所需应用"], ["2", "媒体类型"], ["1", "二维码入口"], ["移动端优先", "菜单访问"], ["2", "本地化预览"], ["直接", "访客路径"], ["响应式", "布局"], ["本地", "联系路径"], ["清晰", "服务目录"]],
+  hi: [["मोबाइल-प्रथम", "रेस्पॉन्सिव अनुभव"], ["लाइव", "जलवायु दृश्य"], ["1", "निर्णय डैशबोर्ड"], ["रेस्पॉन्सिव", "लेआउट"], ["सीधा", "संभावित ग्राहक संपर्क"], ["केंद्रित", "सेवा मार्ग"], ["0", "आवश्यक ऐप"], ["2", "मीडिया प्रकार"], ["1", "QR प्रवेश बिंदु"], ["मोबाइल-प्रथम", "मेन्यू पहुँच"], ["2", "स्थानीयकृत प्रीव्यू"], ["सीधा", "विज़िटर मार्ग"], ["रेस्पॉन्सिव", "लेआउट"], ["स्थानीय", "संपर्क मार्ग"], ["स्पष्ट", "सेवा सूची"]],
+  ar: [["الهاتف أولًا", "تجربة متجاوبة"], ["مباشر", "عروض المناخ"], ["1", "لوحة قرارات"], ["متجاوب", "التخطيط"], ["مباشر", "تواصل العملاء المحتملين"], ["مركّز", "مسار الخدمات"], ["0", "تطبيقات مطلوبة"], ["2", "أنواع الوسائط"], ["1", "نقطة دخول عبر QR"], ["الهاتف أولًا", "الوصول إلى القائمة"], ["2", "معاينات مترجمة"], ["مباشر", "مسار الزائر"], ["متجاوب", "التخطيط"], ["محلي", "مسار التواصل"], ["واضح", "دليل الخدمات"]],
+};
+
+const projectPreviewCopy = { "pt-BR": "Prévia do projeto", en: "Project preview", es: "Vista previa del proyecto", fr: "Aperçu du projet", de: "Projektvorschau", "zh-CN": "项目预览", hi: "प्रोजेक्ट प्रीव्यू", ar: "معاينة المشروع" };
+
 const contactLinks = {
   brasil: "https://wa.me/5555999357388?text=Ol%C3%A1%2C%20Mediatrix%20Tech.%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento.",
   estadosUnidos: "https://wa.me/13059920833?text=Hello%20Mediatrix%20Tech%2C%20I%20would%20like%20to%20request%20a%20quote.",
@@ -388,7 +401,7 @@ function Services({ copy, onSelectService }) {
   );
 }
 
-function CaseStudyCard({ title, category, clientName, challengeText, solutionText, metrics, imageUrl, projectUrl, labels = phaseOneCopy.en }) {
+function CaseStudyCard({ title, category, clientName, challengeText, solutionText, metrics, imageUrl, projectUrl, previewLabel, labels = phaseOneCopy.en }) {
   const cardRef = React.useRef(null);
 
   const handlePointerMove = (event) => {
@@ -423,7 +436,7 @@ function CaseStudyCard({ title, category, clientName, challengeText, solutionTex
     <article className="project-card" ref={cardRef} onPointerMove={handlePointerMove} onPointerLeave={resetPointerEffect}>
       <div className="project-card-surface">
         <div className="project-media">
-          <img src={imageUrl} alt={`${title} project preview`} loading="lazy" />
+          <img src={imageUrl} alt={`${previewLabel}: ${title}`} loading="lazy" />
         </div>
         <div className="project-content">
           <div className="case-study-meta"><p className="project-category">{category}</p><span>{clientName}</span></div>
@@ -475,13 +488,8 @@ function Testimonials({ labels }) {
 
 function Portfolio({ copy, language }) {
   const labels = { ...(phaseOneCopy[language] || phaseOneCopy.en), viewProject: copy.portfolioSection.view };
-  const metricSets = [
-    [{ value: "Mobile-first", label: labels.evidenceValue }, { value: "Live", label: "Climate views" }, { value: "1", label: "Decision dashboard" }],
-    [{ value: "Responsive", label: "Layout" }, { value: "Direct", label: "Lead contact" }, { value: "Focused", label: "Service path" }],
-    [{ value: "0", label: "Apps required" }, { value: "2", label: "Media types" }, { value: "1", label: "QR entry point" }],
-    [{ value: "Mobile-first", label: "Menu access" }, { value: "2", label: "Localized previews" }, { value: "Direct", label: "Visitor path" }],
-    [{ value: "Responsive", label: "Layout" }, { value: "Local", label: "Contact path" }, { value: "Clear", label: "Service catalog" }],
-  ];
+  const translatedMetrics = portfolioMetricCopy[language] || portfolioMetricCopy.en;
+  const metricSets = Array.from({ length: 5 }, (_, projectIndex) => translatedMetrics.slice(projectIndex * 3, projectIndex * 3 + 3).map(([value, label]) => ({ value, label })));
   const projects = copy.projects.map((project, index) => {
     const projectAssets = projectMedia[index];
     return {
@@ -499,7 +507,7 @@ function Portfolio({ copy, language }) {
       <div className="shell">
         <SectionHeading eyebrow={copy.portfolioSection.eyebrow} title={copy.portfolioSection.title} description={copy.portfolioSection.description} id="portfolio-title" />
         <div className="portfolio-grid">
-          {projects.map((project, index) => project.kind === "collaboration" ? <CollaborationCard project={project} key={project.name} /> : <CaseStudyCard title={project.name} category={project.category} clientName={index === 1 ? "Frasson LLC" : project.name} challengeText={project.problem} solutionText={project.description} metrics={metricSets[index]} imageUrl={project.poster || project.media} projectUrl={project.media} labels={labels} key={project.name} />)}
+          {projects.map((project, index) => project.kind === "collaboration" ? <CollaborationCard project={project} key={project.name} /> : <CaseStudyCard title={project.name} category={project.category} clientName={index === 1 ? "Frasson LLC" : project.name} challengeText={project.problem} solutionText={project.description} metrics={metricSets[index]} imageUrl={project.poster || project.media} projectUrl={project.media} previewLabel={projectPreviewCopy[language] || projectPreviewCopy.en} labels={labels} key={project.name} />)}
         </div>
         <BeforeAfterComparison labels={labels} />
         <Testimonials labels={labels} />
@@ -513,7 +521,7 @@ function Company({ copy }) {
     <section className="section company-section" id="empresa" aria-labelledby="empresa-title">
       <div className="shell company-layout">
         <p className="eyebrow">{copy.company.eyebrow}</p>
-        <h2 className="company-statement" id="empresa-title">Made by Humans</h2>
+        <h2 className="company-statement" id="empresa-title">{copy.company.title}</h2>
         <p className="company-intro">{copy.company.description}</p>
         <div className="company-facts">
           {copy.company.facts.map(([title, description], index) => <article key={title}><span aria-hidden="true">0{index + 1}</span><div><h3>{title}</h3><p>{description}</p></div></article>)}
