@@ -512,7 +512,7 @@ html[dir="rtl"] .showcase-link:hover svg { transform: rotate(180deg) translateX(
   top: clamp(1rem, 3vw, 2rem);
   inset-inline-end: clamp(1rem, 3vw, 2.5rem);
   z-index: 3;
-  width: clamp(11rem, 21vw, 19rem);
+  width: clamp(22rem, 42vw, 38rem);
   aspect-ratio: 940 / 392;
   overflow: hidden;
   border: 1px solid rgba(240, 209, 142, 0.28);
