@@ -168,24 +168,37 @@ function App({ initialLanguage }) {
 
   return (
     <EasterEggI18nProvider locale={language}>
-      <a className="skip-link" href="#conteudo">{copy.skip}</a>
-      <Header
-        activeSection={activeSection}
-        copy={copy}
-        language={language}
-        onLanguageChange={changeLanguage}
-      />
-      <main id="conteudo">
-        <Hero copy={copy} />
-        <ProjectShowcase copy={copy} language={language} />
-        <Services copy={copy} onSelectService={setSelectedService} />
-        <Portfolio copy={copy} language={language} />
-        <Company copy={copy} />
-        <Contact copy={copy} selectedService={selectedService} onSelectService={setSelectedService} />
-      </main>
-      <Footer copy={copy} language={language} />
-      <WhatsAppFloat />
+      <PageBackground />
+      <div className="site-content">
+        <a className="skip-link" href="#conteudo">{copy.skip}</a>
+        <Header
+          activeSection={activeSection}
+          copy={copy}
+          language={language}
+          onLanguageChange={changeLanguage}
+        />
+        <main id="conteudo">
+          <Hero copy={copy} />
+          <ProjectShowcase copy={copy} language={language} />
+          <Services copy={copy} onSelectService={setSelectedService} />
+          <Portfolio copy={copy} language={language} />
+          <Company copy={copy} />
+          <Contact copy={copy} selectedService={selectedService} onSelectService={setSelectedService} />
+        </main>
+        <Footer copy={copy} language={language} />
+        <WhatsAppFloat />
+      </div>
     </EasterEggI18nProvider>
+  );
+}
+
+function PageBackground() {
+  return (
+    <div className="site-background" aria-hidden="true">
+      <video className="site-background-video" autoPlay loop muted playsInline preload="metadata" poster="/hero-background-optimized.jpg" tabIndex="-1">
+        <source src="/mediatrix-hero-video.mp4" type="video/mp4" />
+      </video>
+    </div>
   );
 }
 
@@ -279,9 +292,6 @@ function Hero({ copy }) {
 
   return (
     <section className="hero" id="top" aria-labelledby="hero-title">
-      <video className="hero-background-video" autoPlay loop muted playsInline preload="metadata" poster="/hero-background-optimized.jpg" aria-hidden="true" tabIndex="-1">
-        <source src="/mediatrix-hero-video.mp4" type="video/mp4" />
-      </video>
       <div className="hero-background-overlay" aria-hidden="true" />
       <div className="hero-glow" aria-hidden="true" />
       <HeroBrandVisual className="hero-corner-video--desktop" />
