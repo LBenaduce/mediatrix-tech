@@ -7,8 +7,8 @@ test("a home em português apresenta posicionamento e CTAs concretos", () => {
 
   assert.equal(copy.hero.title, "Mais clientes. Mais receita. Crescimento da receita até 27% mais rápido.*");
   assert.match(copy.hero.footnote, /Deloitte Access Economics/);
-  assert.equal(copy.hero.primaryCta, "Solicitar uma avaliação");
-  assert.equal(copy.hero.secondaryCta, "Ver projetos");
+  assert.equal(copy.hero.primaryCta, "Solicitar uma avaliação gratuita do site");
+  assert.equal(copy.hero.secondaryCta, "Ver nosso trabalho");
   assert.equal(copy.services.length, 7);
   assert.deepEqual(copy.services.map(({ id }) => id), ["site", "landing", "custom", "media", "event", "agri", "care"]);
   assert.match(copy.company.localSeo.text, /Santa Maria.+Rio Grande do Sul.+Brasil e do mundo/);
