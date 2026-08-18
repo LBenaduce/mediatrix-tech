@@ -165,8 +165,10 @@ button, a, select { -webkit-tap-highlight-color: transparent; }
   inset: 0 0 auto;
   z-index: 50;
   border-bottom: 1px solid var(--line);
-  background: rgba(7, 10, 15, 0.9);
+  /* Keep the fixed navigation readable without hiding the site-wide video. */
+  background: linear-gradient(180deg, rgba(7, 10, 15, 0.54), rgba(7, 10, 15, 0.42));
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   padding-top: env(safe-area-inset-top, 0px);
 }
 
