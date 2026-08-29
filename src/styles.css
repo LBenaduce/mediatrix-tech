@@ -607,9 +607,18 @@ h1, h2, h3 { font-family: Inter, system-ui, sans-serif; }
   color: var(--gold);
   font-size: 1.3em;
   font-weight: 900;
-  letter-spacing: 0.035em;
-  text-shadow: 0 0 18px rgba(216, 178, 103, 0.45);
 }
+
+.hero-disclaimer {
+  max-width: 540px;
+  margin: -1.05rem auto 1.7rem;
+  color: #c5c8ca;
+  font-size: clamp(0.68rem, 0.9vw, 0.76rem);
+  line-height: 1.45;
+}
+
+.hero-disclaimer a { color: inherit; text-decoration-color: rgba(197, 200, 202, 0.65); text-underline-offset: 0.16em; }
+.hero-disclaimer a:hover { color: #fff; }
 
 .hero-actions { display: flex; flex-direction: column; gap: 0.9rem; }
 
@@ -1207,6 +1216,7 @@ footer { border-top: 1px solid var(--line); padding: 2rem 0; background: #06090e
   .hero-corner-video--mobile { display: block; }
   .motto { margin-bottom: 0.6rem; font-size: clamp(0.78rem, 3.4vw, 0.95rem); letter-spacing: 0.14em; }
   .hero-footnote { margin-bottom: 1.25rem; font-size: 0.98rem; line-height: 1.45; }
+  .hero-disclaimer { margin-top: -0.75rem; margin-bottom: 1.25rem; font-size: 0.67rem; }
   .hero-actions { gap: 0.7rem; }
   .hero-actions .button { width: 100%; }
 
@@ -1332,7 +1342,7 @@ footer {
 .cinematic-panel--hero .hero-content { padding-block: clamp(7rem, 14vh, 11rem) clamp(4rem, 10vh, 7rem); text-align: center; }
 .cinematic-panel--hero .hero-copy { max-width: 760px; margin-inline: auto; }
 .cinematic-panel--hero .hero-footnote { max-width: 540px; color: #fff; font-size: clamp(.86rem, 1.2vw, 1rem); }
-.cinematic-panel--hero .hero-footnote, .cinematic-panel--hero .hero-actions { margin-inline: auto; }
+.cinematic-panel--hero .hero-footnote, .cinematic-panel--hero .hero-disclaimer, .cinematic-panel--hero .hero-actions { margin-inline: auto; }
 .cinematic-panel--hero .hero-actions { flex-direction: row; justify-content: center; }
 .cinematic-panel--portfolio { padding-block: clamp(7rem, 11vh, 9rem) clamp(3rem, 7vh, 5rem); }
 .cinematic-panel--portfolio::before { background: linear-gradient(90deg, rgba(4, 8, 13, .9), rgba(4, 8, 13, .64) 67%, rgba(4, 8, 13, .78)); }

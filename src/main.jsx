@@ -368,10 +368,16 @@ function HeroFootnote({ language, title }) {
   const message = title.replace(/\*$/, "");
   if (language !== "en") return <p className="hero-footnote">{message}</p>;
 
-  return <p className="hero-footnote">
-    MORE CLIENTS. MORE INCOME. {" "}
-    <span className="growth-highlight">UP TO <strong>27%</strong> FASTER REVENUE GROWTH.</span>
-  </p>;
+  return <>
+    <p className="hero-footnote">
+      MORE CLIENTS. MORE REVENUE.<br />
+      <span className="growth-highlight">UP TO <strong>27%</strong> FASTER GROWTH.*</span>
+    </p>
+    <p className="hero-disclaimer">
+      *Results vary. Digital performance can improve conversions and revenue outcomes. Source: {" "}
+      <a href="https://www.deloitte.com/ie/en/services/consulting/research/milliseconds-make-millions.html" target="_blank" rel="noopener noreferrer">Deloitte, “Milliseconds Make Millions”</a>.
+    </p>
+  </>;
 }
 
 function ProjectShowcase({ copy, language }) {
