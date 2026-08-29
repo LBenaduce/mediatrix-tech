@@ -1287,14 +1287,16 @@ footer {
 .cinematic-video video { width: 100%; height: 100%; max-width: none; object-fit: cover; opacity: .72; filter: saturate(.7) contrast(1.08); }
 .cinematic-video--hero { background-image: url('/mediatrix-header-poster.jpg'); }
 .cinematic-video--portfolio { background-image: url('/agriclimate-pro-poster.jpg'); }
-.cinematic-video--services { background-image: url('/hero-background-optimized.jpg'); }
-.cinematic-video--contact { background-image: url('/mediatrix-header-poster.jpg'); }
-.cinematic-panel--hero { min-height: calc(100svh - var(--site-header-height)); padding: 0; }
-.cinematic-panel--hero::before { background: linear-gradient(90deg, rgba(5, 7, 10, .86), rgba(5, 7, 10, .48) 70%), linear-gradient(0deg, rgba(5, 7, 10, .72), transparent 58%); }
-.cinematic-panel--hero .hero-content { padding-block: clamp(8rem, 14vh, 12rem) clamp(4rem, 10vh, 7rem); }
-.cinematic-panel--hero .hero-copy { max-width: 760px; }
+.cinematic-video--services { background-image: url('/agriclimate-pro-poster.jpg'); }
+.cinematic-video--contact { background-image: url('/mediatrix-contact-call-poster.jpg'); }
+.cinematic-panel--hero { min-height: calc(100svh - var(--site-header-height)); padding: 0; background: #080b10; }
+.cinematic-panel--hero::before { display: none; }
+.cinematic-panel--hero .hero-content { padding-block: clamp(7rem, 14vh, 11rem) clamp(4rem, 10vh, 7rem); text-align: center; }
+.cinematic-panel--hero .hero-copy { max-width: 760px; margin-inline: auto; }
+.hero-brand-mark { width: clamp(3.75rem, 6vw, 5.5rem); height: auto; margin: 0 auto 1.5rem; object-fit: contain; opacity: .96; }
 .cinematic-panel--hero .hero-footnote { max-width: 540px; color: #c5c8ca; font-size: clamp(.86rem, 1.2vw, 1rem); }
-.cinematic-panel--hero .hero-actions { flex-direction: row; }
+.cinematic-panel--hero .hero-footnote, .cinematic-panel--hero .hero-actions { margin-inline: auto; }
+.cinematic-panel--hero .hero-actions { flex-direction: row; justify-content: center; }
 .cinematic-panel--portfolio { padding-block: clamp(7rem, 11vh, 9rem) clamp(3rem, 7vh, 5rem); }
 .cinematic-panel--portfolio::before { background: linear-gradient(90deg, rgba(4, 8, 13, .9), rgba(4, 8, 13, .64) 67%, rgba(4, 8, 13, .78)); }
 .cinematic-panel--portfolio .portfolio-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -1302,6 +1304,7 @@ footer {
 .cinematic-panel--portfolio .project-content { padding: 1rem; }
 .cinematic-panel--portfolio .case-study-narrative, .cinematic-panel--portfolio .case-study-metrics { display: none; }
 .cinematic-panel--portfolio .project-media { aspect-ratio: 16 / 8; }
+.portfolio-cta { margin-top: 1.5rem; }
 .cinematic-panel--services { padding-block: clamp(7rem, 10vh, 8rem) clamp(4rem, 8vh, 6rem); }
 .cinematic-panel--services::before { background: linear-gradient(90deg, rgba(5, 8, 12, .88), rgba(5, 8, 12, .58) 70%, rgba(5, 8, 12, .78)); }
 .cinematic-panel--services .services-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -1309,6 +1312,7 @@ footer {
 .cinematic-panel--contact { padding-block: clamp(7rem, 10vh, 8rem) clamp(4rem, 8vh, 6rem); }
 .cinematic-panel--contact::before { background: linear-gradient(90deg, rgba(5, 7, 10, .9), rgba(5, 7, 10, .68)); }
 .cinematic-panel--contact .form-card, .cinematic-panel--contact .contact-channels > a { background-color: rgba(9, 13, 20, .76); backdrop-filter: blur(12px); }
+.whatsapp-float { z-index: 100; border-color: rgba(37, 211, 102, .65); background: rgba(5, 13, 9, .9); box-shadow: 0 12px 34px rgba(0, 0, 0, .34); }
 
 @media (max-width: 900px) {
   .cinematic-panel { min-height: 100svh; }

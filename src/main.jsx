@@ -177,7 +177,7 @@ function App({ initialLanguage }) {
           onLanguageChange={changeLanguage}
         />
         <main id="conteudo" className="cinematic-deck">
-          <Hero copy={copy} />
+          <Hero copy={copy} language={language} />
           <Portfolio copy={copy} language={language} />
           <Services copy={copy} language={language} onSelectService={setSelectedService} />
           <Contact copy={copy} selectedService={selectedService} onSelectService={setSelectedService} />
@@ -334,27 +334,27 @@ function LanguageSelector({ copy, language, onChange }) {
   );
 }
 
-function Hero({ copy }) {
-  const primaryAction = copy.hero.primaryCta
-    ? { href: "#formulario", label: copy.hero.primaryCta }
-    : { href: "#servicos", label: copy.hero.services };
-  const secondaryAction = copy.hero.secondaryCta
-    ? { href: "#portfolio", label: copy.hero.secondaryCta }
-    : { href: "#formulario", label: copy.quote };
+function Hero({ copy, language }) {
+  const actions = {
+    "pt-BR": ["Comece seu projeto", "Ver trabalhos selecionados"],
+    en: ["Start your project", "See selected work"],
+    es: ["Inicia tu proyecto", "Ver trabajos seleccionados"],
+    fr: ["Démarrer votre projet", "Voir les projets sélectionnés"],
+    de: ["Ihr Projekt starten", "Ausgewählte Arbeiten ansehen"],
+  };
+  const [primaryLabel, secondaryLabel] = actions[language] || actions.en;
 
   return (
     <section className="hero cinematic-panel cinematic-panel--hero" id="top" aria-labelledby="hero-title">
-      <CinematicVideo className="cinematic-video--hero" poster="/mediatrix-header-poster.jpg" webm="/mediatrix-header.webm" mp4="/mediatrix-header.mp4" />
-      <div className="hero-background-overlay" aria-hidden="true" />
-      <div className="hero-glow" aria-hidden="true" />
       <div className="shell hero-content">
         <div className="hero-copy">
+          <img className="hero-brand-mark" src="/mediatrix-brand-mark.png" width="88" height="88" alt={copy.hero.logoAlt} />
           <p className="motto">Mediatrix Tech</p>
           <h1 id="hero-title">Create. Connect. Convert.</h1>
-          <p className="hero-footnote">{copy.hero.title}</p>
+          <p className="hero-footnote">{copy.hero.title.replace(/\*$/, "")}</p>
           <div className="hero-actions">
-            <a className="button primary" href={primaryAction.href}>{primaryAction.label} <ArrowRight size={18} aria-hidden="true" /></a>
-            <a className="button secondary" href={secondaryAction.href}>{secondaryAction.label}</a>
+            <a className="button primary" href="#formulario">{primaryLabel} <ArrowRight size={18} aria-hidden="true" /></a>
+            <a className="button secondary" href="#portfolio">{secondaryLabel}</a>
           </div>
         </div>
       </div>
@@ -451,7 +451,7 @@ function Services({ copy, language, onSelectService }) {
 
   return (
     <section className="section services-section cinematic-panel cinematic-panel--services" id="servicos" aria-labelledby="servicos-title">
-      <CinematicVideo className="cinematic-video--services" poster="/hero-background-optimized.jpg" mp4="/header-video-mediatrix.mp4" />
+      <CinematicVideo className="cinematic-video--services" poster="/agriclimate-pro-poster.jpg" mp4="/tech-blue-and-dark.mp4" />
       <div className="shell">
         <div className="services-heading">
           <h2 id="servicos-title">{copy.servicesSection.title}</h2>
@@ -464,7 +464,7 @@ function Services({ copy, language, onSelectService }) {
                 <span className="icon-box" aria-hidden="true"><Icon size={21} /></span>
                 <span className="service-copy">
                   <strong className="service-label">{service.title}</strong>
-                  <span className="service-subtitle">{service.subtitle}</span>
+                  <span className="service-subtitle">{service.subtitle || service.benefit}</span>
                 </span>
               </a>
             );
@@ -577,6 +577,7 @@ function Portfolio({ copy, language }) {
         <div className="portfolio-grid">
           {projects.slice(0, 3).map((project, index) => project.kind === "collaboration" ? <CollaborationCard project={project} key={project.name} /> : <CaseStudyCard title={project.name} category={project.category} clientName={index === 1 ? "Frasson LLC" : project.name} challengeText={project.problem} solutionText={project.description} metrics={metricSets[index]} imageUrl={project.poster || project.media} projectUrl={project.media} previewLabel={projectPreviewCopy[language] || projectPreviewCopy.en} labels={labels} key={project.name} />)}
         </div>
+        <a className="portfolio-cta button secondary" href="#formulario">{language === "pt-BR" ? "Vamos criar o seu projeto" : "Let’s build your project"} <ArrowRight size={18} aria-hidden="true" /></a>
       </div>
     </section>
   );
@@ -631,7 +632,7 @@ function Contact({ copy, selectedService, onSelectService }) {
 
   return (
     <section className="section contact-section cinematic-panel cinematic-panel--contact" id="contato" aria-labelledby="contato-title">
-      <CinematicVideo className="cinematic-video--contact" poster="/mediatrix-header-poster.jpg" mp4="/mediatrix-tech-enhanced.mp4" />
+      <CinematicVideo className="cinematic-video--contact" poster="/mediatrix-contact-call-poster.jpg" mp4="/mediatrix-contact-call.mp4" />
       <div className="shell">
         <SectionHeading eyebrow={copy.contact.eyebrow} title={copy.contact.title} description={copy.contact.description} id="contato-title" />
         <div className="contact-layout">
