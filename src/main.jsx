@@ -59,6 +59,7 @@ const serviceIcons = {
 };
 const DigitalJunkDrawer = React.lazy(() => import("./easter-eggs/DigitalJunkDrawer"));
 const InternalQuotes = React.lazy(() => import("./internal/InternalQuotes").then((module) => ({ default: module.InternalQuotes })));
+const MediatrixAssistant = React.lazy(() => import("./MediatrixAssistant").then((module) => ({ default: module.MediatrixAssistant })));
 
 const projectMedia = [
   { media: "/agriclimate-pro-demo-pt.mp4", nonPortugueseMedia: "/agriclimate-pro-demo.mp4", poster: "/agriclimate-pro-poster-pt.jpg", nonPortuguesePoster: "/agriclimate-pro-poster.jpg", kind: "video", width: 1280, height: 720 },
@@ -183,6 +184,7 @@ function App({ initialLanguage }) {
           <Contact copy={copy} selectedService={selectedService} onSelectService={setSelectedService} />
         </main>
         <Footer copy={copy} language={language} />
+        <React.Suspense fallback={null}><MediatrixAssistant language={language} /></React.Suspense>
         <WhatsAppFloat />
       </div>
     </EasterEggI18nProvider>
@@ -351,7 +353,7 @@ function Hero({ copy, language }) {
         <div className="hero-copy">
           <h1 className="motto">Mediatrix Tech</h1>
           <h2 id="hero-title">Create. Connect. Convert.</h2>
-          <p className="hero-footnote">{copy.hero.title.replace(/\*$/, "")}</p>
+          <HeroFootnote language={language} title={copy.hero.title} />
           <div className="hero-actions">
             <a className="button primary" href="#formulario">{primaryLabel} <ArrowRight size={18} aria-hidden="true" /></a>
             <a className="button secondary" href="#portfolio">{secondaryLabel}</a>
@@ -360,6 +362,16 @@ function Hero({ copy, language }) {
       </div>
     </section>
   );
+}
+
+function HeroFootnote({ language, title }) {
+  const message = title.replace(/\*$/, "");
+  if (language !== "en") return <p className="hero-footnote">{message}</p>;
+
+  return <p className="hero-footnote">
+    MORE CLIENTS. MORE INCOME. {" "}
+    <span className="growth-highlight">UP TO <strong>27%</strong> FASTER REVENUE GROWTH.</span>
+  </p>;
 }
 
 function ProjectShowcase({ copy, language }) {

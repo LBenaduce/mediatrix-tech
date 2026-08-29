@@ -1,0 +1,3 @@
+export const MEDIATRIX_KNOWLEDGE = `Mediatrix Tech creates professional websites, landing pages, web applications, e-commerce experiences, visual media and custom digital solutions. It serves businesses internationally. Contact options include WhatsApp and mediatrixtech@proton.me. Do not state prices, delivery dates, guarantees, policies, client results, portfolio details or capabilities unless they are explicitly provided by the visitor or context. When unsure, say so plainly and offer WhatsApp handoff.`;
+
+export const SUPPORTED_CHAT_LANGUAGES = ["en", "pt-BR", "it", "es", "fr", "de"];

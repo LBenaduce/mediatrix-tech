@@ -607,6 +607,8 @@ h1, h2, h3 { font-family: Inter, system-ui, sans-serif; }
   color: var(--gold);
   font-size: 1.3em;
   font-weight: 900;
+  letter-spacing: 0.035em;
+  text-shadow: 0 0 18px rgba(216, 178, 103, 0.45);
 }
 
 .hero-actions { display: flex; flex-direction: column; gap: 0.9rem; }
@@ -1063,6 +1065,17 @@ footer { border-top: 1px solid var(--line); padding: 2rem 0; background: #06090e
 
 .whatsapp-float__label { color: #d8d3c7; font-size: 0.82rem; white-space: nowrap; }
 
+.ai-chat { position: fixed; z-index: 101; right: 1.2rem; bottom: 6.6rem; }
+.ai-chat__launcher { width: 3.45rem; height: 3.45rem; border: 1px solid rgba(101, 187, 239, .6); border-radius: 50%; display: grid; place-items: center; gap: 0; color: var(--text); background: linear-gradient(145deg, #17263a, #0c121b); box-shadow: 0 12px 34px rgba(0,0,0,.38); cursor: pointer; }
+.ai-chat__launcher span { font-size: .65rem; font-weight: 900; line-height: 0; transform: translateY(-4px); }
+.ai-chat__panel { width: min(23rem, calc(100vw - 2rem)); max-height: min(38rem, calc(100vh - 2rem)); display: flex; flex-direction: column; overflow: hidden; border: 1px solid rgba(101,187,239,.28); border-radius: var(--radius); background: rgba(10, 16, 25, .98); box-shadow: var(--shadow); }
+.ai-chat__panel header { display: flex; align-items: center; gap: .55rem; padding: .85rem 1rem; border-bottom: 1px solid var(--line); }
+.ai-chat__panel header strong, .ai-chat__panel header small { display: block; }.ai-chat__panel header small { color: var(--muted); font-size: .7rem; }.ai-chat__panel header button { margin-left: auto; padding: .2rem; border: 0; color: var(--muted); background: transparent; cursor: pointer; }.ai-chat__panel header button + button { margin-left: 0; }
+.ai-chat__badge { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: .65rem; color: var(--blue); background: var(--blue-soft); font-size: 0; }
+.ai-chat__messages { min-height: 13rem; padding: .9rem; overflow-y: auto; }.ai-chat__message { width: fit-content; max-width: 88%; margin: 0 0 .65rem; padding: .65rem .75rem; border-radius: .75rem; font-size: .88rem; line-height: 1.45; white-space: pre-wrap; }.ai-chat__message--assistant { background: var(--surface-soft); }.ai-chat__message--user { margin-left: auto; background: rgba(101,187,239,.16); }.ai-chat__typing { color: var(--blue); letter-spacing: .2em; }
+.ai-chat__actions { display: flex; flex-wrap: wrap; gap: .4rem; padding: 0 .9rem .8rem; }.ai-chat__actions button { border: 1px solid rgba(101,187,239,.3); border-radius: 999px; padding: .4rem .55rem; color: var(--text); background: transparent; font-size: .72rem; cursor: pointer; }.ai-chat__whatsapp { display: flex; align-items: center; gap: .4rem; width: fit-content; margin: -.2rem 0 .75rem; color: var(--blue); font-size: .8rem; }
+.ai-chat__panel form { display: flex; gap: .5rem; padding: .75rem .9rem 0; border-top: 1px solid var(--line); }.ai-chat__panel input { min-width: 0; flex: 1; border: 1px solid var(--line); border-radius: .65rem; padding: .65rem .7rem; color: var(--text); background: #080d14; }.ai-chat__panel form button { display: grid; place-items: center; width: 2.55rem; border: 0; border-radius: .65rem; color: #071018; background: var(--blue); cursor: pointer; }.ai-chat__panel form button:disabled { opacity: .45; cursor: not-allowed; }.ai-chat__privacy { margin: .65rem .9rem .8rem; color: var(--muted); font-size: .66rem; line-height: 1.35; }
+
 @media (max-width: 767px) {
   .whatsapp-float {
     inset-inline-end: 16px;
@@ -1073,6 +1086,8 @@ footer { border-top: 1px solid var(--line); padding: 2rem 0; background: #06090e
     justify-content: center;
     border-radius: 50%;
   }
+  .ai-chat { right: 1rem; bottom: 5.7rem; }
+  .ai-chat__panel { width: calc(100vw - 2rem); max-height: calc(100svh - 2rem); }
 
   .whatsapp-float__label { display: none; }
 }
