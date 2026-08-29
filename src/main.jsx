@@ -349,8 +349,8 @@ function Hero({ copy, language }) {
       <CinematicVideo className="cinematic-video--hero" poster="/mediatrix-hero-brand-poster.jpg" mp4="/mediatrix-hero-brand1.mov" />
       <div className="shell hero-content">
         <div className="hero-copy">
-          <p className="motto">Mediatrix Tech</p>
-          <h1 id="hero-title">Create. Connect. Convert.</h1>
+          <h1 className="motto">Mediatrix Tech</h1>
+          <h2 id="hero-title">Create. Connect. Convert.</h2>
           <p className="hero-footnote">{copy.hero.title.replace(/\*$/, "")}</p>
           <div className="hero-actions">
             <a className="button primary" href="#formulario">{primaryLabel} <ArrowRight size={18} aria-hidden="true" /></a>
