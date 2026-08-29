@@ -120,7 +120,6 @@ body::after {
   to { background-position: 72px 72px; }
 }
 
-/* Keep the fixed header from covering the first hero line. */
 main { padding-top: var(--site-header-height); }
 
 body,
@@ -564,7 +563,7 @@ html[dir="rtl"] .showcase-link:hover svg { transform: rotate(180deg) translateX(
 
 .motto {
   margin: 0 0 0.8rem;
-  color: #ffffff;
+  color: #d8b267;
   font-size: clamp(1.8rem, 3vw, 3.2rem);
   font-weight: 800;
   line-height: 1.1;
