@@ -23,7 +23,7 @@ import {
   Workflow,
   X,
 } from "lucide-react";
-import { getEasterEggCopy, languages, rtlLanguages, sharedUiTranslations, translations } from "./translations";
+import { getEasterEggCopy, languages, projectNameTranslations, rtlLanguages, sharedUiTranslations, translations } from "./translations";
 import {
   getLanguageRoute,
   getLocalizedUrl,
@@ -73,14 +73,14 @@ const projectMedia = [
 const verifiedTestimonials = [];
 
 const phaseOneCopy = {
-  "pt-BR": { challenge: "O desafio", solution: "A solução", outcome: "Resultado", before: "Antes", after: "Depois", comparisonEyebrow: "Antes e depois", comparisonTitle: "De oportunidades perdidas a mais clientes.", comparisonDescription: "Veja como uma presença online mais forte pode mudar a forma como os clientes encontram sua empresa.", comparisonAttribution: "Frasson LLC", testimonialsEyebrow: "Depoimentos", testimonialsTitle: "O que os clientes dizem", testimonialsDescription: "Relatos publicados somente com autorização do cliente.", evidence: "Evidência do projeto", evidenceValue: "Experiência responsiva", beforeText: "Baixa visibilidade online. Oportunidades perdidas.", afterText: "Mais pessoas encontram a empresa. Mais clientes. Mais oportunidades." },
-  en: { challenge: "The challenge", solution: "The solution", outcome: "Outcome", before: "Before", after: "After", comparisonEyebrow: "Before and after", comparisonTitle: "From missed opportunities to more customers.", comparisonDescription: "See how stronger online visibility can change the way customers find your business.", comparisonAttribution: "Frasson LLC", testimonialsEyebrow: "Testimonials", testimonialsTitle: "What clients say", testimonialsDescription: "Quotes are published only with the client’s approval.", evidence: "Project evidence", evidenceValue: "Responsive experience", beforeText: "Low online visibility. Missed opportunities.", afterText: "More people find the business. More customers. More opportunities." },
-  es: { challenge: "El desafío", solution: "La solución", outcome: "Resultado", before: "Antes", after: "Después", comparisonEyebrow: "Antes y después", comparisonTitle: "De oportunidades perdidas a más clientes.", comparisonDescription: "Descubre cómo una mayor visibilidad en línea puede cambiar la forma en que los clientes encuentran tu negocio.", comparisonAttribution: "Frasson LLC", testimonialsEyebrow: "Testimonios", testimonialsTitle: "Lo que dicen los clientes", testimonialsDescription: "Las opiniones se publican solo con la autorización del cliente.", evidence: "Evidencia del proyecto", evidenceValue: "Experiencia adaptable", beforeText: "Baja visibilidad en línea. Oportunidades perdidas.", afterText: "Más personas encuentran el negocio. Más clientes. Más oportunidades." },
-  fr: { challenge: "Le défi", solution: "La solution", outcome: "Résultat", before: "Avant", after: "Après", comparisonEyebrow: "Avant et après", comparisonTitle: "Des occasions manquées à davantage de clients.", comparisonDescription: "Découvrez comment une meilleure visibilité en ligne peut changer la façon dont les clients trouvent votre entreprise.", comparisonAttribution: "Frasson LLC", testimonialsEyebrow: "Témoignages", testimonialsTitle: "Ce que disent les clients", testimonialsDescription: "Les témoignages ne sont publiés qu’avec l’accord du client.", evidence: "Preuve du projet", evidenceValue: "Expérience adaptative", beforeText: "Faible visibilité en ligne. Occasions manquées.", afterText: "Plus de personnes trouvent l’entreprise. Plus de clients. Plus d’occasions." },
-  de: { challenge: "Die Herausforderung", solution: "Die Lösung", outcome: "Ergebnis", before: "Vorher", after: "Nachher", comparisonEyebrow: "Vorher und nachher", comparisonTitle: "Von verpassten Chancen zu mehr Kunden.", comparisonDescription: "Sehen Sie, wie eine stärkere Online-Sichtbarkeit verändern kann, wie Kunden Ihr Unternehmen finden.", comparisonAttribution: "Frasson LLC", testimonialsEyebrow: "Kundenstimmen", testimonialsTitle: "Was Kunden sagen", testimonialsDescription: "Zitate werden nur mit Zustimmung des Kunden veröffentlicht.", evidence: "Projektnachweis", evidenceValue: "Responsive Erfahrung", beforeText: "Geringe Online-Sichtbarkeit. Verpasste Chancen.", afterText: "Mehr Menschen finden das Unternehmen. Mehr Kunden. Mehr Chancen." },
-  "zh-CN": { challenge: "挑战", solution: "解决方案", outcome: "成果", before: "之前", after: "之后", comparisonEyebrow: "前后对比", comparisonTitle: "从错失机会到赢得更多客户。", comparisonDescription: "了解更强的线上可见度如何改变客户找到您企业的方式。", comparisonAttribution: "Frasson LLC", testimonialsEyebrow: "客户评价", testimonialsTitle: "客户怎么说", testimonialsDescription: "评价仅在获得客户许可后发布。", evidence: "项目依据", evidenceValue: "响应式体验", beforeText: "线上可见度低。错失机会。", afterText: "更多人找到企业。更多客户。更多机会。" },
-  hi: { challenge: "चुनौती", solution: "समाधान", outcome: "परिणाम", before: "पहले", after: "बाद में", comparisonEyebrow: "पहले और बाद में", comparisonTitle: "छूटे अवसरों से अधिक ग्राहकों तक।", comparisonDescription: "जानें कि बेहतर ऑनलाइन दृश्यता ग्राहकों के आपके व्यवसाय तक पहुँचने के तरीके को कैसे बदल सकती है।", comparisonAttribution: "Frasson LLC", testimonialsEyebrow: "प्रशंसापत्र", testimonialsTitle: "ग्राहक क्या कहते हैं", testimonialsDescription: "उद्धरण केवल ग्राहक की अनुमति से प्रकाशित किए जाते हैं।", evidence: "परियोजना प्रमाण", evidenceValue: "रेस्पॉन्सिव अनुभव", beforeText: "कम ऑनलाइन दृश्यता। छूटे अवसर।", afterText: "अधिक लोग व्यवसाय को पाते हैं। अधिक ग्राहक। अधिक अवसर।" },
-  ar: { challenge: "التحدي", solution: "الحل", outcome: "النتيجة", before: "قبل", after: "بعد", comparisonEyebrow: "قبل وبعد", comparisonTitle: "من فرص ضائعة إلى مزيد من العملاء.", comparisonDescription: "اكتشف كيف يمكن لحضور أقوى على الإنترنت أن يغيّر طريقة عثور العملاء على نشاطك التجاري.", comparisonAttribution: "Frasson LLC", testimonialsEyebrow: "آراء العملاء", testimonialsTitle: "ما يقوله العملاء", testimonialsDescription: "لا تُنشر الاقتباسات إلا بموافقة العميل.", evidence: "دليل المشروع", evidenceValue: "تجربة متجاوبة", beforeText: "ظهور ضعيف على الإنترنت. فرص ضائعة.", afterText: "المزيد من الأشخاص يعثرون على النشاط التجاري. المزيد من العملاء. المزيد من الفرص." },
+  "pt-BR": { challenge: "O desafio", solution: "A solução", outcome: "Resultado", before: "Antes", after: "Depois", comparisonEyebrow: "Antes e depois", comparisonTitle: "De oportunidades perdidas a mais clientes.", comparisonDescription: "Veja como uma presença online mais forte pode mudar a forma como os clientes encontram sua empresa.", comparisonAttribution: projectNameTranslations["pt-BR"].autoRepairShop, testimonialsEyebrow: "Depoimentos", testimonialsTitle: "O que os clientes dizem", testimonialsDescription: "Relatos publicados somente com autorização do cliente.", evidence: "Evidência do projeto", evidenceValue: "Experiência responsiva", beforeText: "Baixa visibilidade online. Oportunidades perdidas.", afterText: "Mais pessoas encontram a empresa. Mais clientes. Mais oportunidades." },
+  en: { challenge: "The challenge", solution: "The solution", outcome: "Outcome", before: "Before", after: "After", comparisonEyebrow: "Before and after", comparisonTitle: "From missed opportunities to more customers.", comparisonDescription: "See how stronger online visibility can change the way customers find your business.", comparisonAttribution: projectNameTranslations.en.autoRepairShop, testimonialsEyebrow: "Testimonials", testimonialsTitle: "What clients say", testimonialsDescription: "Quotes are published only with the client’s approval.", evidence: "Project evidence", evidenceValue: "Responsive experience", beforeText: "Low online visibility. Missed opportunities.", afterText: "More people find the business. More customers. More opportunities." },
+  es: { challenge: "El desafío", solution: "La solución", outcome: "Resultado", before: "Antes", after: "Después", comparisonEyebrow: "Antes y después", comparisonTitle: "De oportunidades perdidas a más clientes.", comparisonDescription: "Descubre cómo una mayor visibilidad en línea puede cambiar la forma en que los clientes encuentran tu negocio.", comparisonAttribution: projectNameTranslations.es.autoRepairShop, testimonialsEyebrow: "Testimonios", testimonialsTitle: "Lo que dicen los clientes", testimonialsDescription: "Las opiniones se publican solo con la autorización del cliente.", evidence: "Evidencia del proyecto", evidenceValue: "Experiencia adaptable", beforeText: "Baja visibilidad en línea. Oportunidades perdidas.", afterText: "Más personas encuentran el negocio. Más clientes. Más oportunidades." },
+  fr: { challenge: "Le défi", solution: "La solution", outcome: "Résultat", before: "Avant", after: "Après", comparisonEyebrow: "Avant et après", comparisonTitle: "Des occasions manquées à davantage de clients.", comparisonDescription: "Découvrez comment une meilleure visibilité en ligne peut changer la façon dont les clients trouvent votre entreprise.", comparisonAttribution: projectNameTranslations.fr.autoRepairShop, testimonialsEyebrow: "Témoignages", testimonialsTitle: "Ce que disent les clients", testimonialsDescription: "Les témoignages ne sont publiés qu’avec l’accord du client.", evidence: "Preuve du projet", evidenceValue: "Expérience adaptative", beforeText: "Faible visibilité en ligne. Occasions manquées.", afterText: "Plus de personnes trouvent l’entreprise. Plus de clients. Plus d’occasions." },
+  de: { challenge: "Die Herausforderung", solution: "Die Lösung", outcome: "Ergebnis", before: "Vorher", after: "Nachher", comparisonEyebrow: "Vorher und nachher", comparisonTitle: "Von verpassten Chancen zu mehr Kunden.", comparisonDescription: "Sehen Sie, wie eine stärkere Online-Sichtbarkeit verändern kann, wie Kunden Ihr Unternehmen finden.", comparisonAttribution: projectNameTranslations.de.autoRepairShop, testimonialsEyebrow: "Kundenstimmen", testimonialsTitle: "Was Kunden sagen", testimonialsDescription: "Zitate werden nur mit Zustimmung des Kunden veröffentlicht.", evidence: "Projektnachweis", evidenceValue: "Responsive Erfahrung", beforeText: "Geringe Online-Sichtbarkeit. Verpasste Chancen.", afterText: "Mehr Menschen finden das Unternehmen. Mehr Kunden. Mehr Chancen." },
+  "zh-CN": { challenge: "挑战", solution: "解决方案", outcome: "成果", before: "之前", after: "之后", comparisonEyebrow: "前后对比", comparisonTitle: "从错失机会到赢得更多客户。", comparisonDescription: "了解更强的线上可见度如何改变客户找到您企业的方式。", comparisonAttribution: projectNameTranslations["zh-CN"].autoRepairShop, testimonialsEyebrow: "客户评价", testimonialsTitle: "客户怎么说", testimonialsDescription: "评价仅在获得客户许可后发布。", evidence: "项目依据", evidenceValue: "响应式体验", beforeText: "线上可见度低。错失机会。", afterText: "更多人找到企业。更多客户。更多机会。" },
+  hi: { challenge: "चुनौती", solution: "समाधान", outcome: "परिणाम", before: "पहले", after: "बाद में", comparisonEyebrow: "पहले और बाद में", comparisonTitle: "छूटे अवसरों से अधिक ग्राहकों तक।", comparisonDescription: "जानें कि बेहतर ऑनलाइन दृश्यता ग्राहकों के आपके व्यवसाय तक पहुँचने के तरीके को कैसे बदल सकती है।", comparisonAttribution: projectNameTranslations.hi.autoRepairShop, testimonialsEyebrow: "प्रशंसापत्र", testimonialsTitle: "ग्राहक क्या कहते हैं", testimonialsDescription: "उद्धरण केवल ग्राहक की अनुमति से प्रकाशित किए जाते हैं।", evidence: "परियोजना प्रमाण", evidenceValue: "रेस्पॉन्सिव अनुभव", beforeText: "कम ऑनलाइन दृश्यता। छूटे अवसर।", afterText: "अधिक लोग व्यवसाय को पाते हैं। अधिक ग्राहक। अधिक अवसर।" },
+  ar: { challenge: "التحدي", solution: "الحل", outcome: "النتيجة", before: "قبل", after: "بعد", comparisonEyebrow: "قبل وبعد", comparisonTitle: "من فرص ضائعة إلى مزيد من العملاء.", comparisonDescription: "اكتشف كيف يمكن لحضور أقوى على الإنترنت أن يغيّر طريقة عثور العملاء على نشاطك التجاري.", comparisonAttribution: projectNameTranslations.ar.autoRepairShop, testimonialsEyebrow: "آراء العملاء", testimonialsTitle: "ما يقوله العملاء", testimonialsDescription: "لا تُنشر الاقتباسات إلا بموافقة العميل.", evidence: "دليل المشروع", evidenceValue: "تجربة متجاوبة", beforeText: "ظهور ضعيف على الإنترنت. فرص ضائعة.", afterText: "المزيد من الأشخاص يعثرون على النشاط التجاري. المزيد من العملاء. المزيد من الفرص." },
 };
 
 const portfolioMetricCopy = {
@@ -561,18 +561,18 @@ function Testimonials({ labels }) {
   return <section className="testimonials" aria-labelledby="testimonials-title"><SectionHeading eyebrow={labels.testimonialsEyebrow} title={labels.testimonialsTitle} description={labels.testimonialsDescription} id="testimonials-title" /><div className="testimonial-grid">{verifiedTestimonials.map((testimonial) => <blockquote key={testimonial.quote}><Quote aria-hidden="true" /><p>{testimonial.quote}</p><footer><strong>{testimonial.name}</strong><span>{testimonial.company}</span></footer></blockquote>)}</div></section>;
 }
 
-const projectChapterCopy = {
+const projectChapterDescriptions = {
   "pt-BR": [
-    ["AgriClimate Pro", "Clima e dados transformados em decisões mais claras para o campo."],
-    ["Frasson", "Uma presença digital precisa, construída para confiança e conversão."],
-    ["Maria Luiza", "Uma celebração transformada em experiência digital para compartilhar e guardar."],
-    ["Café", "Afeto, encontros e sabores apresentados em uma experiência editorial acolhedora."],
+    "Clima e dados transformados em decisões mais claras para o campo.",
+    "Uma presença digital precisa, construída para confiança e conversão.",
+    "Uma celebração transformada em experiência digital para compartilhar e guardar.",
+    "Afeto, encontros e sabores apresentados em uma experiência editorial acolhedora.",
   ],
   en: [
-    ["AgriClimate Pro", "Climate and data turned into clearer decisions for the field."],
-    ["Frasson", "A precise digital presence built for trust and conversion."],
-    ["Maria Luiza", "A celebration shaped into a digital experience to share and remember."],
-    ["Café", "Warmth, connection and flavor presented through an inviting editorial experience."],
+    "Climate and data turned into clearer decisions for the field.",
+    "A precise digital presence built for trust and conversion.",
+    "A celebration shaped into a digital experience to share and remember.",
+    "Warmth, connection and flavor presented through an inviting editorial experience.",
   ],
 };
 
@@ -593,7 +593,14 @@ function ProjectChapter({ id, index, name, description, video, poster, image, vi
 }
 
 function Projects({ copy, language }) {
-  const localized = projectChapterCopy[language] || copy.projects.slice(0, 4).map((project) => [project.name, project.description]);
+  const names = projectNameTranslations[language] || projectNameTranslations.en;
+  const descriptions = projectChapterDescriptions[language] || copy.projects.slice(0, 4).map((project) => project.description);
+  const localized = [
+    [copy.projects[0].name, descriptions[0]],
+    [names.autoRepairShop, descriptions[1]],
+    [names.childrensParty, descriptions[2]],
+    [copy.projects[3].name, descriptions[3]],
+  ];
   const ui = sharedUiTranslations[language] || sharedUiTranslations.en;
   const viewLabel = copy.portfolioSection.view;
   const chapters = [

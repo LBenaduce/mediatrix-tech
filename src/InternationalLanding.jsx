@@ -5,7 +5,7 @@ import { getAttribution, initializeTracking, trackEvent, trackLink } from "./ana
 import { ClientGrowthChart } from "./ClientGrowthChart";
 import { SecretLogo } from "./easter-eggs/SecretLogo";
 import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
-import { getEasterEggCopy } from "./translations";
+import { getEasterEggCopy, projectNameTranslations } from "./translations";
 import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
 import { applyPageSeo, ROUTE_SEO } from "./seo";
 import { WhatsAppFloat } from "./PublicChrome";
@@ -21,8 +21,8 @@ const routeMap = {
 
 const portfolio = [
   { name: "AgriClimate Pro", industry: "AgTech · Climate Intelligence", problem: "Agricultural teams needed climate information that was easier to use in day-to-day decisions.", solution: "A responsive AgTech experience that turns complex climate data into clear decision-support views.", impact: "100% Mobile Optimized" },
-  { name: "Frasson LLC", industry: "Service Business · Home Services", problem: "A service business needed a credible online presence that explained its work and made contact effortless.", solution: "A focused website with clear services, trust-building content and direct lead contact paths.", impact: "Faster Lead Contact" },
-  { name: "Event QR Code", industry: "Events · Guest Experience", problem: "Event guests needed a frictionless way to share their memories without installing an app.", solution: "A custom QR-enabled experience for simple photo and video uploads from any phone.", impact: "Mobile-First Uploads" },
+  { name: projectNameTranslations.en.autoRepairShop, industry: "Service Business · Home Services", problem: "A service business needed a credible online presence that explained its work and made contact effortless.", solution: "A focused website with clear services, trust-building content and direct lead contact paths.", impact: "Faster Lead Contact" },
+  { name: projectNameTranslations.en.childrensParty, industry: "Events · Guest Experience", problem: "Event guests needed a frictionless way to share their memories without installing an app.", solution: "A custom QR-enabled experience for simple photo and video uploads from any phone.", impact: "Mobile-First Uploads" },
   { name: "Cafeteria", industry: "Food & Beverage · Hospitality", problem: "A local café needed a warm digital presence that invited visitors to explore the menu and venue.", solution: "An expressive, mobile-first website with brand storytelling and a direct menu call to action.", impact: "Menu Access on Any Device" },
 ];
 
