@@ -83,7 +83,7 @@ export function PublicFooter() {
     <footer>
       <div className="shell footer-inner">
         <a className="footer-brand" href="/">Mediatrix Tech</a>
-        <p>Create. Connect. Convert.</p>
+        <p>{sharedUiTranslations["pt-BR"].tagline}</p>
         <a className="text-link footer-local-link" href={LOCAL_ROUTE}>Criação de sites em Santa Maria, RS <ArrowRight size={17} aria-hidden="true" /></a>
         <a className="text-link" href={BRAZIL_WHATSAPP} target="_blank" rel="noopener noreferrer"><MessageCircle size={17} aria-hidden="true" /> Falar pelo WhatsApp <ArrowRight size={17} aria-hidden="true" /></a>
         <div className="footer-signature"><p>© {new Date().getFullYear()} L. Benaduce · Todos os direitos reservados.</p></div>

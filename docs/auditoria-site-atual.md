@@ -23,7 +23,7 @@ Esta auditoria cobre o código do repositório, a versão publicada em `https://
 
 ## Conteúdo, títulos e descrições encontrados
 
-- Título HTML anterior: `Mediatrix Tech | Create. Connect. Convert.`.
+- Título HTML anterior: `Mediatrix Tech | Create. Connect. Capitalize.`.
 - Descrição HTML anterior: criação de sites e conteúdo visual para Brasil e Estados Unidos.
 - A home alterava apenas a descrição após o carregamento; o título permanecia genérico.
 - As landing pages de campanha alteram título e descrição no cliente conforme mercado e preço.
