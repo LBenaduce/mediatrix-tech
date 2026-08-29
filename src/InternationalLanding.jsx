@@ -5,7 +5,7 @@ import { getAttribution, initializeTracking, trackEvent, trackLink } from "./ana
 import { ClientGrowthChart } from "./ClientGrowthChart";
 import { SecretLogo } from "./easter-eggs/SecretLogo";
 import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
-import { getEasterEggCopy, projectNameTranslations } from "./translations";
+import { getEasterEggCopy, projectNameTranslations, sharedUiTranslations } from "./translations";
 import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
 import { applyPageSeo, ROUTE_SEO } from "./seo";
 import { WhatsAppFloat } from "./PublicChrome";
