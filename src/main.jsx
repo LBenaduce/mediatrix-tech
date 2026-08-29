@@ -362,20 +362,6 @@ function Hero({ copy, language }) {
   );
 }
 
-function HeroBrandVisual({ className }) {
-  return (
-    <div className={`hero-corner-video ${className}`} aria-hidden="true">
-      <video autoPlay loop muted playsInline preload="metadata" poster="/mediatrix-header-poster.jpg" tabIndex="-1">
-        <source src="/mediatrix-header-no-pika.mp4" type="video/mp4" />
-      </video>
-    </div>
-  );
-}
-
-function splitHeroTitle(title) {
-  return title.match(/[^.!?。؟।]+(?:[.!?。؟।]+\*?|$)/gu)?.map((line) => line.trim()).filter(Boolean) || [title];
-}
-
 function ProjectShowcase({ copy, language }) {
   const isPortuguese = language === "pt-BR";
   const desktopProject = copy.projects[1];

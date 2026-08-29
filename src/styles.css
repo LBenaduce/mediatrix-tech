@@ -1285,8 +1285,8 @@ footer {
 }
 .cinematic-video { position: absolute; z-index: 0; inset: 0; overflow: hidden; background: #080b10 center / cover no-repeat; }
 .cinematic-video video { width: 100%; height: 100%; max-width: none; object-fit: cover; opacity: .72; filter: saturate(.7) contrast(1.08); }
-.cinematic-video--hero { background-image: url('/mediatrix-header-poster.jpg'); }
-.cinematic-video--hero video { object-fit: contain; opacity: .9; transform: scale(.76); }
+.cinematic-video--hero { background-image: none; }
+.cinematic-video--hero video { object-fit: cover; opacity: .9; transform: none; }
 .cinematic-video--portfolio { background-image: url('/digital-board-poster.jpg'); }
 .cinematic-video--services { background-image: url('/digital-board-poster.jpg'); }
 .cinematic-video--contact { background-image: url('/mediatrix-contact-call-poster.jpg'); }
