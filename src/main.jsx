@@ -346,9 +346,9 @@ function Hero({ copy, language }) {
 
   return (
     <section className="hero cinematic-panel cinematic-panel--hero" id="top" aria-labelledby="hero-title">
+      <CinematicVideo className="cinematic-video--hero" poster="/mediatrix-header-poster.jpg" webm="/mediatrix-header.webm" mp4="/mediatrix-header.mp4" />
       <div className="shell hero-content">
         <div className="hero-copy">
-          <img className="hero-brand-mark" src="/mediatrix-brand-mark.png" width="88" height="88" alt={copy.hero.logoAlt} />
           <p className="motto">Mediatrix Tech</p>
           <h1 id="hero-title">Create. Connect. Convert.</h1>
           <p className="hero-footnote">{copy.hero.title.replace(/\*$/, "")}</p>
@@ -451,7 +451,7 @@ function Services({ copy, language, onSelectService }) {
 
   return (
     <section className="section services-section cinematic-panel cinematic-panel--services" id="servicos" aria-labelledby="servicos-title">
-      <CinematicVideo className="cinematic-video--services" poster="/agriclimate-pro-poster.jpg" mp4="/tech-blue-and-dark.mp4" />
+      <CinematicVideo className="cinematic-video--services" poster="/digital-board-poster.jpg" mp4="/tech-blue-and-dark.mp4" />
       <div className="shell">
         <div className="services-heading">
           <h2 id="servicos-title">{copy.servicesSection.title}</h2>
@@ -571,7 +571,7 @@ function Portfolio({ copy, language }) {
   });
   return (
     <section className="section portfolio-section cinematic-panel cinematic-panel--portfolio" id="portfolio" aria-labelledby="portfolio-title">
-      <CinematicVideo className="cinematic-video--portfolio" poster="/agriclimate-pro-poster.jpg" mp4="/tech-blue-and-dark.mp4" />
+      <CinematicVideo className="cinematic-video--portfolio" poster="/digital-board-poster.jpg" mp4="/tech-blue-and-dark.mp4" />
       <div className="shell">
         <SectionHeading eyebrow={copy.portfolioSection.eyebrow} title={copy.portfolioSection.title} description={copy.portfolioSection.description} id="portfolio-title" />
         <div className="portfolio-grid">
