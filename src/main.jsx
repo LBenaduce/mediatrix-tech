@@ -43,7 +43,7 @@ import { applyPageSeo, getStructuredData, LOCAL_ROUTE, ROUTE_SEO } from "./seo";
 import "./styles.css";
 import "./easter-eggs/easter-eggs.css";
 
-const navigationIds = ["top", "servicos", "portfolio", "empresa", "contato"];
+const navigationIds = ["top", "portfolio", "servicos", "contato"];
 const serviceIcons = {
   web: Code2,
   photo: ImageIcon,
@@ -168,7 +168,6 @@ function App({ initialLanguage }) {
 
   return (
     <EasterEggI18nProvider locale={language}>
-      <PageBackground />
       <div className="site-content">
         <a className="skip-link" href="#conteudo">{copy.skip}</a>
         <Header
@@ -177,12 +176,10 @@ function App({ initialLanguage }) {
           language={language}
           onLanguageChange={changeLanguage}
         />
-        <main id="conteudo">
+        <main id="conteudo" className="cinematic-deck">
           <Hero copy={copy} />
-          <ProjectShowcase copy={copy} language={language} />
-          <Services copy={copy} onSelectService={setSelectedService} />
           <Portfolio copy={copy} language={language} />
-          <Company copy={copy} />
+          <Services copy={copy} language={language} onSelectService={setSelectedService} />
           <Contact copy={copy} selectedService={selectedService} onSelectService={setSelectedService} />
         </main>
         <Footer copy={copy} language={language} />
@@ -192,12 +189,43 @@ function App({ initialLanguage }) {
   );
 }
 
-function PageBackground() {
+function CinematicVideo({ className = "", poster, webm, mp4 }) {
+  const containerRef = React.useRef(null);
+  const videoRef = React.useRef(null);
+  const [visible, setVisible] = React.useState(false);
+  const [reduceMotion, setReduceMotion] = React.useState(false);
+
+  React.useEffect(() => {
+    const media = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updateMotionPreference = () => setReduceMotion(media.matches);
+    updateMotionPreference();
+    media.addEventListener?.("change", updateMotionPreference);
+    return () => media.removeEventListener?.("change", updateMotionPreference);
+  }, []);
+
+  React.useEffect(() => {
+    const element = containerRef.current;
+    if (!element || reduceMotion) return undefined;
+    const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.35 });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, [reduceMotion]);
+
+  React.useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (visible && !reduceMotion) video.play().catch(() => {});
+    else video.pause();
+  }, [visible, reduceMotion]);
+
   return (
-    <div className="site-background" aria-hidden="true">
-      <video className="site-background-video" autoPlay loop muted playsInline preload="metadata" poster="/hero-background-optimized.jpg" tabIndex="-1">
-        <source src="/mediatrix-hero-video.mp4" type="video/mp4" />
-      </video>
+    <div className={`cinematic-video ${className}`} ref={containerRef} aria-hidden="true">
+      {!reduceMotion && visible && (
+        <video ref={videoRef} muted loop playsInline preload="none" poster={poster} tabIndex="-1">
+          {webm && <source src={webm} type="video/webm" />}
+          <source src={mp4} type="video/mp4" />
+        </video>
+      )}
     </div>
   );
 }
@@ -206,7 +234,12 @@ function Header({ activeSection, copy, language, onLanguageChange }) {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuButtonRef = React.useRef(null);
   const headerRef = React.useRef(null);
-  const navigation = navigationIds.map((id, index) => [id, copy.nav[index]]);
+  const navigation = [
+    ["top", copy.nav[0]],
+    ["portfolio", copy.nav[2]],
+    ["servicos", copy.nav[1]],
+    ["contato", copy.nav[4]],
+  ];
 
   React.useEffect(() => {
     const header = headerRef.current;
@@ -310,18 +343,15 @@ function Hero({ copy }) {
     : { href: "#formulario", label: copy.quote };
 
   return (
-    <section className="hero" id="top" aria-labelledby="hero-title">
+    <section className="hero cinematic-panel cinematic-panel--hero" id="top" aria-labelledby="hero-title">
+      <CinematicVideo className="cinematic-video--hero" poster="/mediatrix-header-poster.jpg" webm="/mediatrix-header.webm" mp4="/mediatrix-header.mp4" />
       <div className="hero-background-overlay" aria-hidden="true" />
       <div className="hero-glow" aria-hidden="true" />
-      <HeroBrandVisual className="hero-corner-video--desktop" />
       <div className="shell hero-content">
         <div className="hero-copy">
-          <HeroBrandVisual className="hero-corner-video--mobile" />
-          <p className="motto">Create. Connect. Convert.</p>
-          <h1 id="hero-title">
-            {splitHeroTitle(copy.hero.title).map((line) => <span className="hero-title-line" key={line}>{line}</span>)}
-          </h1>
-          <p className="hero-footnote">{copy.hero.footnote}</p>
+          <p className="motto">Mediatrix Tech</p>
+          <h1 id="hero-title">Create. Connect. Convert.</h1>
+          <p className="hero-footnote">{copy.hero.title}</p>
           <div className="hero-actions">
             <a className="button primary" href={primaryAction.href}>{primaryAction.label} <ArrowRight size={18} aria-hidden="true" /></a>
             <a className="button secondary" href={secondaryAction.href}>{secondaryAction.label}</a>
@@ -409,23 +439,31 @@ function SectionHeading({ eyebrow, title, description, id }) {
   return <div className="section-heading"><p className="eyebrow">{eyebrow}</p><h2 id={id}>{title}</h2>{description && <p className="section-description">{description}</p>}</div>;
 }
 
-function Services({ copy, onSelectService }) {
-  const homepageServices = copy.services.filter((service) => service.id !== "media");
+function Services({ copy, language, onSelectService }) {
+  const cinematicServices = {
+    "pt-BR": [["site", "Desenvolvimento web"], ["media", "Edição de vídeo"], ["media", "Áudio e música"], ["agri", "AgTech · GIS · Sensoriamento remoto"]],
+    en: [["site", "Web development"], ["media", "Video editing"], ["media", "Audio & music"], ["agri", "AgTech · GIS · Remote sensing"]],
+    es: [["site", "Desarrollo web"], ["media", "Edición de video"], ["media", "Audio y música"], ["agri", "AgTech · GIS · Teledetección"]],
+    fr: [["site", "Développement web"], ["media", "Montage vidéo"], ["media", "Audio et musique"], ["agri", "AgTech · SIG · Télédétection"]],
+    de: [["site", "Webentwicklung"], ["media", "Videobearbeitung"], ["media", "Audio & Musik"], ["agri", "AgTech · GIS · Fernerkundung"]],
+  };
+  const serviceItems = (cinematicServices[language] || cinematicServices.en).map(([id, title], index) => ({ ...copy.services.find((service) => service.id === id), title, key: `${id}-${index}` }));
 
   return (
-    <section className="section services-section" id="servicos" aria-labelledby="servicos-title">
+    <section className="section services-section cinematic-panel cinematic-panel--services" id="servicos" aria-labelledby="servicos-title">
+      <CinematicVideo className="cinematic-video--services" poster="/hero-background-optimized.jpg" mp4="/header-video-mediatrix.mp4" />
       <div className="shell">
         <div className="services-heading">
           <h2 id="servicos-title">{copy.servicesSection.title}</h2>
         </div>
         <div className="services-grid">
-          {homepageServices.map((service) => {
+          {serviceItems.map((service) => {
             const Icon = serviceIcons[service.id];
             return (
-              <a className={`service-tile${service.id === "site" || service.id === "landing" ? " is-featured" : ""}`} href="#formulario" onClick={() => onSelectService(service.id)} key={service.id}>
+              <a className={`service-tile${service.id === "site" ? " is-featured" : ""}`} href="#formulario" onClick={() => onSelectService(service.id)} key={service.key}>
                 <span className="icon-box" aria-hidden="true"><Icon size={21} /></span>
                 <span className="service-copy">
-                  <strong className="service-label">{service.shortTitle || service.title}</strong>
+                  <strong className="service-label">{service.title}</strong>
                   <span className="service-subtitle">{service.subtitle}</span>
                 </span>
               </a>
@@ -532,14 +570,13 @@ function Portfolio({ copy, language }) {
     };
   });
   return (
-    <section className="section portfolio-section" id="portfolio" aria-labelledby="portfolio-title">
+    <section className="section portfolio-section cinematic-panel cinematic-panel--portfolio" id="portfolio" aria-labelledby="portfolio-title">
+      <CinematicVideo className="cinematic-video--portfolio" poster="/agriclimate-pro-poster.jpg" mp4="/tech-blue-and-dark.mp4" />
       <div className="shell">
         <SectionHeading eyebrow={copy.portfolioSection.eyebrow} title={copy.portfolioSection.title} description={copy.portfolioSection.description} id="portfolio-title" />
         <div className="portfolio-grid">
-          {projects.map((project, index) => project.kind === "collaboration" ? <CollaborationCard project={project} key={project.name} /> : <CaseStudyCard title={project.name} category={project.category} clientName={index === 1 ? "Frasson LLC" : project.name} challengeText={project.problem} solutionText={project.description} metrics={metricSets[index]} imageUrl={project.poster || project.media} projectUrl={project.media} previewLabel={projectPreviewCopy[language] || projectPreviewCopy.en} labels={labels} key={project.name} />)}
+          {projects.slice(0, 3).map((project, index) => project.kind === "collaboration" ? <CollaborationCard project={project} key={project.name} /> : <CaseStudyCard title={project.name} category={project.category} clientName={index === 1 ? "Frasson LLC" : project.name} challengeText={project.problem} solutionText={project.description} metrics={metricSets[index]} imageUrl={project.poster || project.media} projectUrl={project.media} previewLabel={projectPreviewCopy[language] || projectPreviewCopy.en} labels={labels} key={project.name} />)}
         </div>
-        <BeforeAfterComparison labels={labels} />
-        <Testimonials labels={labels} />
       </div>
     </section>
   );
@@ -593,7 +630,8 @@ function Contact({ copy, selectedService, onSelectService }) {
   };
 
   return (
-    <section className="section contact-section" id="contato" aria-labelledby="contato-title">
+    <section className="section contact-section cinematic-panel cinematic-panel--contact" id="contato" aria-labelledby="contato-title">
+      <CinematicVideo className="cinematic-video--contact" poster="/mediatrix-header-poster.jpg" mp4="/mediatrix-tech-enhanced.mp4" />
       <div className="shell">
         <SectionHeading eyebrow={copy.contact.eyebrow} title={copy.contact.title} description={copy.contact.description} id="contato-title" />
         <div className="contact-layout">
