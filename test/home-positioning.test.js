@@ -5,8 +5,9 @@ import { translations } from "../src/translations.js";
 test("a home em português apresenta posicionamento e CTAs concretos", () => {
   const copy = translations["pt-BR"];
 
-  assert.equal(copy.hero.title, "Mais clientes. Mais receita. Crescimento da receita até 27% mais rápido.*");
-  assert.match(copy.hero.footnote, /Deloitte Access Economics/);
+  assert.equal(copy.hero.title, "MAIS CLIENTES. MAIS RECEITA.");
+  assert.equal(copy.hero.highlight, "ATÉ 27% DE CRESCIMENTO MAIS RÁPIDO.*");
+  assert.match(copy.hero.disclaimer, /resultados variam/i);
   assert.equal(copy.hero.primaryCta, "Solicitar uma avaliação gratuita do site");
   assert.equal(copy.hero.secondaryCta, "Ver nosso trabalho");
   assert.equal(copy.services.length, 7);
@@ -19,8 +20,9 @@ test("a home em inglês mantém a mesma proposta de valor", () => {
   const copy = translations.en;
   const homepageServices = copy.services.filter(({ id }) => id !== "media");
 
-  assert.equal(copy.hero.title, "More clients. More income. Up to 27% faster revenue growth.*");
-  assert.equal(copy.hero.footnote, "*Based on Deloitte Access Economics research comparing advanced digitally engaged SMBs with offline businesses.");
+  assert.equal(copy.hero.title, "MORE CLIENTS. MORE REVENUE.");
+  assert.equal(copy.hero.highlight, "UP TO 27% FASTER GROWTH.*");
+  assert.equal(copy.hero.disclaimer, "*Results vary. Digital performance can improve conversions and revenue outcomes. Source:");
   assert.equal(copy.hero.primaryCta, "Request a free website review");
   assert.equal(copy.hero.secondaryCta, "View our work");
   assert.equal(copy.servicesSection.title, "What we can build for you");

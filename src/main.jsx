@@ -353,7 +353,7 @@ function Hero({ copy, language }) {
         <div className="hero-copy">
           <h1 className="motto">Mediatrix Tech</h1>
           <h2 id="hero-title">Create. Connect. Convert.</h2>
-          <HeroFootnote language={language} title={copy.hero.title} />
+          <HeroFootnote copy={copy} />
           <div className="hero-actions">
             <a className="button primary" href="#formulario">{primaryLabel} <ArrowRight size={18} aria-hidden="true" /></a>
             <a className="button secondary" href="#portfolio">{secondaryLabel}</a>
@@ -364,17 +364,17 @@ function Hero({ copy, language }) {
   );
 }
 
-function HeroFootnote({ language, title }) {
-  const message = title.replace(/\*$/, "");
-  if (language !== "en") return <p className="hero-footnote">{message}</p>;
+function HeroFootnote({ copy }) {
+  const { title, highlight, disclaimer } = copy.hero;
+  if (!highlight || !disclaimer) return <p className="hero-footnote">{title.replace(/\*$/, "")}</p>;
 
   return <>
     <p className="hero-footnote">
-      MORE CLIENTS. MORE REVENUE.<br />
-      <span className="growth-highlight">UP TO <strong>27%</strong> FASTER GROWTH.*</span>
+      {title}<br />
+      <span className="growth-highlight">{highlight.split(/(27\s*%)/).map((part, index) => /^27\s*%$/.test(part) ? <strong key={index}>{part}</strong> : part)}</span>
     </p>
     <p className="hero-disclaimer">
-      *Results vary. Digital performance can improve conversions and revenue outcomes. Source: {" "}
+      {disclaimer}{" "}
       <a href="https://www.deloitte.com/ie/en/services/consulting/research/milliseconds-make-millions.html" target="_blank" rel="noopener noreferrer">Deloitte, “Milliseconds Make Millions”</a>.
     </p>
   </>;
