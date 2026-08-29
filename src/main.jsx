@@ -43,7 +43,7 @@ import { applyPageSeo, getStructuredData, LOCAL_ROUTE, ROUTE_SEO } from "./seo";
 import "./styles.css";
 import "./easter-eggs/easter-eggs.css";
 
-const navigationIds = ["top", "portfolio", "servicos", "contato"];
+const navigationIds = ["top", "projects", "agriclimate", "frasson", "maria-luiza", "cafe", "services", "contact"];
 const serviceIcons = {
   web: Code2,
   photo: ImageIcon,
@@ -179,7 +179,7 @@ function App({ initialLanguage }) {
         />
         <main id="conteudo" className="cinematic-deck">
           <Hero copy={copy} language={language} />
-          <Portfolio copy={copy} language={language} />
+          <Projects copy={copy} language={language} />
           <Services copy={copy} language={language} onSelectService={setSelectedService} />
           <Contact copy={copy} selectedService={selectedService} onSelectService={setSelectedService} />
         </main>
@@ -225,7 +225,7 @@ function CinematicVideo({ className = "", poster, webm, mp4 }) {
       {!reduceMotion && visible && (
         <video ref={videoRef} muted loop playsInline preload="none" poster={poster} tabIndex="-1">
           {webm && <source src={webm} type="video/webm" />}
-          <source src={mp4} type="video/mp4" />
+          <source src={mp4} type={/\.mov(?:\?|$)/i.test(mp4) ? "video/quicktime" : "video/mp4"} />
         </video>
       )}
     </div>
@@ -238,10 +238,12 @@ function Header({ activeSection, copy, language, onLanguageChange }) {
   const headerRef = React.useRef(null);
   const navigation = [
     ["top", copy.nav[0]],
-    ["portfolio", copy.nav[2]],
-    ["servicos", copy.nav[1]],
-    ["contato", copy.nav[4]],
+    ["projects", copy.nav[2]],
+    ["services", copy.nav[1]],
+    ["contact", copy.nav[4]],
   ];
+  const projectSections = new Set(["projects", "agriclimate", "frasson", "maria-luiza", "cafe"]);
+  const isActive = (id) => id === "projects" ? projectSections.has(activeSection) : activeSection === id;
 
   React.useEffect(() => {
     const header = headerRef.current;
@@ -290,7 +292,7 @@ function Header({ activeSection, copy, language, onLanguageChange }) {
 
         <nav className="desktop-nav" aria-label={copy.primaryNavigation}>
           {navigation.map(([id, label]) => (
-            <a href={`#${id}`} className={activeSection === id ? "active" : ""} aria-current={activeSection === id ? "page" : undefined} key={id}>
+            <a href={`#${id}`} className={isActive(id) ? "active" : ""} aria-current={isActive(id) ? "page" : undefined} key={id}>
               {label}
             </a>
           ))}
@@ -314,7 +316,7 @@ function Header({ activeSection, copy, language, onLanguageChange }) {
 
       <nav className={`mobile-nav ${menuOpen ? "open" : ""}`} id="menu-mobile" aria-label={copy.mobileNavigation} hidden={!menuOpen}>
         {navigation.map(([id, label]) => (
-          <a href={`#${id}`} className={activeSection === id ? "active" : ""} aria-current={activeSection === id ? "page" : undefined} onClick={closeMenu} key={id}>
+          <a href={`#${id}`} className={isActive(id) ? "active" : ""} aria-current={isActive(id) ? "page" : undefined} onClick={closeMenu} key={id}>
             {label}
           </a>
         ))}
@@ -356,7 +358,7 @@ function Hero({ copy, language }) {
           <HeroFootnote copy={copy} />
           <div className="hero-actions">
             <a className="button primary" href="#formulario">{primaryLabel} <ArrowRight size={18} aria-hidden="true" /></a>
-            <a className="button secondary" href="#portfolio">{secondaryLabel}</a>
+            <a className="button secondary" href="#projects">{secondaryLabel}</a>
           </div>
         </div>
       </div>
@@ -454,11 +456,12 @@ function Services({ copy, language, onSelectService }) {
   const serviceItems = (cinematicServices[language] || cinematicServices.en).map(([id, title], index) => ({ ...copy.services.find((service) => service.id === id), title, key: `${id}-${index}` }));
 
   return (
-    <section className="section services-section cinematic-panel cinematic-panel--services" id="servicos" aria-labelledby="servicos-title">
+    <section className="section services-section cinematic-panel cinematic-panel--services" id="services" aria-labelledby="services-title">
       <CinematicVideo className="cinematic-video--services" poster="/digital-board-poster.jpg" mp4="/tech-blue-and-dark.mp4" />
       <div className="shell">
         <div className="services-heading">
-          <h2 id="servicos-title">{copy.servicesSection.title}</h2>
+          <p className="eyebrow">{copy.servicesSection.eyebrow}</p>
+          <h2 id="services-title">{copy.servicesSection.title}</h2>
         </div>
         <div className="services-grid">
           {serviceItems.map((service) => {
@@ -557,34 +560,57 @@ function Testimonials({ labels }) {
   return <section className="testimonials" aria-labelledby="testimonials-title"><SectionHeading eyebrow={labels.testimonialsEyebrow} title={labels.testimonialsTitle} description={labels.testimonialsDescription} id="testimonials-title" /><div className="testimonial-grid">{verifiedTestimonials.map((testimonial) => <blockquote key={testimonial.quote}><Quote aria-hidden="true" /><p>{testimonial.quote}</p><footer><strong>{testimonial.name}</strong><span>{testimonial.company}</span></footer></blockquote>)}</div></section>;
 }
 
-function Portfolio({ copy, language }) {
-  const labels = { ...(phaseOneCopy[language] || phaseOneCopy.en), viewProject: copy.portfolioSection.view };
-  const translatedMetrics = portfolioMetricCopy[language] || portfolioMetricCopy.en;
-  const metricSets = Array.from({ length: 5 }, (_, projectIndex) => translatedMetrics.slice(projectIndex * 3, projectIndex * 3 + 3).map(([value, label]) => ({ value, label })));
-  const projects = copy.projects.map((project, index) => {
-    const projectAssets = projectMedia[index];
-    return {
-      ...project,
-      ...projectAssets,
-      problem: project.type === "collaboration" ? project.description : labels.beforeText,
-      media: language === "pt-BR" ? projectAssets.media : projectAssets.nonPortugueseMedia || projectAssets.media,
-      poster: language === "pt-BR" ? projectAssets.poster : projectAssets.nonPortuguesePoster || projectAssets.poster,
-      width: language === "pt-BR" ? projectAssets.width : projectAssets.nonPortugueseWidth || projectAssets.width,
-      height: language === "pt-BR" ? projectAssets.height : projectAssets.nonPortugueseHeight || projectAssets.height,
-    };
-  });
+const projectChapterCopy = {
+  "pt-BR": [
+    ["AgriClimate Pro", "Clima e dados transformados em decisões mais claras para o campo."],
+    ["Frasson", "Uma presença digital precisa, construída para confiança e conversão."],
+    ["Maria Luiza", "Uma celebração transformada em experiência digital para compartilhar e guardar."],
+    ["Café", "Afeto, encontros e sabores apresentados em uma experiência editorial acolhedora."],
+  ],
+  en: [
+    ["AgriClimate Pro", "Climate and data turned into clearer decisions for the field."],
+    ["Frasson", "A precise digital presence built for trust and conversion."],
+    ["Maria Luiza", "A celebration shaped into a digital experience to share and remember."],
+    ["Café", "Warmth, connection and flavor presented through an inviting editorial experience."],
+  ],
+};
+
+function ProjectChapter({ id, index, name, description, video, poster, image, viewLabel }) {
   return (
-    <section className="section portfolio-section cinematic-panel cinematic-panel--portfolio" id="portfolio" aria-labelledby="portfolio-title">
-      <CinematicVideo className="cinematic-video--portfolio" poster="/digital-board-poster.jpg" mp4="/tech-blue-and-dark.mp4" />
-      <div className="shell">
-        <SectionHeading eyebrow={copy.portfolioSection.eyebrow} title={copy.portfolioSection.title} description={copy.portfolioSection.description} id="portfolio-title" />
-        <div className="portfolio-grid">
-          {projects.slice(0, 3).map((project, index) => project.kind === "collaboration" ? <CollaborationCard project={project} key={project.name} /> : <CaseStudyCard title={project.name} category={project.category} clientName={index === 1 ? "Frasson LLC" : project.name} challengeText={project.problem} solutionText={project.description} metrics={metricSets[index]} imageUrl={project.poster || project.media} projectUrl={project.media} previewLabel={projectPreviewCopy[language] || projectPreviewCopy.en} labels={labels} key={project.name} />)}
-        </div>
-        <a className="portfolio-cta button secondary" href="#formulario">{language === "pt-BR" ? "Vamos criar o seu projeto" : "Let’s build your project"} <ArrowRight size={18} aria-hidden="true" /></a>
+    <section className={`project-chapter project-chapter--${index + 1}`} id={id} aria-labelledby={`${id}-title`}>
+      {video ? <CinematicVideo className="project-chapter-media" poster={poster} mp4={video} /> : <div className="project-chapter-media project-chapter-image" style={{ backgroundImage: `url('${image}')` }} aria-hidden="true" />}
+      <div className="project-chapter-overlay" aria-hidden="true" />
+      <div className="shell project-chapter-content">
+        <p className="project-index">0{index + 1} / 04</p>
+        <h2 id={`${id}-title`}>{name}</h2>
+        <p>{description}</p>
+        <a className="button project-button" href={video || image} target="_blank" rel="noopener noreferrer">{viewLabel} <ArrowRight size={18} aria-hidden="true" /></a>
       </div>
+      <a className="chapter-next" href={`#${["frasson", "maria-luiza", "cafe", "services"][index]}`} aria-label="Next section">↓</a>
     </section>
   );
+}
+
+function Projects({ copy, language }) {
+  const localized = projectChapterCopy[language] || projectChapterCopy.en;
+  const viewLabel = copy.portfolioSection.view;
+  const chapters = [
+    { id: "agriclimate", video: "/project-agriclimate.mp4", poster: "/agriclimate-pro-poster.jpg" },
+    { id: "frasson", video: "/project-frasson.mp4", poster: "/frasson-llc-demo-optimized.jpg" },
+    { id: "maria-luiza", video: "/project-maria-luiza.mp4", poster: "/event-qr-code-poster.jpg" },
+    { id: "cafe", image: "/project-cafe.jpg" },
+  ];
+  return <>
+    <section className="projects-intro" id="projects" aria-labelledby="projects-title">
+      <div className="shell">
+        <p className="eyebrow">{copy.portfolioSection.eyebrow}</p>
+        <h2 id="projects-title">{copy.portfolioSection.title}</h2>
+        <p>{copy.portfolioSection.description}</p>
+        <a href="#agriclimate" className="projects-scroll">{language === "pt-BR" ? "Explorar projetos" : "Explore projects"} <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+    {chapters.map((chapter, index) => <ProjectChapter {...chapter} index={index} name={localized[index][0]} description={localized[index][1]} viewLabel={viewLabel} key={chapter.id} />)}
+  </>;
 }
 
 function Company({ copy }) {
@@ -635,10 +661,10 @@ function Contact({ copy, selectedService, onSelectService }) {
   };
 
   return (
-    <section className="section contact-section cinematic-panel cinematic-panel--contact" id="contato" aria-labelledby="contato-title">
+    <section className="section contact-section cinematic-panel cinematic-panel--contact" id="contact" aria-labelledby="contact-title">
       <CinematicVideo className="cinematic-video--contact" poster="/mediatrix-contact-call-poster.jpg" mp4="/mediatrix-contact-call.mp4" />
       <div className="shell">
-        <SectionHeading eyebrow={copy.contact.eyebrow} title={copy.contact.title} description={copy.contact.description} id="contato-title" />
+        <SectionHeading eyebrow={copy.contact.eyebrow} title={copy.contact.title} description={copy.contact.description} id="contact-title" />
         <div className="contact-layout">
           <div className="contact-channels" aria-label={copy.contact.channelsLabel}>
             {copy.contact.channels.map(([title, detail], index) => {
