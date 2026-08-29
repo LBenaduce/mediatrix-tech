@@ -1316,7 +1316,7 @@ footer {
 .cinematic-panel--hero::before { display: block; background: linear-gradient(180deg, rgba(8, 11, 16, .08), rgba(8, 11, 16, .68)); }
 .cinematic-panel--hero .hero-content { padding-block: clamp(7rem, 14vh, 11rem) clamp(4rem, 10vh, 7rem); text-align: center; }
 .cinematic-panel--hero .hero-copy { max-width: 760px; margin-inline: auto; }
-.cinematic-panel--hero .hero-footnote { max-width: 540px; color: #c5c8ca; font-size: clamp(.86rem, 1.2vw, 1rem); }
+.cinematic-panel--hero .hero-footnote { max-width: 540px; color: #fff; font-size: clamp(.86rem, 1.2vw, 1rem); }
 .cinematic-panel--hero .hero-footnote, .cinematic-panel--hero .hero-actions { margin-inline: auto; }
 .cinematic-panel--hero .hero-actions { flex-direction: row; justify-content: center; }
 .cinematic-panel--portfolio { padding-block: clamp(7rem, 11vh, 9rem) clamp(3rem, 7vh, 5rem); }
