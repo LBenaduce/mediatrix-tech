@@ -539,7 +539,7 @@ html[dir="rtl"] .showcase-link:hover svg { transform: rotate(180deg) translateX(
   position: relative;
   z-index: 2;
   width: 100%;
-  transform: translateY(-150px);
+  transform: translateY(-300px);
 }
 
 .hero-copy {
