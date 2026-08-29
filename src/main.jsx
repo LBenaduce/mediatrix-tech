@@ -346,7 +346,7 @@ function Hero({ copy, language }) {
 
   return (
     <section className="hero cinematic-panel cinematic-panel--hero" id="top" aria-labelledby="hero-title">
-      <CinematicVideo className="cinematic-video--hero" poster="/mediatrix-hero-brand-poster.jpg" mp4="/mediatrix-hero-brand.mp4" />
+      <CinematicVideo className="cinematic-video--hero" poster="/mediatrix-hero-brand-poster.jpg" mp4="/mediatrix-hero-brand1.mov" />
       <div className="shell hero-content">
         <div className="hero-copy">
           <p className="motto">Mediatrix Tech</p>
