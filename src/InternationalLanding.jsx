@@ -177,7 +177,7 @@ export function InternationalLanding({ pathname }) {
         <Faq isPortuguese={isPortuguese} />
         <QuoteForm region={region} landingPage={landingPage} selectedPackage={selectedPackage} setSelectedPackage={setSelectedPackage} isPortuguese={isPortuguese} />
       </main>
-      <WhatsAppFloat onClick={() => trackEvent("whatsapp_float_click", { landing_page: landingPage })} />
+      <WhatsAppFloat language={locale} onClick={() => trackEvent("whatsapp_float_click", { landing_page: landingPage })} />
       <footer className="intl-footer"><div className="intl-shell"><strong>Mediatrix Tech</strong><span>{isPortuguese ? "Crie. Conecte. Converta." : "Create. Connect. Convert."}</span><div><a href="mailto:mediatrixtech@proton.me" onClick={() => trackLink("email_click")}><Mail size={17} />E-mail</a><a href="https://wa.me/13059920833" onClick={() => trackLink("whatsapp_click")}><MessageCircle size={17} />WhatsApp</a><a href="tel:+13059920833" onClick={() => trackLink("phone_click")}><Phone size={17} />{isPortuguese ? "Telefone" : "Phone"}</a></div></div></footer>
     </div>
     </EasterEggI18nProvider>

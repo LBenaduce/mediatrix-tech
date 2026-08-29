@@ -1,5 +1,5 @@
 import { languageRoutes, supportedLanguages } from "./i18n.js";
-import { translations } from "./translations.js";
+import { sharedUiTranslations, translations } from "./translations.js";
 
 export const SITE_ORIGIN = "https://www.mediatrix-tech.com";
 export const DEFAULT_OG_IMAGE = `${SITE_ORIGIN}/og-home.png`;
@@ -160,9 +160,16 @@ export function getLanguageAlternates(pathname = "/") {
 }
 
 export function getStructuredData(pathname = "/", seo = ROUTE_SEO[pathname] || ROUTE_SEO["/"]) {
+  const locale = seo.locale.replace("_", "-");
+  const baseLocale = locale.startsWith("pt") ? "pt-BR" : locale.split("-")[0];
+  const localizedUi = sharedUiTranslations[baseLocale] || sharedUiTranslations.en;
+  const localizedOrganization = {
+    ...organization,
+    areaServed: organization.areaServed.map((area) => area.name === "Atendimento remoto internacional" ? { ...area, name: localizedUi.remoteService || sharedUiTranslations.en.remoteService } : area),
+  };
   const pageId = `${seo.canonical}#webpage`;
   const graph = [
-    organization,
+    localizedOrganization,
     website,
     {
       "@type": "WebPage",
@@ -172,7 +179,7 @@ export function getStructuredData(pathname = "/", seo = ROUTE_SEO[pathname] || R
       description: seo.description,
       isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
       about: { "@id": `${SITE_ORIGIN}/#organization` },
-      inLanguage: seo.locale.replace("_", "-"),
+      inLanguage: locale,
     },
   ];
 
@@ -233,10 +240,15 @@ export function applyPageSeo({
   ensureMeta('meta[property="og:title"]', "content", seo.title, "property", "og:title");
   ensureMeta('meta[property="og:description"]', "content", seo.description, "property", "og:description");
   ensureMeta('meta[property="og:image"]', "content", DEFAULT_OG_IMAGE, "property", "og:image");
+  const locale = seo.locale.replace("_", "-");
+  const baseLocale = locale.startsWith("pt") ? "pt-BR" : locale.split("-")[0];
+  const socialImageAlt = (sharedUiTranslations[baseLocale] || sharedUiTranslations.en).socialImageAlt || sharedUiTranslations.en.socialImageAlt;
+  ensureMeta('meta[property="og:image:alt"]', "content", socialImageAlt, "property", "og:image:alt");
   ensureMeta('meta[name="twitter:card"]', "content", "summary_large_image", "name", "twitter:card");
   ensureMeta('meta[name="twitter:title"]', "content", seo.title, "name", "twitter:title");
   ensureMeta('meta[name="twitter:description"]', "content", seo.description, "name", "twitter:description");
   ensureMeta('meta[name="twitter:image"]', "content", DEFAULT_OG_IMAGE, "name", "twitter:image");
+  ensureMeta('meta[name="twitter:image:alt"]', "content", socialImageAlt, "name", "twitter:image:alt");
 
   let canonical = document.querySelector('link[rel="canonical"]');
   if (!canonical) {

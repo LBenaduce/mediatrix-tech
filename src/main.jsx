@@ -23,7 +23,7 @@ import {
   Workflow,
   X,
 } from "lucide-react";
-import { getEasterEggCopy, languages, rtlLanguages, translations } from "./translations";
+import { getEasterEggCopy, languages, rtlLanguages, sharedUiTranslations, translations } from "./translations";
 import {
   getLanguageRoute,
   getLocalizedUrl,
@@ -185,7 +185,7 @@ function App({ initialLanguage }) {
         </main>
         <Footer copy={copy} language={language} />
         <React.Suspense fallback={null}><MediatrixAssistant language={language} /></React.Suspense>
-        <WhatsAppFloat />
+        <WhatsAppFloat language={language} />
       </div>
     </EasterEggI18nProvider>
   );
@@ -327,12 +327,13 @@ function Header({ activeSection, copy, language, onLanguageChange }) {
 }
 
 function LanguageSelector({ copy, language, onChange }) {
+  const languageNames = sharedUiTranslations[language]?.languageNames;
   return (
     <label className="language-selector">
       <Globe2 size={17} aria-hidden="true" />
       <span className="sr-only">{copy.language}</span>
       <select aria-label={copy.language} value={language} onChange={onChange}>
-        {languages.map(([locale, code, name]) => <option value={locale} key={locale}>{code} · {name}</option>)}
+        {languages.map(([locale, code, name], index) => <option value={locale} key={locale}>{code} · {languageNames?.[index] || name}</option>)}
       </select>
     </label>
   );
@@ -354,7 +355,7 @@ function Hero({ copy, language }) {
       <div className="shell hero-content">
         <div className="hero-copy">
           <h1 className="motto">Mediatrix Tech</h1>
-          <h2 id="hero-title">Create. Connect. Convert.</h2>
+          <h2 id="hero-title">{sharedUiTranslations[language]?.tagline || sharedUiTranslations.en.tagline}</h2>
           <HeroFootnote copy={copy} />
           <div className="hero-actions">
             <a className="button primary" href="#formulario">{primaryLabel} <ArrowRight size={18} aria-hidden="true" /></a>
@@ -575,7 +576,7 @@ const projectChapterCopy = {
   ],
 };
 
-function ProjectChapter({ id, index, name, description, video, poster, image, viewLabel }) {
+function ProjectChapter({ id, index, name, description, video, poster, image, viewLabel, nextLabel }) {
   return (
     <section className={`project-chapter project-chapter--${index + 1}`} id={id} aria-labelledby={`${id}-title`}>
       {video ? <CinematicVideo className="project-chapter-media" poster={poster} mp4={video} /> : <div className="project-chapter-media project-chapter-image" style={{ backgroundImage: `url('${image}')` }} aria-hidden="true" />}
@@ -586,13 +587,14 @@ function ProjectChapter({ id, index, name, description, video, poster, image, vi
         <p>{description}</p>
         <a className="button project-button" href={video || image} target="_blank" rel="noopener noreferrer">{viewLabel} <ArrowRight size={18} aria-hidden="true" /></a>
       </div>
-      <a className="chapter-next" href={`#${["frasson", "maria-luiza", "cafe", "services"][index]}`} aria-label="Next section">↓</a>
+      <a className="chapter-next" href={`#${["frasson", "maria-luiza", "cafe", "services"][index]}`} aria-label={nextLabel}>↓</a>
     </section>
   );
 }
 
 function Projects({ copy, language }) {
-  const localized = projectChapterCopy[language] || projectChapterCopy.en;
+  const localized = projectChapterCopy[language] || copy.projects.slice(0, 4).map((project) => [project.name, project.description]);
+  const ui = sharedUiTranslations[language] || sharedUiTranslations.en;
   const viewLabel = copy.portfolioSection.view;
   const chapters = [
     { id: "agriclimate", video: "/project-agriclimate.mp4", poster: "/agriclimate-pro-poster.jpg" },
@@ -606,10 +608,10 @@ function Projects({ copy, language }) {
         <p className="eyebrow">{copy.portfolioSection.eyebrow}</p>
         <h2 id="projects-title">{copy.portfolioSection.title}</h2>
         <p>{copy.portfolioSection.description}</p>
-        <a href="#agriclimate" className="projects-scroll">{language === "pt-BR" ? "Explorar projetos" : "Explore projects"} <span aria-hidden="true">↓</span></a>
+        <a href="#agriclimate" className="projects-scroll">{ui.exploreProjects} <span aria-hidden="true">↓</span></a>
       </div>
     </section>
-    {chapters.map((chapter, index) => <ProjectChapter {...chapter} index={index} name={localized[index][0]} description={localized[index][1]} viewLabel={viewLabel} key={chapter.id} />)}
+    {chapters.map((chapter, index) => <ProjectChapter {...chapter} index={index} name={localized[index][0]} description={localized[index][1]} viewLabel={viewLabel} nextLabel={ui.nextSection} key={chapter.id} />)}
   </>;
 }
 
@@ -702,7 +704,7 @@ function Footer({ copy, language }) {
     <footer>
       <div className="shell footer-inner">
         <a className="footer-brand" href="#top">Mediatrix Tech</a>
-        <p>Create. Connect. Convert.</p>
+        <p>{sharedUiTranslations[language]?.tagline || sharedUiTranslations.en.tagline}</p>
         {language === "pt-BR" && (
           <a className="text-link footer-local-link" href={LOCAL_ROUTE}>
             Criação de sites<ArrowRight size={17} aria-hidden="true" />

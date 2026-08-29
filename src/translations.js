@@ -13,6 +13,17 @@ export const languages = [
 
 export const rtlLanguages = new Set(["ar"]);
 
+export const sharedUiTranslations = {
+  en: { tagline: "Create. Connect. Convert.", whatsappQuick: "Quick Support", whatsappQuickAria: "Quick support via WhatsApp", exploreProjects: "Explore projects", nextSection: "Next section", viewProject: "View project", socialImageAlt: "Mediatrix Tech — professional websites for businesses that want to be found and win more customers.", remoteService: "International remote service", languageNames: ["English", "Portuguese", "Spanish", "French", "German", "Chinese", "Hindi", "Arabic"] },
+  "pt-BR": { tagline: "Crie. Conecte. Converta.", whatsappQuick: "Atendimento Rápido", whatsappQuickAria: "Atendimento rápido pelo WhatsApp", exploreProjects: "Explorar projetos", nextSection: "Próxima seção", viewProject: "Ver projeto", socialImageAlt: "Mediatrix Tech — sites profissionais para empresas que querem ser encontradas e conquistar mais clientes.", remoteService: "Atendimento remoto internacional", languageNames: ["Inglês", "Português", "Espanhol", "Francês", "Alemão", "Chinês", "Hindi", "Árabe"] },
+  es: { tagline: "Crea. Conecta. Convierte.", whatsappQuick: "Atención rápida", whatsappQuickAria: "Atención rápida por WhatsApp", exploreProjects: "Explorar proyectos", nextSection: "Siguiente sección", viewProject: "Ver proyecto", socialImageAlt: "Mediatrix Tech — sitios web profesionales para empresas que quieren ser encontradas y conseguir más clientes.", remoteService: "Atención remota internacional", languageNames: ["Inglés", "Portugués", "Español", "Francés", "Alemán", "Chino", "Hindi", "Árabe"] },
+  fr: { tagline: "Créez. Connectez. Convertissez.", whatsappQuick: "Assistance rapide", whatsappQuickAria: "Assistance rapide via WhatsApp", exploreProjects: "Explorer les projets", nextSection: "Section suivante", viewProject: "Voir le projet" },
+  de: { tagline: "Gestalten. Verbinden. Konvertieren.", whatsappQuick: "Schnelle Hilfe", whatsappQuickAria: "Schnelle Hilfe über WhatsApp", exploreProjects: "Projekte erkunden", nextSection: "Nächster Abschnitt", viewProject: "Projekt ansehen" },
+  "zh-CN": { tagline: "创造。连接。转化。", whatsappQuick: "快速支持", whatsappQuickAria: "通过 WhatsApp 获取快速支持", exploreProjects: "浏览项目", nextSection: "下一部分", viewProject: "查看项目" },
+  hi: { tagline: "बनाएँ। जोड़ें। बदलें।", whatsappQuick: "त्वरित सहायता", whatsappQuickAria: "WhatsApp पर त्वरित सहायता", exploreProjects: "प्रोजेक्ट देखें", nextSection: "अगला भाग", viewProject: "प्रोजेक्ट देखें" },
+  ar: { tagline: "ابتكر. تواصل. حوّل.", whatsappQuick: "دعم سريع", whatsappQuickAria: "دعم سريع عبر WhatsApp", exploreProjects: "استكشف المشاريع", nextSection: "القسم التالي", viewProject: "عرض المشروع" },
+};
+
 const easterEggTranslations = {
   en: {
     common: { achievementUnlocked: "Achievement unlocked: {achievement}" },
