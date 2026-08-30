@@ -599,7 +599,7 @@ function Projects({ copy, language }) {
     { id: "agriclimate", video: "/project-agriclimate.mp4", poster: "/agriclimate-pro-poster.jpg" },
     { id: "frasson", video: "/project-frasson.mp4", poster: "/frasson-llc-demo-optimized.jpg" },
     { id: "maria-luiza", video: "/project-maria-luiza.mp4", poster: "/event-qr-code-poster.jpg" },
-    { id: "cafe", image: "/project-cafe.jpg" },
+    { id: "cafe", video: "/project-cafe.mp4", poster: "/project-cafe.jpg" },
   ];
   return <>
     <section className="projects-intro" id="projects" aria-labelledby="projects-title">
