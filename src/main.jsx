@@ -340,15 +340,6 @@ function LanguageSelector({ copy, language, onChange }) {
 }
 
 function Hero({ copy, language }) {
-  const actions = {
-    "pt-BR": ["Comece seu projeto", "Ver trabalhos selecionados"],
-    en: ["Start your project", "See selected work"],
-    es: ["Inicia tu proyecto", "Ver trabajos seleccionados"],
-    fr: ["Démarrer votre projet", "Voir les projets sélectionnés"],
-    de: ["Ihr Projekt starten", "Ausgewählte Arbeiten ansehen"],
-  };
-  const [primaryLabel, secondaryLabel] = actions[language] || actions.en;
-
   return (
     <section className="hero cinematic-panel cinematic-panel--hero" id="top" aria-labelledby="hero-title">
       <CinematicVideo className="cinematic-video--hero" poster="/mediatrix-hero-brand-poster.jpg" mp4="/mediatrix-hero-brand1.mov" />
@@ -356,10 +347,11 @@ function Hero({ copy, language }) {
         <div className="hero-copy">
           <h1 className="motto">Mediatrix Tech</h1>
           <h2 id="hero-title">{sharedUiTranslations[language]?.tagline || sharedUiTranslations.en.tagline}</h2>
+          <p className="hero-value-proposition">{copy.hero.valueProposition}</p>
           <HeroFootnote copy={copy} />
           <div className="hero-actions">
-            <a className="button primary" href="#formulario">{primaryLabel} <ArrowRight size={18} aria-hidden="true" /></a>
-            <a className="button secondary" href="#projects">{secondaryLabel}</a>
+            <a className="button primary" href="#formulario">{copy.hero.primaryCta} <ArrowRight size={18} aria-hidden="true" /></a>
+            <a className="button secondary" href="#projects">{copy.hero.secondaryCta}</a>
           </div>
         </div>
       </div>

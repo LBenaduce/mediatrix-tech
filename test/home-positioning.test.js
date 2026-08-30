@@ -8,8 +8,10 @@ test("a home em português apresenta posicionamento e CTAs concretos", () => {
   assert.equal(copy.hero.title, "MAIS CLIENTES. MAIS RECEITA.");
   assert.equal(copy.hero.highlight, "ATÉ 27% DE CRESCIMENTO MAIS RÁPIDO.*");
   assert.match(copy.hero.disclaimer, /resultados variam/i);
-  assert.equal(copy.hero.primaryCta, "Solicitar uma avaliação gratuita do site");
-  assert.equal(copy.hero.secondaryCta, "Ver nosso trabalho");
+  assert.equal(copy.hero.valueProposition, "Sites profissionais criados para transformar visitantes em clientes.");
+  assert.equal(copy.hero.primaryCta, "Solicitar avaliação gratuita");
+  assert.equal(copy.hero.secondaryCta, "Ver projetos");
+  assert.equal(copy.quote, copy.hero.primaryCta);
   assert.equal(copy.services.length, 7);
   assert.deepEqual(copy.services.map(({ id }) => id), ["site", "landing", "custom", "media", "event", "agri", "care"]);
   assert.match(copy.company.localSeo.text, /Santa Maria.+Rio Grande do Sul.+Brasil e do mundo/);
@@ -23,8 +25,10 @@ test("a home em inglês mantém a mesma proposta de valor", () => {
   assert.equal(copy.hero.title, "MORE CLIENTS. MORE REVENUE.");
   assert.equal(copy.hero.highlight, "UP TO 27% FASTER GROWTH.*");
   assert.equal(copy.hero.disclaimer, "*Results vary. Digital performance can improve conversions and revenue outcomes. Source:");
-  assert.equal(copy.hero.primaryCta, "Request a free website review");
-  assert.equal(copy.hero.secondaryCta, "View our work");
+  assert.equal(copy.hero.valueProposition, "Professional websites built to turn visitors into customers.");
+  assert.equal(copy.hero.primaryCta, "Get a free website review");
+  assert.equal(copy.hero.secondaryCta, "View projects");
+  assert.equal(copy.quote, copy.hero.primaryCta);
   assert.equal(copy.servicesSection.title, "What we can build for you");
   assert.equal(copy.services.length, 7);
   assert.deepEqual(homepageServices.map(({ shortTitle, title }) => shortTitle || title), [
@@ -51,6 +55,8 @@ test("todos os idiomas exibem seis ofertas concisas na home e preservam edição
     const copy = translations[locale];
     const homepageServices = copy.services.filter(({ id }) => id !== "media");
 
+    assert.ok(copy.hero.valueProposition.length > 0);
+    assert.equal(copy.quote, copy.hero.primaryCta);
     assert.equal(homepageServices.length, 6);
     assert.ok(copy.services.some(({ id }) => id === "media"));
     homepageServices.forEach(({ shortTitle, title, subtitle }) => {

@@ -564,7 +564,7 @@ html[dir="rtl"] .showcase-link:hover svg { transform: rotate(180deg) translateX(
 .motto {
   margin: 0 0 0.8rem;
   color:  #d8b267;
-  font-size: clamp(1.8rem, 3vw, 3.2rem);
+  font-size: clamp(2.4rem, 4vw, 4.2rem);
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: 0.08em;
@@ -585,6 +585,17 @@ h1, h2, h3 { font-family: Inter, system-ui, sans-serif; }
   letter-spacing: -0.055em;
   text-wrap: balance;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+}
+
+.hero-value-proposition {
+  max-width: 680px;
+  margin: 0 auto 1.35rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  font-weight: 500;
+  line-height: 1.5;
+  text-wrap: balance;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.82);
 }
 
 .hero-footnote {
@@ -1342,8 +1353,9 @@ footer {
 .cinematic-panel--hero::before { display: block; background: linear-gradient(180deg, rgba(8, 11, 16, .08), rgba(8, 11, 16, .68)); }
 .cinematic-panel--hero .hero-content { padding-block: clamp(7rem, 14vh, 11rem) clamp(4rem, 10vh, 7rem); text-align: center; }
 .cinematic-panel--hero .hero-copy { max-width: 760px; margin-inline: auto; }
-.cinematic-panel--hero .hero-footnote { max-width: 540px; color: #fff; font-size: clamp(.86rem, 1.2vw, 1rem); }
+.cinematic-panel--hero .hero-footnote { max-width: 540px; margin-bottom: 1.15rem; color: rgba(255, 255, 255, .76); font-size: clamp(.78rem, 1vw, .9rem); font-weight: 600; }
 .cinematic-panel--hero .hero-footnote, .cinematic-panel--hero .hero-disclaimer, .cinematic-panel--hero .hero-actions { margin-inline: auto; }
+.cinematic-panel--hero .hero-disclaimer { margin-top: -.75rem; margin-bottom: 1.4rem; color: rgba(197, 200, 202, .72); font-size: clamp(.62rem, .75vw, .7rem); }
 .cinematic-panel--hero .hero-actions { flex-direction: row; justify-content: center; }
 .cinematic-panel--portfolio { padding-block: clamp(7rem, 11vh, 9rem) clamp(3rem, 7vh, 5rem); }
 .cinematic-panel--portfolio::before { background: linear-gradient(90deg, rgba(4, 8, 13, .9), rgba(4, 8, 13, .64) 67%, rgba(4, 8, 13, .78)); }
@@ -1376,6 +1388,10 @@ footer {
   .cinematic-panel--portfolio .portfolio-grid, .cinematic-panel--services .services-grid { grid-template-columns: 1fr; }
   .cinematic-panel--services .service-tile { min-height: 10rem; }
   .cinematic-panel--hero .hero-actions { flex-direction: column; }
+  .cinematic-panel--hero .hero-content { padding-block: clamp(4.5rem, 10vh, 6rem) 3.5rem; }
+  .motto { font-size: clamp(1.65rem, 8vw, 2.4rem); }
+  .hero-copy h2 { font-size: clamp(2.25rem, 12vw, 3.25rem); }
+  .hero-value-proposition { margin-bottom: 1.15rem; font-size: 1rem; line-height: 1.45; }
 }
 
 @media (prefers-reduced-motion: reduce) {
