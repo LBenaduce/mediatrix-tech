@@ -8,6 +8,7 @@ import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
 import { getEasterEggCopy, projectNameTranslations, sharedUiTranslations } from "./translations";
 import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
 import { applyPageSeo, ROUTE_SEO } from "./seo";
+import { trackMetaEvent } from "./metaPixel";
 import { WhatsAppFloat } from "./PublicChrome";
 import "./international.css";
 
@@ -119,7 +120,7 @@ export function InternationalLanding({ pathname }) {
       <header className="intl-header">
         <SecretLogo className="intl-brand" href="#top" ariaLabel={isPortuguese ? "Mediatrix Tech — início" : "Mediatrix Tech — top"} imageSize={42} />
         <nav aria-label={isPortuguese ? "Navegação da campanha" : "Campaign navigation"}><a href="#pricing">{isPortuguese ? "Preços" : "Pricing"}</a><a href="#portfolio">{isPortuguese ? "Projetos" : "Work"}</a><a href="#faq">FAQ</a></nav>
-        <a className="intl-header-cta" href="#quote-form" onClick={() => trackEvent("primary_cta_click", { landing_page: landingPage })}>{isPortuguese ? "Solicitar orçamento" : "Request a Quote"}</a>
+        <a className="intl-header-cta" href="#quote-form" data-meta-lead onClick={() => trackEvent("primary_cta_click", { landing_page: landingPage })}>{isPortuguese ? "Solicitar orçamento" : "Request a Quote"}</a>
       </header>
 
       <main id="top">
@@ -137,7 +138,7 @@ export function InternationalLanding({ pathname }) {
               <p className="launch-note">{isPortuguese ? "Valores introdutórios por tempo limitado para os primeiros clientes internacionais da Mediatrix Tech." : introductoryPricing.launchOfferDescription}</p>
               {isPortuguese && <label className="market-selector"><span>Mercado do seu negócio</span><select value={marketKey} onChange={(event) => setMarketKey(event.target.value)}><option value="brazil">Brasil · BRL</option><option value="us">Estados Unidos · USD</option><option value="europe">Europa · EUR</option><option value="switzerland">Suíça · CHF</option></select><small>O mercado e a moeda são escolhidos por você, independentemente do idioma do site.</small></label>}
               <div className="intl-actions">
-                <a className="intl-button primary" href="#quote-form" onClick={() => trackEvent("primary_cta_click", { landing_page: landingPage })}>{isPortuguese ? "Solicitar orçamento de lançamento" : "Request Your Introductory Quote"}<ArrowRight size={18} /></a>
+                <a className="intl-button primary" href="#quote-form" data-meta-lead onClick={() => trackEvent("primary_cta_click", { landing_page: landingPage })}>{isPortuguese ? "Solicitar orçamento de lançamento" : "Request Your Introductory Quote"}<ArrowRight size={18} /></a>
                 <a className="intl-button secondary" href="#pricing">{isPortuguese ? "Ver o que está incluído" : "View What’s Included"}</a>
               </div>
               <div className="trust-row"><span><Check size={17} />{isPortuguese ? "Comunicação direta com o desenvolvedor" : "Direct developer communication"}</span><span><Check size={17} />{isPortuguese ? "Escopo claro e controlado" : "Clear, controlled scope"}</span><span><Check size={17} />{isPortuguese ? "Entrega pensada primeiro para celulares" : "Mobile-first delivery"}</span></div>
@@ -216,7 +217,7 @@ function QuoteForm({ region, landingPage, selectedPackage, setSelectedPackage, i
       const response = await fetch("https://formsubmit.co/ajax/mediatrixtech@proton.me", { method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json" }, body: JSON.stringify({ ...Object.fromEntries(formData.entries()), selected_package: selectedPackageId, ...attribution, landing_page: landingPage, _subject: "Website review request" }) });
       const result = await response.json().catch(() => ({}));
       if (!response.ok || result.success === false || result.success === "false") throw new Error("Submission failed");
-      trackEvent("quote_form_submit", analyticsData); form.reset(); setSelectedPackage(""); setStatus("success");
+      trackEvent("quote_form_submit", analyticsData); trackMetaEvent("Lead"); form.reset(); setSelectedPackage(""); setStatus("success");
     } catch { trackEvent("quote_form_error", analyticsData); setStatus("error"); }
   };
   return <section className="intl-section quote-section" id="quote-form"><div className="intl-shell quote-layout"><div><p className="eyebrow">{isPortuguese ? "Solicite um orçamento" : "Request a quote"}</p><h2>{isPortuguese ? "Conte sobre o seu projeto." : "Let’s define the right starting point."}</h2><p>{isPortuguese ? "Compartilhe algumas informações. Projetos com orçamento reduzido também são analisados, sem rejeição automática." : "Share a few details. Low-budget enquiries are welcome and reviewed rather than automatically rejected."}</p><div className="direct-contact"><a href="mailto:mediatrixtech@proton.me" onClick={() => trackLink("email_click")}><Mail size={18} />mediatrixtech@proton.me</a><a href="https://wa.me/13059920833" onClick={() => trackLink("whatsapp_click")}><MessageCircle size={18} />WhatsApp</a></div></div><form onSubmit={submit} onFocus={onStart}>

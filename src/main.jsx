@@ -40,6 +40,7 @@ import { SecretLogo } from "./easter-eggs/SecretLogo";
 import { printConsoleGreeting } from "./easter-eggs/consoleGreeting";
 import { EasterEggI18nProvider } from "./easter-eggs/EasterEggI18n";
 import { applyPageSeo, getStructuredData, LOCAL_ROUTE, ROUTE_SEO } from "./seo";
+import { initializeMetaPixelTracking, trackMetaEvent } from "./metaPixel";
 import "./styles.css";
 import "./easter-eggs/easter-eggs.css";
 
@@ -299,7 +300,7 @@ function Header({ activeSection, copy, language, onLanguageChange }) {
         </nav>
 
         <LanguageSelector copy={copy} language={language} onChange={changeLanguage} />
-        <a className="header-cta" href="#formulario">{copy.quote}</a>
+        <a className="header-cta" href="#formulario" data-meta-lead>{copy.quote}</a>
 
         <button
           ref={menuButtonRef}
@@ -320,7 +321,7 @@ function Header({ activeSection, copy, language, onLanguageChange }) {
             {label}
           </a>
         ))}
-        <a className="mobile-quote" href="#formulario" onClick={closeMenu}>{copy.quote}</a>
+        <a className="mobile-quote" href="#formulario" data-meta-lead onClick={closeMenu}>{copy.quote}</a>
       </nav>
     </header>
   );
@@ -350,7 +351,7 @@ function Hero({ copy, language }) {
           <p className="hero-value-proposition">{copy.hero.valueProposition}</p>
           <HeroFootnote copy={copy} />
           <div className="hero-actions">
-            <a className="button primary" href="#formulario">{copy.hero.primaryCta} <ArrowRight size={18} aria-hidden="true" /></a>
+            <a className="button primary" href="#formulario" data-meta-lead>{copy.hero.primaryCta} <ArrowRight size={18} aria-hidden="true" /></a>
             <a className="button secondary" href="#projects">{copy.hero.secondaryCta}</a>
           </div>
         </div>
@@ -656,6 +657,7 @@ function Contact({ copy, selectedService, onSelectService }) {
       form.reset();
       onSelectService("");
       setStatus("success");
+      trackMetaEvent("Lead");
     } catch {
       setStatus("error");
     }
@@ -781,6 +783,7 @@ function configureGoogleSiteVerification() {
 
 if (typeof document !== "undefined") {
   configureGoogleSiteVerification();
+  initializeMetaPixelTracking();
   const rootElement = document.getElementById("root");
   const application = <CurrentRoute />;
   if (rootElement.hasChildNodes()) hydrateRoot(rootElement, application);

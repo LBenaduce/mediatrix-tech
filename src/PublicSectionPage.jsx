@@ -40,7 +40,7 @@ const pageContent = {
 };
 
 function ServicesContent() {
-  return <div className="local-card-grid">{copy.services.map((service) => <article className="local-card compact" key={service.id}><h2>{service.title}</h2><p>{service.description}</p><p className="public-benefit">{service.benefit}</p><a className="text-link" href="/contato">Solicitar orçamento <ArrowRight size={17} aria-hidden="true" /></a></article>)}</div>;
+  return <div className="local-card-grid">{copy.services.map((service) => <article className="local-card compact" key={service.id}><h2>{service.title}</h2><p>{service.description}</p><p className="public-benefit">{service.benefit}</p><a className="text-link" href="/contato" data-meta-lead>Solicitar orçamento <ArrowRight size={17} aria-hidden="true" /></a></article>)}</div>;
 }
 
 function PortfolioContent() {
@@ -84,7 +84,7 @@ export function PublicSectionPage({ pathname }) {
             {pathname === "/portfolio" && <PortfolioContent />}
             {pathname === "/empresa" && <CompanyContent />}
             {pathname === "/contato" && <ContactContent />}
-            {pathname !== "/contato" && <div className="public-inline-cta"><p>Atendimento em Santa Maria, no Rio Grande do Sul e remotamente para outras regiões.</p><a className="button primary" href="/contato">Falar sobre um projeto <ArrowRight size={18} aria-hidden="true" /></a></div>}
+            {pathname !== "/contato" && <div className="public-inline-cta"><p>Atendimento em Santa Maria, no Rio Grande do Sul e remotamente para outras regiões.</p><a className="button primary" href="/contato" data-meta-lead>Falar sobre um projeto <ArrowRight size={18} aria-hidden="true" /></a></div>}
             {pathname === "/servicos" && <a className="text-link public-local-link" href={LOCAL_ROUTE}>Criação de sites em Santa Maria, RS <ArrowRight size={17} aria-hidden="true" /></a>}
           </div></section>
         </main>
