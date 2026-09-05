@@ -41,9 +41,9 @@ const process = [
 ];
 
 const projects = [
-  ["AgriClimate Pro", "/agriclimate-pro-poster-pt.jpg", "Experiência digital AgTech para organizar informações climáticas e apoiar decisões no campo.", 1280, 720],
+  ["AgriClimate Pro", "/agriclimate-pro-poster-pt.jpg", "Experiência digital AgTech para organizar informações climáticas e apoiar decisões no campo.", 1280, 720, "https://agriclimatepro.com/"],
   ["Event QR Code", "/event-qr-code-poster.jpg", "Página para eventos com acesso por QR Code e envio de fotos e vídeos pelos convidados.", 1280, 720],
-  ["Oficina Mecânica", "/oficina-mecanica-demo.jpg", "Site responsivo para apresentar serviços automotivos e facilitar o contato de clientes da região.", 2396, 1852],
+  ["Oficina Mecânica", "/oficina-mecanica-demo.jpg", "Site responsivo para apresentar serviços automotivos e facilitar o contato de clientes da região.", 2396, 1852, "https://frasson-farois.vercel.app/"],
 ];
 
 export function LocalSantaMariaLanding() {
@@ -106,7 +106,7 @@ export function LocalSantaMariaLanding() {
           <section className="section" id="projetos" aria-labelledby="projetos-title">
             <div className="shell">
               <div className="section-heading"><p className="eyebrow">Projetos reais</p><h2 id="projetos-title">Experiências digitais pensadas para pessoas.</h2><p className="section-description">Uma seleção de trabalhos da Mediatrix Tech para diferentes contextos e públicos.</p></div>
-              <div className="local-project-grid">{projects.map(([name, image, description, width, height]) => <article className="project-card" key={name}><div className="project-media"><img src={image} alt={`Prévia do projeto ${name}`} width={width} height={height} loading="lazy" /></div><div className="project-content"><h3>{name}</h3><p>{description}</p></div></article>)}</div>
+              <div className="local-project-grid">{projects.map(([name, image, description, width, height, projectUrl]) => <article className="project-card" key={name}><div className="project-media"><img src={image} alt={`Prévia do projeto ${name}`} width={width} height={height} loading="lazy" /></div><div className="project-content"><h3>{name}</h3><p>{description}</p>{projectUrl && <a className="text-link" href={projectUrl} target="_blank" rel="noopener noreferrer">Ver projeto <ArrowRight size={17} aria-hidden="true" /></a>}</div></article>)}</div>
               <a className="text-link local-more-link" href="/portfolio">Ver o portfólio <ArrowRight size={17} aria-hidden="true" /></a>
             </div>
           </section>

@@ -568,7 +568,7 @@ const projectChapterDescriptions = {
   ],
 };
 
-function ProjectChapter({ id, index, name, description, video, poster, image, viewLabel, nextLabel }) {
+function ProjectChapter({ id, index, name, description, video, poster, image, projectUrl, viewLabel, nextLabel }) {
   return (
     <section className={`project-chapter project-chapter--${index + 1}`} id={id} aria-labelledby={`${id}-title`}>
       {video ? <CinematicVideo className="project-chapter-media" poster={poster} mp4={video} /> : <div className="project-chapter-media project-chapter-image" style={{ backgroundImage: `url('${image}')` }} aria-hidden="true" />}
@@ -577,7 +577,7 @@ function ProjectChapter({ id, index, name, description, video, poster, image, vi
         <p className="project-index">0{index + 1} / 04</p>
         <h2 id={`${id}-title`}>{name}</h2>
         <p>{description}</p>
-        <a className="button project-button" href={video || image} target="_blank" rel="noopener noreferrer">{viewLabel} <ArrowRight size={18} aria-hidden="true" /></a>
+        <a className="button project-button" href={projectUrl || video || image} target="_blank" rel="noopener noreferrer">{viewLabel} <ArrowRight size={18} aria-hidden="true" /></a>
       </div>
       <a className="chapter-next" href={`#${["frasson", "maria-luiza", "cafe", "services"][index]}`} aria-label={nextLabel}>↓</a>
     </section>
@@ -596,8 +596,8 @@ function Projects({ copy, language }) {
   const ui = sharedUiTranslations[language] || sharedUiTranslations.en;
   const viewLabel = copy.portfolioSection.view;
   const chapters = [
-    { id: "agriclimate", video: "/project-agriclimate.mp4", poster: "/agriclimate-pro-poster.jpg" },
-    { id: "frasson", video: "/project-frasson.mp4", poster: "/frasson-llc-demo-optimized.jpg" },
+    { id: "agriclimate", video: "/project-agriclimate.mp4", poster: "/agriclimate-pro-poster.jpg", projectUrl: "https://agriclimatepro.com/" },
+    { id: "frasson", video: "/project-frasson.mp4", poster: "/frasson-llc-demo-optimized.jpg", projectUrl: "https://frasson-farois.vercel.app/" },
     { id: "maria-luiza", video: "/project-maria-luiza.mp4", poster: "/event-qr-code-poster.jpg" },
     { id: "cafe", video: "/project-cafe.mp4", poster: "/project-cafe.jpg" },
   ];
