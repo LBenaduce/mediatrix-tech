@@ -665,7 +665,7 @@ function Contact({ copy, selectedService, onSelectService }) {
 
   return (
     <section className="section contact-section cinematic-panel cinematic-panel--contact" id="contact" aria-labelledby="contact-title">
-      <CinematicVideo className="cinematic-video--contact" poster="/mediatrix-contact-call-poster.jpg" mp4="/mediatrix-contact-call.mp4" />
+      <CinematicVideo className="cinematic-video--contact" poster="/mediatrix-contact-owl-c5d17de0-poster.jpg" mp4="/mediatrix-contact-owl-c5d17de0.mp4" />
       <div className="shell">
         <SectionHeading eyebrow={copy.contact.eyebrow} title={copy.contact.title} description={copy.contact.description} id="contact-title" />
         <div className="contact-layout">
