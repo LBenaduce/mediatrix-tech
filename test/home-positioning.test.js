@@ -87,13 +87,12 @@ test("a colaboração internacional de IA comunica escopo sem identificar o clie
   }
 });
 
-test("os canais de contato exibem os dois números do WhatsApp", () => {
+test("os canais de contato exibem apenas o número brasileiro do WhatsApp", () => {
   for (const locale of ["pt-BR", "en", "es", "fr", "de", "zh-CN", "hi", "ar"]) {
-    assert.deepEqual(translations[locale].contact.channels.slice(0, 2), [
-      ["WhatsApp", "+1 305 992 0833"],
+    assert.deepEqual(translations[locale].contact.channels.filter(([title]) => title === "WhatsApp"), [
       ["WhatsApp", "+55 55 99935-7388"],
     ]);
-    assert.equal(translations[locale].contact.channels.length, 4);
+    assert.equal(translations[locale].contact.channels.length, 3);
   }
 });
 
