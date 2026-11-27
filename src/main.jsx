@@ -670,7 +670,7 @@ function Contact({ copy, selectedService, onSelectService }) {
           <div className="contact-channels" aria-label={copy.contact.channelsLabel}>
             {copy.contact.channels.map(([title, detail], index) => {
               const [href, Icon, channel] = channelData[index];
-              return <a className={`contact-channel ${channel}`} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} key={`${title}-${detail}`}><span className="contact-icon"><Icon size={21} aria-hidden="true" /></span><span><strong>{title}</strong><small>{detail}</small></span><span className="channel-arrow"><ArrowRight size={17} aria-hidden="true" /></span></a>;
+              return <a className={`contact-channel ${channel}`} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} key={`${title}-${detail}`}><span className="contact-icon"><Icon size={21} aria-hidden="true" /></span><span><strong>{title}</strong>{detail && <small>{detail}</small>}</span><span className="channel-arrow"><ArrowRight size={17} aria-hidden="true" /></span></a>;
             })}
           </div>
 

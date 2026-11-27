@@ -59,7 +59,7 @@ function CompanyContent() {
 }
 
 function ContactContent() {
-  return <div className="public-contact-grid"><a href={BRAZIL_WHATSAPP} target="_blank" rel="noopener noreferrer"><MessageCircle aria-hidden="true" /><span><strong>WhatsApp</strong><small>+55 55 99935-7388</small></span><ExternalLink aria-hidden="true" /></a><a href="mailto:mediatrixtech@proton.me"><Mail aria-hidden="true" /><span><strong>E-mail</strong><small>mediatrixtech@proton.me</small></span><ArrowRight aria-hidden="true" /></a><a href="https://www.upwork.com/freelancers/~015020486545a9742b" target="_blank" rel="noopener noreferrer"><ExternalLink aria-hidden="true" /><span><strong>Perfil na Upwork</strong><small>Projetos internacionais</small></span><ArrowRight aria-hidden="true" /></a></div>;
+  return <div className="public-contact-grid"><a href={BRAZIL_WHATSAPP} target="_blank" rel="noopener noreferrer"><MessageCircle aria-hidden="true" /><span><strong>WhatsApp</strong></span><ExternalLink aria-hidden="true" /></a><a href="mailto:mediatrixtech@proton.me"><Mail aria-hidden="true" /><span><strong>E-mail</strong><small>mediatrixtech@proton.me</small></span><ArrowRight aria-hidden="true" /></a><a href="https://www.upwork.com/freelancers/~015020486545a9742b" target="_blank" rel="noopener noreferrer"><ExternalLink aria-hidden="true" /><span><strong>Perfil na Upwork</strong><small>Projetos internacionais</small></span><ArrowRight aria-hidden="true" /></a></div>;
 }
 
 export function PublicSectionPage({ pathname }) {
